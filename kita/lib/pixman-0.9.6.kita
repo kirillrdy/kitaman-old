@@ -1,0 +1,11 @@
+# hello
+FAKE=""
+KITA_VER="1.0"
+FILES="http://cairographics.org/releases/pixman-0.9.6.tar.gz"
+DEPEND=""
+BUILD=""
+build_src(){
+./configure --prefix=/usr &&
+make
+}
+""

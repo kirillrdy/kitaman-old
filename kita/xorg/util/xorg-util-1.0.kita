@@ -1,0 +1,7 @@
+# Xorg
+FAKE=""
+KITA_TYPE="meta"
+DEPEND="gccmakedep makedepend imake util-macros lndir xorg-cf-files"
+BUILD=""
+echo "xorg utils pariah" 
+""

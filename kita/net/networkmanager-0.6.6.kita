@@ -1,0 +1,14 @@
+# xorg
+FAKE=""
+KITA_VER="1.0"
+FILES="http://people.redhat.com/dcbw/NetworkManager/0.6.6/NetworkManager-0.6.6.tar.gz"
+#FILES="http://people.redhat.com/dcbw/NetworkManager/0.6.6/nm-applet-0.6.6.tar.gz"
+DEPEND="wireless-tools libnl"
+BUILD=""
+# going with defaults
+build_src()
+{
+./configure --prefix=/usr
+make
+}
+""

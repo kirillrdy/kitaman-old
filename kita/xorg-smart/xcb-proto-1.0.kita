@@ -1,0 +1,16 @@
+# xorg
+FAKE=""
+KITA_VER="1.0"
+FILES="http://xcb.freedesktop.org/dist/xcb-proto-1.0.tar.bz2"
+DEPEND=""
+BUILD=""
+build_src()
+{
+XORG_PREFIX="/usr"
+XORG_CONFIG="--prefix=$XORG_PREFIX --sysconfdir=/etc \
+    --mandir=$XORG_PREFIX/share/man --localstatedir=/var"
+
+./configure $XORG_CONFIG &&
+make
+}
+""

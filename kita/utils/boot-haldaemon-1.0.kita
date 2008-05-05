@@ -1,0 +1,17 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_VER="1.0"
+DESCRIPTION=""
+FILES="http://www.linuxfromscratch.org/blfs/downloads/svn/blfs-bootscripts-20080326.tar.bz2"
+DEPEND=""
+BUILD=""
+#Paste Build instructions here
+build_src()
+{
+echo
+}
+kita_install()
+{
+make DESTDIR=$INSTALL_DIR install-haldaemon
+}
+""

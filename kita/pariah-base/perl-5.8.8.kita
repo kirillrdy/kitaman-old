@@ -1,0 +1,16 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_TYPE="make1"
+DESCRIPTION="perl"
+FILES="http://ftp.lfs-matrix.net/pub/lfs/lfs-packages/development/perl-5.8.8.tar.bz2"
+DEPEND=""
+BUILD=""
+build_src(){
+echo "127.0.0.1 localhost $(hostname)" > /etc/hosts
+
+sed -i 's/command /command[ -]/' makedepend.SH
+./configure.gnu --prefix=/usr -Dman1dir=/usr/share/man/man1 -Dman3dir=/usr/share/man/man3 -Dpager="/usr/bin/less -isR"
+make
+#make test
+}
+""

@@ -1,0 +1,19 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_VER="1.0"
+DESCRIPTION="sed"
+FILES="http://savannah.nongnu.org/download/man-db/man-db-2.5.0.tar.gz"
+DEPEND=""
+BUILD=""
+build_src(){
+sed -i -e '\%\t/usr/man%d' -e '\%\t/usr/local/man%d' src/man_db.conf.in
+cat >> include/manconfig.h.in << "EOF"
+#define WEB_BROWSER "exec /usr/bin/lynx"
+#define COL "/usr/bin/col"
+#define VGRIND "/usr/bin/vgrind"
+#define GRAP "/usr/bin/grap"
+EOF
+./configure --prefix=/usr --enable-mb-groff --disable-setuid
+make
+}
+""

@@ -1,0 +1,16 @@
+# xorg
+FAKE=""
+KITA_VER="1.0"
+FILES="http://xorg.freedesktop.org/archive/X11R7.3/src/lib/libXinerama-1.0.2.tar.bz2"
+DEPEND="ed fontconfig pkg-config xorg-proto"
+BUILD=""
+build_src()
+{
+XORG_PREFIX="/usr"
+XORG_CONFIG="--prefix=$XORG_PREFIX --sysconfdir=/etc \
+    --mandir=$XORG_PREFIX/share/man --localstatedir=/var"
+
+./configure $XORG_CONFIG &&
+make
+}
+""

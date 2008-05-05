@@ -1,0 +1,13 @@
+# xorg
+FAKE=""
+KITA_VER="1.0"
+FILES="http://nchc.dl.sourceforge.net/sourceforge/mad/libmad-0.15.1b.tar.gz"
+DEPEND=""
+BUILD=""
+build_src()
+{
+./configure --prefix=/usr &&
+make
+}
+
+""

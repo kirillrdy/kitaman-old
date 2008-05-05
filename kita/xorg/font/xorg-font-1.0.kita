@@ -1,0 +1,14 @@
+# Xorg
+FAKE=""
+KITA_TYPE="meta"
+DEPEND="encodings font-util font-alias  font-daewoo-misc font-dec-misc font-adobe-100dpi font-ibm-type1 font-adobe-75dpi font-isas-misc font-adobe-utopia-100dpi font-jis-misc font-adobe-utopia-75dpi font-micro-misc font-adobe-utopia-type1 font-misc-cyrillic font-misc-ethiopic font-arabic-misc font-misc-meltho font-bh-100dpi font-misc-misc font-bh-75dpi font-mutt-misc font-bh-lucidatypewriter-100dpi font-schumacher-misc font-bh-lucidatypewriter-75dpi font-screen-cyrillic font-bh-ttf font-sony-misc font-bh-type1 font-sun-misc font-bitstream-100dpi font-util font-bitstream-75dpi font-winitzki-cyrillic font-bitstream-speedo font-xfree86-type1 font-bitstream-type1 font-cronyx-cyrillic font-cursor-misc kochi-substitute liberation-fonts"
+BUILD=""
+post_install()
+{
+mkfontdir /usr/lib/X11/fonts/*
+install -v -d -m755 /usr/share/fonts 
+#ln -svn /usr/lib/X11/fonts/OTF /usr/share/fonts/X11-OTF &&
+#ln -svn /usr/lib/X11/fonts/TTF /usr/share/fonts/X11-TTF
+ln -svnf /usr/lib/X11/fonts/* /usr/share/fonts/
+}
+""

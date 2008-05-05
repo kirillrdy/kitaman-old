@@ -1,0 +1,11 @@
+# hello
+FAKE=""
+KITA_TYPE="make1"
+FILES="http://ftp.acc.umu.se/pub/gnome/sources/pygobject/2.14/pygobject-2.14.1.tar.bz2"
+DEPEND=""
+BUILD=""
+build_src(){
+./configure --prefix=/usr &&
+make
+}
+""

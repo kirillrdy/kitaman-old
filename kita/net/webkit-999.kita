@@ -1,0 +1,12 @@
+# xorg
+FAKE=""
+KITA_VER="1.0"
+FILES="http://nightly.webkit.org/files/trunk/src/WebKit-r31667.tar.bz2"
+DEPEND="gtk+ icu libxslt sqlite libjpeg libpng gperf bison flex libsoup"
+BUILD=""
+build_src()
+{
+./autogen.sh --prefix=/usr --enable-svg-experimental --enable-video --with-font-backend=pango --with-http-backend=soup
+make
+}
+""

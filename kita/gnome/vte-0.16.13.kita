@@ -1,0 +1,16 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_TYPE="smart_make"
+DESCRIPTION=""
+FILES="http://ftp.gnome.org/pub/gnome/sources/vte/0.16/vte-0.16.13.tar.bz2"
+DEPEND="gtk+ XML-Parser"
+BUILD=""
+#Paste Build instructions here
+build_src()
+{
+sed -i 's%\\177:%&kh=\\EOH:@7=\\EOF:%' termcaps/xterm &&
+./configure --prefix=/usr \
+            --libexecdir=/usr/lib/vte &&
+make
+}
+""

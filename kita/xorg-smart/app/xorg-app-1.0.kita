@@ -1,0 +1,8 @@
+# kita file
+FAKE=""
+KITA_TYPE="meta"
+FILES=""
+DEPEND="mesalib appres bdftopcf beforelight bitmap editres fonttosfnt fslsfonts fstobdf iceauth ico lbxproxy listres mkfontdir mkfontscale oclock proxymngr rgb rstart scripts sessreg setxkbmap showfont smproxy twm viewres x11perf xauth xbiff xcalc xclipboard xclock xcmsdb xconsole xcursorgen xdbedizzy xditview xdm xdpyinfo xdriinfo xedit xev xeyes xf86dga xfd xfindproxy xfontsel xfs xfsinfo xfwp xgamma xgc xhost  xinit xkbcomp xkbevd xkbprint xkbutils xkill xload xlogo xlsatoms xlsclients xlsfonts xmag xman xmessage xmh xmodmap xmore xphelloworld xplsprinters xpr xprehashprinterlist xprop xrandr xrdb xrefresh xrx xset xsetmode xsetpointer xsetroot xsm xstdcmap xtrap xvidtune xvinfo xwd xwininfo xwud"
+BUILD=""
+  echo "org" 
+""

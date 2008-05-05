@@ -1,0 +1,11 @@
+# hello
+FAKE=""
+KITA_VER="1.0"
+FILES="ftp://ftp.gnupg.org/gcrypt/libgcrypt/libgcrypt-1.4.0.tar.bz2"
+DEPEND="libgpg-error"
+BUILD=""
+build_src(){
+./configure --prefix=/usr && 
+make
+}
+""

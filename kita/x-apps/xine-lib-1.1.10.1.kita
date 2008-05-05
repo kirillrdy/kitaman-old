@@ -1,0 +1,13 @@
+# xorg
+FAKE=""
+KITA_TYPE="smart_make2"
+FILES="http://prdownloads.sourceforge.net/xine/xine-lib-1.1.10.1.tar.bz2"
+DEPEND="xorg alsa-utils pkg-config"
+BUILD=""
+build_src()
+{
+./configure --prefix=/usr --enable-static &&
+make
+}
+
+""

@@ -1,0 +1,13 @@
+# xorg
+FAKE=""
+KITA_VER="1.0"
+FILES="http://distfiles.atheme.org/audacious-1.5.0.tgz"
+DEPEND="libmowgli mcs"
+BUILD=""
+build_src()
+{
+./configure --prefix=/usr &&
+make
+}
+
+""

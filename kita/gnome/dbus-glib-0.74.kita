@@ -1,0 +1,14 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_VER="1.0"
+DESCRIPTION=""
+FILES="http://dbus.freedesktop.org/releases/dbus-glib/dbus-glib-0.74.tar.gz"
+DEPEND="glib dbus expat"
+BUILD=""
+#Paste Build instructions here
+build_src()
+{
+./configure --prefix=/usr
+make
+}
+""

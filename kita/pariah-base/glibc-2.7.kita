@@ -1,0 +1,101 @@
+# OK ?
+FAKE=""
+KITA_VER="1.0"
+DESCRIPTION="linux kernel headers"
+FILES="http://ftp.gnu.org/gnu/glibc/glibc-2.7.tar.bz2
+http://ftp.gnu.org/gnu/glibc/glibc-libidn-2.7.tar.bz2"
+DEPEND=""
+BUILD=""
+ext_src()
+{
+mkdir -p /tmp/kitaman
+echo "Extracting sources ..."
+tar xjpf $SRC_DIR/glibc-2.7.tar.bz2 -C /tmp/kitaman/${NAME}/build
+tar xjpf $SRC_DIR/glibc-libidn-2.7.tar.bz2 -C /tmp/kitaman/${NAME}/build/glibc-2.7
+mv /tmp/kitaman/${NAME}/build/${NAME}/glibc-libidn-2.7 /tmp/kitaman/${NAME}/build/${NAME}/libidn
+cd /tmp/kitaman/${NAME}/build/${NAME}
+
+sed -i '/vi_VN.TCVN/d' localedata/SUPPORTED
+sed -i \
+'s|libs -o|libs -L/usr/lib -Wl,-dynamic-linker=/lib/ld-linux.so.2 -o|' \
+        scripts/test-installation.pl
+sed -i 's|@BASH@|/bin/bash|' elf/ldd.bash.in
+}
+
+build_src()
+{
+mkdir ../glibc-build
+cd ../glibc-build
+
+echo "CFLAGS += -march=i486" > configparms
+../glibc-2.7/configure --prefix=/usr \
+    --disable-profile --enable-add-ons \
+    --enable-kernel=2.6.0 --libexecdir=/usr/lib/glibc
+
+make
+make -k check 2>&1 | tee glibc-check-log
+grep Error glibc-check-log
+touch /etc/ld.so.conf
+make install_root=$INSTALL_DIR install
+cd $INSTALL_DIR
+tar cjpf $PKG_DIR/${NAME}-bin.tar.bz2 *
+}
+
+kita_install()
+{
+  echo "This kita file needs to be rewritten, ok ?"
+}
+
+make_pkg()
+{
+  echo "This package is special"
+}
+
+post_install()
+{
+mkdir -pv /usr/lib/locale
+localedef -i de_DE -f ISO-8859-1 de_DE
+localedef -i de_DE@euro -f ISO-8859-15 de_DE@euro
+localedef -i en_HK -f ISO-8859-1 en_HK
+localedef -i en_PH -f ISO-8859-1 en_PH
+localedef -i en_US -f ISO-8859-1 en_US
+localedef -i en_US -f UTF-8 en_US.UTF-8
+localedef -i es_MX -f ISO-8859-1 es_MX
+localedef -i fa_IR -f UTF-8 fa_IR
+localedef -i fr_FR -f ISO-8859-1 fr_FR
+localedef -i fr_FR@euro -f ISO-8859-15 fr_FR@euro
+localedef -i fr_FR -f UTF-8 fr_FR.UTF-8
+localedef -i it_IT -f ISO-8859-1 it_IT
+localedef -i ja_JP -f EUC-JP ja_JP
+# If you want ALL locales
+#make localedata/install-locales
+
+cat > /etc/nsswitch.conf << "EOF"
+# Begin /etc/nsswitch.conf
+
+passwd: files
+group: files
+shadow: files
+
+hosts: files dns
+networks: files
+
+protocols: files
+services: files
+ethers: files
+rpc: files
+
+# End /etc/nsswitch.conf
+EOF
+
+cat > /etc/ld.so.conf << "EOF"
+# Begin /etc/ld.so.conf
+
+/usr/local/lib
+/opt/lib
+
+# End /etc/ld.so.conf
+EOF
+}
+
+""

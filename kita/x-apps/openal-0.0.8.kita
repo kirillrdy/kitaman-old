@@ -1,0 +1,13 @@
+# xorg
+FAKE=""
+KITA_VER="1.0"
+FILES="http://www.openal.org/openal_webstf/downloads/openal-0.0.8.tar.gz /some/004_all_gcc42.patch"
+DEPEND=""
+BUILD=""
+build_src()
+{
+./configure --prefix=/usr &&
+make
+}
+
+""

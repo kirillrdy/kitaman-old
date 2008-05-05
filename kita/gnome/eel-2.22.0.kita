@@ -1,0 +1,14 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_TYPE="smart_make"
+DESCRIPTION=""
+FILES="http://ftp.gnome.org/pub/gnome/sources/eel/2.22/eel-2.22.0.tar.bz2"
+DEPEND="gnome-desktop gnome-menus gail"
+BUILD=""
+#Paste Build instructions here
+build_src()
+{
+./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) &&
+make
+}
+""

@@ -1,0 +1,18 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_VER="1.0"
+DESCRIPTION="sed"
+FILES="http://www.bzip.org/1.0.4/bzip2-1.0.4.tar.gz"
+DEPEND=""
+BUILD=""
+build_src(){
+make -f Makefile-libbz2_so
+make clean
+make
+}
+kita_install()
+{
+mkdir -p $INSTALL_DIR/usr
+make PREFIX=$INSTALL_DIR/usr install
+}
+""

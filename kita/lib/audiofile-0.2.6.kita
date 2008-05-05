@@ -1,0 +1,11 @@
+# hello
+FAKE=""
+KITA_VER="1.0"
+FILES="http://www.68k.org/~michael/audiofile/audiofile-0.2.6.tar.gz"
+DEPEND=""
+BUILD=""
+build_src(){
+./configure --prefix=/usr &&
+make
+}
+""

@@ -1,0 +1,25 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_VER="1.0"
+DESCRIPTION="sed"
+FILES="http://ftp.altlinux.com/pub/people/legion/kbd/kbd-1.14.1.tar.gz http://www.linuxfromscratch.org/patches/lfs/development/kbd-1.14.1-backspace-1.patch"
+DEPEND=""
+BUILD=""
+build_src(){
+sed -i -e '1i KEYCODES_PROGS = @KEYCODES_PROGS@' \
+    -e '1i RESIZECONS_PROGS = @RESIZECONS_PROGS@' src/Makefile.in
+var=OPTIONAL_PROGS
+sed -i "s/ifdef $var/ifeq (\$($var),yes)/" man/Makefile.in
+unset var
+./configure
+
+# refer to LFS for more details
+#./configure --datadir=/lib/kbd
+make
+}
+
+post_install(){
+echo
+#mv -v /usr/bin/{kbd_mode,openvt,setfont} /bin
+}
+""

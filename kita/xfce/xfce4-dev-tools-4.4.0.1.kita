@@ -1,0 +1,13 @@
+# xorg
+FAKE=""
+KITA_TYPE="make1"
+FILES="http://downloads.sourceforge.net/fluxbox/xfce4-dev-tools-4.4.0.1.tar.bz2"
+DEPEND="autoconf automake gettext libtool pkg-config"
+BUILD=""
+build_src()
+{
+./configure --prefix=/usr &&
+make
+}
+
+""

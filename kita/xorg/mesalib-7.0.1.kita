@@ -1,0 +1,25 @@
+# xorg
+FAKE=""
+KITA_VER="1.0"
+FILES="http://nchc.dl.sourceforge.net/sourceforge/mesa3d/MesaLib-7.0.1.tar.bz2"
+DEPEND="xorg-lib xorg-util libdrm expat"
+BUILD=""
+build_src()
+{
+XORG_PREFIX="/usr"
+XORG_CONFIG="--prefix=$XORG_PREFIX --sysconfdir=/etc \
+    --mandir=$XORG_PREFIX/share/man --localstatedir=/var"
+make linux-dri-x86 OPT_FLAGS="-O2 -fno-strict-aliasing" \
+    DRI_DRIVER_INSTALL_DIR=${XORG_PREFIX}/lib/X11/modules/dri \
+    X11_INCLUDES=-I${XORG_PREFIX}/include \
+    EXTRA_LIB_PATH=-L${XORG_PREFIX}/lib
+}
+kita_install()
+{
+mkdir -p $INSTALL_DIR/${XORG_PREFIX}/lib/X11/modules/dri
+make install INSTALL_DIR=${INSTALL_DIR} \
+    DRI_DRIVER_INSTALL_DIR=${INSTALL_DIR}/lib/X11/modules/dri
+mkdir -p $INSTALL_DIR/usr/include
+mv $INSTALL_DIR/include/* $INSTALL_DIR/usr/include
+}
+""

@@ -1,0 +1,3 @@
+# kita file
+KITA_TYPE="meta"
+DEPEND="xorg-server xorg-driver"

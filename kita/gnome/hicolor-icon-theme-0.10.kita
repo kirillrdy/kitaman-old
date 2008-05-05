@@ -1,0 +1,13 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_VER="1.0"
+DESCRIPTION=""
+FILES="http://icon-theme.freedesktop.org/releases/hicolor-icon-theme-0.10.tar.gz"
+DEPEND=""
+BUILD=""
+#Paste Build instructions here
+build_src()
+{
+./configure --prefix=/usr
+}
+""

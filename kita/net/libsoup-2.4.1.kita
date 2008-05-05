@@ -1,0 +1,12 @@
+# xorg
+FAKE=""
+KITA_VER="1.0"
+FILES="ftp://ftp.gnome.org/pub/gnome/sources/libsoup/2.4/libsoup-2.4.1.tar.gz"
+DEPEND=""
+BUILD=""
+build_src()
+{
+./configure --prefix=/usr
+make
+}
+""

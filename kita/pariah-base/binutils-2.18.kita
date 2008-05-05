@@ -1,0 +1,23 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_VER="1.0"
+DESCRIPTION="Binutils"
+FILES="http://ftp.gnu.org/gnu/binutils/binutils-2.18.tar.bz2 http://www.linuxfromscratch.org/patches/lfs/development/binutils-2.18-configure-1.patch"
+DEPEND=""
+BUILD=""
+build_src()
+{
+mkdir -v ../binutils-build
+cd ../binutils-build
+../binutils-2.18/configure --prefix=/usr --enable-shared
+make tooldir=/usr
+#make check
+}
+
+kita_install()
+{
+mkdir -p $INSTALL_DIR
+make DESTDIR=$INSTALL_DIR tooldir=/usr install
+cp -v ../binutils-2.18/include/libiberty.h $INSTALL_DIR/usr/include
+}
+""

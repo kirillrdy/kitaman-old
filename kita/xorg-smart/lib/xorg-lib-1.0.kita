@@ -1,0 +1,8 @@
+# xorg
+FAKE=""
+KITA_TYPE="meta"
+FILES=""
+DEPEND="xtrans libX11 libXext libICE libSM libXt libXmu libXpm libXp libXfixes libXrender libfontenc libxkbfile libXprintUtil libXv libAppleWM libdmx libFS liblbxutil liboldX libWindowsWM libXaw libXcomposite libXcursor libXdamage libXevie libXfont libXfontcache libXft libXi libXinerama libxkbui libXprintAppUtil libXrandr libXres libXScrnSaver libXTrap libXtst libXvMC libXxf86dga libXxf86misc libXxf86vm"
+BUILD=""
+echo "i am special"
+""

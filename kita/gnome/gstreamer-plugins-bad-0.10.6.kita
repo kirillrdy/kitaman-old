@@ -1,0 +1,14 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_VER="1.0"
+DESCRIPTION=""
+FILES="http://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-0.10.6.tar.bz2"
+DEPEND="gstreamer"
+BUILD=""
+#Paste Build instructions here
+build_src()
+{
+./configure --prefix=/usr &&
+make
+}
+""

@@ -1,0 +1,22 @@
+New fileformats (.thestory) get born so easily, much like great stories.
+
+  This story started itself a long time ago, in the times when people were coding on the machines so big that machines could eat people.
+Anyways, in those sad old days, there wasnt any need for a package manager.
+Now, when we have smaller computers, yet more dangerous monsters, we do have a real need for package managment,(esspecially all Devil (BSD) and Bird niX based OSes)
+  There are great number of them out there, however, none ( i repeat ) none can make me happy. There are many ways and ideologies of thinking about packaging. The two that warm me most are gentoo's portage and debians apt-get.(Also I would like to give credit to BSD's ports, idea is all from there)
+
+Gentoo in itself has a great idea, and ofcourse its achieved mostly though portage. Debian is following the traditional binary style, yet it stll makes packaging also nice and simple. (Note Debian can also build packages from source)
+
+The problems are
+  Gentoo: well, there are many problems with getnoo. but 1) its giving up, developers fighting, software gets outdated,lots of bugs. 2) its got too big and too slow(complicated)
+  Debian: three words, "they like stable", but for some reason, they think stable=old, thats not true in my opinion (and i have one heck of an opinion, I am Russian born Australian teaching English in Japan, try to beat that ) 2) its not customisable, because u get binaries which are build for everyone. I want power for myself!!
+
+So , thats a pre story of that story, there is one more little story.
+This guy (me), dont ask how, got himself into teaching..... in Japan ( I am Russian). details are pointless, 
+One of my students wants to be a animator (she is 12) so I asked her to make a character for me. 
+She made ....a very cute crature, she named him -  Kita man.
+
+Who would have though that this little girl with its small creation made an answer to the worlds problem - Package Managment.
+
+Here it is
+Kitaman - The Package Manager /* Our future has been decided */

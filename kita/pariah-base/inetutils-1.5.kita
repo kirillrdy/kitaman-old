@@ -1,0 +1,16 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_VER="1.0"
+DESCRIPTION="sed"
+FILES="http://ftp.gnu.org/gnu/inetutils/inetutils-1.5.tar.gz"
+DEPEND=""
+BUILD=""
+build_src(){
+./configure --prefix=/usr --libexecdir=/usr/sbin --sysconfdir=/etc --localstatedir=/var --disable-ifconfig --disable-logger --disable-syslogd --disable-whois --disable-servers
+make
+}
+
+post_install(){
+mv -v /usr/bin/ping /bin
+}
+""

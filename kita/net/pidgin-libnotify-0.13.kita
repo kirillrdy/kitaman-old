@@ -1,0 +1,13 @@
+# xorg
+FAKE=""
+KITA_VER="1.0"
+FILES="http://nchc.dl.sourceforge.net/sourceforge/gaim-libnotify/pidgin-libnotify-0.13.tar.gz"
+DEPEND="pidgin"
+BUILD=""
+# going with defaults
+build_src()
+{
+./configure --prefix=/usr
+make
+}
+""

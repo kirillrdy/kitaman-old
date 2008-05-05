@@ -1,0 +1,13 @@
+# xorg
+FAKE=""
+KITA_VER="1.0"
+FILES="http://distfiles.atheme.org/libmcs-0.7.0.tgz"
+DEPEND=""
+BUILD=""
+build_src()
+{
+./configure --prefix=/usr &&
+make
+}
+
+""

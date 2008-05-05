@@ -1,0 +1,11 @@
+# hello
+FAKE=""
+KITA_VER="1.0"
+FILES="ftp://ftp.gnutls.org/pub/gnutls/gnutls-2.2.2.tar.bz2"
+DEPEND=""
+BUILD=""
+build_src(){
+./configure --prefix=/usr &&
+make
+}
+""

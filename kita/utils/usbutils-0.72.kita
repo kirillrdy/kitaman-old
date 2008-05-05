@@ -1,0 +1,15 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_VER="1.0"
+DESCRIPTION=""
+FILES="http://downloads.sourceforge.net/linux-usb/usbutils-0.72.tar.gz"
+DEPEND="libusb"
+BUILD=""
+#Paste Build instructions here
+build_src()
+{
+sed -i 's|DEST=|&/usr/share/|' update-usbids.sh &&
+./configure --prefix=/usr &&
+make
+}
+""

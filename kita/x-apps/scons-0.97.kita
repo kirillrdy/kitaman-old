@@ -1,0 +1,16 @@
+# xorg
+FAKE=""
+KITA_VER="1.0"
+FILES="http://nchc.dl.sourceforge.net/sourceforge/scons/scons-src-0.97.tar.gz"
+DEPEND=""
+BUILD=""
+build_src()
+{
+mkdir -p $INSTALL_DIR/usr
+python setup.py install --prefix=$INSTALL_DIR/usr
+}
+kita_install()
+{
+echo YoYo
+}
+""

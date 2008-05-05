@@ -1,0 +1,9 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_TYPE="meta"
+DESCRIPTION=""
+FILES=""
+DEPEND="hald hal-info boot-haldaemon"
+BUILD=""
+#Paste Build instructions here
+""

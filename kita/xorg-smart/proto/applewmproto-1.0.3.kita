@@ -1,0 +1,12 @@
+# Xorg
+FAKE=""
+KITA_VER="1.0"
+DEPEND=""
+FILES="http://xorg.freedesktop.org/archive/X11R7.3/src/proto/applewmproto-1.0.3.tar.bz2"
+BUILD=""
+build()
+{
+  ./configure --prefix=/usr --sysconfdir=/etc --mandir=/usr/share/man --localstatedir=/var
+  echo "what the hell !!!"
+}
+""

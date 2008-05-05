@@ -1,0 +1,24 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_VER="1.0"
+DESCRIPTION="basic unix utils"
+FILES="http://ftp.gnu.org/gnu/coreutils/coreutils-6.10.tar.gz http://www.linuxfromscratch.org/patches/lfs/development/coreutils-6.10-i18n-1.patch http://www.linuxfromscratch.org/patches/lfs/development/coreutils-6.10-uname-1.patch"
+DEPEND="gettext ncurses automake autoconf m4"
+BUILD=""
+build_src(){
+./configure --prefix=/usr --enable-install-program=hostname --enable-no-install-program=kill
+make
+make NON_ROOT_USERNAME=nobody check-root
+echo "dummy:x:1000:nobody" >> /etc/group
+#su-tools nobody -s /bin/bash -c "make RUN_EXPENSIVE_TESTS=yes check"
+sed -i '/dummy/d' /etc/group
+}
+
+post_install(){
+mv -v /usr/bin/{cat,chgrp,chmod,chown,cp,date,dd,df,echo} /bin
+mv -v /usr/bin/{false,hostname,ln,ls,mkdir,mknod,mv,pwd,readlink,rm} /bin
+mv -v /usr/bin/{rmdir,stty,sync,true,uname} /bin
+mv -v /usr/bin/chroot /usr/sbin
+mv -v /usr/bin/{head,sleep,nice} /bin
+}
+""

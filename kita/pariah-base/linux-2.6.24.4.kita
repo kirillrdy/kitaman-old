@@ -1,0 +1,28 @@
+# Linux kernel
+FAKE=""
+KITA_VER="1.0"
+DESCRIPTION="linux kernel headers"
+FILES="http://ftp.iinet.net.au/linux/kernel/v2.6/linux-2.6.24.4.tar.bz2"
+DEPEND=""
+BUILD=""
+ext_src(){
+tar xpf $FILES -C /usr/src/
+ln -s /usr/src/linux-2.6.24-4 /usr/src/linux
+cd /usr/src/linux
+}
+
+build_src()
+{
+make mrproper
+make menuconfig
+make
+make modules_install
+}
+
+
+kita_install(){
+mkdir -p $INSTALL_DIR/boot
+cp -v arch/i386/boot/bzImage $INSTALL_DIR/boot/kernel
+cd $INSTALL_DIR
+}
+""

@@ -1,0 +1,14 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_VER="1.0"
+DESCRIPTION=""
+FILES="http://www.kernel.org/pub/linux/utils/util-linux-ng/v2.13/util-linux-ng-2.13.1.tar.bz2"
+DEPEND=""
+BUILD=""
+build_src(){
+sed -e 's@etc/adjtime@var/lib/hwclock/adjtime@g' \
+    -i $(grep -rl '/etc/adjtime' .)
+mkdir -pv /var/lib/hwclock
+./configure
+}
+""

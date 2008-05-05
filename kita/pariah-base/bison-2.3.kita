@@ -1,0 +1,14 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_VER="1.0"
+DESCRIPTION="sed"
+FILES="http://ftp.gnu.org/gnu/bison/bison-2.3.tar.bz2"
+DEPEND="gettext m4"
+BUILD=""
+build_src(){
+./configure --prefix=/usr
+echo '#define YYENABLE_NLS 1' >> config.h
+make
+#make check
+}
+""

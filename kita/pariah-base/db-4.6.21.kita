@@ -1,0 +1,19 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_VER="1.0"
+DESCRIPTION="Databasing stuff"
+FILES="http://download-east.oracle.com/berkeley-db/db-4.6.21.tar.gz"
+DEPEND="binutils"
+BUILD=""
+build_src()
+{
+cd build_unix
+../dist/configure --prefix=/usr --enable-compat185 --enable-cxx
+make
+#make docdir=/usr/share/doc/db-4.6.21 install
+}
+#post_install()
+#{
+#chown -Rv root:root /usr/share/doc/db-4.6.21
+#}
+""

@@ -1,0 +1,13 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_VER="1.0"
+DESCRIPTION="sed"
+FILES="ftp://ftp.astron.com/pub/file/file-4.23.tar.gz"
+DEPEND=""
+BUILD=""
+build_src()
+{
+./configure --prefix=/usr
+make
+}
+""

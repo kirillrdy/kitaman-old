@@ -1,0 +1,14 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_VER="1.0"
+DESCRIPTION=""
+FILES="http://ftp.gnu.org/gnu/tar/tar-1.19.tar.bz2"
+DEPEND=""
+BUILD=""
+build_src()
+{
+./configure --prefix=/usr --bindir=/bin --libexecdir=/usr/sbin
+make
+#make check || true
+}
+""

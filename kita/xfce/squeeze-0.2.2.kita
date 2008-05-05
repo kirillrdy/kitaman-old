@@ -1,0 +1,13 @@
+# xorg
+FAKE=""
+KITA_VER="1.0"
+FILES="http://squeeze.xfce.org/downloads/squeeze-0.2.2.tar.bz2"
+DEPEND="gtk+ Thunar libxfce4util dbus-glib"
+BUILD=""
+build_src()
+{
+./configure --prefix=/usr &&
+make
+}
+
+""

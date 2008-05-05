@@ -1,0 +1,14 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_VER="1.0"
+DESCRIPTION=""
+FILES="http://ftp.gnome.org/pub/gnome/sources/scrollkeeper/0.3/scrollkeeper-0.3.14.tar.bz2"
+DEPEND="libxslt XML-Parser docbook-xml"
+BUILD=""
+#Paste Build instructions here
+build_src()
+{
+./configure --prefix=/usr &&
+make
+}
+""

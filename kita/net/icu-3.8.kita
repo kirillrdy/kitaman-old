@@ -1,0 +1,14 @@
+# xorg
+FAKE=""
+KITA_VER="1.0"
+FILES="http://download.icu-project.org/files/icu4c/3.8.1/icu4c-3_8_1-src.tgz"
+DEPEND=""
+BUILD=""
+# going with defaults
+build_src()
+{
+cd source
+./configure --prefix=/usr
+make
+}
+""

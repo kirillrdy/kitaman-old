@@ -1,0 +1,18 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_VER="1.0"
+DESCRIPTION=""
+FILES="http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/wireless_tools.29.tar.gz"
+DEPEND=""
+BUILD=""
+#Paste Build instructions here
+build_src()
+{
+make
+}
+kita_install()
+{
+mkdir -p $INSTALL_DIR/usr
+make PREFIX=$INSTALL_DIR/usr install
+}
+""

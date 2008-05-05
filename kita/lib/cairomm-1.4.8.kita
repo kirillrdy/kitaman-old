@@ -1,0 +1,11 @@
+# hello
+FAKE=""
+KITA_TYPE="make1"
+FILES="http://cairographics.org/releases/cairomm-1.4.8.tar.gz"
+DEPEND="cairo"
+BUILD=""
+build_src(){
+./configure --prefix=/usr &&
+make
+}
+""

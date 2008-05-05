@@ -1,0 +1,11 @@
+# hello
+FAKE=""
+KITA_TYPE="make1"
+FILES="http://osdn.dl.sourceforge.jp/anthy/29142/anthy-9100e.tar.gz"
+DEPEND=""
+BUILD=""
+build_src(){
+./configure --prefix=/usr &&
+make
+}
+""

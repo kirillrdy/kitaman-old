@@ -1,0 +1,12 @@
+# xorg
+FAKE=""
+KITA_VER="1.0"
+FILES="http://xcb.freedesktop.org/dist/libpthread-stubs-0.1.tar.bz2"
+DEPEND=""
+BUILD=""
+build_src()
+{
+./configure --prefix=/usr
+make
+}
+""

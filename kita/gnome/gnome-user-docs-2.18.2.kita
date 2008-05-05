@@ -1,0 +1,19 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_TYPE="smart_make"
+DESCRIPTION=""
+FILES="http://ftp.gnome.org/pub/gnome/sources/gnome-session/2.18/gnome-session-2.18.3.tar.bz2"
+DEPEND="gnome-desktop gnome-control-center"
+BUILD=""
+#Paste Build instructions here
+build_src()
+{
+./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) \
+            --sysconfdir=/etc \
+            --mandir=$(pkg-config \
+                --variable=prefix ORBit-2.0)/share/man \
+            --with-at-spi-registryd-directory=$(pkg-config \
+               --variable=prefix ORBit-2.0)/lib/at-spi
+make
+}
+""

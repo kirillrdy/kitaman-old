@@ -1,0 +1,22 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_VER="1.0"
+DESCRIPTION="sed"
+VER="4.1.5"
+FILES="http://www.kernel.org/pub/linux/kernel/people/jcm/module-init-tools/module-init-tools-3.4.tar.bz2 http://www.linuxfromscratch.org/patches/lfs/development/module-init-tools-3.4-manpages-1.patch"
+DEPEND=""
+BUILD=""
+build_src(){
+./configure
+#make check
+make clean
+./configure --prefix=/ --enable-zlib
+make
+}
+
+kita_install()
+{
+mkdir -p $INSTALL_DIR
+make DESTDIR=$INSTALL_DIR INSTALL=install install
+}
+""

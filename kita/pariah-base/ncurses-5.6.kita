@@ -1,0 +1,12 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_VER="1.0"
+DESCRIPTION="Ncurses is just a library for fancy textmode output"
+FILES="ftp://invisible-island.net/ncurses/ncurses-5.6.tar.gz http://www.linuxfromscratch.org/patches/lfs/development/ncurses-5.6-coverity_fixes-1.patch"
+DEPEND=""
+BUILD=""
+build_src(){
+./configure --prefix=/usr --with-shared --without-debug --enable-widec
+make
+}
+""

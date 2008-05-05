@@ -1,0 +1,13 @@
+# xorg
+FAKE=""
+KITA_VER="1.0"
+FILES="http://downloads.sourceforge.net/fluxbox/xfdesktop-4.4.2.tar.bz2"
+DEPEND="libX11 libxfce4util libxfcegui4 libxfce4mcs xfce-mcs-manager xfce4-panel"
+BUILD=""
+build_src()
+{
+./configure --prefix=/usr --enable-thunarx --enable-file-icons --enable-exo &&
+make
+}
+
+""

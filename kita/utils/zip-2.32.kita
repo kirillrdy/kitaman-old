@@ -1,0 +1,17 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_VER="1.0"
+DESCRIPTION=""
+FILES="ftp://tug.ctan.org/tex-archive/tools/zip/info-zip/src/zip232.tar.gz"
+DEPEND=""
+BUILD=""
+#Paste Build instructions here
+build_src()
+{
+make -f unix/Makefile generic_gcc
+}
+kita_install()
+{
+make prefix=$INSTALL_DIR/usr -f unix/Makefile install
+}
+""

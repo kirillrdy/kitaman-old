@@ -1,0 +1,13 @@
+# xorg
+FAKE=""
+KITA_VER="1.0"
+FILES="http://telepathy.freedesktop.org/releases/telepathy-glib/telepathy-glib-0.7.6.tar.gz"
+DEPEND="glib"
+BUILD=""
+# going with defaults
+build_src()
+{
+./configure --prefix=/usr
+make
+}
+""

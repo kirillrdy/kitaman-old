@@ -1,0 +1,11 @@
+# hello
+FAKE=""
+KITA_VER="1.0"
+FILES="http://libtiff.maptools.org/dl/tiff-3.8.2.tar.gz"
+DEPEND="glib"
+BUILD=""
+build_src(){
+./configure --prefix=/usr &&
+make
+}
+""

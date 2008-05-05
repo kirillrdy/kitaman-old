@@ -1,0 +1,13 @@
+# xorg
+FAKE=""
+KITA_VER="1.0"
+FILES="http://downloads.sourceforge.net/fluxbox/xfce-mcs-plugins-4.4.2.tar.bz2"
+DEPEND="gtk+ glib libX11 libxfcegui4 xfce-mcs-manager"
+BUILD=""
+build_src()
+{
+./configure --prefix=/usr &&
+make
+}
+
+""
