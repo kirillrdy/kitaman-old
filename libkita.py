@@ -3,15 +3,17 @@
 import re,sys,os,urllib2
 
 def get_version(name):
-  """Gets a string and returns a version eg get_version("linux-2.6")=="2.6" 
-     and linux-2.6.tar.gz=="2.6"
+  """ Gets a string and returns a version 
+      eg get_version("linux-2.6")=="2.6" 
+      and linux-2.6.tar.gz=="2.6"
   """
+  
+  #TODO , change order of if statements , more logical
   version=name[name.rfind("-")+1:]
   if version[:2]=="rc":
     version=name[name.rfind("-",0,len(name)-13)+1:]
   if version[-8:]==".tar.bz2":
     version=version[:-8]
-
   if version[-7:]==".tar.gz":
     version=version[:-7]
 
@@ -39,9 +41,12 @@ def get_name(name):
   """Gets a name of a package from a full package name + version
   For example get_name("linux-2.6")="linux"
   also get_name("/usr/muhaha/linux-2.6")="linux"
+  and get_name("/linux")="linux"
   """
   if name.rfind("/")!=-1:
     name=name[name.rfind("/")+1:]
+  if name.rfind("-")==-1:
+    return name
   return name[0:name.rfind("-")]
 
 def find_kita_files(name,search=False):
@@ -57,6 +62,7 @@ def find_kita_files(name,search=False):
               list.append(repo+kita_file)
           else:
             if name in get_name(kita_file[:-5]):
+              print kita_file
               list.append(repo+kita_file)
     return list
 
@@ -66,9 +72,9 @@ def str_to_int_pariah_style(something):
   if something.isdigit():
     return int(something)
   if something[-3:-1]=="rc":
-    return int(something[:-4])-100
+    return int(something[:-3])-100
   #return something
-  # There is a potential bug in this function,please fix me,
+  # FIXME There is a potential bug in this function,please fix me,
   # make me being able to handle letters abcdef as version
 
 def max_version(list):

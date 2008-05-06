@@ -26,7 +26,9 @@ class Kita(make1.Kita):
 
     files_list=open("/var/kitaman/sources.list").read()
 
-    pattern=re.compile("<a href=\"(.*?)\">%s-(.*?)</a>" % self.info["NAME"])
+    print self.info["NAME"]
+    
+    pattern=re.compile("<a href=\"(.*?)\">%s-(.*?)</a>" % self.info["NAME"].replace("+","\+"))
 
     results=re.findall(pattern,files_list)
 

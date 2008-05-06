@@ -1,6 +1,6 @@
 # hello
 FAKE=""
-KITA_VER="1.0"
+VER="1.0"
 FILES="http://www.ijg.org/files/jpegsrc.v6b.tar.gz"
 DEPEND="glib"
 BUILD=""

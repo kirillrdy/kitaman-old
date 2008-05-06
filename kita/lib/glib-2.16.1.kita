@@ -1,6 +1,6 @@
 # hello
 FAKE=""
-KITA_TYPE="make1"
+KITA_TYPE="smart_make"
 FILES="http://ftp.gnome.org/pub/gnome/sources/glib/2.16/glib-2.16.1.tar.bz2"
 DEPEND="pkg-config"
 BUILD=""

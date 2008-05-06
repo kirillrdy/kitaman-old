@@ -68,17 +68,38 @@ class Kita(object):
 
     pat=re.compile(r'(.*?)=\"(.*?)\"', re.IGNORECASE)
     res=re.findall(pat,f)
+
     self.info={}
 
     #Convert a tuple into dictionary
+    #FIXME use dict() method
     for i in res:
       self.info[i[0]]=i[1]
 
     # Chuck Name in
     self.info["NAME"]=get_name(kita_file_name)
 
+    #Split files into a list
+    #FIXME use dictionaries get method
+   
+    if "FILES" in self.info.keys():
+      results="1.0"
+      if not self.info.has_key("VER"):
+        print self.info["NAME"]
+        pat=re.compile("/%s-(.*?)(?:.tar.bz2|.tar.gz)" % self.info.get("NAME_PATTERN",self.info["NAME"]),re.I)
+        results=re.findall(pat,self.info["FILES"]+" ")
+      # now we check if source file in files has different basename than kitafile       
+        if results==[]:
+          kita_error("The version for %s couldnt be matched, see if the file name is correct, if have to use NAME_PATTER varialbe inside a file to match version" % bold(red(self.info["NAME"])))
+          
+      self.info["VER"]=self.info.get("VER",results[0])
+      self.info["FILES"]=self.info["FILES"].split()
+    else:
+      self.info["FILES"]=[]
+      self.info["VER"]="1.0"
+
     #Also version
-    self.info["VER"]=get_version(kita_file_name[:-5])
+    #self.info["VER"]=get_version(kita_file_name[:-5])
 
     #Also name with version
     self.info["NAME-VER"]=self.info["NAME"]+"-"+self.info["VER"]
@@ -99,12 +120,7 @@ class Kita(object):
         self.info["DEPEND"]=self.info["DEPEND"].split()
     else:
       self.info["DEPEND"]=[]
-    #Split files into a list
-    if "FILES" in self.info.keys():
-      self.info["FILES"]=self.info["FILES"].split()
-    else:
-      self.info["FILES"]=[]
- 
+    
   def downloaded(self):
     "Returns True if all files for current package are downloaded"
     if not self.info.has_key("FILES"):

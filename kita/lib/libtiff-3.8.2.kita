@@ -1,6 +1,7 @@
 # hello
 FAKE=""
 KITA_VER="1.0"
+NAME_PATTERN="tiff"
 FILES="http://libtiff.maptools.org/dl/tiff-3.8.2.tar.gz"
 DEPEND="glib"
 BUILD=""
