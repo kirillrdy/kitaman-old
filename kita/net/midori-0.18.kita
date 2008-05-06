@@ -1,0 +1,15 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_VER="1.0"
+DESCRIPTION=""
+FILES="http://software.twotoasts.de/media/midori/midori-0.0.18.tar.gz"
+DEPEND="webkit libsexy libxml2"
+BUILD=""
+#Paste Build instructions here
+build_src()
+{
+./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) \
+            --sysconfdir=/etc 
+make
+}
+""

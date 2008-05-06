@@ -1,0 +1,10 @@
+# xorg
+KITA_TYPE="smart_make"
+BUILD=""
+# going with defaults
+build_src()
+{
+./configure --prefix=/usr
+make
+}
+""
