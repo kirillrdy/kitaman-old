@@ -26,8 +26,6 @@ class Kita(make1.Kita):
 
     files_list=open("/var/kitaman/sources.list").read()
 
-    print self.info["NAME"]
-    
     pattern=re.compile("<a href=\"(.*?)\">%s-(.*?)</a>" % self.info["NAME"].replace("+","\+"))
 
     results=re.findall(pattern,files_list)
@@ -54,7 +52,6 @@ class Kita(make1.Kita):
     
     # Lets set FILES now
     self.info["FILES"]=[file_path]
-    print self.info["FILES"]," will be used"
 
     #Also version
     self.info["VER"]=get_version(max_ver)

@@ -278,10 +278,12 @@ class KitamanEngine(object):
 # This is the entry point
 # This is the entry point
 
-# if ran without arguments, show basic usage help message
+# if ran without arguments, show basic usage help message and exit
 if len(sys.argv)==1:
  print_help(KITAMAN_VER) 
 else:
+  # Kitaman is WORKING
+  set_terminal_title("Kitaman is working ...")
   # Gentelman, start your Engines!!!
   engine=KitamanEngine()
   

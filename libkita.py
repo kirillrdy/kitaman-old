@@ -20,13 +20,17 @@ def get_version(name):
   return version
 
 def update_sources_list():
+  """
+    For each repostory listed in kitaman.sources
+    Downloads and saves list of files availible for download
+  """
   f=open("/etc/kitaman.sources").read()
   f=f[:-1]
   f=f.split("\n")
   sources_file=open("/var/kitaman/sources.list","w")
 
   for i in f:
-    print "Updating",i
+    kita_print ("Updating "+i)
     text=urllib2.urlopen(i).read()
     pattern=re.compile("<a href=\"(?:.*?)(?:.tar.gz|.tar.bz2)\">(.*?)</a>")
     results=re.findall(pattern,text)
@@ -97,6 +101,8 @@ def get_highest_version(list):
     "From a given lists of kitafiles, returns list's item with the highest version"
     #NOTE there is a bug in this function 
     #due to shorcomming of python strings comparisment "0.9.0" > "0.10.0" == True
+    #FIXME , i know how to fix this, use code from max_version function
+    #however this function is due to be depricated
     
     max=""
 
@@ -132,15 +138,15 @@ def kita_error(message):
   "Standart way for kitaman to notify user of Error"
   set_terminal_title("Error")
   print red()
-  print "ERROR !!!"
-  print "ERROR !!!"
-  print "ERROR !!!"
-  print black()
-  print message
+  print "ERROR !!!      ||      ERROR !!!"
+  print "ERROR !!!      ||      ERROR !!!"
+  print "ERROR !!!      WW      ERROR !!!"
+  print
+  print bold(red("===>")+black(bold(message))+red(bold("<===")))
   print red()
-  print "ERROR !!!"
-  print "ERROR !!!"
-  print "ERROR !!!"
+  print "ERROR !!!      MM      ERROR !!!"
+  print "ERROR !!!      ||      ERROR !!!"
+  print "ERROR !!!      ||      ERROR !!!"
   print black()
   #Every failed program must leave with dignity 1 
   sys.exit(1)

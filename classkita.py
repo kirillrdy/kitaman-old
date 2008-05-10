@@ -19,12 +19,10 @@ class Kita(object):
   def remove(self):
     "Removes all the files that were installed by this package"
     # TODO: Please fix this function ,it needs love
-    # first it still doesnt remove state file
-    # second it doesnt care about revese state file
-    # third , but thats in engine itself, u need ... damn lots of work
+    # it doesnt care about revese state file
     f=open("/var/kitaman/state/"+self.info["NAME-VER"]).read()
     f=f.split("\n")
-    # Please remember there ARE LEFT F**** OVERS FROM SPLIT
+    # Please remember there ARE LEFTOVERS FROM SPLIT
     f=f[:-1]
     f.reverse()
     for i in f:
@@ -85,7 +83,6 @@ class Kita(object):
     if "FILES" in self.info.keys():
       results="1.0"
       if not self.info.has_key("VER"):
-        print self.info["NAME"]
         pat=re.compile("/%s-(.*?)(?:.tar.bz2|.tar.gz)" % self.info.get("NAME_PATTERN",self.info["NAME"]),re.I)
         results=re.findall(pat,self.info["FILES"]+" ")
       # now we check if source file in files has different basename than kitafile       
@@ -98,9 +95,6 @@ class Kita(object):
       self.info["FILES"]=[]
       self.info["VER"]="1.0"
 
-    #Also version
-    #self.info["VER"]=get_version(kita_file_name[:-5])
-
     #Also name with version
     self.info["NAME-VER"]=self.info["NAME"]+"-"+self.info["VER"]
     
@@ -108,8 +102,7 @@ class Kita(object):
     pat=re.compile(r'BUILD=\"\"(.*?)\"\"\n',re.DOTALL | re.IGNORECASE)
     res=re.findall(pat,f)
     if res==[]:
-      print self.info["NAME-VER"],"Cant patternmatch BUILD"
-      sys.exit(1)
+      kita_error ( self.info["NAME-VER"]+" Cant patternmatch BUILD")
     self.info["BUILD"]=res[0]
 
     # We want to seperate dependencies into a list

@@ -1,13 +1,3 @@
-# xorg
-FAKE=""
-KITA_VER="1.0"
-FILES="http://downloads.sourceforge.net/xine/xine-ui-0.99.5.tar.gz"
+#  ok ?
+KITA_TYPE="smart_make"
 DEPEND="xine-lib"
-BUILD=""
-build_src()
-{
-./configure --prefix=/usr  &&
-make
-}
-
-""
