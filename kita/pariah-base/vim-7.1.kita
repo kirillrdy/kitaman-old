@@ -22,6 +22,9 @@ set backspace=2
 set ai
 set ruler
 
+" set shiftwidth=2 for a good reason
+set shiftwidth=2
+
 set expandtab
 set tabstop=2
 

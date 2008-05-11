@@ -64,7 +64,7 @@ class Kita(object):
     "Loads kita_info for a given kita file"
     f=open(kita_file_name).read()
 
-    pat=re.compile(r'(.*?)=\"(.*?)\"', re.IGNORECASE)
+    pat=re.compile("(.*?)=\"(.*?)\"", re.IGNORECASE)
     res=re.findall(pat,f)
 
     self.info={}

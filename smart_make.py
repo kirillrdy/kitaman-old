@@ -13,25 +13,28 @@ class Kita(make1.Kita):
   def load_kita_file(self,kita_file_name):
     "Loads kita_info for a given kita file"
     f=open(kita_file_name).read()
-    pat=re.compile(r'(.*?)=\"(.*?)\"',re.IGNORECASE)
+    pat=re.compile("(.*?)=\"(.*?)\"")
     res=re.findall(pat,f)
     self.info={}
 
     #Convert a tuple into dictionary
+    #FIXME
     for i in res:
       self.info[i[0]]=i[1]
-      
+     
     # Chuck Name in
     self.info["NAME"]=get_name(kita_file_name)
 
+    # need to find source code for it
     files_list=open("/var/kitaman/sources.list").read()
 
-    pattern=re.compile("<a href=\"(.*?)\">%s-(.*?)</a>" % self.info["NAME"].replace("+","\+"))
+    pattern=re.compile("<a href=\"(.*?)\">%s\-(.*?)</a>" % self.info["NAME"].replace("+","\+"))
 
     results=re.findall(pattern,files_list)
 
     if len(results) == 0 :
       # bad luck
+      print "-",results,"-"
       kita_error("Couldnt not find any sources for %s" % self.info["NAME"])
 
 

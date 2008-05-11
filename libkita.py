@@ -49,11 +49,11 @@ def get_name(name):
   """
   if name.rfind("/")!=-1:
     name=name[name.rfind("/")+1:]
-  if name.rfind("-")==-1:
-    return name
-  return name[0:name.rfind("-")]
+  if name.rfind(".")!=-1:
+    return name[0:name.rfind(".")]
+  return name
 
-def find_kita_files(name,search=False):
+def find_kita_files(name):
     "For a given name, returns a list of full filename of kitafiles with paths"
 
     list=[]
@@ -61,13 +61,8 @@ def find_kita_files(name,search=False):
 
     for repo in get_repos_list():
       for kita_file in os.listdir(repo):
-          if not search:
-            if name==get_name(kita_file[:-5]):
-              list.append(repo+kita_file)
-          else:
-            if name in get_name(kita_file[:-5]):
-              print kita_file
-              list.append(repo+kita_file)
+        if name==get_name(kita_file):
+            list.append(repo+kita_file)
     return list
 
 
