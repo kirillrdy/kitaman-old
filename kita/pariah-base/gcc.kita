@@ -1,6 +1,6 @@
 # ok ?
 FAKE=""
-KITA_VER="1.0"
+VER="4.2.2"
 DESCRIPTION="Gnu C Compiler"
 FILES="http://ftp.gnu.org/gnu/gcc/gcc-4.2.2/gcc-4.2.2.tar.bz2"
 DEPEND=""

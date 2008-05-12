@@ -182,17 +182,19 @@ def print_help(ver):
       kitman [OPTIONS] package
 
       Options:
-        -h  --help      : Displays this message
-            --install   : (Default) installs package
-        -r  --remove    : removes package
-        -f  --fetch     : fetches all needed files 
-        -F  --force     : ignores already downloaded files, and downloads them anyways
-        -s  --search    : searches for a string in package name or description
-        -p  --pretend   : Pretends to install a package, shows all steps done to build a package
-        -d  --deep      : When calculating dependencies dont stop recursion on already installed dependencies
-        -D  --deepest   : Same as --deep but in addition ingnores any installed programs
-        --no-parent     : Shows all packages without parent
-        --sync          : Syncs sources list
+        -h  --help                : Displays this message
+            --install             : (Default) installs package
+        -b  --build               : build binary packages, but not install them
+        -r  --remove              : removes package
+        -f  --fetch               : fetches all needed files 
+        -F  --force               : ignores already downloaded files, and downloads them anyways
+        -s  --search              : searches for a string in package name or description
+        -p  --pretend             : Pretends to install a package, shows all steps done to build a package
+        -i  --ignore-installed    : Ignores if the package installed and installs it anyways
+        -d  --deep                : When calculating dependencies dont stop recursion on already installed dependencies
+        -D  --deepest             : Same as --deep but in addition ingnores any installed programs
+        --no-parent               : Shows all packages without parent
+        --sync                    : Syncs sources list
   
   """ % ver
   print

@@ -1,7 +1,5 @@
 # OK ?
-FAKE=""
-KITA_VER="1.0"
-DESCRIPTION="linux kernel headers"
+KITA_TYPE="smart_make"
 FILES="http://ftp.gnu.org/gnu/glibc/glibc-2.7.tar.bz2
 http://ftp.gnu.org/gnu/glibc/glibc-libidn-2.7.tar.bz2"
 DEPEND=""

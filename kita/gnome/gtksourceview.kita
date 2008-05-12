@@ -2,8 +2,7 @@
 FAKE=""
 KITA_TYPE="smart_make"
 DESCRIPTION=""
-FILES="ftp://ftp.gnome.org/pub/gnome/sources/gedit/2.22/gedit-2.22.1.tar.bz2"
-DEPEND="gtksourceview"
+DEPEND=""
 BUILD=""
 #Paste Build instructions here
 build_src()

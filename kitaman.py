@@ -27,7 +27,7 @@ class KitamanEngine(object):
   module=None
   "Module used to process a current Kita() object"
 
-  options={"fetch":True,"build":True,"install":True,"deep":False,"deepest":False,"force":False,"search":False,"remove":False}
+  options={"fetch":True,"build":True,"install":True,"deep":False,"deepest":False,"force":False,"search":False,"remove":False,"ignore-installed":False}
   "Engine Options: tell engine with which options it should run"
   # future plans to expand to:"force-download force-build force-install"
 
@@ -98,7 +98,7 @@ class KitamanEngine(object):
     self.make_dependencies_list(temp)
 
     # If we are not in "deepest" mode, we should remove already installed packages from our list
-    if not self.options["deepest"]:
+    if not self.options["deepest"] and not self.options["ignore-installed"]:
       self.check_installed_deps()
 
   def run(self):
@@ -198,7 +198,7 @@ class KitamanEngine(object):
     recursivly generates a list of dependencies"""
  
     #if dependecy is already installed , we dont needto go further
-    if not self.options["deep"] and package.installed(): 
+    if not self.options["deep"] and (not self.options["ignore-installed"] and package.installed()): 
       return list
     #If dependency already in the list, then it means we already been here, no need to continue
     for i in list:
@@ -235,6 +235,21 @@ class KitamanEngine(object):
         update_sources_list()
         sys.exit()
       if i in ["--pretend","-p"]:
+        self.options["install"]=False
+        self.options["build"]=False
+        self.options["fetch"]=False
+      if i in ["--build","-b"]:
+        self.options["install"]=False
+        self.options["build"]=True
+        self.options["fetch"]=True
+      if i in ["--ignore-installed","-i"]:
+        self.options["ignore-installed"]=True
+      if i in ["--remove","-r"]:
+        self.options["install"]=False
+        self.options["build"]=False
+        self.options["fetch"]=False
+        self.options["remove"]=True
+      if i in ["--search","-s"]:
         self.options["install"]=False
         self.options["build"]=False
         self.options["fetch"]=False
@@ -290,7 +305,7 @@ else:
   #Parsing command line
   engine.parse_argv_to_options()
 
-# For everything that is left in argv we run our engine
+  # For everything that is left in argv we run our engine
   for i in sys.argv:
     engine.goal=i
     engine.generate_goal_list()
