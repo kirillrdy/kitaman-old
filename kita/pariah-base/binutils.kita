@@ -2,7 +2,7 @@
 FAKE=""
 KITA_VER="1.0"
 DESCRIPTION="Binutils"
-FILES="http://ftp.gnu.org/gnu/binutils/binutils-2.18.tar.bz2 http://www.linuxfromscratch.org/patches/lfs/development/binutils-2.18-configure-1.patch"
+FILES="http://ftp.iinet.com.au/linux/Gentoo/distfiles/binutils-2.18.tar.bz2 http://www.linuxfromscratch.org/patches/lfs/development/binutils-2.18-configure-1.patch"
 DEPEND=""
 BUILD=""
 build_src()
