@@ -1,8 +1,6 @@
 # Kita file for Man Pages
 FAKE=""
-KITA_VER="1.0"
-DESCRIPTION="Man pages"
-FILES="http://ftp.iinet.net.au/linux/Gentoo/distfiles/man-pages-2.78.tar.bz2"
+KITA_TYPE="smart_make"
 DEPEND=""
 BUILD=""
 build_src(){

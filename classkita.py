@@ -80,6 +80,7 @@ class Kita(object):
     #Split files into a list
     #FIXME use dictionaries get method
    
+
     if "FILES" in self.info.keys():
       results="1.0"
       if not self.info.has_key("VER"):
@@ -91,6 +92,7 @@ class Kita(object):
           
       self.info["VER"]=self.info.get("VER",results[0])
       self.info["FILES"]=self.info["FILES"].split()
+
     else:
       self.info["FILES"]=[]
       self.info["VER"]="1.0"

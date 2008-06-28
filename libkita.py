@@ -70,7 +70,7 @@ def str_to_int_pariah_style(something):
   "Oh i am great"
   if something.isdigit():
     return int(something)
-  if something[-3:-1]=="rc":
+  if something[-3:-1]=="rc" and something[-1].isdigit():
     return int(something[:-3])-100
   #return something
   # FIXME There is a potential bug in this function,please fix me,

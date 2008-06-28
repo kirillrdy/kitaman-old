@@ -1,12 +1,9 @@
 "This is a smart module for handling 'make' driven packages"
 
-import re,sys,os,glob
+import re,sys,os
 from libkita import *
 
 import make1
-import urllib2
-
-from ftplib import FTP
 
 class Kita(make1.Kita):
   "This is kita object"
@@ -28,7 +25,7 @@ class Kita(make1.Kita):
     # need to find source code for it
     files_list=open("/var/kitaman/sources.list").read()
 
-    pattern=re.compile("<a href=\"(.*?)\">%s\-(.*?)</a>" % self.info["NAME"].replace("+","\+"))
+    pattern=re.compile("<a href=\"(.*?)\">%s\-(.*?)</a>" % self.info.get("NAME_PATTERN",self.info["NAME"].replace("+","\+")))
 
     results=re.findall(pattern,files_list)
 
