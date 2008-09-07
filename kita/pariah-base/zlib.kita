@@ -10,7 +10,7 @@ build_src(){
 make
 #make check
 make prefix=$INSTALL_DIR/usr install
-#rm -v /lib/libz.so
+rm -v $INSTALL_DIR/lib/libz.so
 #ln -sfv ../../lib/libz.so.1.2.3 /usr/lib/libz.so
 
 make clean

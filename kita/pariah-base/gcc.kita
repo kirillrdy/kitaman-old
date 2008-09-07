@@ -1,7 +1,5 @@
 # ok ?
-FAKE=""
-VER="4.2.2"
-DESCRIPTION="Gnu C Compiler"
+KITA_TYPE="smart_make"
 FILES="http://ftp.gnu.org/gnu/gcc/gcc-4.2.2/gcc-4.2.2.tar.bz2"
 DEPEND=""
 BUILD=""
@@ -13,7 +11,7 @@ sed -i 's@\./fixinc\.sh@-c true@' gcc/Makefile.in
 sed -i 's/@have_mktemp_command@/yes/' gcc/gccbug.in
 mkdir -pv ../gcc-build
 cd ../gcc-build
-../gcc-4.2.2/configure --prefix=/usr --libexecdir=/usr/lib --enable-shared --enable-threads=posix --enable-__cxa_atexit --enable-clocale=gnu --enable-languages=c,c++ 
+../gcc-4*/configure --prefix=/usr --libexecdir=/usr/lib --enable-shared --enable-threads=posix --enable-__cxa_atexit --enable-clocale=gnu --enable-languages=c,c++ 
 
 # This is a non bootstraping version
 #../gcc-4.2.3/configure --prefix=/usr --libexecdir=/usr/lib --enable-shared --enable-threads=posix --enable-__cxa_atexit --enable-clocale=gnu --enable-languages=c,c++ --disable-bootstrap

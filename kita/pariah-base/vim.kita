@@ -1,9 +1,5 @@
 # Kita file for vim
-KITA_TYPE="make1"
-FAKE=""
-KITA_VER="1.0"
-FILES="ftp://ftp.vim.org/pub/vim/unix/vim-7.1.tar.bz2"
-DEPEND=""
+KITA_TYPE="smart_make"
 BUILD=""
 build_src()
 {

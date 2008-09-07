@@ -1,6 +1,5 @@
 # For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
-FAKE=""
-KITA_VER="1.0"
+KITA_TYPE="smart_make"
 DESCRIPTION="sed"
 FILES="http://www.python.org/ftp/python/2.5.2/Python-2.5.2.tar.bz2"
 DEPEND=""

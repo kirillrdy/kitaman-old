@@ -1,12 +1,9 @@
 "This is a smart module for handling 'make' driven packages"
 
-import re,sys,os,glob
+import re,sys,os
 from libkita import *
 
 import make1
-import urllib2
-
-from ftplib import FTP
 
 class Kita(make1.Kita):
   "This is kita object"

@@ -1,9 +1,7 @@
 # this is kitafile
-FAKE=""
-KITA_VER="1.0"
+KITA_TYPE="smart_make"
 NAME_PATTERN="linux"
 DESCRIPTION="linux kernel headers"
-FILES="http://ftp.iinet.net.au/linux/kernel/v2.6/linux-2.6.24.4.tar.bz2"
 DEPEND=""
 BUILD=""
 build_src()
