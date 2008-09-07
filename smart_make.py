@@ -28,7 +28,7 @@ class Kita(make1.Kita):
     # need to find source code for it
     files_list=open("/var/kitaman/sources.list").read()
 
-    pattern=re.compile("<a href=\"(.*?)\">%s\-(.*?)</a>" % self.info["NAME"].replace("+","\+"))
+    pattern=re.compile("<a href=\"(.*?)\">%s\-(.*?)</a>" % self.info.get("NAME_PATTERN",self.info["NAME"].replace("+","\+")))
 
     results=re.findall(pattern,files_list)
 

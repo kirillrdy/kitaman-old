@@ -1,0 +1,13 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_VER="smart_make"
+DEPEND="libusb"
+BUILD=""
+#Paste Build instructions here
+build_src()
+{
+sed -i 's|DEST=|&/usr/share/|' update-usbids.sh &&
+./configure --prefix=/usr &&
+make
+}
+""

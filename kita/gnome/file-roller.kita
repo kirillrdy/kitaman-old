@@ -1,0 +1,19 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_TYPE="smart_make"
+DESCRIPTION=""
+FILES="ftp://ftp.gnome.org/pub/gnome/sources/file-roller/2.22/file-roller-2.22.0.tar.bz2"
+DEPEND=""
+BUILD=""
+#Paste Build instructions here
+build_src()
+{
+./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) \
+            --sysconfdir=/etc \
+            --localstatedir=/var/lib \
+            --libexecdir=$(pkg-config \
+                --variable=prefix ORBit-2.0)/lib/file-roller \
+                --disable-hal &&
+make
+}
+""

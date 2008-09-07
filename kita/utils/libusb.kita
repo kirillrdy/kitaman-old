@@ -1,0 +1,12 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_VER="smart_make"
+DEPEND="pkg-config"
+BUILD=""
+#Paste Build instructions here
+build_src()
+{
+./configure --prefix=/usr --disable-build-docs &&
+make
+}
+""

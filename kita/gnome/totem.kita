@@ -1,0 +1,14 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_TYPE="smart_make"
+DESCRIPTION=""
+FILES="ftp://ftp.gnome.org/pub/gnome/sources/totem/2.23/totem-2.23.1.tar.bz2"
+DEPEND="gstreamer-plugins-base gstreamer-plugins-good totem-plparser"
+BUILD=""
+#Paste Build instructions here
+build_src()
+{
+./configure --prefix=/usr &&
+make
+}
+""

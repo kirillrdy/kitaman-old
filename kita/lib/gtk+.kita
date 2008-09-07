@@ -1,0 +1,10 @@
+# hello
+FAKE=""
+KITA_TYPE="smart_make"
+DEPEND="cairo pango atk libtiff libjpeg"
+BUILD=""
+build_src(){
+./configure --prefix=/usr --sysconfdir=/etc &&
+make
+}
+""

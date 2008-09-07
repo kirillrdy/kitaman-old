@@ -1,0 +1,11 @@
+# hello
+FAKE=""
+KITA_TYPE="smart_make"
+FILES="http://cairographics.org/releases/cairo-1.4.10.tar.gz"
+DEPEND="xorg pkg-config"
+BUILD=""
+build_src(){
+./configure --prefix=/usr &&
+make
+}
+""

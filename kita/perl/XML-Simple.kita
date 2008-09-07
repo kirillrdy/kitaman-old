@@ -1,0 +1,12 @@
+# xorg
+FAKE=""
+KITA_VER="1.0"
+FILES="http://cpan.org/authors/id/G/GR/GRANTM/XML-Simple-2.18.tar.gz"
+DEPEND="perl XML-Parser"
+BUILD=""
+build_src()
+{
+perl Makefile.PL &&
+make 
+}
+""

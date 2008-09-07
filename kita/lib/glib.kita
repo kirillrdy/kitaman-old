@@ -1,0 +1,10 @@
+# hello
+FAKE=""
+KITA_TYPE="smart_make"
+DEPEND="pkg-config"
+BUILD=""
+build_src(){
+./configure --prefix=/usr &&
+make
+}
+""

@@ -1,0 +1,12 @@
+# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
+FAKE=""
+KITA_TYPE="smart_make"
+DEPEND=""
+BUILD=""
+#Paste Build instructions here
+build_src()
+{
+./configure --prefix=/usr &&
+make
+}
+""
