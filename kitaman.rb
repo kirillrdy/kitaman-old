@@ -7,6 +7,12 @@
 ## kirillrdy@silverpond.com.au
 ###################################################
 
+class Object
+  def in(cmp)
+    cmp.include? self
+  end
+end
+
 class Kitaman
   
   def Kitaman.version
@@ -19,19 +25,21 @@ class Kitaman
   end
 
   def run
+    @queue.reverse!
     for kita_object in @queue
-      puts kita_object
+      puts kita_object.inspect
     end
   end
 
-  def build_queue(target,list=[])
+  def build_queue(target)
     
     kita_instance = Kita.new(Kita.find_kita_file(target))  
-    list << kita_instance
+    
+    @queue << kita_instance if not kita_instance.in @queue
 
-    for 
-    build_queue()
-  
+    for dependency in kita_instance.info["DEPEND"] 
+      build_queue(dependency)
+    end
   end
 
 end
@@ -42,4 +50,8 @@ end
 
 require 'lib/kita_class'
 
-puts Kita.find_kita_file 'gcc'
+
+kita = Kitaman.new
+
+kita.build_queue("pariah-base")
+kita.run

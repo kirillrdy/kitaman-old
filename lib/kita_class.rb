@@ -8,11 +8,11 @@ class Kita
     for info in infos
       @info[info[0]]=info[1]
     end
-    @info['DEPEND'] = @info['DEPEND'].split(" ")
+    @info['DEPEND'] ? @info['DEPEND'] = @info['DEPEND'].split(" ") : @info['DEPEND']=[]
   end
 
   def Kita.find_kita_file(package_name)
-    all_files = `find kita_files`.split("\n")
+    all_files = `find kita_files -type f`.split("\n")
     for file in all_files
       if File.basename(file,".kita") == package_name
         return file
