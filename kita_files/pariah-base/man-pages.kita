@@ -1,9 +1,0 @@
-# Kita file for Man Pages
-FAKE=""
-KITA_TYPE="smart_make"
-DEPEND=""
-BUILD=""
-build_src(){
-echo "This package is special"
-}
-""
