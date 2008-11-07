@@ -7,6 +7,7 @@
 ## kirillrdy@silverpond.com.au
 ###################################################
 
+require 'optparse'
 require 'lib/kitaman_helper'
 require 'lib/kita_class'
 
@@ -25,17 +26,47 @@ class Kitaman
 
   def run
     for kita_object in @queue
-      puts kita_object.inspect
-      
 
       if @options['download']
         kita_object.download_files if kita_object.files_not_downloaded?
       end
+
+      if @options['build']
+        kita_object.build
+      end
+ 
+    end
+  end
+
+  def load_needed_module(file)
+    load 'lib/'+IO.read(Kita.find_kita_file(file)).scan(/KITA_TYPE="(.*?)"/)[0][0]+'.rb'
+  end
+
+  def parse_argv
+    OptionParser.new do |opts|
+      opts.banner = """Kitaman version:#{Kitaman.version}
+      
+Usage: kitaman.rb [options] packages"""
+
+      opts.on("-f", "--force", "Force things") do |v|
+        @options[:force] = v
+      end
+
+      opts.on("-v", "--[no-]verbose", "Run verbosely") do |v|
+        @options[:verbose] = v
+      end
+    end.parse!
+  end
+
+  def print_queue
+    for item in @queue
+      puts 'I '+item.info['NAME']+'-'+item.info['VER']
     end
   end
 
   def build_queue(target)
-    
+   
+    load_needed_module(target)
     kita_instance = Kita.new(Kita.find_kita_file(target))  
     
     if kita_instance.in @queue
@@ -56,7 +87,13 @@ end
 
 
 kita = Kitaman.new
+kita.parse_argv
+for argument in ARGV
+  kita.build_queue(argument)
+end
+kita.print_queue
 
-kita.build_queue("gcc")
+puts "Press Enter to continue..."
+$stdin.gets
+
 kita.run
-puts kita.inspect

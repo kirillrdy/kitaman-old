@@ -22,6 +22,7 @@ class Kita
     @info = smart_split(@info,"FILES")
     @info = smart_set(@info,'VER',self.get_version)
     @info = smart_split(@info,"DEPEND")
+    @info["BUILD"] = IO.read(kita_file).scan(/BUILD=""(.*?)""/m)[0][0]
 
   end
 
@@ -63,7 +64,7 @@ class Kita
   def files_list_local
     list=[]
     for file in @info['FILES']
-      list << (KitamanConfig.config['SRC_DIR']+File.basename(file))
+      list << (KitamanConfig.config['SRC_DIR']+'/'+File.basename(file))
     end
     list
   end
@@ -79,9 +80,9 @@ class Kita
   def files_downloaded?
     results = true
     for file in files_list_local 
-      results = results and File.exist?(file)
+      results = (results and File.exist?(file))
     end
-    results
+    return results
   end
 
 

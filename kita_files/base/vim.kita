@@ -1,4 +1,5 @@
 KITA_TYPE="make"
+FILES="ftp://ftp.vim.org/pub/vim/unix/vim-7.2.tar.bz2"
 BUILD=""
 build_src()
 {
