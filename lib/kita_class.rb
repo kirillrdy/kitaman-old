@@ -1,6 +1,15 @@
 # This is the base class for Kita, all classes shall inherit from this class !
+
+require 'lib/kita_helper'
+require 'lib/kitaman_helper'
+
+
 class Kita
   attr_reader :info
+
+  def ==(obj)
+    self.info==obj.info
+  end
 
   def initialize(kita_file)
     infos = IO.read(kita_file).scan(/(.*?)="(.*?)"\n/)
@@ -8,7 +17,12 @@ class Kita
     for info in infos
       @info[info[0]]=info[1]
     end
-    @info['DEPEND'] ? @info['DEPEND'] = @info['DEPEND'].split(" ") : @info['DEPEND']=[]
+
+    @info = smart_set(@info,'NAME',File.basename(kita_file,".kita"))
+    @info = smart_split(@info,"FILES")
+    @info = smart_set(@info,'VER',self.get_version)
+    @info = smart_split(@info,"DEPEND")
+
   end
 
   def Kita.find_kita_file(package_name)
@@ -19,5 +33,32 @@ class Kita
       end
     end
   end
+
+  def get_version
+    if @info['FILES']!=[]
+      ver = get_version_from_file(@info['FILES'][0])
+    else
+      ver = "0.0"
+    end
+    return ver
+  end
+
+  def fill_files
+    #TODO: this function needs help
+    all_files = `find #{KitamanConfig.config['SRC_DIR']} -type f`.split("\n")
+     for file in all_files
+      if smart_basename(file) == @info['NAME']
+        @info['FILES']=[file]
+        return file
+      end
+    end
+  end
+
+  def download_files
+    for file in @info["FILES"] 
+      `wget -c #{file} -O #{KitamanConfig.config['SRC_DIR']}/#{File.basename(file)}`  
+    end
+  end
+
 
 end

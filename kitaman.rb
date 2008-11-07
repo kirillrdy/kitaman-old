@@ -7,14 +7,13 @@
 ## kirillrdy@silverpond.com.au
 ###################################################
 
-class Object
-  def in(cmp)
-    cmp.include? self
-  end
-end
+require 'lib/kitaman_helper'
+require 'lib/kita_class'
 
 class Kitaman
   
+  attr_reader :queue
+
   def Kitaman.version
     "0.0.1"
   end
@@ -25,9 +24,12 @@ class Kitaman
   end
 
   def run
-    @queue.reverse!
     for kita_object in @queue
       puts kita_object.inspect
+        
+      if @options['download']
+        kita_object.download_files
+      end
     end
   end
 
@@ -35,7 +37,10 @@ class Kitaman
     
     kita_instance = Kita.new(Kita.find_kita_file(target))  
     
-    @queue << kita_instance if not kita_instance.in @queue
+    if kita_instance.in @queue
+      @queue.delete kita_instance
+    end
+    @queue.insert(0,kita_instance)
 
     for dependency in kita_instance.info["DEPEND"] 
       build_queue(dependency)
@@ -48,10 +53,10 @@ end
 # Entry Point
 #############################################################
 
-require 'lib/kita_class'
-
 
 kita = Kitaman.new
 
+kita.build_queue("gcc")
 kita.build_queue("pariah-base")
-kita.run
+kita.build_queue("gcc")
+puts kita.inspect
