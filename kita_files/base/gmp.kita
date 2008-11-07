@@ -1,0 +1,9 @@
+KITA_TYPE="make"
+DEPEND=""
+BUILD=""
+build_src()
+{
+./configure --prefix=/usr --enable-cxx --enable-mpbsd &&
+make
+}
+""

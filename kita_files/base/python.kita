@@ -1,0 +1,10 @@
+KITA_TYPE="make"
+FILES="http://www.python.org/ftp/python/2.5.2/Python-2.5.2.tar.bz2"
+DEPEND=""
+BUILD=""
+build_src(){
+./configure --prefix=/usr --enable-shared
+make
+#make test
+}
+""

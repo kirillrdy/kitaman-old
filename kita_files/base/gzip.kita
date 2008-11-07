@@ -1,0 +1,16 @@
+KITA_TYPE="make"
+FILES="http://ftp.gnu.org/gnu/gzip/gzip-1.3.12.tar.gz"
+DEPEND=""
+BUILD=""
+build_src(){
+sed -i 's/futimens/gl_&/' gzip.c lib/utimens.{c,h}
+./configure --prefix=/usr --bindir=/bin
+make
+#make check
+}
+
+post_install(){
+mv -v /bin/{gzexe,uncompress,zcmp,zdiff,zegrep} /usr/bin
+mv -v /bin/{zfgrep,zforce,zgrep,zless,zmore,znew} /usr/bin
+}
+""

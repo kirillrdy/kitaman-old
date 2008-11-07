@@ -1,0 +1,8 @@
+KITA_TYPE="make"
+FILES="http://www.linuxfromscratch.org/lfs/downloads/development/udev-config-20070731.tar.bz2"
+DEPEND=""
+BUILD=""
+build_src(){
+echo "Nothing to do here"
+}
+""

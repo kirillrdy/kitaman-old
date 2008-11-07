@@ -1,0 +1,14 @@
+KITA_TYPE="make"
+FILES="http://ftp.gnu.org/gnu/patch/patch-2.5.4.tar.gz"
+DEPEND=""
+BUILD=""
+build_src(){
+./configure --prefix=/usr
+make
+}
+
+kita_install(){
+mkdir -p $INSTALL_DIR/usr/bin
+make bindir=$INSTALL_DIR/usr/bin install
+}
+""

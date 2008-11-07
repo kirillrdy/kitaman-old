@@ -1,0 +1,19 @@
+KITA_TYPE="make"
+FILES="http://prdownloads.sourceforge.net/e2fsprogs/e2fsprogs-1.40.3.tar.gz"
+DEPEND="gettext"
+BUILD=""
+build_src(){
+mkdir -pv build
+cd build
+../configure --prefix=/usr --with-root-prefix="" --enable-elf-shlibs
+make
+#make check
+}
+
+kita_install()
+{
+mkdir -p $INSTALL_DIR
+make DESTDIR=$INSTALL_DIR install
+make DESTDIR=$INSTALL_DIR install-libs
+}
+""

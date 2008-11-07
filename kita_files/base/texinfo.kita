@@ -1,0 +1,17 @@
+KITA_TYPE="make"
+FILES="http://ftp.gnu.org/gnu/texinfo/texinfo-4.11.tar.bz2"
+DEPEND=""
+BUILD=""
+build_src(){
+./configure --prefix=/usr
+make
+#make -k check
+}
+#make TEXMF=/usr/share/texmf install-tex
+#cd /usr/share/info
+#rm dir
+#for f in *
+#do install-info $f dir 2>/dev/null
+#done
+#Paste Build instructions here
+""

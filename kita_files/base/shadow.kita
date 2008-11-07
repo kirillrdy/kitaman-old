@@ -1,0 +1,16 @@
+KITA_TYPE="make"
+FILES="http://anduin.linuxfromscratch.org/sources/LFS/lfs-packages/development/shadow-4.0.18.1.tar.bz2 http://www.linuxfromscratch.org/patches/lfs/development/shadow-4.0.18.1-useradd_fix-2.patch"
+DEPEND=""
+BUILD=""
+build_src(){
+./configure --libdir=/lib --sysconfdir=/etc --enable-shared --without-selinux
+make
+}
+
+post_install(){
+pwconv
+grpconv
+useradd -D -b /home
+sed -i 's/yes/no/' /etc/default/useradd
+}
+""

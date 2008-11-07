@@ -26,9 +26,10 @@ class Kitaman
   def run
     for kita_object in @queue
       puts kita_object.inspect
-        
+      
+
       if @options['download']
-        kita_object.download_files
+        kita_object.download_files if kita_object.files_not_downloaded?
       end
     end
   end
@@ -57,6 +58,5 @@ end
 kita = Kitaman.new
 
 kita.build_queue("gcc")
-kita.build_queue("pariah-base")
-kita.build_queue("gcc")
+kita.run
 puts kita.inspect

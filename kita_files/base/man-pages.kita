@@ -1,0 +1,7 @@
+KITA_TYPE="make"
+DEPEND=""
+BUILD=""
+build_src(){
+echo "This package is special"
+}
+""

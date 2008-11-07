@@ -1,0 +1,8 @@
+KITA_TYPE="make"
+FILES="http://www.sethwklein.net/projects/iana-etc/downloads/iana-etc-2.20.tar.bz2"
+DEPEND=""
+BUILD=""
+build_src(){
+make
+}
+""

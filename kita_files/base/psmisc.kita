@@ -1,0 +1,13 @@
+KITA_TYPE="make"
+FILES="http://prdownloads.sourceforge.net/psmisc/psmisc-22.6.tar.gz"
+DEPEND=""
+BUILD=""
+build_src()
+{
+./configure --prefix=/usr
+#./configure --prefix=/usr --exec-prefix=\"\"
+make
+}
+#mv -v /bin/pstree* /usr/bin
+#ln -sv killall /bin/pidof
+""

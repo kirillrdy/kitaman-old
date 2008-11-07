@@ -1,0 +1,8 @@
+KITA_TYPE="make"
+FILES="http://procps.sourceforge.net/procps-3.2.7.tar.gz"
+DEPEND=""
+BUILD=""
+build_src(){
+make
+}
+""

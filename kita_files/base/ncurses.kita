@@ -1,0 +1,7 @@
+KITA_TYPE="make"
+BUILD=""
+build_src(){
+./configure --prefix=/usr --with-shared --without-debug --enable-widec
+make
+}
+""

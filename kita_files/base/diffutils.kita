@@ -1,0 +1,10 @@
+KITA_TYPE="make"
+FILES="http://ftp.gnu.org/gnu/diffutils/diffutils-2.8.1.tar.gz http://www.linuxfromscratch.org/patches/lfs/development/diffutils-2.8.1-i18n-1.patch"
+DEPEND="gettext"
+BUILD=""
+build_src(){
+touch man/diff.1
+./configure --prefix=/usr
+make
+}
+""

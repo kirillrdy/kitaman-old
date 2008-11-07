@@ -60,5 +60,29 @@ class Kita
     end
   end
 
+  def files_list_local
+    list=[]
+    for file in @info['FILES']
+      list << (KitamanConfig.config['SRC_DIR']+File.basename(file))
+    end
+    list
+  end
+
+  def files_list_to_download
+    @info['FILES']
+  end
+
+  def files_not_downloaded?
+    not files_downloaded?
+  end
+
+  def files_downloaded?
+    results = true
+    for file in files_list_local 
+      results = results and File.exist?(file)
+    end
+    results
+  end
+
 
 end
