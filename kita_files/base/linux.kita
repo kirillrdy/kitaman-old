@@ -1,5 +1,5 @@
 # Linux kernel
-KITA_TYPE="smart_make"
+KITA_TYPE="make"
 DEPEND=""
 BUILD=""
 ext_src(){

@@ -22,7 +22,7 @@ class Kita
     @info = smart_split(@info,"FILES")
     @info = smart_set(@info,'VER',self.get_version)
     @info = smart_split(@info,"DEPEND")
-    @info["BUILD"] = IO.read(kita_file).scan(/BUILD=""(.*?)""/m)[0][0]
+    @info["BUILD"] = IO.read(kita_file).scan(/BUILD=""(.*?)""/m)[0][0] if @info['BUILD']
 
   end
 

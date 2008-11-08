@@ -31,10 +31,9 @@ class Kitaman
         kita_object.download_files if kita_object.files_not_downloaded?
       end
 
-      if @options['build']
-        kita_object.build
-      end
- 
+      kita_object.build  if @options['build']
+      kita_object.install  if @options['install']
+     
     end
   end
 
@@ -64,7 +63,7 @@ Usage: kitaman.rb [options] packages"""
     end
   end
 
-  def build_queue(target)
+ def build_queue(target)
    
     load_needed_module(target)
     kita_instance = Kita.new(Kita.find_kita_file(target))  
@@ -74,7 +73,7 @@ Usage: kitaman.rb [options] packages"""
     end
     @queue.insert(0,kita_instance)
 
-    for dependency in kita_instance.info["DEPEND"] 
+    for dependency in kita_instance.info["DEPEND"].reverse
       build_queue(dependency)
     end
   end
