@@ -21,6 +21,7 @@ class Kita
     @info = smart_set(@info,'NAME',File.basename(kita_file,".kita"))
     @info = smart_split(@info,"FILES")
     @info = smart_set(@info,'VER',self.get_version)
+    @info['NAME-VER'] = @info['NAME']+'-'+@info['VER'] 
     @info = smart_split(@info,"DEPEND")
     @info["BUILD"] = IO.read(kita_file).scan(/BUILD=""(.*?)""/m)[0][0] if @info['BUILD']
 
@@ -53,6 +54,14 @@ class Kita
         return file
       end
     end
+  end
+
+  def installed?
+    File.exist?(KitamanConfig.config['STATE_DIR']+'/'+@info['NAME-VER'])
+  end
+
+  def record_installed
+    `find #{KitamanConfig.config['FAKE_INSTALL_DIR']}/#{@info["NAME-VER"]}/ > #{KitamanConfig.config['STATE_DIR']}/#{@info['NAME-VER']}`
   end
 
   def download_files

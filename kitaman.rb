@@ -20,19 +20,17 @@ class Kitaman
   end
 
   def initialize
-    @options = {'download' => true,'build' => true,'install' => true,'deep' => false,'deepest' => false,'force' => false,'search' => false,'remove' => false}
+    @options = {:download => true,:build => true,:install => true,:deep => false,:deepest => false,:force => false,:search => false,:remove => false}
     @queue = []
   end
 
   def run
     for kita_object in @queue
 
-      if @options['download']
-        kita_object.download_files if kita_object.files_not_downloaded?
-      end
-
-      kita_object.build  if @options['build']
-      kita_object.install  if @options['install']
+      kita_object.download_files if (kita_object.files_not_downloaded? or (@options[:force] and @options[:download]) )
+  
+      kita_object.build  if @options[:build]
+      kita_object.install  if (not kita_object.installed? or (@options[:force] and @options[:install]))
      
     end
   end
@@ -49,6 +47,11 @@ Usage: kitaman.rb [options] packages"""
 
       opts.on("-f", "--force", "Force things") do |v|
         @options[:force] = v
+      end
+    
+      opts.on("-d", "--download", "Force things") do |v|
+        @options[:build] = false
+        @options[:install] = false
       end
 
       opts.on("-v", "--[no-]verbose", "Run verbosely") do |v|

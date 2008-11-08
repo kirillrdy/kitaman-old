@@ -7,13 +7,14 @@ require 'lib/kita_class'
 class Kita
 
   def build_enviroment
+    where_to_cd =  `tar tf #{files_list_local[0]}`.split("\n")[0]
     """
     export MAKEFLAGS='-j4'
     INSTALL_DIR=#{KitamanConfig.config['FAKE_INSTALL_DIR']}/#{@info['NAME']}-#{@info['VER']}
-    BUILD_DIR=#{KitamanConfig.config['BUILD_DIR']}/#{@info['NAME']}
+    BUILD_DIR=#{KitamanConfig.config['BUILD_DIR']}/#{where_to_cd}
     SRC_DIR=#{KitamanConfig.config['SRC_DIR']}
     
-    cd ${BUILD_DIR}*
+    cd ${BUILD_DIR}
     """
   end
 
@@ -68,7 +69,7 @@ class Kita
     kita_install
     """)
 
-    
+    record_installed 
   end
 
   def create_package
