@@ -6,16 +6,29 @@ require 'lib/kita_class'
 
 class Kita
 
+  def paths
+    paths = {}
+    paths[:tar_bin_file] = KitamanConfig.config['PKG_DIR']+'/'+@info['NAME-VER']+'-bin.tar.bz2'
+    paths[:install_dir] = KitamanConfig.config['FAKE_INSTALL_DIR']+'/'+@info["NAME-VER"]  
+    paths[:state_file]= KitamanConfig.config['STATE_DIR']+'/'+@info['NAME-VER']
+
+    return paths
+  end
+
   def build_enviroment
     where_to_cd =  `tar tf #{files_list_local[0]}`.split("\n")[0]
     """
     export MAKEFLAGS='-j4'
-    INSTALL_DIR=#{KitamanConfig.config['FAKE_INSTALL_DIR']}/#{@info['NAME']}-#{@info['VER']}
+    INSTALL_DIR=#{paths[:install_dir]}
     BUILD_DIR=#{KitamanConfig.config['BUILD_DIR']}/#{where_to_cd}
     SRC_DIR=#{KitamanConfig.config['SRC_DIR']}
     
     cd ${BUILD_DIR}
     """
+  end
+
+  def record_installed
+    `tar tf #{paths[:tar_bin_file]} > #{paths[:state_file]}`
   end
 
   def build
@@ -37,6 +50,8 @@ class Kita
     build_src
     """)
 
+    create_package
+
   end
 
   def patch
@@ -56,6 +71,12 @@ class Kita
   end
 
   def install
+    
+    #`tar xjpf `  
+    record_installed 
+  end
+
+  def create_package
      Kernel.system( build_enviroment  + """
     
    kita_install()
@@ -67,12 +88,12 @@ class Kita
     #{@info["BUILD"]}
 
     kita_install
+    cd $INSTALL_DIR
+
+    tar cjpf #{paths[:tar_bin_file]} *
+
     """)
 
-    record_installed 
-  end
-
-  def create_package
   end
 
 end

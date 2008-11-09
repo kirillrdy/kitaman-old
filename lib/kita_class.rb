@@ -45,6 +45,11 @@ class Kita
     return ver
   end
 
+  def record_installed
+    `touch #{KitamanConfig.config['STATE_DIR']}/#{@info['NAME-VER']}`
+  end
+
+
   def fill_files
     #TODO: this function needs help
     all_files = `find #{KitamanConfig.config['SRC_DIR']} -type f`.split("\n")
@@ -60,9 +65,7 @@ class Kita
     File.exist?(KitamanConfig.config['STATE_DIR']+'/'+@info['NAME-VER'])
   end
 
-  def record_installed
-    `find #{KitamanConfig.config['FAKE_INSTALL_DIR']}/#{@info["NAME-VER"]}/ > #{KitamanConfig.config['STATE_DIR']}/#{@info['NAME-VER']}`
-  end
+
 
   def download_files
     for file in @info["FILES"] 

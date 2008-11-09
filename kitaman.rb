@@ -57,6 +57,10 @@ Usage: kitaman.rb [options] packages"""
       opts.on("-v", "--[no-]verbose", "Run verbosely") do |v|
         @options[:verbose] = v
       end
+      opts.on("-t", "--[no-]test", "test build") do |v|
+        @options[:install] = false
+      end
+
     end.parse!
   end
 
