@@ -7,13 +7,14 @@ PREFIX=$1
 
 echo -n "Installing Kitaman ... "
 
-mkdir -p $PREFIX/var/kitaman
-mkdir -p $PREFIX/usr/kitaman/{pkg,src,kita}
+mkdir -p $PREFIX/usr/lib/ruby/1.8/kitaman
+mkdir -p $PREFIX/var/kitaman/{build,install}
+mkdir -p $PREFIX/usr/kitaman/{pkg,src,kita_files}
 
-cp *.py $PREFIX/usr/bin/
-mv $PREFIX/usr/bin/kitaman.py $PREFIX/usr/bin/kitaman
-cp kitaman.conf $PREFIX/etc/
-cp kitaman.repos $PREFIX/etc/
-cp kitaman.sources $PREFIX/etc/
-cp -r kita $PREFIX/usr/kitaman/
+cp kitaman.rb $PREFIX/usr/bin/kitaman
+cp lib/* $PREFIX/usr/lib/ruby/1.8/kitaman/
+cp etc/kitaman.conf $PREFIX/etc/
+#cp kitaman.repos $PREFIX/etc/
+#cp kitaman.sources $PREFIX/etc/
+cp -r kita_files $PREFIX/usr/kitaman/
 echo "Done"

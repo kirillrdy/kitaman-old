@@ -1,8 +1,8 @@
 # This is the base class for Kita, all classes shall inherit from this class !
 
-require 'lib/kita_helper'
-require 'lib/kitaman_helper'
-require 'lib/kita_class'
+require 'kitaman/kita_helper'
+require 'kitaman/kitaman_helper'
+require 'kitaman/kita_class'
 
 class Kita
 
@@ -71,8 +71,7 @@ class Kita
   end
 
   def install
-    
-    #`tar xjpf `  
+    `tar xjpf #{paths[:tar_bin_file]} -C /`
     record_installed 
   end
 

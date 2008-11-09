@@ -8,8 +8,8 @@
 ###################################################
 
 require 'optparse'
-require 'lib/kitaman_helper'
-require 'lib/kita_class'
+require 'kitaman/kitaman_helper'
+require 'kitaman/kita_class'
 
 class Kitaman
   
@@ -36,7 +36,7 @@ class Kitaman
   end
 
   def load_needed_module(file)
-    load 'lib/'+IO.read(Kita.find_kita_file(file)).scan(/KITA_TYPE="(.*?)"/)[0][0]+'.rb'
+    load 'kitaman/'+IO.read(Kita.find_kita_file(file)).scan(/KITA_TYPE="(.*?)"/)[0][0]+'.rb'
   end
 
   def parse_argv

@@ -1,7 +1,7 @@
 # This is the base class for Kita, all classes shall inherit from this class !
 
-require 'lib/kita_helper'
-require 'lib/kitaman_helper'
+require 'kitaman/kita_helper'
+require 'kitaman/kitaman_helper'
 
 
 class Kita
@@ -28,7 +28,7 @@ class Kita
   end
 
   def Kita.find_kita_file(package_name)
-    all_files = `find kita_files -type f`.split("\n")
+    all_files = `find #{KitamanConfig.config['KITA_FILES_DIR']} -type f`.split("\n")
     for file in all_files
       if File.basename(file,".kita") == package_name
         return file
