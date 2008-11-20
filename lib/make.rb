@@ -15,6 +15,7 @@ class Kita
     return paths
   end
 
+  # Generates Build Enviroment for the package
   def build_enviroment
     where_to_cd =  `tar tf #{files_list_local[0]}`.split("\n")[0]
     """
@@ -27,18 +28,21 @@ class Kita
     """
   end
 
+  # Records package as installed and records a list of all files installed by the package
   def record_installed
     `tar tf #{paths[:tar_bin_file]} > #{paths[:state_file]}`
   end
 
+
+  # Extracts, patches, builds and packs a package
   def build
     
-    extract
+    result = extract
     patch
 
         
     # build commands here
-    Kernel.system( build_enviroment  + """
+    result = result and Kernel.system( build_enviroment  + """
     
     build_src()
     {
@@ -50,15 +54,16 @@ class Kita
     build_src
     """)
 
-    create_package
-
+    if !result
+      return result
+    else
+      return (result and create_package)
+    end
+    
   end
 
-  def not_builded?
-    return false
-  end
-
-  def patch
+  # Patch source code
+  def patch    
     for file in files_list_local
       if file.index('.patch')
         file = File.basename(file)
@@ -67,16 +72,23 @@ class Kita
     end
   end
 
-  def extract
+  def extract  
     for file in files_list_local
-      `tar xjpf #{file} -C #{KitamanConfig.config['BUILD_DIR']}/` if file.index('.tar.bz2')      
-      `tar xpf #{file} -C #{KitamanConfig.config['BUILD_DIR']}/` if file.index('.tar.gz')      
+      result = result and Kernel.system("tar xjpf #{file} -C #{KitamanConfig.config['BUILD_DIR']}/" if file.index('.tar.bz2')
+      result = result and Kernel.system("tar xpf #{file} -C #{KitamanConfig.config['BUILD_DIR']}/" if file.index('.tar.gz')
     end
+    return result
   end
 
   def install
-    `tar xjpf #{paths[:tar_bin_file]} -C /`
-    record_installed 
+    result = Kernel.system("tar xjpf #{paths[:tar_bin_file]} -C /")
+    
+    if result==false
+      return result
+    end
+    
+    record_installed
+    return result
   end
 
   def create_package

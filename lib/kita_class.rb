@@ -5,6 +5,7 @@ require 'kitaman/kitaman_helper'
 
 
 class Kita
+  # Class that represents a package in Kitaman world
   attr_reader :info
 
   def ==(obj)
@@ -65,8 +66,8 @@ class Kita
     File.exist?(KitamanConfig.config['STATE_DIR']+'/'+@info['NAME-VER'])
   end
 
-  def not_installed?
-    return !installed?
+  def builded?
+    File.exist?(KitamanConfig.config['PKG_DIR']+'/'+@info['NAME-VER']+'-bin.tar.bz2')
   end
 
   def download
