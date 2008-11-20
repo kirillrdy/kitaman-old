@@ -6,12 +6,12 @@ require 'kitaman/kita_class'
 
 class Kita
 
+  # shortcuts for all important paths that are use often
   def paths
     paths = {}
     paths[:tar_bin_file] = KitamanConfig.config['PKG_DIR']+'/'+@info['NAME-VER']+'-bin.tar.bz2'
     paths[:install_dir] = KitamanConfig.config['FAKE_INSTALL_DIR']+'/'+@info["NAME-VER"]  
     paths[:state_file]= KitamanConfig.config['STATE_DIR']+'/'+@info['NAME-VER']
-
     return paths
   end
 
@@ -72,10 +72,11 @@ class Kita
     end
   end
 
-  def extract  
+  def extract
+    result = true
     for file in files_list_local
-      result = result and Kernel.system("tar xjpf #{file} -C #{KitamanConfig.config['BUILD_DIR']}/" if file.index('.tar.bz2')
-      result = result and Kernel.system("tar xpf #{file} -C #{KitamanConfig.config['BUILD_DIR']}/" if file.index('.tar.gz')
+      result = result and Kernel.system("tar xjpf #{file} -C #{KitamanConfig.config['BUILD_DIR']}/") if file.index('.tar.bz2')
+      result = result and Kernel.system("tar xpf #{file} -C #{KitamanConfig.config['BUILD_DIR']}/") if file.index('.tar.gz')
     end
     return result
   end
@@ -90,7 +91,8 @@ class Kita
     record_installed
     return result
   end
-
+  
+  # Generates tar ball with binary files
   def create_package
      Kernel.system( build_enviroment  + """
     

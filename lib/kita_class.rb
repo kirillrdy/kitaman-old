@@ -11,7 +11,8 @@ class Kita
   def ==(obj)
     self.info==obj.info
   end
-
+  
+  # Creates Kita object and parses all the information
   def initialize(kita_file)
     infos = IO.read(kita_file).scan(/(.*?)="(.*?)"\n/)
     @info = {}
@@ -28,6 +29,7 @@ class Kita
 
   end
 
+  # Find kita file by package name
   def Kita.find_kita_file(package_name)
     all_files = `find #{KitamanConfig.config['KITA_FILES_DIR']} -type f`.split("\n")
     for file in all_files
@@ -37,6 +39,7 @@ class Kita
     end
   end
 
+  # Get version from source file
   def get_version
     if @info['FILES']!=[]
       ver = get_version_from_file(@info['FILES'][0])
@@ -46,12 +49,13 @@ class Kita
     return ver
   end
 
+  # Create a state file meaning that package is installed
   def record_installed
     `touch #{KitamanConfig.config['STATE_DIR']}/#{@info['NAME-VER']}`
   end
 
-
-  def fill_files
+  # Fills FILES var with files maching in repository
+  def get_files_from_repo
     #TODO: this function needs help
     all_files = `find #{KitamanConfig.config['SRC_DIR']} -type f`.split("\n")
      for file in all_files
@@ -62,14 +66,17 @@ class Kita
     end
   end
 
+  # Checks if package is installed
   def installed?
     File.exist?(KitamanConfig.config['STATE_DIR']+'/'+@info['NAME-VER'])
   end
 
+  # Checks if package is build (sorry i know its build not builded, i had good reason to do so)
   def builded?
     File.exist?(KitamanConfig.config['PKG_DIR']+'/'+@info['NAME-VER']+'-bin.tar.bz2')
   end
 
+  # Downloads all files in FILES var, returns True if all files downloaded successfully
   def download
     success=true
     for file in @info["FILES"] 
@@ -78,6 +85,7 @@ class Kita
     return success
   end
 
+  # Returns a list of full paths to local source files belonging to package
   def files_list_local
     list=[]
     for file in @info['FILES']
@@ -86,14 +94,12 @@ class Kita
     list
   end
 
+  # Returns a list of URLS of source files to be downloaded
   def files_list_to_download
     @info['FILES']
   end
 
-  def not_downloaded?
-    return !downloaded?
-  end
-
+  # Checks if all files are downloaded
   def downloaded?
     results = true
     for file in files_list_local 
