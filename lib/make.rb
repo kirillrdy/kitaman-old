@@ -54,6 +54,10 @@ class Kita
 
   end
 
+  def not_builded?
+    return false
+  end
+
   def patch
     for file in files_list_local
       if file.index('.patch')

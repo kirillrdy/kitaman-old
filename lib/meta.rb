@@ -1,10 +1,8 @@
-class Make
+class Kita
   
-  def Make.main
-    puts "hello from main2"
+  def build
+    puts "Nothing to do for meta package"
   end
-  def test
-    puts "test2"
-  end
+  
   
 end

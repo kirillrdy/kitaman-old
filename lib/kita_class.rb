@@ -65,12 +65,16 @@ class Kita
     File.exist?(KitamanConfig.config['STATE_DIR']+'/'+@info['NAME-VER'])
   end
 
+  def not_installed?
+    return !installed?
+  end
 
-
-  def download_files
+  def download
+    success=true
     for file in @info["FILES"] 
-      `wget -c #{file} -O #{KitamanConfig.config['SRC_DIR']}/#{File.basename(file)}`  
+      success = success and Kernel.system("wget -c #{file} -O #{KitamanConfig.config['SRC_DIR']}/#{File.basename(file)}")
     end
+    return success
   end
 
   def files_list_local
@@ -85,11 +89,11 @@ class Kita
     @info['FILES']
   end
 
-  def files_not_downloaded?
-    not files_downloaded?
+  def not_downloaded?
+    return !downloaded?
   end
 
-  def files_downloaded?
+  def downloaded?
     results = true
     for file in files_list_local 
       results = (results and File.exist?(file))

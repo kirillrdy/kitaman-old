@@ -24,14 +24,20 @@ class Kitaman
     @queue = []
   end
 
+  def execute_action(kita_object,action)
+    if kita_object.send("not_#{action}ed?".to_sym) or (@options[:force] and @options[action])
+      if not kita_object.send(action.to_sym)
+          puts "Panic While Trying to #{action} for #{kita_object.info["NAME-VER"]}"
+        exit
+      end
+    end
+  end
+
   def run
     for kita_object in @queue
-
-      kita_object.download_files if (kita_object.files_not_downloaded? or (@options[:force] and @options[:download]) )
-  
-      kita_object.build  if @options[:build]
-      kita_object.install  if (not kita_object.installed? or (@options[:force] and @options[:install]))
-     
+      execute_action(kita_object,:download) 
+      execute_action(kita_object,:build) 
+      execute_action(kita_object,:install) 
     end
   end
 
@@ -45,20 +51,21 @@ class Kitaman
       
 Usage: kitaman.rb [options] packages"""
 
-      opts.on("-f", "--force", "Force things") do |v|
+      opts.on("-f", "--force", "Force any action") do |v|
         @options[:force] = v
       end
     
-      opts.on("-d", "--download", "Force things") do |v|
+      opts.on("-d", "--download", "Download Only") do |v|
         @options[:build] = false
+        @options[:install] = false
+      end
+
+      opts.on("-b", "--build", "Build Only") do |v|
         @options[:install] = false
       end
 
       opts.on("-v", "--[no-]verbose", "Run verbosely") do |v|
         @options[:verbose] = v
-      end
-      opts.on("-t", "--[no-]test", "test build") do |v|
-        @options[:install] = false
       end
 
     end.parse!
