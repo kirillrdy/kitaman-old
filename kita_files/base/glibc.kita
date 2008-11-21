@@ -1,50 +1,32 @@
 KITA_TYPE="make"
-FILES="http://ftp.gnu.org/gnu/glibc/glibc-2.7.tar.bz2 http://ftp.gnu.org/gnu/glibc/glibc-libidn-2.7.tar.bz2"
+FILES="ftp://sources.redhat.com/pub/glibc/snapshots/glibc-2.8-20080929.tar.bz2 http://www.linuxfromscratch.org/patches/lfs/development/glibc-2.8-20080929-iconv_tests-1.patch http://www.linuxfromscratch.org/patches/lfs/development/glibc-2.8-20080929-ildoubl_test-1.patch"
 DEPEND=""
 BUILD=""
-ext_src()
-{
-mkdir -p /tmp/kitaman
-echo "Extracting sources ..."
-tar xjpf $SRC_DIR/glibc-2.7.tar.bz2 -C /tmp/kitaman/${NAME}/build
-tar xjpf $SRC_DIR/glibc-libidn-2.7.tar.bz2 -C /tmp/kitaman/${NAME}/build/glibc-2.7
-mv /tmp/kitaman/${NAME}/build/${NAME}/glibc-libidn-2.7 /tmp/kitaman/${NAME}/build/${NAME}/libidn
-cd /tmp/kitaman/${NAME}/build/${NAME}
-
-sed -i '/vi_VN.TCVN/d' localedata/SUPPORTED
-sed -i \
-'s|libs -o|libs -L/usr/lib -Wl,-dynamic-linker=/lib/ld-linux.so.2 -o|' \
-        scripts/test-installation.pl
-sed -i 's|@BASH@|/bin/bash|' elf/ldd.bash.in
-}
 
 build_src()
 {
+
+sed -i '/vi_VN.TCVN/d' localedata/SUPPORTED
+sed -i 's|@BASH@|/bin/bash|' elf/ldd.bash.in
+
 mkdir ../glibc-build
 cd ../glibc-build
 
 echo "CFLAGS += -march=i486" > configparms
-../glibc-2.7/configure --prefix=/usr \
+../glibc-2.8-20080929/configure --prefix=/usr \
     --disable-profile --enable-add-ons \
     --enable-kernel=2.6.0 --libexecdir=/usr/lib/glibc
-
+    
 make
-make -k check 2>&1 | tee glibc-check-log
-grep Error glibc-check-log
-touch /etc/ld.so.conf
-make install_root=$INSTALL_DIR install
-cd $INSTALL_DIR
-tar cjpf $PKG_DIR/${NAME}-bin.tar.bz2 *
+
+#cp -v ../glibc-2.8-20080929/iconvdata/gconv-modules iconvdata
+#make -k check 2>&1 | tee glibc-check-log
 }
 
 kita_install()
 {
-  echo "This kita file needs to be rewritten, ok ?"
-}
-
-make_pkg()
-{
-  echo "This package is special"
+  touch /etc/ld.so.conf
+  make install_root=$INSTALL_DIR install  
 }
 
 post_install()
@@ -66,7 +48,7 @@ localedef -i ja_JP -f EUC-JP ja_JP
 # If you want ALL locales
 #make localedata/install-locales
 
-cat > /etc/nsswitch.conf << "EOF"
+cat > $INSTALL_DIR/etc/nsswitch.conf << "EOF"
 # Begin /etc/nsswitch.conf
 
 passwd: files
@@ -84,7 +66,7 @@ rpc: files
 # End /etc/nsswitch.conf
 EOF
 
-cat > /etc/ld.so.conf << "EOF"
+cat > $INSTALL_DIR/etc/ld.so.conf << "EOF"
 # Begin /etc/ld.so.conf
 
 /usr/local/lib

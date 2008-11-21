@@ -29,7 +29,7 @@ class Kitaman
     puts "Starting to #{action} #{name_version} ... ".style :green
     if !kita_object.send("#{action}ed?".to_sym) or (@options[:force] and @options[action])
       if not kita_object.send(action.to_sym)
-          puts "Panic While Trying to #{action} for #{name_version}"
+          puts "Panic While Trying to #{action} for #{name_version}".style(:red).style(:bold)
         exit
       end
     else
@@ -106,7 +106,12 @@ Usage: kitaman.rb [options] packages"""
     if kita_instance.in @queue
       @queue.delete kita_instance
     end
-    @queue.insert(0,kita_instance)
+
+    if not kita_instance.installed?
+      @queue.insert(0,kita_instance)
+    else
+      return
+    end
 
     for dependency in kita_instance.info["DEPEND"].reverse
       build_queue(dependency)

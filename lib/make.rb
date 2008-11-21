@@ -19,6 +19,7 @@ class Kita
   def build_enviroment
     where_to_cd =  `tar tf #{files_list_local[0]}`.split("\n")[0]
     """
+    set -e
     export MAKEFLAGS='-j4'
     INSTALL_DIR=#{paths[:install_dir]}
     BUILD_DIR=#{KitamanConfig.config['BUILD_DIR']}/#{where_to_cd}
