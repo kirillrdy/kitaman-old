@@ -26,17 +26,18 @@ class Kitaman
 
   def execute_action(kita_object,action)
     name_version  = kita_object.info["NAME-VER"]
-    puts "Starting to #{action} #{name_version} ... ".style :green
-    if !kita_object.send("#{action}ed?".to_sym) or (@options[:force] and @options[action])
+    if (!kita_object.send("#{action}ed?".to_sym) and @options[action]) or (@options[:force] and @options[action])
+      puts "Starting to #{action} #{name_version} ... ".style :green
       if not kita_object.send(action.to_sym)
           puts "Panic While Trying to #{action} for #{name_version}".style(:red).style(:bold)
         exit
       end
+      puts "Finished #{action} #{name_version}".style(:red).style :bold
+      puts "\n"
     else
       puts "No need to #{action} #{name_version}".style(:yellow).style :bold
     end
-   puts "Finished #{action} #{name_version}".style(:red).style :bold
-   puts "\n"
+
   end
 
   def run
@@ -71,7 +72,13 @@ Usage: kitaman.rb [options] packages"""
       opts.on("-b", "--build", "Build Only") do |v|
         @options[:install] = false
       end
-  
+ 
+      opts.on("-p", "--[no-]pretend", "Pretend") do |v|
+        @options[:build] = false
+        @options[:install] = false
+        @options[:download] = false
+      end
+
       opts.on("-q", "--[no-]quiet", "No questions asked") do |v|
         @options[:quiet] = v
       end
@@ -86,7 +93,7 @@ Usage: kitaman.rb [options] packages"""
   def print_queue
     
     return false if @options[:quiet]
-    puts "Kitaman will do the following: \n\n".style(:bold)
+    puts "Kitaman will do the following: \n".style(:bold)
     for item in @queue
       flags = "[#{@options[:download] ? "D" : ""}#{@options[:build] ? "B" : ""}#{@options[:install] ? "I" : ""}]".style(:blue)
       puts "#{flags} "+item.info['NAME'].style(:cyan).style(:bold)+'-'+item.info['VER'].style(:bold).style(:green)

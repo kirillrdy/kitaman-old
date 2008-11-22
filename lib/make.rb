@@ -18,6 +18,7 @@ class Kita
   # Generates Build Enviroment for the package
   def build_enviroment
     where_to_cd =  `tar tf #{files_list_local[0]}`.split("\n")[0]
+    where_to_cd = where_to_cd.slice(0,where_to_cd.index("/")) if where_to_cd.index('/')
     """
     set -e
     export MAKEFLAGS='-j4'
@@ -83,14 +84,12 @@ class Kita
   end
 
   def install
-    result = system("tar xjpf #{paths[:tar_bin_file]} -C /")
-    
-    if result==false
-      return result
+    if not system("tar xjpf #{paths[:tar_bin_file]} -C /")
+      return false
     end
     
     record_installed
-    return result
+    return true
   end
   
   # Generates tar ball with binary files

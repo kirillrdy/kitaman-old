@@ -1,24 +1,4 @@
 KITA_TYPE="make"
-DEPEND=""
+FILES="ftp://ftp.gnu.org/gnu/which/which-2.20.tar.gz"
 BUILD=""
-ext_src()
-{
-echo "fake"
-}
-#Paste Build instructions here
-build_src()
-{
-echo "fake"
-}
-kita_install()
-{
-mkdir -p $INSTALL_DIR/usr/bin
-cat > $INSTALL_DIR/usr/bin/which << "EOF"
-#!/bin/bash
-type -pa "$@" | head -n 1 ; exit ${PIPESTATUS[0]}
-EOF
-chmod -v 755 $INSTALL_DIR/usr/bin/which
-chown -v root:root $INSTALL_DIR/usr/bin/which
-echo "fake"
-}
 ""

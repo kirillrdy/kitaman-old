@@ -26,6 +26,8 @@ make
 kita_install()
 {
   cd ../glibc-build
+  mkdir -p $INSTALL_DIR/etc
+  touch $INSTALL_DIR/etc/ld.so.conf
   touch /etc/ld.so.conf
   make install_root=$INSTALL_DIR install  
 }
