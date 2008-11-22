@@ -43,7 +43,7 @@ class Kita
 
         
     # build commands here
-    result = result and Kernel.system( build_enviroment  + """
+    result = result and system( build_enviroment  + """
     
     build_src()
     {
@@ -76,14 +76,14 @@ class Kita
   def extract
     result = true
     for file in files_list_local
-      result = result and Kernel.system("tar xjpf #{file} -C #{KitamanConfig.config['BUILD_DIR']}/") if file.index('.tar.bz2')
-      result = result and Kernel.system("tar xpf #{file} -C #{KitamanConfig.config['BUILD_DIR']}/") if file.index('.tar.gz')
+      result = result and system("tar xjpf #{file} -C #{KitamanConfig.config['BUILD_DIR']}/") if file.index('.tar.bz2')
+      result = result and system("tar xpf #{file} -C #{KitamanConfig.config['BUILD_DIR']}/") if file.index('.tar.gz')
     end
     return result
   end
 
   def install
-    result = Kernel.system("tar xjpf #{paths[:tar_bin_file]} -C /")
+    result = system("tar xjpf #{paths[:tar_bin_file]} -C /")
     
     if result==false
       return result
@@ -95,7 +95,7 @@ class Kita
   
   # Generates tar ball with binary files
   def create_package
-     Kernel.system( build_enviroment  + """
+     system( build_enviroment  + """
     
    kita_install()
     {

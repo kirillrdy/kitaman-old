@@ -25,6 +25,7 @@ make
 
 kita_install()
 {
+  cd ../glibc-build
   touch /etc/ld.so.conf
   make install_root=$INSTALL_DIR install  
 }
