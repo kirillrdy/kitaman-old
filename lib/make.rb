@@ -41,8 +41,7 @@ class Kita
     
     result = extract
     patch
-
-        
+           
     # build commands here
     result = result and system( build_enviroment  + """
     

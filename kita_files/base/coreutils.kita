@@ -1,6 +1,6 @@
 KITA_TYPE="make"
-FILES="http://ftp.gnu.org/gnu/coreutils/coreutils-6.10.tar.gz http://www.linuxfromscratch.org/patches/lfs/development/coreutils-6.10-i18n-1.patch http://www.linuxfromscratch.org/patches/lfs/development/coreutils-6.10-uname-1.patch"
-DEPEND="gettext ncurses automake autoconf m4"
+FILES="http://ftp.gnu.org/gnu/coreutils/coreutils-6.12.tar.gz http://www.linuxfromscratch.org/patches/lfs/development/coreutils-6.12-i18n-2.patch"
+DEPEND=""
 BUILD=""
 build_src(){
 ./configure --prefix=/usr --enable-install-program=hostname --enable-no-install-program=kill

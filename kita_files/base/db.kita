@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://download-east.oracle.com/berkeley-db/db-4.6.21.tar.gz"
+FILES="http://download-east.oracle.com/berkeley-db/db-4.7.25.tar.gz"
 DEPEND="binutils"
 BUILD=""
 build_src()
@@ -9,8 +9,9 @@ cd build_unix
 make
 #make docdir=/usr/share/doc/db-4.6.21 install
 }
-#post_install()
-#{
-#chown -Rv root:root /usr/share/doc/db-4.6.21
-#}
+kita_install()
+{
+cd build_unix
+make DESTDIR=$INSTALL_DIR install
+}
 ""

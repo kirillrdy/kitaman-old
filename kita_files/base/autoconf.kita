@@ -1,6 +1,6 @@
 KITA_TYPE="make"
-FILES="http://ftp.gnu.org/gnu/autoconf/autoconf-2.61.tar.bz2"
-DEPEND="texinfo m4 perl"
+FILES="http://ftp.gnu.org/gnu/autoconf/autoconf-2.63.tar.bz2"
+DEPEND=""
 BUILD=""
 build_src(){
 ./configure --prefix=/usr

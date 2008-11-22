@@ -1,5 +1,6 @@
 KITA_TYPE="make"
 BUILD=""
+FILES="ftp://ftp.gnu.org/gnu/ncurses/ncurses-5.6.tar.gz http://www.linuxfromscratch.org/patches/lfs/development/ncurses-5.6-coverity_fixes-1.patch"
 build_src(){
 ./configure --prefix=/usr --with-shared --without-debug --enable-widec
 make

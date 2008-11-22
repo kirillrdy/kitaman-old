@@ -32,7 +32,7 @@ class Kitaman
           puts "Panic While Trying to #{action} for #{name_version}".style(:red).style(:bold)
         exit
       end
-      puts "Finished #{action} #{name_version}".style(:red).style :bold
+      puts "Finished #{action}ing #{name_version}".style(:red).style :bold
       puts "\n"
     else
       puts "No need to #{action} #{name_version}".style(:yellow).style :bold

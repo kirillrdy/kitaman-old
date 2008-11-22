@@ -1,22 +1,29 @@
 KITA_TYPE="make"
-FILES="http://ftp.gnu.org/gnu/bash/bash-3.2.tar.gz http://www.linuxfromscratch.org/patches/lfs/development/bash-3.2-fixes-7.patch"
+FILES="http://ftp.gnu.org/gnu/bash/bash-3.2.tar.gz http://www.linuxfromscratch.org/patches/lfs/development/bash-3.2-fixes-8.patch"
 DEPEND="ncurses"
 BUILD=""
 build_src(){
 ./configure --prefix=/usr --bindir=/bin --without-bash-malloc --with-installed-readline
 make
-sed -i 's/LANG/LC_ALL/' tests/intl.tests
-sed -i 's@tests@& </dev/tty@' tests/run-test
+
+#hack
+cp po/en@quot.po po/ru.po
+
+
+#sed -i 's/LANG/LC_ALL/' tests/intl.tests
+#sed -i 's@tests@& </dev/tty@' tests/run-test
 chown -Rv nobody ./
+
 
 mkdir -p $INSTALL_DIR/etc
 # installing default config files
+
 cat > $INSTALL_DIR/etc/profile << "EOF"
 # Begin /etc/profile
 # Written for Beyond Linux From Scratch
 # by James Robertson <jameswrobertson@earthlink.net>
 # modifications by Dagmar d'Surreal <rivyqntzne@pbzpnfg.arg>
-# and Pariah Team , Kirill Radzikhovskyy <kirillrdy@pariahsw.com>
+# and Silverpond , Kirill Radzikhovskyy <kirillrdy@silverpond.com.au>
 
 # System wide environment variables and startup programs.
 

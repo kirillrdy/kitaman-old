@@ -1,6 +1,6 @@
 KITA_TYPE="make"
-FILES="http://ftp.gnu.org/gnu/automake/automake-1.10.tar.bz2"
-DEPEND="perl autoconf texinfo"
+FILES="http://ftp.gnu.org/gnu/automake/automake-1.10.1.tar.bz2"
+DEPEND="perl autoconf"
 BUILD=""
 build_src(){
 ./configure --prefix=/usr
