@@ -1,9 +1,10 @@
 KITA_TYPE="make"
-FILES="http://ftp.gnu.org/gnu/findutils/findutils-4.2.31.tar.gz"
+FILES="http://ftp.gnu.org/gnu/findutils/findutils-4.4.0.tar.gz"
 DEPEND=""
 BUILD=""
 build_src(){
-./configure --prefix=/usr --libexecdir=/usr/lib/findutils --localstatedir=/var/lib/locate
+./configure --prefix=/usr --libexecdir=/usr/lib/findutils \
+    --localstatedir=/var/lib/locate
 make
 #make check
 }

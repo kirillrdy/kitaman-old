@@ -4,7 +4,9 @@ FILES="http://ftp.gnu.org/gnu/grep/grep-2.5.3.tar.bz2 http://www.linuxfromscratc
 DEPEND=""
 BUILD=""
 build_src(){
-./configure --prefix=/usr --bindir=/bin
+./configure --prefix=/usr \
+    --bindir=/bin \
+    --without-included-regex
 
 make
 #make check

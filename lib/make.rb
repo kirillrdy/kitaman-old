@@ -83,7 +83,20 @@ class Kita
   end
 
   def install
-    if not system("tar xjpf #{paths[:tar_bin_file]} -C /")
+    if not system(build_enviroment + """
+      
+      tar xjpf #{paths[:tar_bin_file]} -C /
+
+      post_install()
+      {
+        echo \"no post install\"
+      }
+
+      #{@info["BUILD"]}
+
+      post_install
+
+    """)
       return false
     end
     

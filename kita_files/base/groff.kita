@@ -4,13 +4,13 @@ DEPEND=""
 BUILD=""
 build_src(){
 sed -i -e 's/2010/002D/' -e 's/2212/002D/' -e 's/2018/0060/' -e 's/2019/0027/' font/devutf8/R.proto
-
 PAGE=A4 ./configure --prefix=/usr --enable-multibyte
 make
 }
 
 kita_install()
 {
+pwd
 D=$INSTALL_DIR
 mkdir -p $D/usr
 mkdir -p $D/usr/bin

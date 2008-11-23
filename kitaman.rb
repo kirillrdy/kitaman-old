@@ -32,7 +32,7 @@ class Kitaman
           puts "Panic While Trying to #{action} for #{name_version}".style(:red).style(:bold)
         exit
       end
-      puts "Finished #{action}ing #{name_version}".style(:red).style :bold
+      puts "Finished #{action}ing #{name_version}".style(:blue).style :bold
       puts "\n"
     else
       puts "No need to #{action} #{name_version}".style(:yellow).style :bold
@@ -42,7 +42,11 @@ class Kitaman
 
   def run
     for kita_object in @queue
-      set_terminal_title("x of x: #{kita_object.info["NAME-VER"]}")
+      if @queue.length==1
+        set_terminal_title(kita_object.info["NAME-VER"])
+      else
+        set_terminal_title("#{@queue.index(kita_object)} of #{@queue.length}: #{kita_object.info["NAME-VER"]}")
+      end
       execute_action(kita_object,:download)
       execute_action(kita_object,:build)
       execute_action(kita_object,:install)
@@ -92,7 +96,7 @@ Usage: kitaman.rb [options] packages"""
 
   def print_queue
     
-    return false if @options[:quiet]
+    return false if (@options[:quiet] or @queue.length==0 ) 
     puts "Kitaman will do the following: \n".style(:bold)
     for item in @queue
       flags = "[#{@options[:download] ? "D" : ""}#{@options[:build] ? "B" : ""}#{@options[:install] ? "I" : ""}]".style(:blue)

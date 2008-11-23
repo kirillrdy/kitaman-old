@@ -7,11 +7,11 @@ build_src(){
 make
 
 #hack
-cp po/en@quot.po po/ru.po
+#cp po/en@quot.po po/ru.po
 
 
-#sed -i 's/LANG/LC_ALL/' tests/intl.tests
-#sed -i 's@tests@& </dev/tty@' tests/run-test
+sed -i 's/LANG/LC_ALL/' tests/intl.tests
+sed -i 's@tests@& </dev/tty@' tests/run-test
 chown -Rv nobody ./
 
 
