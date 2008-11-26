@@ -8,7 +8,7 @@ rm -fv etc/standards.info
 sed -i.bak '/^INFO/s/standards.info //' etc/Makefile.in
 mkdir -v ../binutils-build
 cd ../binutils-build
-../binutils-2.18/configure --prefix=/usr --enable-shared
+CC="gcc -B/usr/bin/" ../binutils-2.18/configure --prefix=/usr --enable-shared
 make tooldir=/usr
 #make check
 }

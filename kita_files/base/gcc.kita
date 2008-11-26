@@ -8,11 +8,11 @@ mv ../gmp* gmp
 mv ../mpfr* mpfr
 sed -i 's/install_to_$(INSTALL_DEST) //' libiberty/Makefile.in
 sed -i 's/^XCFLAGS =$/& -fomit-frame-pointer/' gcc/Makefile.in
-sed -i 's@\./fixinc\.sh@-c true@' gcc/Makefile.in
+#sed -i 's@\./fixinc\.sh@-c true@' gcc/Makefile.in
 mkdir -v ../gcc-build
 cd ../gcc-build
 
-../gcc-4.3.2/configure --prefix=/usr \
+CC="gcc -B/usr/bin/" ../gcc-4.3.2/configure --prefix=/usr \
     --libexecdir=/usr/lib --enable-shared \
     --enable-threads=posix --enable-__cxa_atexit \
     --enable-clocale=gnu --enable-languages=c,c++ 
@@ -30,6 +30,7 @@ kita_install()
 {
 cd ../gcc-build
 make DESTDIR=$INSTALL_DIR install
+make install
 }
 
 ""

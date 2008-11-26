@@ -3,6 +3,8 @@ FILES="http://ftp.gnu.org/gnu/inetutils/inetutils-1.5.tar.gz"
 DEPEND=""
 BUILD=""
 build_src(){
+sed -i 's@<sys/types.h>@<sys/types.h>\n#include <stdlib.h>@' \
+    libicmp/icmp_timestamp.c
 ./configure --prefix=/usr --libexecdir=/usr/sbin --sysconfdir=/etc --localstatedir=/var --disable-ifconfig --disable-logger --disable-syslogd --disable-whois --disable-servers
 make
 }

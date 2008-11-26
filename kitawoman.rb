@@ -18,7 +18,15 @@ rm -rf *
 
 tar xjpf #{stage2_file}
 
-cp #{ruby_tar_file} #{new_chroot_dir}/root/
+tar xpf #{ruby_tar_file} -C #{new_chroot_dir}/root/
+chroot #{new_chroot_dir} "cd /root/ruby* && ./configure --prefix=/usr && make && make install"
+
+cd /home/kirillvr/Desktop/kitaman
+./install.sh #{new_chroot_dir}
+
+
+cd #{new_chroot_dir}
+cp #{host_src_dir}/* #{new_chroot_dir}/usr/kitaman/src/
 
 mount -t proc none proc
 

@@ -1,4 +1,4 @@
-# This is the base class for Kita, all classes shall inherit from this class !
+# This class adds support for building make driven packages
 
 require 'kitaman/kita_helper'
 require 'kitaman/kitaman_helper'
@@ -24,9 +24,10 @@ class Kita
     export MAKEFLAGS='-j4'
     INSTALL_DIR=#{paths[:install_dir]}
     BUILD_DIR=#{KitamanConfig.config['BUILD_DIR']}/#{where_to_cd}
-    SRC_DIR=#{KitamanConfig.config['SRC_DIR']}
-    
-    cd ${BUILD_DIR}
+    SRC_DIR=${BUILD_DIR}
+  
+    mkdir -p #{paths[:install_dir]}
+
     """
   end
 
@@ -50,7 +51,11 @@ class Kita
       ./configure --prefix=/usr
       make
     }
-   #{@info["BUILD"]}
+    
+    #{@info["BUILD"]}
+
+    mkdir -p ${BUILD_DIR}
+    cd ${BUILD_DIR}
 
     build_src
     """)
@@ -115,6 +120,9 @@ class Kita
     }
 
     #{@info["BUILD"]}
+    
+    mkdir -p ${BUILD_DIR}
+    cd ${BUILD_DIR}
 
     kita_install
     cd $INSTALL_DIR
