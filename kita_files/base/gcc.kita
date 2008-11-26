@@ -30,7 +30,6 @@ kita_install()
 {
 cd ../gcc-build
 make DESTDIR=$INSTALL_DIR install
-make install
 }
 
 ""

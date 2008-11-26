@@ -1,12 +1,14 @@
 KITA_TYPE="make"
-FILES="http://www.kernel.org/pub/linux/kernel/people/jcm/module-init-tools/module-init-tools-3.4.tar.bz2 http://www.linuxfromscratch.org/patches/lfs/development/module-init-tools-3.4-manpages-1.patch"
+FILES="http://www.kernel.org/pub/linux/utils/kernel/module-init-tools/module-init-tools-3.4.1.tar.bz2 http://www.linuxfromscratch.org/patches/lfs/development/module-init-tools-3.4.1-manpages-1.patch"
 DEPEND=""
 BUILD=""
 build_src(){
-./configure
+#./configure
 #make check
-make clean
-./configure --prefix=/ --enable-zlib
+#make clean
+./configure --prefix=/ --enable-zlib --mandir=/usr/share/man
+mv ../{depmod.8,insmod.8,modinfo.8,modprobe.conf.5,modules.dep.5,depmod.conf.5,lsmod.8,modprobe.8,rmmod.8} .
+
 make
 }
 

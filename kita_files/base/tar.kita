@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://ftp.gnu.org/gnu/tar/tar-1.19.tar.bz2"
+FILES="http://ftp.gnu.org/gnu/tar/tar-1.20.tar.bz2"
 DEPEND=""
 BUILD=""
 build_src()
