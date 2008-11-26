@@ -1,0 +1,10 @@
+KITA_TYPE="make"
+FILES="http://download.berlios.de/dhcpcd/dhcpcd-3.0.19.tar.bz2"
+DEPEND=""
+BUILD=""
+#Paste Build instructions here
+build_src()
+{
+make
+}
+""
