@@ -9,7 +9,7 @@
 
 require 'optparse'
 require 'kitaman/kitaman_helper'
-require 'kitaman/kita_class'
+require 'kitaman/kita_class.rb'
 
 class Kitaman
   
@@ -42,6 +42,7 @@ class Kitaman
 
   def run
     for kita_object in @queue
+      load_needed_module(kita_object.info['NAME'])
       if @queue.length==1
         set_terminal_title(kita_object.info["NAME-VER"])
       else
@@ -110,7 +111,9 @@ Usage: kitaman.rb [options] packages"""
   end
 
  def build_queue(target)
-   
+  
+    #Object.send(:remove_const,:Kita)
+
     load_needed_module(target)
     kita_instance = Kita.new(Kita.find_kita_file(target))  
     

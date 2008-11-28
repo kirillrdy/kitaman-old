@@ -4,7 +4,6 @@ class Object
   end 
 end
 
-
 class KitamanConfig
   
   def KitamanConfig.config 

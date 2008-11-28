@@ -2,7 +2,8 @@
 
 require 'kitaman/kita_helper'
 require 'kitaman/kitaman_helper'
-require 'kitaman/kita_class'
+load 'kitaman/kita_class.rb'
+
 
 class Kita
 
