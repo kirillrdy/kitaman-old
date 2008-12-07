@@ -1,7 +1,29 @@
+require 'kitaman/kita_helper'
+require 'open-uri'
+
 class Object
   def in(cmp)
     cmp.include? self
   end 
+end
+
+
+def update_src_files_database  
+  files_dictionary = {}
+  for repo in IO.read(KitamanConfig.config['REPOST_LIST_FILE']).split("\n")
+    list_of_files = open(repo).read.scan(/<a(?:.*?)>(.*?\.tar.bz2)<\/a>/)
+  
+    for file in list_of_files
+      file = file[0]
+      files_dictionary[file.smart_basename] = repo+file
+    end
+
+  end
+
+  File.open('/var/kitaman/src.db','w') { |file|
+    file.write(Marshal.dump(files_dictionary))
+  }
+
 end
 
 class KitamanConfig

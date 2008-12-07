@@ -1,0 +1,13 @@
+KITA_TYPE="make"
+FILES="http://xorg.freedesktop.org/archive/X11R7.3/src/data/xcursor-themes-1.0.1.tar.bz2"
+DEPEND="xorg-app"
+BUILD=""
+build_src()
+{
+XORG_PREFIX="/usr"
+XORG_CONFIG="--prefix=$XORG_PREFIX --sysconfdir=/etc \
+    --mandir=$XORG_PREFIX/share/man --localstatedir=/var"
+
+./configure $XORG_CONFIG
+}
+""

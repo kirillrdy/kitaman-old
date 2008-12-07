@@ -20,11 +20,13 @@ class Kita
       @info[info[0]]=info[1]
     end
 
-    @info = smart_set(@info,'NAME',File.basename(kita_file,".kita"))
-    @info = smart_split(@info,"FILES")
-    @info = smart_set(@info,'VER',self.get_version)
+    @info.set_if_nil('NAME',File.basename(kita_file,".kita"))
+
+    @info.split_or_default_if_nil('FILES',get_files_from_repo)
+    @info.set_if_nil('VER',self.get_version)
     @info['NAME-VER'] = @info['NAME']+'-'+@info['VER'] 
-    @info = smart_split(@info,"DEPEND")
+
+    @info.split_or_default_if_nil("DEPEND",[])
     @info["BUILD"] = IO.read(kita_file).scan(/BUILD=""(.*?)""/m)[0][0] if @info['BUILD']
 
   end
@@ -37,12 +39,16 @@ class Kita
         return file
       end
     end
+    return nil
   end
 
   # Get version from source file
   def get_version
+    puts @info['NAME']
+    puts @info['FILES']
+
     if @info['FILES']!=[]
-      ver = get_version_from_file(@info['FILES'][0])
+      ver = @info['FILES'][0].version
     else
       ver = "0.0"
     end
@@ -56,14 +62,9 @@ class Kita
 
   # Fills FILES var with files maching in repository
   def get_files_from_repo
-    #TODO: this function needs help
-    all_files = `find #{KitamanConfig.config['SRC_DIR']} -type f`.split("\n")
-     for file in all_files
-      if smart_basename(file) == @info['NAME']
-        @info['FILES']=[file]
-        return file
-      end
-    end
+    files_list_database = Marshal.load(IO.read('/var/kitaman/src.db'))
+    puts " for #{@info['NAME']}  found #{files_list_database[@info['NAME']]}"
+    files_list_database[@info['NAME']] ? [files_list_database[@info['NAME']]] : []    
   end
 
   # Checks if package is installed

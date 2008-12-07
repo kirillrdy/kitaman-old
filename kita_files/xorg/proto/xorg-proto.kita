@@ -1,0 +1,2 @@
+KITA_TYPE="meta"
+DEPEND="applewmproto bigreqsproto compositeproto damageproto dmxproto evieext fixesproto fontcacheproto fontsproto glproto inputproto kbproto randrproto recordproto renderproto resourceproto scrnsaverproto trapproto videoproto windowswmproto xcmiscproto xextproto xf86bigfontproto xf86dgaproto xf86driproto xf86miscproto xf86vidmodeproto xineramaproto xproto"

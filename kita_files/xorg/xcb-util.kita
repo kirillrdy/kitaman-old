@@ -1,0 +1,3 @@
+KITA_TYPE="xorg"
+FILES="http://xcb.freedesktop.org/dist/xcb-util-0.3.0.tar.bz2"
+DEPEND="libxcb gperf"

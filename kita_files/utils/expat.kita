@@ -1,11 +1,2 @@
-# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
-KITA_VER="smart_make"
-DEPEND=""
-BUILD=""
-#Paste Build instructions here
-build_src()
-{
-./configure --prefix=/usr &&
-make
-}
-""
+KITA_TYPE="make"
+FILES="http://downloads.sourceforge.net/expat/expat-2.0.1.tar.gz"

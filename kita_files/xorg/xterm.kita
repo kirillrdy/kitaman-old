@@ -1,0 +1,29 @@
+KITA_TYPE="make"
+FILES="ftp://invisible-island.net/xterm/xterm-231.tgz"
+DEPEND="xorg-lib"
+BUILD=""
+build_src()
+{
+XORG_PREFIX="/usr"
+XORG_CONFIG="--prefix=$XORG_PREFIX --sysconfdir=/etc \
+    --mandir=$XORG_PREFIX/share/man --localstatedir=/var"
+sed -i '/v0/,+1s/new:/new:kb=^?:/' termcap &&
+echo -e '\tkbs=\\177,' >>terminfo &&
+TERMINFO=/usr/lib/terminfo ./configure $XORG_CONFIG \
+    --enable-luit --enable-wide-chars \
+    --with-app-defaults=$XORG_PREFIX/share/X11/app-defaults &&
+make
+}
+
+post_install()
+{
+XORG_PREFIX="/usr"
+cat >> $XORG_PREFIX/share/X11/app-defaults/XTerm << "EOF"
+*VT100*locale: true
+*VT100*faceName: Monospace
+*VT100*faceSize: 10
+*backarrowKeyIsErase: true
+*ptyInitialErase: true
+EOF
+}
+""

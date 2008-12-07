@@ -15,6 +15,7 @@ cp kitaman.rb $PREFIX/usr/bin/kitaman
 mkdir -p $PREFIX/usr/lib/ruby/1.9.1/kitaman
 cp lib/* $PREFIX/usr/lib/ruby/1.9.1/kitaman/
 cp etc/kitaman.conf $PREFIX/etc/
+cp etc/kitaman.repos $PREFIX/etc/
 #cp kitaman.repos $PREFIX/etc/
 #cp kitaman.sources $PREFIX/etc/
 cp -r kita_files $PREFIX/usr/kitaman/

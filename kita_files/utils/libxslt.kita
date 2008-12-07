@@ -1,0 +1,11 @@
+KITA_TYPE="make"
+FILES="http://xmlsoft.org/sources/libxslt-1.1.21.tar.gz"
+DEPEND="libxml2"
+BUILD=""
+#Paste Build instructions here
+build_src()
+{
+./configure --prefix=/usr &&
+make
+}
+""

@@ -9,7 +9,7 @@
 
 require 'optparse'
 require 'kitaman/kitaman_helper'
-require 'kitaman/kita_class.rb'
+require 'kitaman/kita_class'
 
 class Kitaman
   
@@ -56,7 +56,17 @@ class Kitaman
   end
 
   def load_needed_module(file)
-    load 'kitaman/'+IO.read(Kita.find_kita_file(file)).scan(/KITA_TYPE="(.*?)"/)[0][0]+'.rb'
+    
+    if not Kita.find_kita_file(file)
+      puts  "not kita file found for #{file}"
+      exit
+    end
+    scanned_file = IO.read(Kita.find_kita_file(file)).scan(/KITA_TYPE="(.*?)"/)
+
+    if not scanned_file[0] or not load('kitaman/'+ scanned_file[0][0]+'.rb')
+      puts "No MODULE found for #{Kita.find_kita_file(file)}".style(:red).style(:bold)
+      exit
+    end
   end
 
   def parse_argv
@@ -92,6 +102,13 @@ Usage: kitaman.rb [options] packages"""
         @options[:verbose] = v
       end
 
+      opts.on("-S", "--[no-]sync", "sync") do |v|
+        update_src_files_database
+        exit
+      end
+
+
+
     end.parse!
   end
 
@@ -110,7 +127,7 @@ Usage: kitaman.rb [options] packages"""
     
   end
 
- def build_queue(target)
+  def build_queue(target)
   
     #Object.send(:remove_const,:Kita)
 
@@ -123,14 +140,16 @@ Usage: kitaman.rb [options] packages"""
 
     if not kita_instance.installed?
       @queue.insert(0,kita_instance)
-    else
-      return
+
+      for dependency in kita_instance.info["DEPEND"].reverse
+        build_queue(dependency)
+      end
+
     end
 
-    for dependency in kita_instance.info["DEPEND"].reverse
-      build_queue(dependency)
-    end
+    
   end
+
 
 end
 

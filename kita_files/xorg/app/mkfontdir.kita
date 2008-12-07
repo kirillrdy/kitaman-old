@@ -1,0 +1,11 @@
+KITA_TYPE="make"
+FILES="http://xorg.freedesktop.org/archive/X11R7.3/src/app/mkfontdir-1.0.3.tar.bz2"
+DEPEND="xbitmaps libpng xorg-lib"
+BUILD=""
+build_src()
+{
+export XORG_PREFIX="/usr"
+./configure --prefix=/usr --sysconfdir=/etc --mandir=/usr/share/man --localstatedir=/var
+make
+}
+""

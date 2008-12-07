@@ -1,7 +1,0 @@
-# Xorg
-FAKE=""
-KITA_TYPE="meta"
-DEPEND="applewmproto scrnsaverproto bigreqsproto trapproto compositeproto videoproto damageproto windowswmproto dmxproto xcmiscproto evieext xextproto fixesproto xf86bigfontproto fontcacheproto xf86dgaproto fontsproto xf86driproto glproto xf86miscproto inputproto xf86rushproto kbproto xf86vidmodeproto printproto xineramaproto randrproto recordproto xproto renderproto xproxymanagementprotocol resourceproto"
-BUILD=""
-echo "Yo"
-""

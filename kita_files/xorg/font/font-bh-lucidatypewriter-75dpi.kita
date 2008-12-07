@@ -1,0 +1,10 @@
+KITA_TYPE="make"
+FILES="http://xorg.freedesktop.org/archive/X11R7.3/src/font/font-bh-lucidatypewriter-75dpi-1.0.0.tar.bz2"
+DEPEND="xorg-app xorg-data"
+BUILD=""
+build_src()
+{
+./configure --prefix=/usr --sysconfdir=/etc --mandir=/usr/share/man --localstatedir=/var
+make
+}
+""

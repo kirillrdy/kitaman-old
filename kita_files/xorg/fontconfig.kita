@@ -1,0 +1,10 @@
+KITA_TYPE="make"
+FILES="http://fontconfig.org/release/fontconfig-2.4.2.tar.gz"
+DEPEND="freetype libxml2"
+BUILD=""
+build_src()
+{
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-docs --without-add-fonts
+make
+}
+""

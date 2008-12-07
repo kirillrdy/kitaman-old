@@ -1,0 +1,2 @@
+KITA_TYPE="meta"
+DEPEND="pkg-config xorg-proto gccmakedep imake lndir makedepend util-macros xorg-cf-files"
