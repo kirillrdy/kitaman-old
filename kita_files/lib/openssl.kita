@@ -1,0 +1,13 @@
+KITA_TYPE="make"
+FILES="http://www.openssl.org/source/openssl-0.9.8g.tar.gz"
+BUILD=""
+build_src()
+{
+./config --openssldir=/etc/ssl --prefix=/usr shared &&
+make MANDIR=/usr/share/man
+}
+kita_install()
+{
+make INSTALL_PREFIX=$INSTALL_DIR install
+}
+""

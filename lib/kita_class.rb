@@ -44,9 +44,6 @@ class Kita
 
   # Get version from source file
   def get_version
-    puts @info['NAME']
-    puts @info['FILES']
-
     if @info['FILES']!=[]
       ver = @info['FILES'][0].version
     else
@@ -63,7 +60,6 @@ class Kita
   # Fills FILES var with files maching in repository
   def get_files_from_repo
     files_list_database = Marshal.load(IO.read('/var/kitaman/src.db'))
-    puts " for #{@info['NAME']}  found #{files_list_database[@info['NAME']]}"
     files_list_database[@info['NAME']] ? [files_list_database[@info['NAME']]] : []    
   end
 

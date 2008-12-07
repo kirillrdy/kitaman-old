@@ -1,16 +1,3 @@
-KITA_TYPE="make"
-FILES="http://xorg.freedesktop.org/releases/individual/app/luit-1.0.2.tar.bz2"
+KITA_TYPE="xorg"
+FILES="http://xorg.freedesktop.org/releases/individual/app/luit-1.0.3.tar.bz2"
 DEPEND="xorg-font"
-BUILD=""
-build_src()
-{
-XORG_PREFIX="/usr"
-XORG_CONFIG="--prefix=$XORG_PREFIX --sysconfdir=/etc \
-    --mandir=$XORG_PREFIX/share/man --localstatedir=/var"
-
-./configure $XORG_CONFIG \
-    --with-localealiasfile=$XORG_PREFIX/share/X11/locale/locale.alias &&
-make
-make
-}
-""

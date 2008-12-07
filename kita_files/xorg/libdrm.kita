@@ -1,13 +1,2 @@
-KITA_TYPE="make"
-FILES="http://dri.freedesktop.org/libdrm/libdrm-2.3.0.tar.gz"
-DEPEND=""
-BUILD=""
-build_src()
-{
-XORG_PREFIX="/usr"
-XORG_CONFIG="--prefix=$XORG_PREFIX --sysconfdir=/etc \
-    --mandir=$XORG_PREFIX/share/man --localstatedir=/var"
-
-./configure --prefix=$XORG_PREFIX
-}
-""
+KITA_TYPE="xorg"
+FILES="http://dri.freedesktop.org/libdrm/libdrm-2.3.1.tar.bz2"
