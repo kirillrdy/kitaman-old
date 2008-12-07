@@ -1,4 +1,4 @@
-ARCHIVE_EXT=['.tar.bz2','.tar.gz']
+ARCHIVE_EXT=['.tar.bz2','.tar.gz','.tgz']
 
 class Hash
   def set_if_nil(key,default)

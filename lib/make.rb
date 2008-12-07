@@ -84,6 +84,7 @@ class Kita
     for file in files_list_local
       result = result and system("tar xjpf #{file} -C #{KitamanConfig.config['BUILD_DIR']}/") if file.index('.tar.bz2')
       result = result and system("tar xpf #{file} -C #{KitamanConfig.config['BUILD_DIR']}/") if file.index('.tar.gz')
+      result = result and system("tar xpf #{file} -C #{KitamanConfig.config['BUILD_DIR']}/") if file.index('.tgz')
     end
     return result
   end

@@ -16,7 +16,7 @@ class Kitaman
   attr_reader :queue
 
   def Kitaman.version
-    "0.95.1"
+    "0.95.2"
   end
 
   def initialize
