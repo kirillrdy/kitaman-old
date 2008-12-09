@@ -8,7 +8,7 @@ sed -i -e '1i KEYCODES_PROGS = @KEYCODES_PROGS@' \
 var=OPTIONAL_PROGS
 sed -i "s/ifdef $var/ifeq (\$($var),yes)/" man/Makefile.in
 unset var
-./configure
+./configure --prefix=/usr
 
 # refer to LFS for more details
 #./configure --datadir=/lib/kbd
