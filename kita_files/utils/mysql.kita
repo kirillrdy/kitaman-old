@@ -1,6 +1,5 @@
-# ok?
+KITA_TYPE="make"
 DEPEND="boot-mysql"
-KITA_TYPE="smart_make"
 BUILD=""
 build_src()
 {
