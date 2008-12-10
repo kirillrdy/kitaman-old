@@ -1,0 +1,22 @@
+KITA_TYPE="make"
+DEPEND="openssl"
+FILES="http://sunsite.ualberta.ca/pub/OpenBSD/OpenSSH/portable/openssh-4.7p1.tar.gz"
+BUILD=""
+build_src()
+{
+  install -v -m700 -d /var/lib/sshd &&
+  chown -v root:sys /var/lib/sshd &&
+  groupadd -g 50 sshd &&
+  useradd -c 'sshd PrivSep' -d /var/lib/sshd -g sshd \
+    -s /bin/false -u 50 sshd
+
+sed -i 's@-lcrypto@/usr/lib/libcrypto.a -ldl@' configure
+
+sed -i 's@ -ldes@@' configure &&
+./configure --prefix=/usr --sysconfdir=/etc/ssh --datadir=/usr/share/sshd \
+    --libexecdir=/usr/lib/openssh --with-md5-passwords \
+    --with-privsep-path=/var/lib/sshd \
+    --with-xauth=/usr/bin/xauth &&
+make
+}
+""
