@@ -1,0 +1,2 @@
+KITA_TYPE="make"
+DEPEND="gstreamer liboil"

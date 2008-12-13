@@ -1,6 +1,4 @@
-# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
-KITA_TYPE="smart_make"
-DEPEND=""
+KITA_TYPE="make"
 BUILD=""
 #Paste Build instructions here
 build_src()

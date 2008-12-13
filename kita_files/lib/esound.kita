@@ -1,0 +1,10 @@
+KITA_TYPE="make"
+FILES="http://ftp.gnome.org/pub/gnome/sources/esound/0.2/esound-0.2.37.tar.bz2"
+DEPEND="audiofile"
+BUILD=""
+build_src(){
+sed -i 's@doc/esound@&-0.2.37@' configure &&
+./configure --prefix=/usr --sysconfdir=/etc &&
+make
+}
+""

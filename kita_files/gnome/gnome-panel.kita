@@ -1,0 +1,16 @@
+KITA_TYPE="make"
+DEPEND="gnome-desktop libwnck gnome-menus libgweather librsvg"
+BUILD=""
+#Paste Build instructions here
+build_src()
+{
+./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) \
+            --sysconfdir=/etc \
+            --localstatedir=/var/lib \
+            --libexecdir=$(pkg-config \
+                --variable=prefix ORBit-2.0)/lib/gnome-panel \
+            --mandir=$(pkg-config \
+                --variable=prefix ORBit-2.0)/share/man &&
+make
+}
+""

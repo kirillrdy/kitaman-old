@@ -1,7 +1,4 @@
-# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
-FAKE=""
-KITA_TYPE="smart_make"
-DESCRIPTION=""
+KITA_TYPE="make"
 FILES="http://ftp.acc.umu.se/pub/GNOME/sources/nautilus-open-terminal/0.9/nautilus-open-terminal-0.9.tar.bz2"
 DEPEND="nautilus"
 BUILD=""

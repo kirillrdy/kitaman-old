@@ -1,0 +1,10 @@
+KITA_TYPE="make"
+DEPEND="icon-naming-utils gtk-engines"
+BUILD=""
+#Paste Build instructions here
+build_src()
+{
+./configure --prefix=/usr --enable-all-themes &&
+make
+}
+""

@@ -1,0 +1,12 @@
+KITA_TYPE="make"
+DEPEND="glib cairo xorg fontconfig"
+BUILD=""
+build_src(){
+./configure --prefix=/usr --sysconfdir=/etc &&
+make
+}
+post_install()
+{
+pango-querymodules > /etc/pango/pango.modules
+}
+""

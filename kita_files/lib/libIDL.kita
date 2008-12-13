@@ -1,9 +1,3 @@
-# hello
-KITA_VER="smart_make"
+KITA_TYPE="make"
 DEPEND="glib"
-BUILD=""
-build_src(){
-./configure --prefix=/usr &&
-make
-}
-""
+

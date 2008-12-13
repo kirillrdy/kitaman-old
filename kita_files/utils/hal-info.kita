@@ -1,12 +1,2 @@
-# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
-FAKE=""
-KITA_VER="smart_make"
+KITA_TYPE="make"
 DEPEND="hald"
-BUILD=""
-#Paste Build instructions here
-build_src()
-{
-./configure --prefix=/usr 
-make
-}
-""

@@ -1,8 +1,4 @@
-# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
-FAKE=""
-KITA_TYPE="smart_make"
-DESCRIPTION=""
-FILES="http://ftp.gnome.org/pub/gnome/sources/gnome-control-center/2.22/gnome-control-center-2.22.0.tar.bz2"
+KITA_TYPE="make"
 DEPEND="gstreamer-plugins-base libgnomekbd metacity nautilus gnome-settings-daemon libgnomeprintui iso-codes"
 BUILD=""
 #Paste Build instructions here

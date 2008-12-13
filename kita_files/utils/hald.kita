@@ -1,6 +1,6 @@
 # For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
-KITA_TYPE="smart_make"
-NAME_PATTERN="hal"
+KITA_TYPE="make"
+FILES="http://freedesktop.org/~david/dist/hal-0.5.9.1.tar.gz"
 DEPEND="dbus-glib XML-Parser usbutils pciutils"
 BUILD=""
 #Paste Build instructions here

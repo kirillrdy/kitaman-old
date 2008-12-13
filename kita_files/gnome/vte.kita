@@ -1,0 +1,12 @@
+KITA_TYPE="make"
+DEPEND="gtk+ XML-Parser"
+BUILD=""
+#Paste Build instructions here
+build_src()
+{
+sed -i 's%\\177:%&kh=\\EOH:@7=\\EOF:%' termcaps/xterm &&
+./configure --prefix=/usr \
+            --libexecdir=/usr/lib/vte &&
+make
+}
+""

@@ -1,8 +1,4 @@
-# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
-FAKE=""
-KITA_TYPE="smart_make"
-DESCRIPTION=""
-FILES="http://ftp.acc.umu.se/pub/gnome/sources/libgweather/2.22/libgweather-2.22.0.tar.bz2"
+KITA_TYPE="make"
 DEPEND=""
 BUILD=""
 #Paste Build instructions here

@@ -1,8 +1,4 @@
-# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
-FAKE=""
 KITA_TYPE="meta"
-DESCRIPTION=""
-FILES=""
 DEPEND="hal ORBit2 intltool libbonobo GConf shared-mime-info gnome-mime-data hicolor-icon-theme desktop-file-utils gnome-vfs gnome-vfs-monikers libgnome libgnomecanvas libbonoboui gnome-keyring gnome-icon-theme libgnomeui gail gtk-engines gnome-themes gnome-doc-utils gnome-desktop gnome-backgrounds gnome-menus gnome-panel vte gnome-terminal libgtop libgnomekbd eel nautilus gnome-control-center gnome-applets gnome-session gnome-utils gnome-media eog file-roller gnome-system-monitor gnome-volume-manager"
 BUILD=""
 #cant leave this blank

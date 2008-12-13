@@ -1,0 +1,2 @@
+KITA_TYPE="make"
+DEPEND="python pygobject pycairo gtk+"

@@ -1,0 +1,3 @@
+KITA_TYPE="make"
+FILES="ftp://ftp.gnupg.org/gcrypt/libgcrypt/libgcrypt-1.4.0.tar.bz2"
+DEPEND="libgpg-error"

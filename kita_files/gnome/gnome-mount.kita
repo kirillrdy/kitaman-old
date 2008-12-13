@@ -1,0 +1,12 @@
+KITA_TYPE="make"
+FILES="http://people.freedesktop.org/~david/dist/gnome-mount-0.6.tar.gz"
+DEPEND="hal gnome-keyring libnotify"
+BUILD=""
+#Paste Build instructions here
+build_src()
+{
+./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) \
+            --sysconfdir=/etc && 
+make
+}
+""

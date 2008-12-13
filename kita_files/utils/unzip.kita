@@ -1,0 +1,14 @@
+KITA_TYPE="make"
+FILES="http://downloads.sourceforge.net/infozip/unzip552.tar.gz"
+DEPEND=""
+BUILD=""
+#Paste Build instructions here
+build_src()
+{
+make -f unix/Makefile LOCAL_UNZIP=-D_FILE_OFFSET_BITS=64 linux
+}
+kita_install()
+{
+make prefix=$INSTALL_DIR/usr install
+}
+""

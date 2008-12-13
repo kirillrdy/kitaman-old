@@ -1,0 +1,10 @@
+KITA_TYPE="make"
+DEPEND="gstreamer gstreamer-plugins-base"
+BUILD=""
+#Paste Build instructions here
+build_src()
+{
+./configure --prefix=/usr &&
+make
+}
+""

@@ -1,14 +1,10 @@
-# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
-FAKE=""
-KITA_TYPE="smart_make"
-DESCRIPTION=""
-FILES="http://ftp.gnome.org/pub/gnome/sources/gnome-desktop/2.22/gnome-desktop-2.22.0.tar.bz2"
+KITA_TYPE="make"
 DEPEND="libgnomeui gnome-doc-utils scrollkeeper pygtk gnome-python"
 BUILD=""
 #Paste Build instructions here
 build_src()
 {
-./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) --sysconfdir=/etc --with-gnome-distributor="Kitaman" &&
+./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) --sysconfdir=/etc --with-gnome-distributor="Silverpond Pty,Ltd" &&
 make
 }
 ""

@@ -1,6 +1,4 @@
-# hello
-FAKE=""
-KITA_TYPE="smart_make"
+KITA_TYPE="make"
 DEPEND="cairo pango atk libtiff libjpeg"
 BUILD=""
 build_src(){

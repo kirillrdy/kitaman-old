@@ -1,8 +1,4 @@
-# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
-FAKE=""
-KITA_TYPE="smart_make"
-DESCRIPTION=""
-FILES="http://ftp.gnome.org/pub/gnome/sources/gnome-vfs-monikers/2.15/gnome-vfs-monikers-2.15.3.tar.bz2"
+KITA_TYPE="make"
 DEPEND="libbonobo gnome-vfs"
 BUILD=""
 #Paste Build instructions here

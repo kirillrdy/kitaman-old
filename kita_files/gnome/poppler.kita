@@ -1,0 +1,12 @@
+KITA_TYPE="make"
+FILES="http://poppler.freedesktop.org/poppler-0.8.0.tar.gz"
+DEPEND=""
+BUILD=""
+#Paste Build instructions here
+build_src()
+{
+./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) \
+            --sysconfdir=/etc 
+make
+}
+""
