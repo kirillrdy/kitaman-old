@@ -62,7 +62,6 @@ class Kitaman
       exit
     end
     scanned_file = IO.read(Kita.find_kita_file(file)).scan(/KITA_TYPE="(.*?)"/)
-
     if not scanned_file[0] or not load('kitaman/'+ scanned_file[0][0]+'.rb')
       puts "No MODULE found for #{Kita.find_kita_file(file)}".style(:red).style(:bold)
       exit

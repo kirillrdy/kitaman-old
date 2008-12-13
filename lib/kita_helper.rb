@@ -18,7 +18,10 @@ class String
   end
   def version
     #puts self
-    ext = self.slice(self.rindex(/-\d/)+1,self.length)
+    ext = self
+    if self.rindex(/-\d/)
+      ext = self.slice( self.rindex(/-\d/)+1 ,self.length) 
+    end
     for extention in ARCHIVE_EXT
       if ext.index extention
         ext = ext.slice(0,ext.index(extention))

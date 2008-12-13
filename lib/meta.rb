@@ -10,6 +10,7 @@ class Kita
   
   def install
     puts "Nothing to do for meta package"
+    record_installed
     return true
   end
   

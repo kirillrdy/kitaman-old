@@ -102,6 +102,8 @@ class Kita
       #{@info["BUILD"]}
 
       post_install
+      
+      ldconfig
 
     """)
       return false
