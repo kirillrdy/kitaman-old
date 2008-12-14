@@ -22,6 +22,7 @@ class Kitaman
   def initialize
     @options = {:download => true,:build => true,:install => true,:deep => false,:deepest => false,:force => false,:search => false,:remove => false}
     @queue = []
+    @depend_list_for_graphviz = ""
   end
 
   def execute_action(kita_object,action)
@@ -122,6 +123,7 @@ Usage: kitaman.rb [options] packages"""
     
     puts ""
     puts "Press Enter to continue...".style(:on_yellow).style(:bold)
+    puts @depend_list_for_graphviz
     $stdin.gets
     
   end
@@ -141,6 +143,8 @@ Usage: kitaman.rb [options] packages"""
       @queue.insert(0,kita_instance)
 
       for dependency in kita_instance.info["DEPEND"].reverse
+        print "."
+        @depend_list_for_graphviz += "\"#{kita_instance.info['NAME']}\" -> \"#{dependency}\" ; \n"
         build_queue(dependency)
       end
 

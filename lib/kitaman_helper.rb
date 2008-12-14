@@ -11,12 +11,11 @@ end
 def update_src_files_database  
   files_dictionary = {}
   for repo in IO.read(KitamanConfig.config['REPOST_LIST_FILE']).split("\n")
-    list_of_files = open(repo).read.scan(/<a href(?:.*?\.tar\.bz2)">(.*?\.tar\.bz2)<\/a>/)
-  
+    puts "Syncing #{repo}"
+    list_of_files = open(repo).read.scan(/<a href(?:.*?\.tar\.bz2)">(.*?\.tar\.bz2)<\/a>/)  
     
     for file in list_of_files
       file = file[0]
-      puts file
       files_dictionary[file.smart_basename] = repo+file
     end
 

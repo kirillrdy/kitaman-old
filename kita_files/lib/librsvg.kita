@@ -1,5 +1,4 @@
 KITA_TYPE="make"
-FILES="http://ftp.gnome.org/pub/gnome/sources/librsvg/2.22/librsvg-2.22.0.tar.bz2"
 DEPEND="gtk+ libxml2"
 BUILD=""
 build_src(){
