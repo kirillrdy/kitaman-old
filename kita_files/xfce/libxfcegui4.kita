@@ -1,7 +1,4 @@
-# xorg
-FAKE=""
-KITA_VER="1.0"
-FILES="http://downloads.sourceforge.net/fluxbox/libxfcegui4-4.4.2.tar.bz2"
+KITA_TYPE="make"
 DEPEND="gtk+ glib startup-notification libxfce4util"
 BUILD=""
 build_src()

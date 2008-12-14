@@ -1,7 +1,4 @@
-# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
-FAKE=""
-KITA_VER="1.0"
-NAME_PATTERN="blfs-bootscripts"
+KITA_TYPE="make"
 FILES="http://www.linuxfromscratch.org/blfs/downloads/svn/blfs-bootscripts-20080326.tar.bz2"
 DEPEND=""
 BUILD=""

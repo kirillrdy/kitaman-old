@@ -1,0 +1,10 @@
+KITA_TYPE="make"
+DEPEND="pkg-config"
+BUILD=""
+build_src()
+{
+./configure --prefix=/usr &&
+make
+}
+
+""

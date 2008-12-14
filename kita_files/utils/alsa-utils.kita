@@ -1,7 +1,4 @@
-# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
-FAKE=""
-KITA_VER="1.0"
-DESCRIPTION=""
+KITA_TYPE="make"
 FILES="http://gd.tuwien.ac.at/opsys/linux/alsa/utils/alsa-utils-1.0.13.tar.bz2"
 DEPEND="alsa-lib boot-alsa"
 BUILD=""

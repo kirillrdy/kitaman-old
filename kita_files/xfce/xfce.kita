@@ -1,0 +1,4 @@
+# xorg
+FAKE=""
+KITA_TYPE="meta"
+DEPEND="librsvg xfce4-dev-tools libxfce4util libxfcegui4 libxfce4mcs exo xfce-mcs-manager xfce-mcs-plugins xfce4-panel hicolor-icon-theme xfce4-icon-theme Thunar xfce4-session xfwm4 xfwm4-themes xfdesktop xfce-utils gtk-xfce-engine Terminal xarchiver squeeze xfce4-mixer xfce4-appfinder xfmedia"

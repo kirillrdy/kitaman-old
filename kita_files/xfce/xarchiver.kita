@@ -1,6 +1,4 @@
-# xorg
-FAKE=""
-KITA_VER="1.0"
+KITA_TYPE="make"
 FILES="http://jaist.dl.sourceforge.net/sourceforge/xarchiver/xarchiver-0.4.6.tar.bz2"
 DEPEND=""
 BUILD=""

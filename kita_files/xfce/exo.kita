@@ -1,7 +1,4 @@
-# xorg
-FAKE=""
-KITA_VER="1.0"
-FILES="http://downloads.sourceforge.net/fluxbox/exo-0.3.4.tar.bz2"
+KITA_TYPE="make"
 DEPEND="gtk+ glib libxfce4util URI"
 BUILD=""
 build_src()

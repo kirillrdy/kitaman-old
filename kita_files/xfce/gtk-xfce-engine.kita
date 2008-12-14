@@ -1,6 +1,4 @@
-# xorg
-FAKE=""
-KITA_VER="1.0"
+KITA_TYPE="make"
 FILES="http://downloads.sourceforge.net/fluxbox/gtk-xfce-engine-2.4.2.tar.bz2"
 DEPEND="gtk+"
 BUILD=""

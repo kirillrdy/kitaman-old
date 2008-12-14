@@ -22,8 +22,11 @@ class Kita
 
     @info.set_if_nil('NAME',File.basename(kita_file,".kita"))
 
+    
     @info.split_or_default_if_nil('FILES',get_files_from_repo)
-    @info.set_if_nil('VER',self.get_version)
+
+    
+    @info.set_if_nil('VER',get_version)
     @info['NAME-VER'] = @info['NAME']+'-'+@info['VER'] 
 
     @info.split_or_default_if_nil("DEPEND",[])

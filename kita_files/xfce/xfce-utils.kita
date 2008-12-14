@@ -1,7 +1,4 @@
-# xorg
-FAKE=""
-KITA_VER="1.0"
-FILES="http://downloads.sourceforge.net/fluxbox/xfce-utils-4.4.2.tar.bz2"
+KITA_TYPE="make"
 DEPEND="libX11 libxfce4mcs libxfce4util libxfcegui4 xfce-mcs-manager"
 BUILD=""
 build_src()

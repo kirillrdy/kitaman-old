@@ -1,0 +1,10 @@
+KITA_TYPE="make"
+DEPEND="gtk+ glib libxfcegui4 libxfce4mcs"
+BUILD=""
+build_src()
+{
+./configure --prefix=/usr &&
+make
+}
+
+""

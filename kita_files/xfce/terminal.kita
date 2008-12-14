@@ -1,8 +1,6 @@
-# xorg
-FAKE=""
-KITA_TYPE="make1"
+KITA_TYPE="make"
 FILES="http://downloads.sourceforge.net/fluxbox/libxfce4util-4.4.2.tar.bz2"
-DEPEND="pkg-config gtk+ glib"
+DEPEND="pkg-config"
 BUILD=""
 build_src()
 {

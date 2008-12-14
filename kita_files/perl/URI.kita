@@ -1,6 +1,4 @@
-# xorg
-FAKE=""
-KITA_VER="1.0"
+KITA_TYPE="make"
 FILES="http://cpan.org/authors/id/G/GR/GRANTM/URI-1.35.tar.gz"
 DEPEND="perl XML-Parser"
 BUILD=""
