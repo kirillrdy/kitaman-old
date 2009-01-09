@@ -1,0 +1,2 @@
+KITA_TYPE="make"
+DEPEND="libxfce4util dbus dbus-glib gtk+"

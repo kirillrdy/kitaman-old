@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-DEPEND="glibc gtk+ libX11 libxfce4mcs libxfce4util xfce-mcs-manager startup-notification"
+DEPEND="glibc gtk+ libX11 libxfce4util startup-notification libwnck"
 BUILD=""
 build_src()
 {

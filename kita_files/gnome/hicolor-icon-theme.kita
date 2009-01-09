@@ -1,8 +1,2 @@
 KITA_TYPE="make"
-BUILD=""
-#Paste Build instructions here
-build_src()
-{
-./configure --prefix=/usr
-}
-""
+FILES="http://icon-theme.freedesktop.org/releases/hicolor-icon-theme-0.10.tar.gz"

@@ -1,10 +1,2 @@
 KITA_TYPE="make"
-DEPEND="gtk+ glib startup-notification libxfce4util"
-BUILD=""
-build_src()
-{
-./configure --prefix=/usr &&
-make
-}
-
-""
+DEPEND="gtk+ glib startup-notification libxfce4util xfconf libglade"

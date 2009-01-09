@@ -1,11 +1,2 @@
 KITA_TYPE="make"
-FILES="http://downloads.sourceforge.net/fluxbox/libxfce4util-4.4.2.tar.bz2"
 DEPEND="pkg-config gtk+ glib"
-BUILD=""
-build_src()
-{
-./configure --prefix=/usr &&
-make
-}
-
-""

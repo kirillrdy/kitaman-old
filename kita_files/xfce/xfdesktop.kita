@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-DEPEND="libX11 libxfce4util libxfcegui4 libxfce4mcs xfce-mcs-manager xfce4-panel"
+DEPEND="libX11 libxfce4util libxfcegui4 xfce4-panel"
 BUILD=""
 build_src()
 {

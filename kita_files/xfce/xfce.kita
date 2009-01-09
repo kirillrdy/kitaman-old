@@ -1,4 +1,5 @@
 # xorg
 FAKE=""
+VER="4.6b2"
 KITA_TYPE="meta"
-DEPEND="librsvg xfce4-dev-tools libxfce4util libxfcegui4 libxfce4mcs exo xfce4-panel hicolor-icon-theme xfce4-icon-theme Thunar xfce4-session xfwm4 xfwm4-themes xfdesktop xfce-utils gtk-xfce-engine Terminal xarchiver squeeze xfce4-mixer xfce4-appfinder xfmedia"
+DEPEND="librsvg xfce4-dev-tools libxfce4util libxfcegui4 exo xfce4-panel hicolor-icon-theme Thunar xfce4-session xfwm4 xfwm4-themes xfdesktop xfce-utils Terminal xarchiver squeeze xfce4-mixer xfce4-appfinder xfmedia"

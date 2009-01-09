@@ -1,10 +1,2 @@
 KITA_TYPE="make"
 DEPEND="libxml2 gtk+"
-BUILD=""
-#Paste Build instructions here
-build_src()
-{
-./configure --prefix=/usr &&
-make
-}
-""

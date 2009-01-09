@@ -1,10 +1,3 @@
 KITA_TYPE="make"
+FILES="http://ftp.gnome.org/pub/gnome/sources/startup-notification/0.9/startup-notification-0.9.tar.bz2"
 DEPEND="xorg"
-BUILD=""
-#Paste Build instructions here
-build_src()
-{
-./configure --prefix=/usr &&
-make
-}
-""

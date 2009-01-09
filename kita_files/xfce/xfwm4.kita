@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-DEPEND="libX11 libXpm libxfce4mcs libxfce4util libxfcegui4 xfce-mcs-manager"
+DEPEND="libX11 libXpm libxfce4util libxfcegui4"
 BUILD=""
 build_src()
 {
