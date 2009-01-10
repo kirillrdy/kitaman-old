@@ -80,7 +80,7 @@ class Kita
   def download
     success=true
     for file in @info["FILES"] 
-      success = success and Kernel.system("wget -c #{file} -O #{KitamanConfig.config['SRC_DIR']}/#{File.basename(file)}")
+      success = (success and system("wget -c #{file} -O #{KitamanConfig.config['SRC_DIR']}/#{File.basename(file)}"))
     end
     return success
   end
