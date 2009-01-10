@@ -56,7 +56,7 @@ class Kitaman
     if (!kita_object.send("#{action}ed?".to_sym) and @options[action]) or (@options[:force] and @options[action])
       puts "Starting to #{action} #{name_version} ... ".style :green
       if not kita_object.send(action.to_sym)
-          puts "Panic While Trying to #{action} for #{name_version}".style(:red).style(:bold)
+          puts "Panic While Trying to #{action} #{name_version}".style(:red).style(:bold)
         exit
       end
       puts "Finished #{action}ing #{name_version}".style(:blue).style :bold
