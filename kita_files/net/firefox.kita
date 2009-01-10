@@ -1,7 +1,5 @@
-# xorg
-FAKE=""
-KITA_VER="1.0"
-FILES="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.0b5/source/firefox-3.0b5-source.tar.bz2"
+KITA_TYPE="make"
+FILES="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.0.5/source/firefox-3.0.5-source.tar.bz2"
 DEPEND="gtk+ libIDL zip"
 BUILD=""
 build_src()

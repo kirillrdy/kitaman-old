@@ -1,7 +1,5 @@
-# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
-FAKE=""
-KITA_VER="1.0"
-DESCRIPTION=""
+KITA_TYPE="make"
+VER="232"
 FILES="ftp://tug.ctan.org/tex-archive/tools/zip/info-zip/src/zip232.tar.gz"
 DEPEND=""
 BUILD=""

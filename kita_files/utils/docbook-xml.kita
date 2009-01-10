@@ -1,15 +1,7 @@
 KITA_TYPE="make"
-FILES="ftp://ftp.linux.ee/pub/gentoo/distfiles/distfiles/docbook-xml-4.5.zip"
-DEPEND="unzip libxml2"
+DEPEND="libxml2"
 BUILD=""
 #Paste Build instructions here
-ext_src()
-{
-      unzip $SRC_DIR/docbook-xml-4.5.zip -d ${BUILD_DIR}
-      cd ${BUILD_DIR}
-      echo "Done"
-
-}
 build_src()
 {
 install -v -d -m755 $INSTALL_DIR/usr/share/xml/docbook/xml-dtd-4.5 &&

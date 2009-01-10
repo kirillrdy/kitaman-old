@@ -1,2 +1,9 @@
 KITA_TYPE="make"
-DEPEND="glib libxml2"
+DEPEND="glib libxml2 gtk-doc"
+BUILD=""
+build_src()
+{
+  ./configure --prefix=/usr --disable-docbook --disable-gkt-doc
+  make
+}
+""

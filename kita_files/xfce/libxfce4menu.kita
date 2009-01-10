@@ -1,0 +1,2 @@
+KITA_TYPE="make"
+DEPEND="pkg-config gst-plugins-base"

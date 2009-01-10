@@ -1,4 +1,5 @@
 KITA_TYPE="make"
+VER="552"
 FILES="http://downloads.sourceforge.net/infozip/unzip552.tar.gz"
 DEPEND=""
 BUILD=""

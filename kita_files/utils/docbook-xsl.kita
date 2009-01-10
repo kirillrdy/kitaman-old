@@ -1,7 +1,4 @@
-# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
-FAKE=""
-KITA_VER="1.0"
-DESCRIPTION=""
+KITA_TYPE="make"
 FILES="http://downloads.sourceforge.net/docbook/docbook-xsl-1.71.1.tar.bz2"
 DEPEND="unzip libxml2"
 BUILD=""

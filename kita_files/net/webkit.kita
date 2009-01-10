@@ -1,6 +1,4 @@
-# xorg
-FAKE=""
-KITA_VER="1.0"
+KITA_TYPE="make"
 FILES="http://nightly.webkit.org/files/trunk/src/WebKit-r32862.tar.bz2"
 DEPEND="gtk+ icu libxslt sqlite libjpeg libpng gperf bison flex curl"
 BUILD=""

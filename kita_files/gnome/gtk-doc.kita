@@ -1,1 +1,2 @@
 KITA_TYPE="make"
+DEPEND="libxslt docbook-xml docbook-xsl"

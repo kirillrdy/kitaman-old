@@ -1,7 +1,4 @@
-# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
-FAKE=""
-KITA_VER="1.0"
-DESCRIPTION=""
+KITA_TYPE="make"
 FILES="http://www.sqlite.org/sqlite-3.5.6.tar.gz"
 DEPEND="pkg-config"
 BUILD=""
