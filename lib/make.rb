@@ -88,7 +88,6 @@ class Kita
       result = (result and system("tar xpf #{file} -C #{KitamanConfig.config['BUILD_DIR']}/")) if file.index('.tgz')
       result = (result and system("tar #{file} -d #{KitamanConfig.config['BUILD_DIR']}/")) if file.index('.zip')
     end
-    puts result
     return result
   end
 
