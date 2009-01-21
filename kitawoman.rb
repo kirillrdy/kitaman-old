@@ -29,8 +29,11 @@ def compile_ruby
   `
   cd #{WORK_DIR}
   tar xjpf #{RUBY_SRC_PATH} -C #{WORK_DIR}/root/
-  chroot #{WORK_DIR} '/bin/bash cd /root/ruby* && ./configure --prefix=/usr && make && make install'
-  ` 
+  cp /home/kirillvr/Desktop/kitaman/build_ruby.sh #{WORK_DIR}/root
+  `
+  `chroot #{WORK_DIR} /root/build_ruby.sh`
+  #chroot #{WORK_DIR} '/bin/bash cd /root/ruby* && ./configure --prefix=/usr && make && make install'
+   
 end
 
 def prepare_new_chroot
@@ -57,8 +60,14 @@ end
 # Entry Point
 #################################################################################
 
-
+puts "Cleaning Working Directory"
 clean_working_dir
+
+puts "Preparing new Chroot"
 prepare_new_chroot
+
+puts "Installing Kitaman"
 install_kitaman
+
+puts "Compiling Ruby"
 compile_ruby
