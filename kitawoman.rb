@@ -1,13 +1,13 @@
 #!/usr/bin/ruby
 
-#########################################################################################
+################################################################################
 # If there is a kitaman, there got to be kitawoman.
 # Kitaman's job to work on kitafiles, build your system
 # Kitawoman's job is to do all the house work, look after the state of kitaworld
 # Written by Kirill Radzikhovskyy <kirillrdy@silverpond.com.au>
 # Silverpond Pty Ltd
 # 2009
-#########################################################################################
+################################################################################
 
 WORK_DIR = "/mnt/pariah2"
 STAGE2_FILE = "/home/kirillvr/Desktop/stage2-x86-2007.0.tar.bz2"
@@ -17,7 +17,9 @@ KITMAN_GIT_REPO= 'git@github.com:kirillrdy/kitaman.git'
 
 def clean_working_dir
 `
+  mkdir -p #{WORK_DIR}
   cd #{WORK_DIR}
+
   umount #{WORK_DIR}/proc
   rm -rf *
 `
