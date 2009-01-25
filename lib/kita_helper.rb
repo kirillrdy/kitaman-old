@@ -16,6 +16,7 @@ class String
   def smart_basename
     File.basename(self).slice(0,self.rindex(/-\d/))
   end
+
   def version
     #puts self
     ext = self
@@ -29,4 +30,8 @@ class String
     end
     return ext
   end
+end
+
+def number_of_cores
+  `cat /proc/cpuinfo | grep cores`.scan(/\: (.*?)\n/)[0][0].to_i
 end
