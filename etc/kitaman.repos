@@ -11,5 +11,7 @@ http://xorg.freedesktop.org/releases/X11R7.4/src/font/
 http://xorg.freedesktop.org/releases/X11R7.4/src/driver/
 http://ftp.gnome.org/pub/gnome/platform/2.24/2.24.2/sources/
 http://ftp.gnome.org/pub/gnome/desktop/2.24/2.24.2/sources/
+http://ftp.acc.umu.se/pub/gnome/bindings/2.24/2.24.3/sources/c++/
+http://ftp.acc.umu.se/pub/gnome/bindings/2.24/2.24.3/sources/python/
 http://www.linuxfromscratch.org/blfs/downloads/svn/
 http://mocha.xfce.org/archive/xfce-4.5.92/src/
