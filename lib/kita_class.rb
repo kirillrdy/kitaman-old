@@ -103,7 +103,7 @@ class Kita
   def downloaded?
     results = true
     for file in files_list_local 
-      results = (results and not File.size(file).in [0,nil])
+      results = (results and not File.size?(file).in [0,nil])
     end
     return results
   end
