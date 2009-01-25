@@ -1,14 +1,10 @@
 KITA_TYPE="make"
-FILES="http://ftp.gnu.org/gnu/bash/bash-3.2.48.tar.gz http://www.linuxfromscratch.org/patches/lfs/development/bash-3.2-fixes-8.patch"
+FILES="http://ftp.gnu.org/gnu/bash/bash-3.2.48.tar.gz http://www.linuxfromscratch.org/patches/lfs/development/bash-3.2-fixes-9.patch"
 DEPEND="ncurses"
 BUILD=""
 build_src(){
 ./configure --prefix=/usr --bindir=/bin --without-bash-malloc --with-installed-readline
 make
-
-#hack
-#cp po/en@quot.po po/ru.po
-
 
 sed -i 's/LANG/LC_ALL/' tests/intl.tests
 sed -i 's@tests@& </dev/tty@' tests/run-test
