@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-DEPEND="gst-plugins-base libgnomekbd metacity nautilus gnome-settings-daemon iso-codes"
+DEPEND="gst-plugins-base libgnomekbd metacity nautilus gnome-settings-daemon iso-codes libxklavier libcanberra"
 BUILD=""
 #Paste Build instructions here
 build_src()
