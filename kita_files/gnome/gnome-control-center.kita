@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-DEPEND="gstreamer-plugins-base libgnomekbd metacity nautilus gnome-settings-daemon libgnomeprintui iso-codes"
+DEPEND="gst-plugins-base libgnomekbd metacity nautilus gnome-settings-daemon iso-codes"
 BUILD=""
 #Paste Build instructions here
 build_src()

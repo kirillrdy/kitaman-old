@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-DEPEND="ORBit2 libxml2 popt XML-Parser"
+DEPEND="ORBit2 libxml2 XML-Parser"
 BUILD=""
 #Paste Build instructions here
 build_src()

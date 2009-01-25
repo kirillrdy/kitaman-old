@@ -1,5 +1,6 @@
 KITA_TYPE="make"
 DEPEND="pkg-config"
+FILES="http://anduin.linuxfromscratch.org/sources/BLFS/svn/l/libusb-1.0.0.tar.bz2"
 BUILD=""
 #Paste Build instructions here
 build_src()

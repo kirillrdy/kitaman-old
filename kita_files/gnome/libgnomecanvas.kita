@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-DEPEND="libglade libart_lgpl gail"
+DEPEND="libglade libart_lgpl"
 BUILD=""
 #Paste Build instructions here
 build_src()

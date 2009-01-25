@@ -1,10 +1,2 @@
 KITA_TYPE="make"
-DEPEND="gstreamer-plugins-base gstreamer-plugins-good totem-plparser"
-BUILD=""
-#Paste Build instructions here
-build_src()
-{
-./configure --prefix=/usr &&
-make
-}
-""
+DEPEND="gst-plugins-base gst-plugins-good totem-plparser"

@@ -1,18 +1,17 @@
 KITA_TYPE="make"
-DEPEND="libusb"
+FILES="http://www.kernel.org/pub/software/utils/pciutils/pciutils-3.0.3.tar.bz2"
 BUILD=""
 #Paste Build instructions here
 build_src()
 {
-sed -i 's/null ;/null 2>\&1 ;/' update-pciids.sh &&
-make PREFIX=/usr
+make PREFIX=/usr ZLIB=no
 }
+
 kita_install()
 {
+make PREFIX=$INSTALL_DIR/usr install
 install -v -m 755 -d $INSTALL_DIR/usr/include/pci &&
-install -v -m 755 -d $INSTALL_DIR/usr/lib &&
 install -v -m 644 lib/libpci.a $INSTALL_DIR/usr/lib &&
 install -v -m 644 lib/*.h $INSTALL_DIR/usr/include/pci
-make PREFIX=$INSTALL_DIR/usr install
 }
 ""

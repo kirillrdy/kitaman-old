@@ -1,7 +1,7 @@
 KITA_TYPE="meta"
-DEPEND="hal ORBit2 intltool libbonobo GConf shared-mime-info gnome-mime-data hicolor-icon-theme desktop-file-utils gnome-vfs gnome-vfs-monikers libgnome libgnomecanvas libbonoboui gnome-keyring gnome-icon-theme libgnomeui gail gtk-engines gnome-themes gnome-doc-utils gnome-desktop gnome-backgrounds gnome-menus gnome-panel vte gnome-terminal libgtop libgnomekbd eel nautilus gnome-control-center gnome-applets gnome-session gnome-utils gnome-media eog file-roller gnome-system-monitor gnome-volume-manager"
+VER="2.24.3"
+DEPEND="hal ORBit2 intltool GConf shared-mime-info gnome-mime-data hicolor-icon-theme desktop-file-utils gnome-vfs gnome-vfs-monikers libgnome libgnomecanvas gnome-keyring gnome-icon-theme libgnomeui gtk-engines gnome-themes gnome-doc-utils gnome-desktop gnome-backgrounds gnome-menus gnome-panel vte gnome-terminal libgnomekbd eel nautilus gnome-control-center gnome-applets gnome-session gnome-utils gnome-media eog file-roller gnome-system-monitor gnome-volume-manager"
 BUILD=""
-#cant leave this blank
 post_install()
 {
 gconftool-2 /etc/gconf/schemas/*.schemas

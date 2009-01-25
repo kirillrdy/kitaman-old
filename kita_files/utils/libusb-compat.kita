@@ -1,0 +1,4 @@
+KITA_TYPE="make"
+DEPEND="pkg-config"
+DEPEND="libusb"
+FILES="http://anduin.linuxfromscratch.org/sources/BLFS/svn/l/libusb-compat-0.1.0.tar.bz2"
