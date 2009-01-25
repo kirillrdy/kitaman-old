@@ -1,10 +1,10 @@
 #!/usr/bin/ruby
 ###################################################
-## Kitaman - Software Package Manager
-## /-Promise to a little girl and a big world-/
-##
-## written by Kirill Radzikhovskyy
-## kirillrdy@silverpond.com.au
+# Kitaman - Software Package Manager
+# /-Promise to a little girl and a big world-/
+#
+# written by Kirill Radzikhovskyy
+# kirillrdy@silverpond.com.au
 ###################################################
 
 require 'optparse'
@@ -37,12 +37,13 @@ class GraphvizGraph
 
 end
 
+
 class Kitaman
   
   attr_reader :queue
 
   def Kitaman.version
-    "0.95.3"
+    "0.95.5"
   end
 
   def initialize
@@ -130,16 +131,12 @@ Usage: kitaman.rb [options] packages"""
       
       opts.on("-G", "--[no-]graph", "Generate DOT graph") do |v|
         @options[:graph] = v
-
       end
 
       opts.on("-S", "--[no-]sync", "sync") do |v|
         update_src_files_database
         exit
       end
-
-
-
     end.parse!
   end
 
