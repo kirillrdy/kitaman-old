@@ -109,6 +109,7 @@ Usage: kitaman.rb [options] packages"""
       opts.on("-d", "--download", "Download Only") do |v|
         @options[:build] = false
         @options[:install] = false
+        @options[:force] = false
       end
 
       opts.on("-b", "--build", "Build Only") do |v|
