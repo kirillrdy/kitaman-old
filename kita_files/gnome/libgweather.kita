@@ -1,10 +1,2 @@
 KITA_TYPE="make"
-DEPEND=""
-BUILD=""
-#Paste Build instructions here
-build_src()
-{
-./configure --prefix=/usr &&
-make
-}
-""
+DEPEND="libsoup"
