@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-DEPEND="gst-plugins-base libgnomekbd metacity nautilus gnome-settings-daemon iso-codes libxklavier libcanberra"
+DEPEND="gst-plugins-base libgnomekbd metacity nautilus gnome-settings-daemon iso-codes libxklavier"
 BUILD=""
 #Paste Build instructions here
 build_src()
@@ -9,7 +9,7 @@ build_src()
             --localstatedir=/var/lib \
             --libexecdir=$(pkg-config \
                 --variable=prefix ORBit-2.0)/lib/control-center \
-                --disable-hal &&
+              --without-libcanberra &&
 make
 }
 ""

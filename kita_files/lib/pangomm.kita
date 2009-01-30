@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-DEPEND="gtk+ glibmm cairomm pangomm"
+DEPEND="pango libsigc++"
 BUILD=""
 build_src(){
 ./configure --prefix=/usr --sysconfdir=/etc &&

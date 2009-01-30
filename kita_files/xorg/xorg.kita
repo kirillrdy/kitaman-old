@@ -1,3 +1,13 @@
 # kita file
 KITA_TYPE="meta"
 DEPEND="xorg-server xorg-driver"
+BUILD=""
+post_install()
+{
+for file in /usr/{lib/X11/xinit,share/X11/{app-defaults,twm,xkb}}
+do
+     mv -v $file /etc/X11/ 2> /dev/null &&
+     ln -v -s /etc/X11/$(basename $file) $file
+done
+}
+""
