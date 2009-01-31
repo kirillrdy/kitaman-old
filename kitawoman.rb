@@ -9,7 +9,7 @@
 # 2009
 ################################################################################
 
-WORK_DIR = "/mnt/pariah2"
+WORK_DIR = "/mnt/pariah"
 STAGE2_FILE = "/home/kirillvr/Desktop/stage2-x86-2007.0.tar.bz2"
 SRC_CACHE_DIR = "/home/kirillvr/Desktop/src"
 RUBY_SRC_PATH = "/home/kirillvr/Desktop/ruby-1.9.1-preview1.tar.bz2"

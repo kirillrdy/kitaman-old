@@ -1,6 +1,5 @@
 load 'kitaman/kita_class.rb'
 
-
 class Kita
 
   def build
@@ -8,8 +7,24 @@ class Kita
     return true
   end
   
-  def install
-    puts "Nothing to do for meta package"
+  def install    
+    if not system(build_enviroment + """
+      
+
+      post_install()
+      {
+        echo \"no post install\"
+      }
+
+      #{@info["BUILD"]}
+
+      post_install
+      
+      ldconfig
+
+    """)
+      return false
+    end
     record_installed
     return true
   end

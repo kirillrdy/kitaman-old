@@ -105,6 +105,7 @@ class Kita
 
       post_install
       
+      # Update the linkers cache
       ldconfig
 
     """)
@@ -122,7 +123,9 @@ class Kita
    kita_install()
     {
       make DESTDIR=$INSTALL_DIR install
-      #make install
+      
+      #next line is vital for building Gnome Apps
+      make install
     }
 
     #{@info["BUILD"]}
