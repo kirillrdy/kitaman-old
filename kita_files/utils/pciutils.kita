@@ -11,6 +11,7 @@ kita_install()
 {
 make PREFIX=$INSTALL_DIR/usr install
 install -v -m 755 -d $INSTALL_DIR/usr/include/pci &&
+install -v -m 755 -d $INSTALL_DIR/usr/lib &&
 install -v -m 644 lib/libpci.a $INSTALL_DIR/usr/lib &&
 install -v -m 644 lib/*.h $INSTALL_DIR/usr/include/pci
 }

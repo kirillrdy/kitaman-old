@@ -8,7 +8,7 @@ class Kita
   end
   
   def install    
-    if not system(build_enviroment + """
+    if not system("""
       
 
       post_install()

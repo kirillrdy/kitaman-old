@@ -1,9 +1,2 @@
-# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
-FAKE=""
-VER="meta"
 KITA_TYPE="meta"
-DESCRIPTION=""
 DEPEND="hald hal-info boot-haldaemon"
-BUILD=""
-#Paste Build instructions here
-""
