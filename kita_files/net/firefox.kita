@@ -1,4 +1,5 @@
 KITA_TYPE="make"
+VER="3.0.5"
 FILES="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.0.5/source/firefox-3.0.5-source.tar.bz2"
 DEPEND="gtk+ libIDL zip"
 BUILD=""
@@ -62,7 +63,7 @@ ac_add_options --disable-tests
 # This option is added so that the Mozilla Installer program is not
 # built or installed. The program is not required for a BLFS
 # installation of Firefox.
-ac_add_options --disable-installer
+#ac_add_options --disable-installer
 
 # This option is used to disable the a11y support in the Firefox
 # binaries. Comment out this option if you require a11y support.
@@ -99,7 +100,7 @@ ac_add_options --disable-accessibility
 # installation and is used to locate Firefox's installed files. This
 # option is not required for end-user browsing, and is only used for
 # development purposes.
-#ac_add_options --with-default-mozilla-five-home=/usr/lib/firefox-2.0.0.6
+ac_add_options --with-default-mozilla-five-home=/usr/lib/firefox
 
 EOF
 
