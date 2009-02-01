@@ -1,11 +1,10 @@
 KITA_TYPE="make"
-DEPEND="gtksourceview"
 BUILD=""
+#Paste Build instructions here
 build_src()
 {
 ./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) \
-            --sysconfdir=/etc \
-            --disable-spell
+            --sysconfdir=/etc 
 make
 }
 ""

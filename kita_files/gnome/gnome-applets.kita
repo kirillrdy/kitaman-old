@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-DEPEND="scrollkeeper gnome-icon-theme gnome-panel"
+DEPEND="scrollkeeper gnome-icon-theme gnome-panel gnome-system-monitor"
 BUILD=""
 #Paste Build instructions here
 build_src()

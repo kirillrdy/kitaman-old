@@ -22,7 +22,7 @@ cat > .mozconfig << "EOF"
 # directory. If desired, modify the location of the object directory
 # to a directory inside the source tree by removing '../' from the
 # line below.
-mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/../firefox-build
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/firefox-build
 
 # Specify the installation prefix. If you would prefer Firefox
 # installed in a different prefix, modify the line below to fit

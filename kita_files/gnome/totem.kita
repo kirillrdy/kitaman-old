@@ -1,2 +1,2 @@
 KITA_TYPE="make"
-DEPEND="gst-plugins-base gst-plugins-good totem-plparser"
+DEPEND="gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly totem-pl-parser"

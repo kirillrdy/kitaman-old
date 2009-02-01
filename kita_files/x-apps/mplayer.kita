@@ -1,0 +1,4 @@
+KITA_TYPE="make"
+VER="svn-snapshot"
+#FILES="http://www1.mplayerhq.hu/MPlayer/releases/MPlayer-1.0rc2.tar.bz2"
+FILES="http://www.mplayerhq.hu/MPlayer/releases/mplayer-export-snapshot.tar.bz2"

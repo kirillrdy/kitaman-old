@@ -1,0 +1,10 @@
+KITA_TYPE="make"
+DEPEND="evolution-data-server"
+BUILD=""
+#Paste Build instructions here
+build_src()
+{
+./configure --prefix=/usr &&
+make
+}
+""

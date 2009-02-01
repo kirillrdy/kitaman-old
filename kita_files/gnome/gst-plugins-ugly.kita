@@ -1,2 +1,2 @@
 KITA_TYPE="make"
-DEPEND="gstreamer"
+DEPEND="gstreamer lame libmad"

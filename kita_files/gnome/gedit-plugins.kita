@@ -1,0 +1,10 @@
+KITA_TYPE="make"
+FILES="ftp://ftp.gnome.org/pub/gnome/sources/gedit-plugins/2.22/gedit-plugins-2.22.5.tar.bz2"
+DEPEND="gedit pygtksourceview"
+BUILD=""
+build_src()
+{
+./configure --prefix=/usr
+make
+}
+""
