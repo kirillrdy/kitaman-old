@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://www.linuxfromscratch.org/lfs/downloads/development/udev-config-20081015.tar.bz2"
+FILES="http://www.linuxfromscratch.org/lfs/downloads/development/udev-config-20081229.tar.bz2"
 DEPEND=""
 BUILD=""
 build_src(){
