@@ -32,10 +32,13 @@ class Hash
 end
 
 class String
+
+  # "mumbo/linux-2.27.5.tar.bz2".smart_basename ==> 'linux'
   def smart_basename
     File.basename(self).slice(0,self.rindex(/-\d/))
   end
-
+ 
+  # "http://mom.org/linux-2.26.4.tar.bz2".version ==> '2.26.4'
   def version
     #puts self
     ext = self
@@ -52,5 +55,6 @@ class String
 end
 
 def number_of_cores
-  `cat /proc/cpuinfo | grep cores`.scan(/\: (.*?)\n/)[0][0].to_i
+  results = `cat /proc/cpuinfo | grep cores`.scan(/\: (.*?)\n/)
+  results ==[] ? 1 : results[0][0].to_i
 end
