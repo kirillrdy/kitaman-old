@@ -30,7 +30,7 @@
 WORK_DIR = "/mnt/pariah"
 STAGE2_FILE = "/home/kirillvr/Desktop/stage2-x86-2007.0.tar.bz2"
 SRC_CACHE_DIR = "/home/kirillvr/Desktop/src"
-RUBY_SRC_PATH = "/home/kirillvr/Desktop/ruby-1.9.1-preview1.tar.bz2"
+RUBY_SRC_PATH = "/home/kirillvr/Desktop/ruby-1.9.1-p0.tar.bz2"
 KITMAN_GIT_REPO= 'git@github.com:kirillrdy/kitaman.git'
 
 def clean_working_dir
