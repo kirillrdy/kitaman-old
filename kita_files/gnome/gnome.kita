@@ -4,11 +4,12 @@ DEPEND="hal ORBit2 intltool GConf shared-mime-info gnome-mime-data hicolor-icon-
 BUILD=""
 post_install()
 {
-gconftool-2 /etc/gconf/schemas/*.schemas
-update-desktop-database
-update-mime-database /usr/share/mime
-for i in /usr/share/icons/* ; do
-  gtk-update-incon-cache $i
-done
+  gconftool-2 /etc/gconf/schemas/*.schemas
+  update-desktop-database
+  update-mime-database /usr/share/mime
+
+  for i in /usr/share/icons/* ; do    
+    gtk-update-icon-cache $i
+  done
 }
 ""

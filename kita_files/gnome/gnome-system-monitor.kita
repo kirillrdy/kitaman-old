@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-DEPEND="gtkmm glibmm libsigc++"
+DEPEND="gtkmm glibmm libsigc++ libgtop"
 BUILD=""
 #Paste Build instructions here
 build_src()
