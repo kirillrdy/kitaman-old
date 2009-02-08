@@ -1,13 +1,11 @@
-# xorg
-FAKE=""
-KITA_VER="1.0"
+KITA_TYPE="make"
 FILES="http://nchc.dl.sourceforge.net/sourceforge/mad/libmad-0.15.1b.tar.gz"
-DEPEND=""
+DEPEND="id3lib"
 BUILD=""
 build_src()
 {
-./configure --prefix=/usr &&
+sed -i '/-fforce-mem/d' configure
+./configure --prefix=/usr
 make
 }
-
 ""

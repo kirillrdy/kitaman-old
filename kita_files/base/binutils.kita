@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://ftp.iinet.com.au/linux/Gentoo/distfiles/binutils-2.18.tar.bz2 http://www.linuxfromscratch.org/patches/lfs/development/binutils-2.18-configure-1.patch http://www.linuxfromscratch.org/patches/lfs/development/binutils-2.18-GCC43-1.patch"
+FILES="http://ftp.gnu.org/gnu/binutils/binutils-2.19.tar.bz2"
 DEPEND=""
 BUILD=""
 build_src()
@@ -8,7 +8,7 @@ rm -fv etc/standards.info
 sed -i.bak '/^INFO/s/standards.info //' etc/Makefile.in
 mkdir -v ../binutils-build
 cd ../binutils-build
-CC="gcc -B/usr/bin/" ../binutils-2.18/configure --prefix=/usr --enable-shared
+CC="gcc -B/usr/bin/" ../binutils-2.19/configure --prefix=/usr --enable-shared
 make tooldir=/usr
 #make check
 }
@@ -18,6 +18,6 @@ kita_install()
 cd ../binutils-build
 mkdir -p $INSTALL_DIR
 make DESTDIR=$INSTALL_DIR tooldir=/usr install
-cp -v ../binutils-2.18/include/libiberty.h $INSTALL_DIR/usr/include
+cp -v ../binutils-2.19/include/libiberty.h $INSTALL_DIR/usr/include
 }
 ""

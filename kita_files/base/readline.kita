@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://ftp.gnu.org/gnu/readline/readline-5.2.tar.gz http://www.linuxfromscratch.org/patches/lfs/development/readline-5.2-fixes-5.patch"
+FILES="http://ftp.gnu.org/gnu/readline/readline-5.2.tar.gz http://www.linuxfromscratch.org/patches/lfs/development/readline-5.2-fixes-6.patch"
 DEPEND=""
 BUILD=""
 build_src(){

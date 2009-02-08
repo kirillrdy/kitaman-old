@@ -1,11 +1,3 @@
 KITA_TYPE="make"
 FILES="http://ftp.acc.umu.se/pub/GNOME/sources/nautilus-open-terminal/0.9/nautilus-open-terminal-0.9.tar.bz2"
 DEPEND="nautilus"
-BUILD=""
-#Paste Build instructions here
-build_src()
-{
-./configure --prefix=/usr &&
-make
-}
-""

@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://ftp.altlinux.com/pub/people/legion/kbd/kbd-1.14.1.tar.gz http://www.linuxfromscratch.org/patches/lfs/development/kbd-1.14.1-backspace-1.patch"
+FILES="http://ftp.altlinux.com/pub/people/legion/kbd/kbd-1.15.tar.gz http://www.linuxfromscratch.org/patches/lfs/development/kbd-1.15-backspace-1.patch"
 DEPEND=""
 BUILD=""
 build_src(){

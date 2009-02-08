@@ -1,12 +1,10 @@
 KITA_TYPE="make"
-DEPEND="gtkmm glibmm libsigc++ libgtop"
 BUILD=""
 #Paste Build instructions here
 build_src()
 {
 ./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) \
-            --sysconfdir=/etc \
-            --localstatedir=/var/lib &&
+            --sysconfdir=/etc 
 make
 }
 ""

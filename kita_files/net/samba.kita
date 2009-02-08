@@ -1,0 +1,23 @@
+KITA_TYPE="make"
+FILES="http://us1.samba.org/samba/ftp/stable/samba-3.0.30.tar.gz"
+BUILD=""
+build_src()
+{
+cd source &&
+
+./configure \
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    --localstatedir=/var \
+    --with-piddir=/var/run \
+    --with-pammodulesdir=/lib/security \
+    --with-fhs \
+    --with-smbmount &&
+make
+}
+kita_install()
+{
+cd source
+make DEST=$INSTALL_DIR install
+}
+""

@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-DEPEND="libgnome"
+DEPEND="libgnome fontconfig"
 BUILD=""
 #Paste Build instructions here
 build_src()

@@ -1,7 +1,6 @@
 KITA_TYPE="make"
 DEPEND="gtk+ XML-Parser"
 BUILD=""
-#Paste Build instructions here
 build_src()
 {
 ./configure \

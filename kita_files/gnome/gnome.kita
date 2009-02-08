@@ -1,14 +1,15 @@
 KITA_TYPE="meta"
 VER="2.24.3"
-DEPEND="hal ORBit2 intltool GConf shared-mime-info gnome-mime-data hicolor-icon-theme desktop-file-utils gnome-vfs gnome-vfs-monikers libgnome libgnomecanvas gnome-keyring gnome-icon-theme libgnomeui gtk-engines gnome-themes gnome-doc-utils gnome-desktop gnome-backgrounds gnome-menus gnome-panel vte gnome-terminal libgnomekbd eel nautilus gnome-control-center gnome-applets gnome-session gnome-utils gnome-media eog file-roller gnome-system-monitor gnome-volume-manager"
+DEPEND="hal ORBit2 intltool GConf shared-mime-info gnome-mime-data hicolor-icon-theme desktop-file-utils gnome-vfs gnome-vfs-monikers libgnome libgnomecanvas gnome-keyring gnome-icon-theme libgnomeui gtk-engines gnome-themes gnome-doc-utils gnome-desktop gnome-backgrounds gnome-menus gnome-panel vte gnome-terminal libgnomekbd eel nautilus nautilus-open-terminal gnome-control-center gnome-applets gnome-session gnome-utils gnome-media eog file-roller gnome-system-monitor gnome-volume-manager"
 BUILD=""
 post_install()
 {
-gconftool-2 /etc/gconf/schemas/*.schemas
-update-desktop-database
-update-mime-database /usr/share/mime
-for i in /usr/share/icons/* ; do
-  gtk-update-incon-cache $i
-done
+  gconftool-2 /etc/gconf/schemas/*.schemas
+  update-desktop-database
+  update-mime-database /usr/share/mime
+
+  for i in /usr/share/icons/* ; do    
+    gtk-update-icon-cache $i
+  done
 }
 ""
