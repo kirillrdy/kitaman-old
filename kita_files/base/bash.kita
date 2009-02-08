@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://ftp.gnu.org/gnu/bash/bash-3.2.48.tar.gz http://www.linuxfromscratch.org/patches/lfs/development/bash-3.2-fixes-9.patch"
+FILES="http://ftp.gnu.org/gnu/bash/bash-3.2.48.tar.gz"
 DEPEND="ncurses"
 BUILD=""
 build_src(){
