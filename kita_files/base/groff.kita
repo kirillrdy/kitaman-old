@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://ftp.gnu.org/gnu/groff/groff-1.18.1.4.tar.gz http://www.linuxfromscratch.org/patches/lfs/development/groff-1.18.1.4-debian_fixes-1.patch"
+FILES="http://ftp.gnu.org/gnu/groff/groff-1.18.1.4.tar.gz"
 DEPEND=""
 BUILD=""
 build_src(){
