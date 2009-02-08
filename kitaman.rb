@@ -173,11 +173,22 @@ Usage: kitaman.rb [options] packages"""
 
     if not kita_instance.installed?
       @queue.insert(0,kita_instance)
-
+      
       for dependency in kita_instance.info["DEPEND"].reverse
-        print "."
-        @graphviz_graph.add(kita_instance.info['NAME'],dependency) if @options[:graph]
-        build_queue(dependency)
+          print "."
+          
+          @graphviz_graph.add(kita_instance.info['NAME'],dependency) if @options[:graph]
+          
+          flag = false
+          for item in @queue
+
+            if item.info["NAME"] == dependency
+              flag = true
+            end
+          end
+
+          build_queue(dependency) if not flag
+
       end
 
     end

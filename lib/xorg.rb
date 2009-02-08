@@ -13,7 +13,7 @@ class Kita
     where_to_cd = where_to_cd.slice(0,where_to_cd.index("/")) if where_to_cd.index('/')
     """
     set -e
-    export MAKEFLAGS='-j4'
+    export MAKEFLAGS='-j#{number_of_cores+1}'
     export XORG_CONFIG='--prefix=/usr --sysconfdir=/etc --mandir=/usr/share/man --localstatedir=/var'
 
     INSTALL_DIR=#{paths[:install_dir]}
@@ -25,7 +25,6 @@ class Kita
     """
   end
 
-  # Records package as installed and records a list of all files installed by the package
 
   # Extracts, patches, builds and packs a package
   def build
