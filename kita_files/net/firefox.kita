@@ -1,7 +1,7 @@
 KITA_TYPE="make"
 VER="3.0.6"
 FILES="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.0.6/source/firefox-3.0.6-source.tar.bz2"
-DEPEND="gtk+ libIDL zip"
+DEPEND="gtk+ libIDL zip curl"
 BUILD=""
 build_src()
 {
@@ -23,7 +23,7 @@ cat > .mozconfig << "EOF"
 # directory. If desired, modify the location of the object directory
 # to a directory inside the source tree by removing '../' from the
 # line below.
-mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/firefox-build
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/../firefox-build
 
 # Specify the installation prefix. If you would prefer Firefox
 # installed in a different prefix, modify the line below to fit
@@ -34,11 +34,10 @@ ac_add_options --prefix=/usr
 # These options are used so that the Firefox binaries are linked to
 # the system-installed copies of the specified libraries instead of
 # the source tree code which may not be the most recent versions.
-ac_add_options --disable-crashreporter
-#ac_add_options --with-system-zlib
+ac_add_options --with-system-zlib
 #ac_add_options --with-system-png
-#ac_add_options --with-system-jpeg
-#ac_add_options --enable-system-cairo
+ac_add_options --with-system-jpeg
+ac_add_options --enable-system-cairo
 
 # This option causes the installed binaries to have the official
 # Firefox name embedded in them. Due to license restrictions, you
@@ -63,7 +62,7 @@ ac_add_options --disable-tests
 # This option is added so that the Mozilla Installer program is not
 # built or installed. The program is not required for a BLFS
 # installation of Firefox.
-#ac_add_options --disable-installer
+ac_add_options --disable-installer
 
 # This option is used to disable the a11y support in the Firefox
 # binaries. Comment out this option if you require a11y support.
@@ -100,7 +99,7 @@ ac_add_options --disable-accessibility
 # installation and is used to locate Firefox's installed files. This
 # option is not required for end-user browsing, and is only used for
 # development purposes.
-ac_add_options --with-default-mozilla-five-home=/usr/lib/firefox
+#ac_add_options --with-default-mozilla-five-home=/usr/lib/firefox-2.0.0.15
 
 EOF
 

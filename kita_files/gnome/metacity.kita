@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-DEPEND="gtk+ XML-Parser"
+DEPEND="gtk+ XML-Parser zenity"
 BUILD=""
 build_src()
 {

@@ -1,7 +1,6 @@
 KITA_TYPE="make"
-DEPEND=""
+DEPEND="libxklavier"
 BUILD=""
-#Paste Build instructions here
 build_src()
 {
 ./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) \

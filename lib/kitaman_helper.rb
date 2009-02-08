@@ -30,7 +30,7 @@ end
 def update_src_files_database  
   files_dictionary = {}
   for repo in IO.read(KitamanConfig.config['REPOST_LIST_FILE']).split("\n")
-    puts "Syncing #{repo.style(:blue)}"
+    puts "Syncing #{repo.blue}"
     list_of_files = open(repo).read.scan(/<a href=\"(.*?\.tar\.bz2)">(?:.*?)<\/a>/)  
     
     for file in list_of_files
@@ -87,9 +87,11 @@ STYLE = {
        :on_white   =>    "\033[47m" }
 
 class String
-  def style(st)
+
+  def method_missing(st)
     "#{STYLE[st.to_sym]}#{self.to_s}#{STYLE[:default]}"  
-  end
+  end  
+  
 end
 
 

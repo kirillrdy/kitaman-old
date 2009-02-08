@@ -1,13 +1,16 @@
 KITA_TYPE="make"
-VER="3.8.1"
-FILES="http://download.icu-project.org/files/icu4c/3.8.1/icu4c-3_8_1-src.tgz"
-DEPEND=""
+VER="4.0.1"
+FILES="http://download.icu-project.org/files/icu4c/4.0.1/icu4c-4_0_1-src.tgz"
 BUILD=""
-# going with defaults
 build_src()
 {
 cd source
 ./configure --prefix=/usr
-make
+gmake
+}
+kita_install()
+{
+  cd source
+  gmake DESTDIR=$INSTALL_DIR install
 }
 ""

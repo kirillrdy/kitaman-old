@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-DEPEND="eel esound libexif librsvg gvfs"
+DEPEND="esound libexif librsvg gvfs unique"
 BUILD=""
 #Paste Build instructions here
 build_src()

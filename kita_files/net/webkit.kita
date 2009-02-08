@@ -1,11 +1,12 @@
 KITA_TYPE="make"
-FILES="http://nightly.webkit.org/files/trunk/src/WebKit-r32862.tar.bz2"
-DEPEND="gtk+ icu libxslt sqlite libjpeg libpng gperf bison flex curl"
+VER="r40738"
+FILES="http://builds.nightly.webkit.org/files/trunk/src/WebKit-r40738.tar.bz2"
+DEPEND="gtk+ icu libxslt sqlite libjpeg libpng gperf bison flex libsoup"
 BUILD=""
 build_src()
 {
-./autogen.sh --prefix=/usr --enable-svg-experimental --enable-video --with-font-backend=pango --with-http-backend=curl
-#./autogen.sh --prefix=/usr --enable-svg-experimental --enable-video --with-font-backend=pango --with-http-backend=soup
+#./autogen.sh --prefix=/usr --enable-svg-experimental --enable-video --with-font-backend=pango --with-http-backend=curl
+./autogen.sh --prefix=/usr --enable-svg-experimental --enable-video --with-font-backend=pango --with-http-backend=soup
 make
 }
 ""

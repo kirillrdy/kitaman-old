@@ -30,27 +30,29 @@ class Kitaman
   attr_reader :queue
 
   def Kitaman.version
-    "0.95.5"
+    "0.95.6"
   end
 
   def initialize
     @options = {:download => true,:build => true,:install => true,:deep => false,:deepest => false,:force => false,:search => false,:remove => false}
     @queue = []
+    
+    #fix this
     @graphviz_graph = GraphvizGraph.new
   end
 
   def execute_action(kita_object,action)
     name_version  = kita_object.info["NAME-VER"]
     if (!kita_object.send("#{action}ed?".to_sym) and @options[action]) or (@options[:force] and @options[action])
-      puts "Starting to #{action} #{name_version} ... ".style :green      
+      puts "Starting to #{action} #{name_version} ... ".green
       if not kita_object.send(action.to_sym)
-        puts "Panic While Trying to #{action} #{name_version}".style(:red).style(:bold)
+        puts "Panic While Trying to #{action} #{name_version}".red.bold
         exit
       end
-      puts "Finished #{action}ing #{name_version}".style(:blue).style :bold
+      puts "Finished #{action}ing #{name_version}".blue.bold
       puts "\n"
     else
-      puts "No need to #{action} #{name_version}".style(:yellow).style :bold
+      puts "No need to #{action} #{name_version}".yellow.bold
     end
 
   end
@@ -78,14 +80,14 @@ class Kitaman
     end
     scanned_file = IO.read(Kita.find_kita_file(file)).scan(/KITA_TYPE="(.*?)"/)
     if not scanned_file[0] or not load('kitaman/'+ scanned_file[0][0]+'.rb')
-      puts "No MODULE found for #{Kita.find_kita_file(file)}".style(:red).style(:bold)
+      puts "No MODULE found for #{Kita.find_kita_file(file)}".red.bold
       exit
     end
   end
 
   def parse_argv
     OptionParser.new do |opts|
-      opts.banner = """Kitaman version:#{Kitaman.version.style(:bold).style(:red)}
+      opts.banner = """Kitaman version:#{Kitaman.version.bold.red}
       
 Usage: kitaman.rb [options] packages"""
 
@@ -135,14 +137,14 @@ Usage: kitaman.rb [options] packages"""
       puts @graphviz_graph.to_dot
       return
     end
-    puts "Kitaman will do the following: \n".style(:bold)
+    puts "\nKitaman will do the following: \n".bold
     for item in @queue
-      flags = "[#{@options[:download] ? "D" : ""}#{@options[:build] ? "B" : ""}#{@options[:install] ? "I" : ""}]".style(:blue)
-      puts "#{flags} "+item.info['NAME'].style(:cyan).style(:bold)+'-'+item.info['VER'].style(:bold).style(:green)
+      flags = "[#{@options[:download] ? "D" : ""}#{@options[:build] ? "B" : ""}#{@options[:install] ? "I" : ""}]".blue
+      puts "#{flags} "+item.info['NAME'].cyan.bold+'-'+item.info['VER'].bold.green
     end
     
     puts ""
-    puts "Press Enter to continue...".style(:on_yellow).style(:bold)
+    puts "Press Enter to continue...".on_yellow.bold
     $stdin.gets
     
   end
