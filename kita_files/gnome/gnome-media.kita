@@ -1,5 +1,6 @@
 KITA_TYPE="make"
 BUILD=""
+DEPEND="gstreamer"
 build_src()
 {
 ./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) \
