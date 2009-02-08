@@ -171,6 +171,8 @@ Usage: kitaman.rb [options] packages"""
 
             if item.info["NAME"] == dependency
               flag = true
+              @queue.delete item
+              @queue.insert(0, item)
             end
           end
 
