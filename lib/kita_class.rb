@@ -78,6 +78,11 @@ class Kita
 
   # Fills FILES var with files maching in repository
   def get_files_from_repo
+  
+    if not File.exist?('/var/kitaman/src.db')
+      update_src_files_database
+    end
+    
     files_list_database = Marshal.load(IO.read('/var/kitaman/src.db'))
     files_list_database[@info['NAME']] ? [files_list_database[@info['NAME']]] : []    
   end

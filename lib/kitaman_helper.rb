@@ -27,7 +27,7 @@ class Object
 end
 
 
-def update_src_files_database  
+def update_src_files_database
   files_dictionary = {}
   for repo in IO.read(KitamanConfig.config['REPOST_LIST_FILE']).split("\n")
     puts "Syncing #{repo.blue}"
