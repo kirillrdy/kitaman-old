@@ -90,7 +90,7 @@ class Kita
     for file in files_list_local
       if file.index('.patch')
         file = File.basename(file)
-        puts "Patching using #{file}".style :red
+        puts "Patching using #{file}".red
         `cd #{KitamanConfig.config['BUILD_DIR']} && patch -Np1 -i #{KitamanConfig.config['SRC_DIR']}/#{file}`
       end
     end
