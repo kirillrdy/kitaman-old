@@ -30,9 +30,9 @@ class Kitaman
   attr_reader :queue
 
   def Kitaman.version
-    "0.95.5"
-  end
-
+    "0.95.6" 
+  end 
+  
   def initialize
     @options = {:download => true,:build => true,:install => true,:deep => false,:deepest => false,:force => false,:search => false,:remove => false}
     @queue = []
@@ -164,19 +164,9 @@ Usage: kitaman.rb [options] packages"""
       for dependency in kita_instance.info["DEPEND"].reverse
           print "."
           
-          @graphviz_graph.add(kita_instance.info['NAME'],dependency) if @options[:graph]
-          
-          flag = false
-          for item in @queue
-
-            if item.info["NAME"] == dependency
-              flag = true
-              @queue.delete item
-              @queue.insert(0, item)
-            end
-          end
-
-          build_queue(dependency) if not flag
+          @graphviz_graph.add(kita_instance.info['NAME'],dependency) if @options[:graph]          
+        
+          build_queue(dependency)
 
       end
 
@@ -193,11 +183,11 @@ end
 #############################################################
 
 
-kita = Kitaman.new
-kita.parse_argv
+kitaman = Kitaman.new
+kitaman.parse_argv
 for argument in ARGV
-  kita.build_queue(argument)
+  kitaman.build_queue(argument)
 end
 
-kita.print_queue
-kita.run
+kitaman.print_queue
+kitaman.run
