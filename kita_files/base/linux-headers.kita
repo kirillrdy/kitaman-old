@@ -1,6 +1,6 @@
 KITA_TYPE="make"
 DEPEND=""
-FILES="http://www.kernel.org/pub/linux/kernel/v2.6/linux-2.6.28.4.tar.bz2 http://src.silverforge.com.au/patches/linux-headers-2.6.28.4.patch"
+FILES="http://www.kernel.org/pub/linux/kernel/v2.6/linux-2.6.28.5.tar.bz2"
 BUILD=""
 build_src()
 {
