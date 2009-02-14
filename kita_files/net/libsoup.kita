@@ -1,2 +1,2 @@
 KITA_TYPE="make"
-DEPEND="libproxy"
+DEPEND="libproxy sqlite"
