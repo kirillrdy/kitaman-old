@@ -12,6 +12,7 @@ make
 }
 post_install()
 {
+ln -vsf /usr /usr/X11R6
 mkdir /etc/X11
 for file in /usr/{lib/X11/xinit,share/X11/{app-defaults,twm,xkb}}
 do

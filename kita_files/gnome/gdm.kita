@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-DEPEND="libgnome fontconfig"
+DEPEND="libgnome fontconfig Linux-PAM"
 BUILD=""
 #Paste Build instructions here
 build_src()
@@ -8,7 +8,7 @@ groupadd -g 21 gdm &&
 useradd -c "GDM Daemon Owner" -d /dev/null \
         -g gdm -s /bin/bash -u 21 gdm
 ./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) \
-            --sysconfdir=/etc/gnome \
+            --sysconfdir=/etc \
             --localstatedir=/var/lib \
             --libexecdir=$(pkg-config \
                 --variable=prefix ORBit-2.0)/lib/gdm \

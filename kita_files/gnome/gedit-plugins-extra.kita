@@ -1,9 +1,2 @@
 KITA_TYPE="make"
 DEPEND="gedit pygtksourceview"
-BUILD=""
-build_src()
-{
-./configure --prefix=/usr
-make
-}
-""

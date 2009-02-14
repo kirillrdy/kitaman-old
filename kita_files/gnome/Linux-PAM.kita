@@ -1,0 +1,29 @@
+KITA_TYPE="make"
+FILES="http://www.kernel.org/pub/linux/libs/pam/pre/library/Linux-PAM-0.99.10.0.tar.bz2"
+BUILD=""
+build_src()
+{
+./configure --libdir=/lib \
+            --sbindir=/lib/security \
+            --enable-securedir=/lib/security \
+            --enable-read-both-confs \
+            --with-xauth=/usr/X11R6/bin/xauth &&
+make
+}
+post_install()
+{
+chmod -v 4755 /lib/security/unix_chkpwd &&
+
+mv -v /lib/security/pam_tally /sbin &&
+
+mv -v /lib/libpam{,c,_misc}.la /usr/lib &&
+sed -i 's| /lib| /usr/lib|' /usr/lib/libpam_misc.la &&
+
+if [ -L /lib/libpam.so ]; then
+   for LINK in libpam{,c,_misc}.so; do
+       ln -v -sf ../../lib/$(readlink /lib/${LINK}) /usr/lib/${LINK} &&
+       rm -v /lib/${LINK}
+   done
+fi
+}
+""

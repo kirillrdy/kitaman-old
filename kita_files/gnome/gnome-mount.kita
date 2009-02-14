@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://people.freedesktop.org/~david/dist/gnome-mount-0.6.tar.gz"
+FILES="http://hal.freedesktop.org/releases/gnome-mount-0.8.tar.gz"
 DEPEND="hal gnome-keyring libnotify"
 BUILD=""
 #Paste Build instructions here
