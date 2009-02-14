@@ -85,51 +85,7 @@ class Kitaman
     end
   end
 
-  def parse_argv
-    OptionParser.new do |opts|
-      opts.banner = """Kitaman version:#{Kitaman.version.bold.red}
-      
-Usage: kitaman.rb [options] packages"""
-
-      opts.on("-f", "--force", "Force any action") do |v|
-        @options[:force] = v
-      end
-    
-      opts.on("-d", "--download", "Download Only") do |v|
-        @options[:build] = false
-        @options[:install] = false
-        @options[:force] = false
-      end
-
-      opts.on("-b", "--build", "Build Only") do |v|
-        @options[:install] = false
-      end
- 
-      opts.on("-p", "--[no-]pretend", "Pretend") do |v|
-        @options[:build] = false
-        @options[:install] = false
-        @options[:download] = false
-      end
-
-      opts.on("-q", "--[no-]quiet", "No questions asked") do |v|
-        @options[:quiet] = v
-      end
   
-      opts.on("-v", "--[no-]verbose", "Run verbosely") do |v|
-        @options[:verbose] = v
-      end
-      
-      opts.on("-G", "--[no-]graph", "Generate DOT graph") do |v|
-        @options[:graph] = v
-      end
-
-      opts.on("-S", "--[no-]sync", "sync") do |v|
-        update_src_files_database
-        exit
-      end
-    end.parse!
-  end
-
   def print_queue
     
     return false if (@options[:quiet] or @queue.length==0 ) 
