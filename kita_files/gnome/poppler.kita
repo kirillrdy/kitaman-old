@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://poppler.freedesktop.org/poppler-0.8.0.tar.gz"
+FILES="http://poppler.freedesktop.org/poppler-0.10.4.tar.gz"
 DEPEND=""
 BUILD=""
 #Paste Build instructions here

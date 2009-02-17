@@ -87,6 +87,7 @@ done
 # Now to clean up
 unset pathremove pathprepend pathappend
 export LC_ALL=en_AU.UTF-8
+export EDITOR="/usr/bin/vim"
 
 # End /etc/profile
 EOF
