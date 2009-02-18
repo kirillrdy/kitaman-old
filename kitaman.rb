@@ -124,8 +124,11 @@ class Kitaman
 
   def build_queue(target, parent = nil)
     
-    load_needed_module(target)
-    kita_instance = Kita.new(Kita.find_kita_file(target))    
+    # premature optimization
+    if not @node_hash[target]
+      load_needed_module(target)
+      kita_instance = Kita.new(Kita.find_kita_file(target))    
+    end
       
     if not @node_hash[target] and not kita_instance.installed?     
       
