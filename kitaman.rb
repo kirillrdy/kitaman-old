@@ -31,7 +31,7 @@ class Kitaman
   
   attr_reader :queue
   attr_reader :root_node
-  attr_reader :node_hash
+  attr_reader :kita_hash
   
 
   def Kitaman.version
@@ -43,6 +43,7 @@ class Kitaman
     @queue = []
     @root_node = nil
     @node_hash = {}
+    @kita_hash = {}
     
     #fix this
     @graphviz_graph = GraphvizGraph.new
@@ -121,40 +122,30 @@ class Kitaman
     $stdin.gets
     
   end
+  
+  def get_kita_instance(kita)
+    @kita_hash[kita] || Kita.new(Kita.find_kita_file(kita)) 
+  end
 
   def build_queue(target, parent = nil)
     
-    # premature optimization
-    if not @node_hash[target]
-      load_needed_module(target)
-      kita_instance = Kita.new(Kita.find_kita_file(target))    
-    end
+    kita_instance = get_kita_instance(target)
       
-    if not @node_hash[target] and not kita_instance.installed?     
+    if not @node_hash[target] and not kita_instance.installed?
       
       node_to_be_inserted = Tree::TreeNode.new(target,kita_instance)
-      
-      # determine if its a first call or not
+            
       if parent
         @node_hash[parent] << node_to_be_inserted
       else
-        #very special case if we call this function and root_node is already set
-        if @root_node
-          temp = @root_node
-          @root_node = node_to_be_inserted
-          @root_node << temp
-        else
-        #normal case, still pretty special
-          @root_node = node_to_be_inserted
-        end        
+        node_to_be_inserted << @root_node if @root_node
+        @root_node = node_to_be_inserted
       end
       
       #register in hash
       @node_hash[target] = node_to_be_inserted
               
       for dependency in kita_instance.info["DEPEND"]
-          print "."          
-          #@graphviz_graph.add(kita_instance.info['NAME'],dependency) if @options[:graph]                  
           build_queue(dependency,target)
       end      
     end    
