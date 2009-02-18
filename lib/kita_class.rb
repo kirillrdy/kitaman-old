@@ -27,6 +27,10 @@ class Kita
   def ==(obj)
     self.info==obj.info
   end
+
+  def to_s
+    self.info['NAME-VER']
+  end
   
   # Creates Kita object and parses all the information
   def initialize(kita_file)
