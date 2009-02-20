@@ -35,7 +35,7 @@ class Kitaman
   
 
   def Kitaman.version
-    "0.95.7alpha"
+    "0.96.0"
   end
 
   def initialize
@@ -49,61 +49,27 @@ class Kitaman
     @graphviz_graph = GraphvizGraph.new
   end
 
-  def execute_action(kita_object,action)
-    name_version  = kita_object.info["NAME-VER"]
-    if (!kita_object.send("#{action}ed?".to_sym) and @options[action]) or (@options[:force] and @options[action])
-      puts "Starting to #{action} #{name_version} ... ".green
-      if not kita_object.send(action.to_sym)
-        puts "Panic While Trying to #{action} #{name_version}".red.bold
-        exit
-      end
-      puts "Finished #{action}ing #{name_version}".blue.bold
-      puts "\n"
-    else
-      puts "No need to #{action} #{name_version}".yellow.bold
-    end
-
-  end
-
-  def run
-    for kita_object in @queue
-      load_needed_module(kita_object.info['NAME'])
-      if @queue.length==1
-        set_terminal_title(kita_object.info["NAME-VER"])
-      else
-        set_terminal_title("#{@queue.index(kita_object).to_i + 1} of #{@queue.length}: #{kita_object.info["NAME-VER"]}")
-      end
-      execute_action(kita_object,:download)
-      execute_action(kita_object,:build)
-      execute_action(kita_object,:install)
-      set_terminal_title("Finished #{kita_object.info["NAME-VER"]}")      
-    end
-  end
-
-  def load_needed_module(file)
-    
-    if not Kita.find_kita_file(file)
-      puts  "no kita file found for #{file}"
-      exit
-    end
-    scanned_file = IO.read(Kita.find_kita_file(file)).scan(/KITA_TYPE="(.*?)"/)
-    if not scanned_file[0] or not load('kitaman/'+ scanned_file[0][0]+'.rb')
-      puts "No MODULE found for #{Kita.find_kita_file(file)}".red.bold
-      exit
-    end
-  end
-
-
-  def traverse_tree_for_print(node = self.root_node)
-
-    if node.hasChildren?
-      for child in node.children        
-        traverse_tree_for_print child
-      end      
-    end  
-    puts node.content.info['NAME'].blue+'-'+node.content.info['VER'].bold.green
-  end
+  def run(node = self.root_node)
   
+    if node.hasChildren?
+      for child in node.children
+        run child
+      end      
+    end    
+
+    load_needed_module(node.content.info['NAME'])    
+    
+    # FIXME, it needs to say 1 of N: packagename-ver
+    set_terminal_title(node.content.info["NAME-VER"])    
+    
+    execute_action(node.content,:download)
+    execute_action(node.content,:build)
+    execute_action(node.content,:install)
+    set_terminal_title("Finished #{node.content.info["NAME-VER"]}")      
+
+  end
+
+   
   def show_actions_to_be_taken
    
     return false if (@options[:quiet]) 
@@ -123,9 +89,9 @@ class Kitaman
     
   end
   
-  def get_kita_instance(kita)
-    @kita_hash[kita] || Kita.new(Kita.find_kita_file(kita)) 
-  end
+  
+ 
+
 
   def build_queue(target, parent = nil)
     
@@ -151,6 +117,54 @@ class Kitaman
     end    
   end
   
+  private
+  
+   def get_kita_instance(kita)
+    if not @kita_hash[kita]
+      @kita_hash[kita] = Kita.new(Kita.find_kita_file(kita))
+    end
+    return @kita_hash[kita]
+  end
+  
+   def traverse_tree_for_print(node = self.root_node)
+
+    if node.hasChildren?
+      for child in node.children        
+        traverse_tree_for_print child
+      end      
+    end  
+    puts node.content.info['NAME'].blue+'-'+node.content.info['VER'].bold.green
+  end
+  
+   def execute_action(kita_object,action)
+    name_version  = kita_object.info["NAME-VER"]
+    if (!kita_object.send("#{action}ed?".to_sym) and @options[action]) or (@options[:force] and @options[action])
+      puts "Starting to #{action} #{name_version} ... ".green
+      if not kita_object.send(action.to_sym)
+        puts "Panic While Trying to #{action} #{name_version}".red.bold
+        exit
+      end
+      puts "Finished #{action}ing #{name_version}".blue.bold
+      puts "\n"
+    else
+      puts "No need to #{action} #{name_version}".yellow.bold
+    end
+  end
+  
+   def load_needed_module(file)
+    
+    if not Kita.find_kita_file(file)
+      puts  "no kita file found for #{file}".red.bold
+      exit
+    end
+    scanned_file = IO.read(Kita.find_kita_file(file)).scan(/KITA_TYPE="(.*?)"/)
+    if not scanned_file[0] or not load('kitaman/'+ scanned_file[0][0]+'.rb')
+      puts "No MODULE found for #{Kita.find_kita_file(file)}".red.bold
+      exit
+    end
+  end
+
+  
 end
 
 #############################################################
@@ -166,4 +180,4 @@ end
 
 kitaman.show_actions_to_be_taken
 #kitaman.traverse_tree_for_print
-#kitaman.run
+kitaman.run
