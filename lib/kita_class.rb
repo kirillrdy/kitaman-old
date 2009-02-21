@@ -42,8 +42,8 @@ class Kita
 
     @info.set_if_nil('NAME',File.basename(kita_file,".kita"))
 
-    
-    @info.split_or_default_if_nil('FILES',get_files_from_repo)
+    #sorry this line had to be this ugly, because get_files_from_repo gets evaluated here, and we dont always want it
+    @info.split_or_default_if_nil('FILES',@info.has_key?('FILES') ? '' :  get_files_from_repo)
 
     
     @info.set_if_nil('VER',get_version)

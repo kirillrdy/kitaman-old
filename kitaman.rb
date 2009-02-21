@@ -75,8 +75,14 @@ class Kitaman
     return false if (@options[:quiet]) 
     if @options[:graph]
       puts @graphviz_graph.to_dot
-      return
+      return    
     end
+    
+    if not @root_node
+      puts "Nothing to do ...".bold.green
+      exit
+    end
+    
     puts "\nKitaman will do the following: \n".bold
   
     traverse_tree_for_print
@@ -91,13 +97,11 @@ class Kitaman
   
   
  
-
-
   def build_queue(target, parent = nil)
-    
+
     kita_instance = get_kita_instance(target)
       
-    if not @node_hash[target] and not kita_instance.installed?
+    if not @node_hash[target] and (not kita_instance.installed? or @options[:force])
       
       node_to_be_inserted = Tree::TreeNode.new(target,kita_instance)
             
@@ -127,7 +131,7 @@ class Kitaman
   end
   
    def traverse_tree_for_print(node = self.root_node)
-
+ 
     if node.hasChildren?
       for child in node.children        
         traverse_tree_for_print child

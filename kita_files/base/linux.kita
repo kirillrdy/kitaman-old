@@ -5,14 +5,23 @@ DEPEND=""
 BUILD=""
 build_src()
 {
+cp -rp . /usr/src/linux
+cd /usr/src/linux
+
+make defconfig
+cp /usr/src/linux.config /usr/src/linux/arch/x86/configs/i386_defconfig
 make mrproper
-make menuconfig
+
+colonel
+make defconfig
+#make menuconfig
 make
 make modules_install
 }
 
 
 kita_install(){
+cd /usr/src/linux
 mkdir -p $INSTALL_DIR/boot
 cp -v arch/i386/boot/bzImage $INSTALL_DIR/boot/kernel
 }
