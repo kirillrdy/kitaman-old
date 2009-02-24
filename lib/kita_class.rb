@@ -34,6 +34,7 @@ class Kita
   
   # Creates Kita object and parses all the information
   def initialize(kita_file)
+    
     infos = IO.read(kita_file).scan(/(.*?)="(.*?)"\n/)
     @info = {}
     for info in infos
@@ -62,6 +63,9 @@ class Kita
         return file
       end
     end
+    
+    puts "Cant find kitafile for \'#{package_name}\'".bold.red
+    exit
     return nil
   end
 

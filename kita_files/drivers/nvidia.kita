@@ -1,0 +1,10 @@
+KITA_TYPE="meta"
+NAME="nvidia"
+VER="180.29"
+FILES="http://us.download.nvidia.com/XFree86/Linux-x86/180.29/NVIDIA-Linux-x86-180.29-pkg1.run"
+BUILD=""
+post_install()
+{
+sh /usr/kitaman/src/NVIDIA-Linux-x86-180.29-pkg1.run -a -q -s --no-x-check
+}
+""

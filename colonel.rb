@@ -70,7 +70,7 @@ for item in list
       puts part
       on_setting = part.scan(/ (.*?) is not set\n/)
       
-      #for each found setting, lets turn it on and
+      #for each found setting, lets turn it on and write to config file
       for on in on_setting        
         to_write = on[0]+'=y'
         `echo #{to_write} >> #{kernel_config_file_location}`

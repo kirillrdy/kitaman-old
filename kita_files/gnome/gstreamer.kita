@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-DEPEND="glib libxml2 gtk-doc"
+DEPEND="glib libxml2 gtk-doc alsa-lib"
 BUILD=""
 build_src()
 {

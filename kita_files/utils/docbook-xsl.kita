@@ -2,7 +2,6 @@ KITA_TYPE="make"
 FILES="http://downloads.sourceforge.net/docbook/docbook-xsl-1.71.1.tar.bz2"
 DEPEND="libxml2"
 BUILD=""
-#Paste Build instructions here
 build_src()
 {
 
