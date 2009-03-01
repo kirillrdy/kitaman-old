@@ -1,13 +1,12 @@
 KITA_TYPE="gnome"
 DEPEND="gtk+ XML-Parser zenity"
 BUILD=""
-build_src()
+config_src()
 {
 ./configure \
     --prefix=/usr \
     --libexecdir=/usr/lib/metacity \
     --sysconfdir=/etc \
-    --with-gconf-schema-file-dir=/etc/gconf/schemas &&
-make
+    --with-gconf-schema-file-dir=/etc/gconf/schemas
 }
 ""

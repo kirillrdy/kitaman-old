@@ -2,12 +2,11 @@ KITA_TYPE="gnome"
 DEPEND="GConf gnome-mime-data dbus-glib"
 BUILD=""
 #Paste Build instructions here
-build_src()
+config_src()
 {
-./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) \
+./configure --prefix=/usr \
             --sysconfdir=/etc \
             --libexecdir=$(pkg-config \
-                --variable=prefix ORBit-2.0)/lib/gnome-vfs-2.0 &&
-make
+                --variable=prefix ORBit-2.0)/lib/gnome-vfs-2.0
 }
 ""
