@@ -2,6 +2,10 @@ KITA_TYPE="make"
 FILES="http://ftp.gnu.org/gnu/gcc/gcc-4.3.2/gcc-4.3.2.tar.bz2 http://ftp.gnu.org/gnu/gmp/gmp-4.2.4.tar.bz2 http://www.mpfr.org/mpfr-current/mpfr-2.4.0.tar.bz2"
 DEPEND=""
 BUILD=""
+config_src()
+{
+echo "blank"
+}
 build_src()
 {
 mv ../gmp* gmp

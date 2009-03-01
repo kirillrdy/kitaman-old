@@ -2,6 +2,10 @@ KITA_TYPE="make"
 FILES="ftp://sources.redhat.com/pub/glibc/snapshots/glibc-2.8-20081208.tar.bz2 http://www.linuxfromscratch.org/patches/lfs/development/glibc-2.8-20080929-iconv_tests-1.patch http://www.linuxfromscratch.org/patches/lfs/development/glibc-2.8-20080929-ildoubl_test-1.patch"
 DEPEND=""
 BUILD=""
+config_src()
+{
+echo "blank"
+}
 
 build_src()
 {

@@ -2,6 +2,10 @@ KITA_TYPE="make"
 DEPEND=""
 FILES="http://www.kernel.org/pub/linux/kernel/v2.6/linux-2.6.28.5.tar.bz2"
 BUILD=""
+config_src()
+{
+echo "blank"
+}
 build_src()
 {
   sed -i '/scsi/d' include/Kbuild

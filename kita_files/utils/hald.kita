@@ -5,7 +5,7 @@ FILES="http://hal.freedesktop.org/releases/hal-0.5.12rc1.tar.bz2"
 DEPEND="dbus-glib XML-Parser usbutils pciutils PolicyKit"
 BUILD=""
 #Paste Build instructions here
-build_src()
+config_src()
 {
 groupadd -g 442 haldaemon &&
 useradd -c "HAL Daemon User" -d /dev/null -u 19 \
@@ -14,8 +14,7 @@ useradd -c "HAL Daemon User" -d /dev/null -u 19 \
 ./configure --prefix=/usr \
             --sysconfdir=/etc \
             --libexecdir=/usr/lib/hal \            
-            --localstatedir=/var &&
-make
+            --localstatedir=/var
 }
 post_install()
 {
