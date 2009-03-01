@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-DEPEND=""
+DEPEND="unzip"
 BUILD=""
 #Paste Build instructions here
 build_src()

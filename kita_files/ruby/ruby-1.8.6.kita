@@ -1,9 +1,0 @@
-# For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
-FAKE=""
-KITA_VER="1.0"
-DESCRIPTION=""
-FILES="ftp://ftp.ruby-lang.org/pub/ruby/1.8/ruby-1.8.6-p114.tar.gz"
-DEPEND=""
-BUILD=""
-#Paste Build instructions here
-""

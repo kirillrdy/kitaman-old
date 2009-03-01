@@ -1,5 +1,6 @@
 KITA_TYPE="make"
 DEPEND="libgnome fontconfig Linux-PAM"
+#FILES="http://ftp.gnome.org/pub/gnome/sources/gdm/2.20/gdm-2.20.9.tar.bz2"
 BUILD=""
 #Paste Build instructions here
 build_src()
@@ -7,14 +8,14 @@ build_src()
 groupadd -g 21 gdm &&
 useradd -c "GDM Daemon Owner" -d /dev/null \
         -g gdm -s /bin/bash -u 21 gdm
-./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) \
+./configure --prefix=/usr \
             --sysconfdir=/etc \
             --localstatedir=/var/lib \
-            --libexecdir=$(pkg-config \
-                --variable=prefix ORBit-2.0)/lib/gdm \
+            --libexecdir=/usr/lib/gdm \
             --mandir=$(pkg-config \
                 --variable=prefix ORBit-2.0)/share/man \
-            --with-pam-prefix=/etc &&
+            --with-pam-prefix=/etc \
+            --with-console-kit=no &&
 make
 }
 post_install()
@@ -32,4 +33,15 @@ Type=Application
 EOF
 chmod -v 644 /usr/share/xsessions/gnome-dbus.desktop
 }
+cat > /etc/pam.d/gdm << "EOF" &&
+#%PAM-1.0
+
+auth       include      system-auth
+account    include      system-auth
+password   include      system-auth
+session    include      system-auth
+EOF
+cp /etc/pam.d/gdm{,-autologin} &&
+echo "auth       required     pam_permit.so" >> /etc/pam.d/gdm-autologin
+
 ""

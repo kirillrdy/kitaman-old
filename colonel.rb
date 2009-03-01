@@ -22,7 +22,12 @@ require 'kitaman/kitaman_helper'
 
 # the so called black list needs to be investigated
 # this is caused by lspci and kernel config having different names for module (sometimes)
+kernel_config_file_location = '/usr/src/linux/arch/x86/configs/i386_defconfig'
 BLACK_LIST=["IDE"]
+
+
+# here is a list of always build modules, like filesystems etc
+ALWAYS_INSTALL=['REISERFS_FS','EXT4_FS']
 
 class String
 
@@ -49,10 +54,30 @@ list.map! {|x| x[0]}
 list.uniq!
 list.map! {|x| x.to_colonel}
 
+list += ALWAYS_INSTALL
 
-#kernel_config = IO.read('kernel_config')
+
+##### this loop is soooo ugly....
+# in future, needs to be changed
+# but for now,will do
+
+# For each found hardware piece
 for item in list
-  puts "For module #{item.bold}"
-  puts "        "+`cat kernel_config | grep #{item.white}`.green
+  
+  #for each module in kernel that corresponds to our hardware item
+  for part in `cat #{kernel_config_file_location} | grep #{item.white}`.split('\n')
+  
+    # if the item is not set
+    if not (/=y/ === part)
+      puts part
+      on_setting = part.scan(/ (.*?) is not set\n/)
+      
+      #for each found setting, lets turn it on and write to config file
+      for on in on_setting        
+        to_write = on[0]+'=y'
+        `echo #{to_write} >> #{kernel_config_file_location}`
+      end
+    end
+  end
 end
 

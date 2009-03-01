@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://www.kernel.org/pub/linux/utils/kernel/hotplug/udev-130.tar.bz2"
+FILES="http://www.kernel.org/pub/linux/utils/kernel/hotplug/udev-137.tar.bz2"
 DEPEND=""
 BUILD=""
 build_src(){
@@ -17,5 +17,11 @@ ln -sv /proc/kcore /lib/udev/devices/core
             
 make
 make test
+
+
+#FIX ME
+install -m644 -v rules/packages/64-*.rules \
+    /lib/udev/rules.d/
+
 }
 ""

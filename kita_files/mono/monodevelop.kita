@@ -1,0 +1,3 @@
+KITA_TYPE="make"
+FILES="http://ftp.novell.com/pub/mono/sources/monodevelop/monodevelop-1.9.2.tar.bz2"
+DEPEND="mono-addins gnome-sharp xsp"

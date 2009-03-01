@@ -1,12 +1,17 @@
 KITA_TYPE="make"
-DEPEND="hal gnome-mount"
+DEPEND="hal"
 BUILD=""
 #Paste Build instructions here
 build_src()
 {
 ./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) \
             --sysconfdir=/etc \
-            --disable-multiuser &&
+            --disable-multiuser \
+            --enable-automount &&
 make
+}
+post_install()
+{
+  mkdir /media
 }
 ""

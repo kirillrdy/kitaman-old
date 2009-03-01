@@ -1,0 +1,15 @@
+KITA_TYPE="make"
+FILES="http://hal.freedesktop.org/releases/PolicyKit-0.9.tar.gz"
+BUILD=""
+build_src()
+{
+groupadd -g 26 polkit &&
+useradd -c "Policy Kit Daemon User" -d /dev/null \
+        -u 26 -g polkit -s /bin/false polkit
+        
+./configure --prefix=/usr --sysconfdir=/etc \
+    --libexecdir=/usr/lib/PolicyKit --localstatedir=/var \
+    --with-polkit-user=polkit --with-polkit-group=polkit &&
+make
+}
+""

@@ -1,0 +1,12 @@
+KITA_TYPE="make"
+FILES="http://people.freedesktop.org/~mccann/dist/ConsoleKit-0.3.0.tar.bz2"
+BUILD=""
+build_src()
+{
+CPPFLAGS="-I/usr/include" \
+./configure --prefix=/usr --sysconfdir=/etc \
+    --localstatedir=/var --libexecdir=/usr/lib/ConsoleKit &&
+make
+
+}
+""

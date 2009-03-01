@@ -7,4 +7,8 @@ build_src()
 ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-docs --without-add-fonts
 make
 }
+post_install()
+{
+fc-cache
+}
 ""
