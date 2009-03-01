@@ -1,5 +1,5 @@
 KITA_TYPE="gnome"
-DEPEND="hal"
+DEPEND="hal gnome-mount"
 BUILD=""
 #Paste Build instructions here
 build_src()

@@ -9,7 +9,7 @@ cp -rp . /usr/src/linux
 cd /usr/src/linux
 
 make defconfig
-cp /usr/src/linux.config /usr/src/linux/arch/x86/configs/i386_defconfig
+cp /usr/src/linux/.config /usr/src/linux/arch/x86/configs/i386_defconfig
 make mrproper
 
 colonel
