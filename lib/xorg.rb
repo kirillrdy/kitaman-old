@@ -53,6 +53,7 @@ class Kita
     
     config_src()
     {
+      ./configure $XORG_CONFIG
     }
     
     build_src()

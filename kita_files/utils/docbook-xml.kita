@@ -2,6 +2,10 @@ KITA_TYPE="make"
 DEPEND="libxml2"
 BUILD=""
 #Paste Build instructions here
+config_src()
+{
+echo "test"
+}
 build_src()
 {
 install -v -d -m755 $INSTALL_DIR/usr/share/xml/docbook/xml-dtd-4.5 &&

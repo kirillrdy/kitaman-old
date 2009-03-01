@@ -1,9 +1,8 @@
 KITA_TYPE="make"
 DEPEND="cairo pango atk libtiff libjpeg"
 BUILD=""
-build_src(){
-./configure --prefix=/usr --sysconfdir=/etc --without-libjasper &&
-make
+config_src(){
+./configure --prefix=/usr --sysconfdir=/etc --without-libjasper
 }
 post_install()
 {

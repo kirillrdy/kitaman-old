@@ -2,13 +2,11 @@ KITA_TYPE="gnome"
 DEPEND="libxslt XML-Parser"
 BUILD=""
 #Paste Build instructions here
-build_src()
+config_src()
 {
-sed -i 's/@.*@pkgconfig/pkgconfig/' Makefile.in &&
 ./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) \
             --mandir=$(pkg-config \
                 --variable=prefix ORBit-2.0)/share/man \
-                --disable-scrollkeeper &&
-make
+                --disable-scrollkeeper
 }
 ""

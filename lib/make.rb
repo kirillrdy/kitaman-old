@@ -134,6 +134,11 @@ class Kita
       return false
     end
     
+    `
+    echo "Cleaning up"
+    rm -rf $BUILD_DIR
+    rm -rf $INSTALL_DIR
+    `
     record_installed
     return true
   end

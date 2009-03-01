@@ -1,2 +1,2 @@
 KITA_TYPE="gnome"
-DEPEND="libxslt docbook-xml docbook-xsl"
+DEPEND="gnome-doc-utils libxslt docbook-xml docbook-xsl"

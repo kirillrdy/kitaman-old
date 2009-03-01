@@ -1,14 +1,13 @@
 KITA_TYPE="gnome"
 FILES="http://www.kernel.org/pub/linux/libs/pam/pre/library/Linux-PAM-0.99.10.0.tar.bz2"
 BUILD=""
-build_src()
+config_src()
 {
 ./configure --libdir=/lib \
             --sbindir=/lib/security \
             --enable-securedir=/lib/security \
             --enable-read-both-confs \
-            --with-xauth=/usr/X11R6/bin/xauth &&
-make
+            --with-xauth=/usr/X11R6/bin/xauth
 }
 post_install()
 {
