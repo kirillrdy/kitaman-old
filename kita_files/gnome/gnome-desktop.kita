@@ -1,4 +1,4 @@
-KITA_TYPE="make"
+KITA_TYPE="gnome"
 DEPEND="libgnomeui gnome-doc-utils scrollkeeper pygtk gnome-python"
 BUILD=""
 #Paste Build instructions here

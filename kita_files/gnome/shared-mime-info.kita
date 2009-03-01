@@ -1,4 +1,4 @@
-KITA_TYPE="make"
+KITA_TYPE="gnome"
 FILES="http://freedesktop.org/~hadess/shared-mime-info-0.23.tar.bz2"
 DEPEND="glib libxml2 XML-Parser"
 BUILD=""

@@ -1,4 +1,4 @@
-KITA_TYPE="make"
+KITA_TYPE="gnome"
 DEPEND="pkg-config libxml2 boot-dbus"
 FILES="http://dbus.freedesktop.org/releases/dbus/dbus-1.2.4.tar.gz"
 BUILD=""

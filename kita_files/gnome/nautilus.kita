@@ -1,4 +1,4 @@
-KITA_TYPE="make"
+KITA_TYPE="gnome"
 DEPEND="esound libexif librsvg gvfs unique"
 BUILD=""
 #Paste Build instructions here

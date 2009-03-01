@@ -1,4 +1,4 @@
-KITA_TYPE="make"
+KITA_TYPE="gnome"
 DEPEND="libglade libart_lgpl"
 BUILD=""
 #Paste Build instructions here

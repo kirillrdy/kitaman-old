@@ -1,2 +1,2 @@
-KITA_TYPE="make"
+KITA_TYPE="gnome"
 FILES="http://www.gnome.org/~ebassi/source/unique-1.0.6.tar.gz"

@@ -1,4 +1,4 @@
-KITA_TYPE="make"
+KITA_TYPE="gnome"
 DEPEND="libgnomeui gnome-doc-utils vte startup-notification"
 BUILD=""
 #Paste Build instructions here

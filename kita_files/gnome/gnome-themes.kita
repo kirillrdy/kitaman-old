@@ -1,4 +1,4 @@
-KITA_TYPE="make"
+KITA_TYPE="gnome"
 DEPEND="icon-naming-utils gtk-engines"
 BUILD=""
 #Paste Build instructions here

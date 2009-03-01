@@ -1,0 +1,10 @@
+KITA_TYPE="make"
+FILES="http://gd.tuwien.ac.at/opsys/linux/alsa/lib/alsa-lib-1.0.18.tar.bz2"
+BUILD=""
+#Paste Build instructions here
+build_src()
+{
+./configure --enable-static &&
+make
+}
+""

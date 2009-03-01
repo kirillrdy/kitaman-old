@@ -1,4 +1,4 @@
-KITA_TYPE="make"
+KITA_TYPE="gnome"
 DEPEND="unzip"
 BUILD=""
 #Paste Build instructions here

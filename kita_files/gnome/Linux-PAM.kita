@@ -1,4 +1,4 @@
-KITA_TYPE="make"
+KITA_TYPE="gnome"
 FILES="http://www.kernel.org/pub/linux/libs/pam/pre/library/Linux-PAM-0.99.10.0.tar.bz2"
 BUILD=""
 build_src()

@@ -1,4 +1,4 @@
-KITA_TYPE="make"
+KITA_TYPE="gnome"
 DEPEND="gst-plugins-base libgnomekbd metacity nautilus gnome-settings-daemon iso-codes libxklavier"
 BUILD=""
 #Paste Build instructions here

@@ -1,4 +1,4 @@
-KITA_TYPE="make"
+KITA_TYPE="gnome"
 DEPEND="ORBit2 libxml2 XML-Parser"
 BUILD=""
 #Paste Build instructions here

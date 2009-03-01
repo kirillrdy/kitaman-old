@@ -1,0 +1,14 @@
+KITA_TYPE="make"
+FILES="http://www.linuxfromscratch.org/blfs/downloads/svn/blfs-bootscripts-20080816.tar.bz2"
+DEPEND=""
+BUILD=""
+#Paste Build instructions here
+build_src()
+{
+echo
+}
+kita_install()
+{
+make DESTDIR=$INSTALL_DIR install-alsa
+}
+""

@@ -1,4 +1,4 @@
-KITA_TYPE="make"
+KITA_TYPE="gnome"
 DEPEND="gtk+ XML-Parser zenity"
 BUILD=""
 build_src()

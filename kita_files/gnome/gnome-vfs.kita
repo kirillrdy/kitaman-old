@@ -1,4 +1,4 @@
-KITA_TYPE="make"
+KITA_TYPE="gnome"
 DEPEND="GConf gnome-mime-data dbus-glib"
 BUILD=""
 #Paste Build instructions here

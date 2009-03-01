@@ -1,4 +1,4 @@
-KITA_TYPE="make"
+KITA_TYPE="gnome"
 FILES="http://tango.freedesktop.org/releases/icon-naming-utils-0.8.7.tar.gz"
 DEPEND="XML-Simple"
 BUILD=""

@@ -1,4 +1,4 @@
-KITA_TYPE="make"
+KITA_TYPE="gnome"
 DEPEND="libgnome fontconfig Linux-PAM"
 #FILES="http://ftp.gnome.org/pub/gnome/sources/gdm/2.20/gdm-2.20.9.tar.bz2"
 BUILD=""

@@ -1,4 +1,4 @@
-KITA_TYPE="make"
+KITA_TYPE="gnome"
 DEPEND="gnome-desktop libwnck gnome-menus libgweather librsvg"
 BUILD=""
 #Paste Build instructions here

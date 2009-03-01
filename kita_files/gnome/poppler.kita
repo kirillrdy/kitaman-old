@@ -1,4 +1,4 @@
-KITA_TYPE="make"
+KITA_TYPE="gnome"
 FILES="http://poppler.freedesktop.org/poppler-0.10.4.tar.gz"
 DEPEND=""
 BUILD=""
