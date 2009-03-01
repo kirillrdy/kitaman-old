@@ -20,6 +20,8 @@
 
 require 'kitaman/kitaman_helper'
 
+# the so called black list needs to be investigated
+# this is caused by lspci and kernel config having different names for module (sometimes)
 kernel_config_file_location = '/usr/src/linux/arch/x86/configs/i386_defconfig'
 BLACK_LIST=["IDE"]
 
@@ -29,10 +31,12 @@ ALWAYS_INSTALL=['REISERFS_FS','EXT4_FS']
 
 class String
 
+  # "dhcio ide".to_colonel == "DHCIO_IDE"
   def to_colonel
     self.upcase.gsub(" ","_")
   end
   
+  # removes items from black list and return remaining
   def white
     temp = self
     for black_item in BLACK_LIST
@@ -42,8 +46,6 @@ class String
   end
   
 end
-
-
 
 list = `lspci -k | grep Kernel`.scan(/(?:.*?)use: (.*?)\n/)
 
