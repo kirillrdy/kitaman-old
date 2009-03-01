@@ -3,22 +3,27 @@ KITA_TYPE="make"
 FILES="http://www.kernel.org/pub/linux/kernel/v2.6/linux-2.6.28.5.tar.bz2"
 DEPEND=""
 BUILD=""
+config_src() 
+{
+echo "nothing"
+}
 build_src()
 {
 cp -rp . /usr/src/linux
 cd /usr/src/linux
 
+# this all section is soo hacky, its because Kernel developers dont always update default config
 make defconfig
 cp /usr/src/linux/.config /usr/src/linux/arch/x86/configs/i386_defconfig
 make mrproper
 
+# Colonel Builder Autoconfig :-)
 colonel
 make defconfig
 #make menuconfig
 make
 make modules_install
 }
-
 
 kita_install(){
 cd /usr/src/linux
