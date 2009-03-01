@@ -1,14 +1,14 @@
 #!/bin/bash
 #
 # Small install script
-
+# needs to be fixed in the future
 
 PREFIX=$1
 
 echo -n "Installing Kitaman ... "
 
 mkdir -p $PREFIX/usr/lib/ruby/1.8/kitaman
-mkdir -p $PREFIX/var/kitaman/{build,install}
+mkdir -p $PREFIX/var/kitaman/{build,install,config_logs}
 mkdir -p $PREFIX/usr/kitaman/{pkg,src,kita_files}
 
 cp kitaman.rb $PREFIX/usr/bin/kitaman
