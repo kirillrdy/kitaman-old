@@ -63,9 +63,13 @@ class Kita
     # build commands here
     result = result and system( build_enviroment  + """
     
-    build_src()
+    config_src()
     {
       ./configure --prefix=/usr
+    }
+    
+    build_src()
+    {  
       make
     }
     
@@ -74,6 +78,7 @@ class Kita
     mkdir -p ${BUILD_DIR}
     cd ${BUILD_DIR}
 
+    config_src > /var/kitaman/config_logs/#{@info['NAME-VER']}
     build_src
     """)
 
@@ -140,9 +145,6 @@ class Kita
    kita_install()
     {
       make DESTDIR=$INSTALL_DIR install
-      
-      #next line is vital for building Gnome Apps
-      make install
     }
 
     #{@info["BUILD"]}

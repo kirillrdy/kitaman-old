@@ -42,7 +42,7 @@ class Kita
   end
 
 
-  # Extracts, patches, builds and packs a package
+   # Extracts, patches, builds and packs a package
   def build
     
     result = extract
@@ -51,9 +51,12 @@ class Kita
     # build commands here
     result = result and system( build_enviroment  + """
     
-    build_src()
+    config_src()
     {
-      ./configure $XORG_CONFIG
+    }
+    
+    build_src()
+    {  
       make
     }
     
@@ -62,6 +65,7 @@ class Kita
     mkdir -p ${BUILD_DIR}
     cd ${BUILD_DIR}
 
+    config_src > /var/kitaman/config_logs/#{@info['NAME-VER']}
     build_src
     """)
 
@@ -72,5 +76,4 @@ class Kita
     end
     
   end
-
 end
