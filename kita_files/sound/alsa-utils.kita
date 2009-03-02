@@ -1,3 +1,3 @@
 KITA_TYPE="make"
-FILES="http://gd.tuwien.ac.at/opsys/linux/alsa/utils/alsa-utils-1.0.18.tar.bz2"
+FILES="http://gd.tuwien.ac.at/opsys/linux/alsa/utils/alsa-utils-1.0.18.tar.bz2 http://www.linuxfromscratch.org/patches/blfs/svn/alsa-utils-1.0.18-no_xmlto-1.patch"
 DEPEND="alsa-lib boot-alsa"

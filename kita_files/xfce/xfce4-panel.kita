@@ -1,10 +1,2 @@
 KITA_TYPE="make"
 DEPEND="glibc gtk+ libX11 libxfce4util startup-notification libwnck"
-BUILD=""
-build_src()
-{
-./configure --prefix=/usr &&
-make
-}
-
-""

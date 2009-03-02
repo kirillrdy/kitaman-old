@@ -1,12 +1,10 @@
 KITA_TYPE="make"
-FILES="ftp://ftp.linux.ee/pub/gentoo/distfiles/distfiles/xine-lib-1.1.15.tar.bz2"
+FILES="http://downloads.sourceforge.net/xine/xine-lib-1.1.16.2.tar.bz2"
 DEPEND="xorg alsa-utils pkg-config"
 BUILD=""
-build_src()
+config_src()
 {
 sed -i 's/\(inline \)\(_x_is_fourcc\)/__\1int \2/' src/xine-engine/buffer.h && 
-./configure --prefix=/usr --docdir=/usr/share/doc/xine-lib-1.1.15 &&
-make
+./configure --prefix=/usr --docdir=/usr/share/doc/xine-lib
 }
-
 ""

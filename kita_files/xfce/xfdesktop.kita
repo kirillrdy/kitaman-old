@@ -1,10 +1,8 @@
 KITA_TYPE="make"
 DEPEND="libX11 libxfce4util libxfcegui4 xfce4-panel"
 BUILD=""
-build_src()
+config_src()
 {
-./configure --prefix=/usr --enable-thunarx --enable-file-icons --enable-exo &&
-make
+./configure --prefix=/usr --enable-thunarx --enable-file-icons --enable-exo
 }
-
 ""

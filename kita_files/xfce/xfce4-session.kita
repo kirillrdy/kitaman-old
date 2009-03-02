@@ -1,10 +1,2 @@
 KITA_TYPE="make"
 DEPEND="gtk+ glib libX11 libxfce4util libxfcegui4"
-BUILD=""
-build_src()
-{
-./configure --prefix=/usr &&
-make
-}
-
-""

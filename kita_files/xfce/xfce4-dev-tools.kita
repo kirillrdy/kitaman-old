@@ -1,10 +1,2 @@
 KITA_TYPE="make"
 DEPEND="autoconf automake gettext libtool pkg-config"
-BUILD=""
-build_src()
-{
-./configure --prefix=/usr &&
-make
-}
-
-""
