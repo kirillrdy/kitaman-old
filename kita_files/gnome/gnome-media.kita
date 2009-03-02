@@ -1,13 +1,12 @@
 KITA_TYPE="gnome"
 BUILD=""
-DEPEND="gstreamer gst-plugins-base gst-plugins-good"
-build_src()
+DEPEND="gstreamer gst-plugins-base gst-plugins-good libcanberra"
+config_src()
 {
 ./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) \
             --sysconfdir=/etc \
             --localstatedir=/var/lib \
             --libexecdir=$(pkg-config \
-                --variable=prefix ORBit-2.0)/lib/gnome-media &&
-make
+                --variable=prefix ORBit-2.0)/lib/gnome-media
 }
 ""

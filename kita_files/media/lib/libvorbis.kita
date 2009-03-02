@@ -1,0 +1,4 @@
+KITA_TYPE="make"
+FILES="http://downloads.xiph.org/releases/vorbis/libvorbis-1.2.0.tar.gz"
+DEPEND="libogg"
+

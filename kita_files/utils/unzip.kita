@@ -3,7 +3,10 @@ VER="552"
 FILES="http://downloads.sourceforge.net/infozip/unzip552.tar.gz"
 DEPEND=""
 BUILD=""
-#Paste Build instructions here
+config_src()
+{
+echo "nothing"
+}
 build_src()
 {
 make -f unix/Makefile LOCAL_UNZIP=-D_FILE_OFFSET_BITS=64 linux

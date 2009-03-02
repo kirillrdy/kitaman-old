@@ -1,14 +1,11 @@
 KITA_TYPE="gnome"
-DEPEND=""
 BUILD=""
-#Paste Build instructions here
-build_src()
+config_src()
 {
 ./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) \
             --sysconfdir=/etc \
             --localstatedir=/var/lib \
             --libexecdir=$(pkg-config \
-                --variable=prefix ORBit-2.0)/lib/eog &&
-make
+                --variable=prefix ORBit-2.0)/lib/eog
 }
 ""

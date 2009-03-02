@@ -3,10 +3,9 @@ FILES="http://poppler.freedesktop.org/poppler-0.10.4.tar.gz"
 DEPEND=""
 BUILD=""
 #Paste Build instructions here
-build_src()
+config_src()
 {
 ./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) \
-            --sysconfdir=/etc 
-make
+            --sysconfdir=/etc
 }
 ""

@@ -1,15 +1,12 @@
 KITA_TYPE="gnome"
 DEPEND="unzip"
 BUILD=""
-#Paste Build instructions here
-build_src()
+config_src()
 {
 ./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) \
             --sysconfdir=/etc \
             --localstatedir=/var/lib \
             --libexecdir=$(pkg-config \
-                --variable=prefix ORBit-2.0)/lib/file-roller \
-                --disable-hal &&
-make
+                --variable=prefix ORBit-2.0)/lib/file-roller
 }
 ""
