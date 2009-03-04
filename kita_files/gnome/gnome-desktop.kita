@@ -4,7 +4,7 @@ BUILD=""
 #Paste Build instructions here
 build_src()
 {
-./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) --sysconfdir=/etc --with-gnome-distributor="Silverpond Pty,Ltd" &&
+./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) --sysconfdir=/etc --with-gnome-distributor="Kitaman" &&
 make
 }
 ""

@@ -10,10 +10,10 @@ http://xorg.freedesktop.org/releases/X11R7.4/src/lib/
 http://xorg.freedesktop.org/releases/X11R7.4/src/app/
 http://xorg.freedesktop.org/releases/X11R7.4/src/font/
 http://xorg.freedesktop.org/releases/X11R7.4/src/driver/
-http://ftp.gnome.org/pub/gnome/platform/2.24/2.24.3/sources/
-http://ftp.gnome.org/pub/gnome/desktop/2.24/2.24.3/sources/
-http://ftp.gnome.org/pub/gnome/bindings/2.24/2.24.3/sources/c++/
-http://ftp.gnome.org/pub/gnome/bindings/2.24/2.24.3/sources/python/
+http://ftp.gnome.org/pub/gnome/platform/2.25/2.25.92/sources/
+http://ftp.gnome.org/pub/gnome/desktop/2.25/2.25.92/sources/
+http://ftp.gnome.org/pub/gnome/bindings/2.25/2.25.92/sources/c++/
+http://ftp.gnome.org/pub/gnome/bindings/2.25/2.25.92/sources/python/
 http://www.linuxfromscratch.org/blfs/downloads/svn/
 http://gstreamer.freedesktop.org/src/gst-plugins-bad/
 http://gstreamer.freedesktop.org/src/gst-plugins-ugly/
