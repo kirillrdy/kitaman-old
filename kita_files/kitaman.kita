@@ -1,0 +1,18 @@
+KITA_TYPE="make"
+DEPEND="ruby" # add rubytree and rake, with all ruby gems dependencies :-(
+VER="bleeding_edge"
+FILES="http://files.kita-linux.org/kitaman-latest.tar.bz2"
+BUILD=""
+config_src()
+{
+echo "Nohing"
+}
+build_src()
+{
+echo "nothing"
+}
+kita_install()
+{
+rake kitaman:install[$INSTALL_DIR]
+}
+""
