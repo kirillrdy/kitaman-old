@@ -2,11 +2,10 @@ KITA_TYPE="make"
 FILES="http://download-east.oracle.com/berkeley-db/db-4.7.25.tar.gz"
 DEPEND="binutils"
 BUILD=""
-build_src()
+config_src()
 {
 cd build_unix
 ../dist/configure --prefix=/usr --enable-compat185 --enable-cxx
-make
 #make docdir=/usr/share/doc/db-4.6.21 install
 }
 kita_install()

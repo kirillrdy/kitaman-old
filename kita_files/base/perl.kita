@@ -2,6 +2,10 @@ KITA_TYPE="make"
 FILES="http://cpan.org/src/perl-5.10.0.tar.gz http://www.linuxfromscratch.org/patches/lfs/development/perl-5.10.0-consolidated-1.patch"
 DEPEND=""
 BUILD=""
+config_src()
+{
+echo "special"
+}
 build_src(){
 echo "127.0.0.1 localhost $(hostname)" > /etc/hosts
 sed -i -e "s|BUILD_ZLIB\s*= True|BUILD_ZLIB = False|"           \
