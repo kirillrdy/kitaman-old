@@ -2,6 +2,10 @@ KITA_TYPE="make"
 FILES="http://www.kernel.org/pub/linux/utils/kernel/hotplug/udev-137.tar.bz2"
 DEPEND=""
 BUILD=""
+config_src()
+{
+echo "nothing"
+}
 build_src(){
 install -dv /lib/{firmware,udev/devices/{pts,shm}}
 mknod -m0666 /lib/udev/devices/null c 1 3

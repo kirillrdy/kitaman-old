@@ -2,6 +2,9 @@ KITA_TYPE="make"
 FILES="http://www.linuxfromscratch.org/lfs/downloads/development/udev-config-20081229.tar.bz2"
 DEPEND=""
 BUILD=""
+config_src(){
+echo "Nothing to do here"
+}
 build_src(){
 echo "Nothing to do here"
 }
