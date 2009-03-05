@@ -8,8 +8,8 @@ config_src()
 groupadd -g 19 haldaemon && useradd -c "HAL Daemon User" -d /dev/null -u 19 -g haldaemon -s /bin/false haldaemon
 ./configure --prefix=/usr \
             --sysconfdir=/etc \
-            --host=Linux \
-            --libexecdir=/usr/lib/hal \            
+            --with-pci-ids=/usr \
+            --libexecdir=/usr/lib/hal \
             --localstatedir=/var
 }
 
