@@ -1,26 +1,23 @@
 # For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
 KITA_TYPE="make"
-#FILES="http://freedesktop.org/~david/dist/hal-0.5.9.1.tar.gz"
-FILES="http://hal.freedesktop.org/releases/hal-0.5.12rc1.tar.bz2"
+FILES="http://hal.freedesktop.org/releases/hal-0.5.12rc1.tar.gz"
 DEPEND="dbus-glib XML-Parser usbutils pciutils PolicyKit"
 BUILD=""
-#Paste Build instructions here
 config_src()
 {
-groupadd -g 442 haldaemon &&
-useradd -c "HAL Daemon User" -d /dev/null -u 19 \
-        -g haldaemon -s /bin/false haldaemon
-
+groupadd -g 19 haldaemon && useradd -c "HAL Daemon User" -d /dev/null -u 19 -g haldaemon -s /bin/false haldaemon
 ./configure --prefix=/usr \
             --sysconfdir=/etc \
+            --host=Linux \
             --libexecdir=/usr/lib/hal \            
             --localstatedir=/var
 }
+
 post_install()
 {
 
-groupadd -g 443 halusers &&
-cat > /etc/dbus-1/system.d/halusers.conf << "EOF"
+groupadd -g 61 halusers &&
+cat > $INSTALL_DIR/etc/dbus-1/system.d/halusers.conf << "EOF"
 <!DOCTYPE busconfig PUBLIC
  "-//freedesktop//DTD D-BUS Bus Configuration 1.0//EN"
  "http://www.freedesktop.org/standards/dbus/1.0/busconfig.dtd">

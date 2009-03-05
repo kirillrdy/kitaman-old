@@ -1,11 +1,10 @@
 KITA_TYPE="make"
-FILES="http://www.kernel.org/pub/linux/utils/util-linux-ng/v2.13/util-linux-ng-2.13.1.tar.bz2"
-DEPEND=""
+FILES="http://www.kernel.org/pub/linux/utils/util-linux-ng/v2.14/util-linux-ng-2.14.2.tar.bz2"
 BUILD=""
-build_src(){
+config_src(){
 sed -e 's@etc/adjtime@var/lib/hwclock/adjtime@g' \
     -i $(grep -rl '/etc/adjtime' .)
 mkdir -pv /var/lib/hwclock
-./configure
+./configure --enable-arch --enable-partx --enable-write
 }
 ""
