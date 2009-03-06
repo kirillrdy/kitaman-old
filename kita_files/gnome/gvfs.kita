@@ -1,7 +1,6 @@
 KITA_TYPE="gnome"
 DEPEND="GConf hal"
 BUILD=""
-#Paste Build instructions here
 config_src()
 {
 ./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) \

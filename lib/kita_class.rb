@@ -57,16 +57,18 @@ class Kita
 
   # Find kita file by package name
   def Kita.find_kita_file(package_name)
-    all_files = `find #{KitamanConfig.config['KITA_FILES_DIR']} -type f`.split("\n")
-    for file in all_files
-      if File.basename(file,".kita") == package_name
-        return file
-      end
+    found_file = `find #{KitamanConfig.config['KITA_FILES_DIR']} -type f | grep /#{package_name}.kita`.split("\n")
+    
+    if found_file.length > 1
+      puts "More than one kita file is found for #{package_name}".red.bold
+      exit
     end
     
-    puts "Cant find kitafile for \'#{package_name}\'".bold.red
-    exit
-    return nil
+    return found_file[0]
+    
+    #puts "Cant find kitafile for \'#{package_name}\'".bold.red
+    #exit
+    #return nil
   end
 
   # Get version from source file

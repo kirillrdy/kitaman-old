@@ -1,0 +1,8 @@
+KITA_TYPE="make"
+FILES="http://jaist.dl.sourceforge.net/sourceforge/freeglut/freeglut-2.4.0.tar.gz"
+BUILD=""
+config_src()
+{
+./configure --prefix=/usr --enable-warnings=no
+}
+""

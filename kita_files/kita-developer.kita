@@ -1,3 +1,2 @@
 KITA_TYPE="meta"
-DEPEN="kita-desktop git monodevelopp"
-
+DEPEND="kita-desktop git monodevelop"
