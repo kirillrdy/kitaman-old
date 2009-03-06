@@ -58,7 +58,6 @@ class Kita
   # Find kita file by package name
   def Kita.find_kita_file(package_name)
     found_file = `find #{KitamanConfig.config['KITA_FILES_DIR']} -type f | grep /#{package_name}.kita`.split("\n")
-    
     if found_file.length > 1
       puts "More than one kita file is found for #{package_name}".red.bold
       exit

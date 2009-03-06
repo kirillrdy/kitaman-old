@@ -2,12 +2,16 @@ KITA_TYPE="make"
 FILES="http://prdownloads.sourceforge.net/flex/flex-2.5.35.tar.bz2"
 DEPEND=""
 BUILD=""
-build_src(){
-rm /usr/bin/lex
-rm /usr/bin/flex
-./configure --prefix=/usr
-make
-make check
+config_src()
+{
+  rm /usr/bin/lex
+  rm /usr/bin/flex
+  ./configure --prefix=/usr
+}
+build_src()
+{
+  make
+  make check
 }
 post_install(){
 cat > /usr/bin/lex << "EOF"

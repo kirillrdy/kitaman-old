@@ -2,7 +2,7 @@ KITA_TYPE="gnome"
 DEPEND="gnome-panel libgtop"
 BUILD=""
 #Paste Build instructions here
-build_src()
+config_src()
 {
 ./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) \
             --sysconfdir=/etc \
@@ -10,7 +10,6 @@ build_src()
             --libexecdir=$(pkg-config \
                 --variable=prefix ORBit-2.0)/lib/gnome-utils \
             --mandir=$(pkg-config \
-                --variable=prefix ORBit-2.0)/share/man &&
-make
+                --variable=prefix ORBit-2.0)/share/man
 }
 ""
