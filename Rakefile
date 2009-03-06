@@ -6,8 +6,12 @@ namespace :kitaman do
     `
       mkdir -p #{args.prefix}/usr/bin
       mkdir -p #{args.prefix}/etc
-      mkdir -p #{args.prefix}/var/kitaman/{build,install,config_logs}
-      mkdir -p #{args.prefix}/usr/kitaman/{pkg,src,kita_files}
+      mkdir -p #{args.prefix}/var/kitaman/build
+      mkdir -p #{args.prefix}/var/kitaman/install
+      mkdir -p #{args.prefix}/var/kitaman/config_logs
+      mkdir -p #{args.prefix}/usr/kitaman/pkg
+      mkdir -p #{args.prefix}/usr/kitaman/src,
+      mkdir -p #{args.prefix}/usr/kitaman/kita_files
       mkdir -p #{args.prefix}/usr/lib/ruby/1.9.1/kitaman
 
       cp kitaman.rb #{args.prefix}/usr/bin/kitaman
@@ -19,7 +23,7 @@ namespace :kitaman do
       cp etc/kitaman.repos #{args.prefix}/etc/
       cp -r kita_files #{args.prefix}/usr/kitaman/
     `
-        
+     puts args.prefix   
   end
 
   task :release do
