@@ -12,6 +12,7 @@ build_src()
 }
 kita_install()
 {
+make DESTDIR=$INSTALL_DIR install
 mkdir -p $INSTALL_DIR/etc/sysconfig
 cat > $INSTALL_DIR/etc/sysconfig/clock << "EOF"
 # Begin /etc/sysconfig/clock

@@ -1,3 +1,13 @@
 KITA_TYPE="make"
 FILES="http://download.blender.org/source/blender-2.48a.tar.gz"
-DEPEND=""
+DEPEND="scons"
+BUILD=""
+config_src()
+{ 
+echo "nothing"
+}
+build_src()
+{
+scons
+}
+""
