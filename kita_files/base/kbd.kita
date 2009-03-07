@@ -2,7 +2,7 @@ KITA_TYPE="make"
 FILES="http://ftp.altlinux.com/pub/people/legion/kbd/kbd-1.15.tar.gz http://www.linuxfromscratch.org/patches/lfs/development/kbd-1.15-backspace-1.patch"
 DEPEND=""
 BUILD=""
-build_src(){
+config_src(){
 sed -i -e '1i KEYCODES_PROGS = @KEYCODES_PROGS@' \
     -e '1i RESIZECONS_PROGS = @RESIZECONS_PROGS@' src/Makefile.in
 var=OPTIONAL_PROGS
@@ -12,7 +12,6 @@ unset var
 
 # refer to LFS for more details
 #./configure --datadir=/lib/kbd
-make
 }
 
 post_install(){

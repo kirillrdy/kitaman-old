@@ -2,10 +2,16 @@ KITA_TYPE="make"
 FILES="http://www.linuxfromscratch.org/lfs/downloads/development/lfs-bootscripts-20090102.tar.bz2"
 DEPEND=""
 BUILD=""
+config_src()
+{
+echo "This package is special"
+}
 build_src()
 {
   echo This package is special
-
+}
+kita_install()
+{
 mkdir -p $INSTALL_DIR/etc/sysconfig
 cat > $INSTALL_DIR/etc/sysconfig/clock << "EOF"
 # Begin /etc/sysconfig/clock

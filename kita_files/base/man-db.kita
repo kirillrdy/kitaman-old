@@ -2,7 +2,7 @@ KITA_TYPE="make"
 FILES="http://savannah.nongnu.org/download/man-db/man-db-2.5.0.tar.gz"
 DEPEND=""
 BUILD=""
-build_src(){
+config_src(){
 sed -i -e '\%\t/usr/man%d' -e '\%\t/usr/local/man%d' src/man_db.conf.in
 cat >> include/manconfig.h.in << "EOF"
 #define WEB_BROWSER "exec /usr/bin/lynx"
@@ -11,6 +11,5 @@ cat >> include/manconfig.h.in << "EOF"
 #define GRAP "/usr/bin/grap"
 EOF
 ./configure --prefix=/usr --enable-mb-groff --disable-setuid
-make
 }
 ""

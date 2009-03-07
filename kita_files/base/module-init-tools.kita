@@ -2,13 +2,11 @@ KITA_TYPE="make"
 FILES="http://www.kernel.org/pub/linux/utils/kernel/module-init-tools/module-init-tools-3.5.tar.bz2"
 DEPEND=""
 BUILD=""
-build_src(){
+config_src(){
 #./configure
 #make check
 #make clean
 ./configure --prefix=/ --enable-zlib --mandir=/usr/share/man
-
-make
 }
 
 kita_install()

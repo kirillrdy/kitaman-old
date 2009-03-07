@@ -1,14 +1,8 @@
 KITA_TYPE="make"
 FILES="ftp://alpha.gnu.org/gnu/grub/grub-0.97.tar.gz http://www.linuxfromscratch.org/patches/lfs/development/grub-0.97-disk_geometry-1.patch http://www.linuxfromscratch.org/patches/lfs/development/grub-0.97-256byte_inode-1.patch"
-DEPEND=""
 BUILD=""
-build_src(){
-./configure --prefix=/usr
-make
-#make check
-}
-
-post_install(){
+post_install()
+{
 mkdir -pv /boot/grub
 cp -v /usr/lib/grub/i386-pc/stage{1,2} /boot/grub/
 }

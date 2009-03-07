@@ -2,6 +2,10 @@ KITA_TYPE="make"
 FILES="http://developer.osdl.org/dev/iproute2/download/iproute2-2.6.23.tar.bz2"
 DEPEND=""
 BUILD=""
+config_src(){
+echo "nothing"
+}
+
 build_src(){
 make SBINDIR=/sbin
 }

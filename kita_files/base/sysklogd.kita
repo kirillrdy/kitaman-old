@@ -2,6 +2,9 @@ KITA_TYPE="make"
 FILES="http://www.infodrom.org/projects/sysklogd/download/sysklogd-1.5.tar.gz"
 DEPEND=""
 BUILD=""
+config_src(){
+echo "nothing"
+}
 build_src(){
 make
 }

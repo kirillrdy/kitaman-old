@@ -1,10 +1,13 @@
 KITA_TYPE="make"
 FILES="ftp://ftp.vim.org/pub/vim/unix/vim-7.2.tar.bz2"
 BUILD=""
-build_src()
+config_src()
 {
 echo '#define SYS_VIMRC_FILE "/etc/vimrc"' >> src/feature.h
 ./configure --prefix=/usr --enable-multibyte
+}
+build_src()
+{
 make
 
 mkdir -p $INSTALL_DIR/etc

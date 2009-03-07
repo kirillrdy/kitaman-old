@@ -1,2 +1,2 @@
 KITA_TYPE="make"
-FILES="ftp://ftp.gnutls.org/pub/gnutls/gnutls-2.2.2.tar.bz2"
+FILES="ftp://ftp.gnu.org/pub/gnu/gnutls/gnutls-2.2.4.tar.bz2"

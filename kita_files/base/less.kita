@@ -1,9 +1,7 @@
 KITA_TYPE="make"
 FILES="http://www.greenwoodsoftware.com/less/less-416.tar.gz"
-DEPEND=""
 BUILD=""
-build_src(){
+config_src(){
 ./configure --prefix=/usr --sysconfdir=/etc
-make
 }
 ""

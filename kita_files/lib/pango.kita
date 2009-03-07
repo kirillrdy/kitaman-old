@@ -1,9 +1,8 @@
 KITA_TYPE="make"
 DEPEND="glib cairo xorg fontconfig"
 BUILD=""
-build_src(){
-./configure --prefix=/usr --sysconfdir=/etc &&
-make
+config_src(){
+./configure --prefix=/usr --sysconfdir=/etc
 }
 post_install()
 {

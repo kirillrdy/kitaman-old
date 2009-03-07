@@ -1,15 +1,13 @@
 KITA_TYPE="make"
 FILES="ftp://ftp.iinet.com.au/linux/Gentoo/distfiles/shadow-4.1.2.1.tar.bz2"
-DEPEND=""
 BUILD=""
-build_src(){
+config_src(){
 sed -i 's/groups$(EXEEXT) //' src/Makefile.in
 find man -name Makefile.in -exec sed -i 's/groups\.1 / /' {} \;
 sed -i -e 's/ ko//' -e 's/ zh_CN zh_TW//' man/Makefile.in
 sed -i -e 's@#ENCRYPT_METHOD DES@ENCRYPT_METHOD MD5@' \
        -e 's@/var/spool/mail@/var/mail@' etc/login.defs
 ./configure --sysconfdir=/etc
-make
 }
 
 post_install(){

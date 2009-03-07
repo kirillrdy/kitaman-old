@@ -1,7 +1,9 @@
 KITA_TYPE="make"
 FILES="http://sethwklein.net/iana-etc-2.30.tar.bz2"
-DEPEND=""
 BUILD=""
+config_src(){
+echo "nothing"
+}
 build_src(){
 make
 }
