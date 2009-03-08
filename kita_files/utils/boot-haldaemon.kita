@@ -1,6 +1,5 @@
 KITA_TYPE="make"
-FILES="http://www.linuxfromscratch.org/blfs/downloads/svn/blfs-bootscripts-20080816.tar.bz2"
-DEPEND=""
+FILES="http://www.linuxfromscratch.org/blfs/downloads/svn/blfs-bootscripts-20090302.tar.bz2"
 BUILD=""
 #Paste Build instructions here
 build_src()

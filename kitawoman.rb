@@ -31,7 +31,6 @@ WORK_DIR = "/mnt/pariah"
 STAGE2_FILE = "/home/kirillvr/Desktop/stage2-x86-2007.0.tar.bz2"
 SRC_CACHE_DIR = "/home/kirillvr/Desktop/src"
 RUBY_SRC_PATH = "/home/kirillvr/Desktop/ruby-1.9.1-p0.tar.bz2"
-KITMAN_GIT_REPO= 'git@kita-linux.org:kitaman.git'
 
 def clean_working_dir
 `
@@ -67,10 +66,7 @@ end
 
 def install_kitaman
 `
-  cd /tmp
-  git clone #{KITMAN_GIT_REPO}
-  cd kitaman
-  ./install.sh #{WORK_DIR}
+  rake kitaman:install['#{WORK_DIR}']
 `
 end
 

@@ -58,6 +58,11 @@ class Kita
   # Find kita file by package name
   def Kita.find_kita_file(package_name)
     found_file = `find #{KitamanConfig.config['KITA_FILES_DIR']} -type f | grep /#{package_name}.kita`.split("\n")
+    if found_file.length == 0
+      puts "No kitafile found for \'#{package_name}\'".red.bold
+      exit
+    end
+
     if found_file.length > 1
       puts "More than one kita file is found for #{package_name}".red.bold
       exit
@@ -65,9 +70,6 @@ class Kita
     
     return found_file[0]
     
-    #puts "Cant find kitafile for \'#{package_name}\'".bold.red
-    #exit
-    #return nil
   end
 
   # Get version from source file
@@ -101,7 +103,7 @@ class Kita
     File.exist?(KitamanConfig.config['STATE_DIR']+'/'+@info['NAME-VER'])
   end
 
-  # Checks if package is build (sorry i know its build not builded, i had good reason to do so)
+  # Checks if package is build (sorry i know its built not builded, i had good reason to do so)
   def builded?
     File.exist?(KitamanConfig.config['PKG_DIR']+'/'+@info['NAME-VER']+'-bin.tar.bz2')
   end

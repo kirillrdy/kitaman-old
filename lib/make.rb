@@ -116,7 +116,7 @@ class Kita
   def install
     if not system(build_enviroment + """
       
-      tar xjpf #{paths[:tar_bin_file]} -C /
+      tar xjpf #{paths[:tar_bin_file]} -C #{ENV['KITAMAN_INSTALL_PREFIX']}/
 
       post_install()
       {
