@@ -5,7 +5,8 @@ DEPEND="dbus-glib XML-Parser usbutils pciutils PolicyKit"
 BUILD=""
 config_src()
 {
-groupadd -g 19 haldaemon && useradd -c "HAL Daemon User" -d /dev/null -u 19 -g haldaemon -s /bin/false haldaemon
+groupadd -g 29 haldaemon
+useradd -c "HAL Daemon User" -d /dev/null -u 29 -g haldaemon -s /bin/false haldaemon
 ./configure --prefix=/usr \
             --sysconfdir=/etc \
             --with-pci-ids=/usr \
@@ -15,8 +16,8 @@ groupadd -g 19 haldaemon && useradd -c "HAL Daemon User" -d /dev/null -u 19 -g h
 
 post_install()
 {
+groupadd -g 61 halusers
 
-groupadd -g 61 halusers &&
 cat > $INSTALL_DIR/etc/dbus-1/system.d/halusers.conf << "EOF"
 <!DOCTYPE busconfig PUBLIC
  "-//freedesktop//DTD D-BUS Bus Configuration 1.0//EN"
