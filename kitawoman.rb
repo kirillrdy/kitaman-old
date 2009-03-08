@@ -30,59 +30,120 @@
 WORK_DIR = "/mnt/pariah"
 STAGE2_FILE = "/home/kirillvr/Desktop/stage2-x86-2007.0.tar.bz2"
 SRC_CACHE_DIR = "/home/kirillvr/Desktop/src"
-RUBY_SRC_PATH = "/home/kirillvr/Desktop/ruby-1.9.1-p0.tar.bz2"
 
-def clean_working_dir
-`
-  mkdir -p #{WORK_DIR}
-  cd #{WORK_DIR}
+class Kitababy
+  attr :commit
+  attr :root_dir
+  
+  def initialize(commit)
+    @commit = commit
+    date =`date +%Y%m%d`.delete "\n" 
+    @root_dir = "#{WORK_DIR}/#{date}-#{@commit}" 
+  end
 
-  umount #{WORK_DIR}/proc
-  rm -rf *
-`
-end
+  def mark_complete
+    `touch #{@WORK_DIR}/#{@commit}`
+  end
 
-def compile_ruby
+  def complite?
+    File.exists!("#{WORK_DIR}/#{@commit}")
+  end
+
+
+ def clean_working_dir
   `
-  cd #{WORK_DIR}
-  tar xjpf #{RUBY_SRC_PATH} -C #{WORK_DIR}/root/
-  cp /home/kirillvr/Desktop/kitaman/build_ruby.sh #{WORK_DIR}/root
+    mkdir -p #{@root_dir}
+    cd #{@root_dir}
+
+    umount #{@root_dir}/proc
+    rm -rf *
   `
-  `chroot #{WORK_DIR} /root/build_ruby.sh`
-  #chroot #{WORK_DIR} '/bin/bash cd /root/ruby* && ./configure --prefix=/usr && make && make install'
-   
+  end
+
+  def install_kitaman
+  `
+    cd #{WORK_DIR}/kitaman
+    rake kitaman:install['#{@root_dir}']
+  `
+  end
+
+
+  def install_ruby
+    system("export KITAMAN_INSTALL_PREFIX=#{@root_dir} && kitaman -qf ruby")
+  end
+
+  def prepare_new_chroot
+  `
+  cd #{@root_dir}
+  tar xjpf #{STAGE2_FILE}
+  mount -t proc none proc
+  cp /etc/resolv.conf #{@root_dir}/etc
+  mkdir -p #{@root_dir}/usr/kitaman/src
+  cp #{SRC_CACHE_DIR}/* #{@root_dir}/usr/kitaman/src/
+  `
+  end
+
+
 end
 
-def prepare_new_chroot
-`
-cd #{WORK_DIR}
-tar xjpf #{STAGE2_FILE}
-mount -t proc none proc
-cp /etc/resolv.conf #{WORK_DIR}/etc
-mkdir -p #{WORK_DIR}/usr/kitaman/src
-cp #{SRC_CACHE_DIR}/* #{WORK_DIR}/usr/kitaman/src/
-`
+
+
+class Kitawoman
+
+  def get_latest_commit(repo = "#{WORK_DIR}/kitaman")
+    `cd #{repo} && git show`.scan(/commit (.*?)\n/)[0][0]
+  end
+
+
+  def execute_in_chroot(string)
+    `cat > #{WORK_DIR}/tmp/script.sh  << EOF
+  #!/bin/bash
+  #{string}
+    `
+    `chmod +x #{WORK_DIR}/tmp/script.sh`
+    `chroot #{WORK_DIR} /tmp/script.sh`
+  end
+
+ 
+  def get_latest_kitaman
+    if File.exists? "#{WORK_DIR}/kitaman"
+      system("cd #{WORK_DIR}/kitaman && git pull")
+    else
+      system("cd #{WORK_DIR} && git clone git@kita-linux.org:kitaman.git")
+    end
+    
+  end
+
+ 
+
 end
 
-def install_kitaman
-`
-  rake kitaman:install['#{WORK_DIR}']
-`
-end
 
 
 #################################################################################
 # Entry Point
 #################################################################################
 
-puts "Cleaning Working Directory"
-clean_working_dir
+#clean_working_dir
 
-puts "Preparing new Chroot"
-prepare_new_chroot
+#prepare_new_chroot
 
-puts "Installing Kitaman"
-install_kitaman
+#install_kitaman
 
-puts "Compiling Ruby"
-compile_ruby
+#install_ruby
+
+
+kitawoman = Kitawoman.new
+kitawoman.get_latest_kitaman
+
+baby = Kitababy.new(kitawoman.get_latest_commit)
+#baby.clean_working_dir
+#baby.prepare_new_chroot
+#baby.install_ruby
+#baby.install_kitaman
+
+actions = [:clean_working_dir,:prepare_new_chroot,:install_ruby,:install_kitaman]
+for action in actions
+  puts action
+  baby.send action
+end
