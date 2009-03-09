@@ -46,6 +46,11 @@ def update_src_files_database
 
 end
 
+def kita_error(string)
+  puts string.bold.red
+  exit 1
+end
+
 class KitamanConfig
   
   def KitamanConfig.config 

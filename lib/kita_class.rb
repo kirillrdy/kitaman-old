@@ -59,13 +59,11 @@ class Kita
   def Kita.find_kita_file(package_name)
     found_file = `find #{KitamanConfig.config['KITA_FILES_DIR']} -type f | grep /#{package_name}.kita`.split("\n")
     if found_file.length == 0
-      puts "No kitafile found for \'#{package_name}\'".red.bold
-      exit
+      kita_error "No kitafile found for \'#{package_name}\'"
     end
 
     if found_file.length > 1
-      puts "More than one kita file is found for #{package_name}".red.bold
-      exit
+      kita_error "More than one kita file is found for #{package_name}"
     end
     
     return found_file[0]

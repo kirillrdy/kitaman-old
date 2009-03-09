@@ -145,7 +145,7 @@ class Kitawoman
   #{string}
     `
     `chmod +x #{dir}/tmp/script.sh`
-    `chroot #{dir} /tmp/script.sh`
+    system("chroot #{dir} /tmp/script.sh")
   end
 
   def execute_actions(kita_baby)

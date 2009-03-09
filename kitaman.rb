@@ -145,8 +145,7 @@ class Kitaman
     if (!kita_object.send("#{action}ed?".to_sym) and @options[action]) or (@options[:force] and @options[action])
       puts "Starting to #{action} #{name_version} ... ".green
       if not kita_object.send(action.to_sym)
-        puts "Panic While Trying to #{action} #{name_version}".red.bold
-        exit
+        kita_error "Panic While Trying to #{action} #{name_version}"
       end
       puts "Finished #{action}ing #{name_version}".blue.bold
       puts "\n"
@@ -158,13 +157,11 @@ class Kitaman
    def load_needed_module(file)
     
     if not Kita.find_kita_file(file)
-      puts  "no kita file found for #{file}".red.bold
-      exit
+      kita_error "no kita file found for #{file}"      
     end
     scanned_file = IO.read(Kita.find_kita_file(file)).scan(/KITA_TYPE="(.*?)"/)
     if not scanned_file[0] or not load('kitaman/'+ scanned_file[0][0]+'.rb')
-      puts "No MODULE found for #{Kita.find_kita_file(file)}".red.bold
-      exit
+      kita_error "No MODULE found for #{Kita.find_kita_file(file)}"
     end
   end
 
