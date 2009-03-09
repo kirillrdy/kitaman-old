@@ -18,14 +18,54 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-################################################################################
+#########################################################################################
 # If there is a kitaman, there got to be kitawoman.
 # Kitaman's job to work on kitafiles, build your system
 # Kitawoman's job is to do all the house work, look after the state of kitaworld
 # Written by Kirill Radzikhovskyy <kirillrdy@silverpond.com.au>
 # Silverpond Pty Ltd
 # 2009
-################################################################################
+#########################################################################################
+#
+#                         :xkkko;          .';;.                                                            
+#                        ,kkkOOOOO.      .okkkkO,                                                           
+#                        oO000KKKNdcodo;,O000000o                                                           
+#                        xKXXNNWWMNNNNNNNWWNNXXXo                                                           
+#                        oNWW0xo:;,'..';cokKWMWW;                           ..';........                    
+#                        'l.                 'lk                       .....    ....   .'...                
+#                     ...                       ..                  ...              ....   ...             
+#                    ..                           .'               ,.                   .,:,.  ..           
+#                   ,                              .;            .c'...                    .;,   '.         
+#                  '                               .:,          .dlc:,'.                          '         
+#                  ,                             ..':d          lxxdlc;'..                         ,        
+#                 .,.......''','.     ..'.''......';ck'        .K0Okxoc;,.......'....      .....   ;        
+#                 ',......';::;.........,;:,....',;cdOc        ,NNXKOkdl:;,'....;::,........:::'...;.       
+#                 .l;;;;;,,,,,,,,,'''',,,,,,,,;;:coxOXc        ;MMWNXKOxdlc:;;,,,,,,,'''''',,,,,,,,l        
+#                  lllllcccccccc::::::::cccccclloxkKXW,        .MMMMWNXKOkdollccccc::::;::::cccccco,        
+#                  'xdddddoooooollcccclloodddddxO0XWMX          OMMMMMWNXKOkxddddooolcccclloooooox;         
+#                   :kkkkkxxdxO0kddooodxO00xxkOKXWMMW,          .XMMMMMMWNXK0kxdOKOkddoodkOOxdxkx.          
+#                    'kOkOOOOkxk000KK0000OkO0KXXWMMO.             dMMMMMMWNXKK00kO0K00OO0OkxkkOc            
+#                      dkkkkO00KXNXK0KNWNXKK0KKNMMK                OWMMMMNXK0000KXNNNKKXXK0Okk'             
+#                     ,;codkOOO0000KKK0000000KKXNN0o.            .ok0XNNNXK000OOOOOOOOOOOOkkxo.             
+#                    ;'cllldxxxxxxxxxxxxkkkkkOOKNN0kx'          .xxk0NWNK0Okxxxxddddddddddolxc:.            
+#                   ;:xKNd,;;::ccccccccccccccloxXWWXOd          l00XNWMXOxdollcccccccccc:::;XXx'            
+#                   .dko,:..''',,,,,,,,,,,,,,;:lk.,ll.           ::..WN0xolc::::;;;;;;;;;,,':'.             
+#                       ,.........''''''''''',,:lo                  'X0kdlc:;;;;;,,,,,,,,,'',               
+#                      ., ...................'',:o;                 :0Oxoc:;;,,,,,,,,,,''''.,               
+#                      ,  .....................',:d.                oOkdlc;;,,,,,,,''''''''.;               
+#                     ..  ......................';cl                kkxol:;,,,,,''''''''''..:               
+#                     ,   .......................,;o'              .Oxdlc;,,,'''''''''''''..,.              
+#                    '.  ........................',:o              ;xxol:;,'''''',,,,,'''....,              
+#                    , ..........................',:d.             :xdoc:,,'''',,;:c:;,,''...,              
+#                    :,......................'',:llc:.           ..'kkdl:;,,,,;cdOKXKkoc:;,,;,              
+#                     .;xdoolllllllllloooddddxxk0Xdc;,'..........',co0NX0kxdxOKWMMMMMMNX0Okxl..             
+#                   .':oOXK000KNWMMMMMMMMMWNXXNWMN0xl:;''.........',:lxOKXNNNNXXXKKKK0000Oxl:,..            
+#                  ..,:ok0XNWWWWWWWWWWWWWNNNXXK0kdl:;,'..................',,,,;;;;;,,,''......              
+#                   ....',;::cccllllllllcc::;;,,'.......                                                    
+#                            .................                                                              
+#
+
+
 
 WORK_DIR = "/mnt/pariah"
 STAGE2_FILE = "/home/kirillvr/Desktop/stage2-x86-2007.0.tar.bz2"
@@ -69,7 +109,7 @@ class Kitababy
 
 
   def install_ruby
-    system("export KITAMAN_INSTALL_PREFIX=#{@root_dir} && kitaman -qf ruby")
+    system("export KITAMAN_INSTALL_PREFIX=#{@root_dir} && kitaman -qf glibc ruby")
   end
 
   def prepare_new_chroot
@@ -114,8 +154,6 @@ class Kitawoman
     
   end
 
- 
-
 end
 
 
@@ -137,12 +175,9 @@ kitawoman = Kitawoman.new
 kitawoman.get_latest_kitaman
 
 baby = Kitababy.new(kitawoman.get_latest_commit)
-#baby.clean_working_dir
-#baby.prepare_new_chroot
-#baby.install_ruby
-#baby.install_kitaman
 
 actions = [:clean_working_dir,:prepare_new_chroot,:install_ruby,:install_kitaman]
+
 for action in actions
   puts action
   baby.send action

@@ -1,11 +1,10 @@
 KITA_TYPE="make"
 DEPEND="webkit iso-codes"
 BUILD=""
-build_src()
+config_src()
 {
 ./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) \
             --sysconfdir=/etc \
-            --with-engine=webkit &&
-make
+            --with-engine=webkit
 }
 ""
