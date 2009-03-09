@@ -183,5 +183,5 @@ for argument in ARGV
 end
 
 kitaman.show_actions_to_be_taken
-#kitaman.traverse_tree_for_print
+
 kitaman.run

@@ -85,8 +85,12 @@ class Kitababy
     `touch #{@WORK_DIR}/#{@commit}`
   end
 
+  def setup?
+    File.exists?("#{@root_dir}")
+  end
+
   def complite?
-    File.exists!("#{WORK_DIR}/#{@commit}")
+    File.exists?("#{WORK_DIR}/#{@commit}")
   end
 
 
@@ -135,17 +139,25 @@ class Kitawoman
   end
 
 
-  def execute_in_chroot(string)
-    `cat > #{WORK_DIR}/tmp/script.sh  << EOF
+  def execute_in_chroot(dir,string)
+    `cat > #{dir}/tmp/script.sh  << EOF
   #!/bin/bash
   #{string}
     `
-    `chmod +x #{WORK_DIR}/tmp/script.sh`
-    `chroot #{WORK_DIR} /tmp/script.sh`
+    `chmod +x #{dir}/tmp/script.sh`
+    `chroot #{dir} /tmp/script.sh`
   end
 
+  def execute_actions(kita_baby)
+    actions = [:clean_working_dir,:prepare_new_chroot,:install_ruby,:install_kitaman]
+
+    for action in actions
+      puts action
+      kita_baby.send action
+    end
+  end
  
-  def get_latest_kitaman
+  def Kitawoman.get_latest_kitaman
     if File.exists? "#{WORK_DIR}/kitaman"
       system("cd #{WORK_DIR}/kitaman && git pull")
     else
@@ -172,13 +184,13 @@ end
 
 
 kitawoman = Kitawoman.new
-kitawoman.get_latest_kitaman
+Kitawoman.get_latest_kitaman
 
 baby = Kitababy.new(kitawoman.get_latest_commit)
 
-actions = [:clean_working_dir,:prepare_new_chroot,:install_ruby,:install_kitaman]
+kitawoman.execute_actions(baby) if not baby.setup?
 
-for action in actions
-  puts action
-  baby.send action
-end
+
+kitawoman.execute_in_chroot(baby.root_dir,'kitaman -q base')
+kitawoman.execute_in_chroot(baby.root_dir,'kitaman -q xorg')
+kitawoman.execute_in_chroot(baby.root_dir,'kitaman -q kita-developer')
