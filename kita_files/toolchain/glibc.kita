@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="ftp://ftp.lfs-matrix.net/pub/lfs/lfs-packages/development/glibc-2.8-20080929.tar.bz2 http://www.linuxfromscratch.org/patches/lfs/development/glibc-2.8-20080929-iconv_tests-1.patch http://www.linuxfromscratch.org/patches/lfs/development/glibc-2.8-20080929-ildoubl_test-1.patch"
+FILES="ftp://ftp.lfs-matrix.net/pub/lfs/lfs-packages/development/glibc-2.9.tar.gz http://www.linuxfromscratch.org/patches/lfs/development/glibc-2.9-ildoubl_test-1.patch"
 DEPEND=""
 BUILD=""
 config_src()

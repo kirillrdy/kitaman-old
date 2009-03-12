@@ -78,7 +78,7 @@ class Kitababy
   def initialize(commit)
     @commit = commit
     date =`date +%Y%m%d`.delete "\n" 
-    @root_dir = "#{WORK_DIR}/{@commit}" 
+    @root_dir = "#{WORK_DIR}/#{@commit}" 
   end
 
   def mark_complete
