@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 
-#    Kitaman - Software Project Manager
+#    Kitawoman - A Manager for Software Project Manager
 #    /-Promise to a little girl and a big world-/
 #
 #    Copyright (C) 2009  Kirill Radzikhovskyy <kirillrdy@silverpond.com.au>
@@ -67,7 +67,7 @@
 
 
 
-WORK_DIR = "/mnt/pariah"
+WORK_DIR = "/mnt/kitawoman"
 STAGE2_FILE = "/home/kirillvr/Desktop/stage2-x86-2007.0.tar.bz2"
 SRC_CACHE_DIR = "/home/kirillvr/Desktop/src"
 
@@ -78,21 +78,16 @@ class Kitababy
   def initialize(commit)
     @commit = commit
     date =`date +%Y%m%d`.delete "\n" 
-    @root_dir = "#{WORK_DIR}/#{date}-#{@commit}" 
+    @root_dir = "#{WORK_DIR}/{@commit}" 
   end
 
   def mark_complete
-    `touch #{@WORK_DIR}/#{@commit}`
+    `touch #{WORK_DIR}/#{@commit}/done`
   end
 
   def setup?
     File.exists?("#{@root_dir}")
   end
-
-  def complite?
-    File.exists?("#{WORK_DIR}/#{@commit}")
-  end
-
 
  def clean_working_dir
   `
@@ -126,7 +121,6 @@ class Kitababy
   cp #{SRC_CACHE_DIR}/* #{@root_dir}/usr/kitaman/src/
   `
   end
-
 
 end
 
@@ -190,7 +184,7 @@ baby = Kitababy.new(kitawoman.get_latest_commit)
 
 kitawoman.execute_actions(baby) if not baby.setup?
 
-
+# TODO: move targets to config file
 kitawoman.execute_in_chroot(baby.root_dir,'kitaman -q base')
 kitawoman.execute_in_chroot(baby.root_dir,'kitaman -q xorg')
 kitawoman.execute_in_chroot(baby.root_dir,'kitaman -q kita-developer')

@@ -32,6 +32,19 @@ class Kita
     self.info['NAME-VER']
   end
   
+  # Find kita file by package name
+  def Kita.find_kita_file(package_name)
+    found_file = `find #{KitamanConfig.config['KITA_FILES_DIR']} -type f | grep /#{package_name}.kita`.split("\n")
+    if found_file.length == 0
+      kita_error "No kitafile found for \'#{package_name}\'"
+    elsif found_file.length > 1
+      kita_error "More than one kita file is found for #{package_name}"
+    else
+      return found_file[0]
+    end
+        
+  end
+  
   # Creates Kita object and parses all the information
   def initialize(kita_file)
     
@@ -54,35 +67,54 @@ class Kita
     @info["BUILD"] = IO.read(kita_file).scan(/BUILD=""(.*?)""/m)[0][0] if @info['BUILD']
 
   end
-
-  # Find kita file by package name
-  def Kita.find_kita_file(package_name)
-    found_file = `find #{KitamanConfig.config['KITA_FILES_DIR']} -type f | grep /#{package_name}.kita`.split("\n")
-    if found_file.length == 0
-      kita_error "No kitafile found for \'#{package_name}\'"
+   
+  # Downloads all files in FILES var, returns True if all files downloaded successfully
+  def download
+    success=true
+    for file in @info["FILES"] 
+      success = (success and system("wget -c #{file} -O #{KitamanConfig.config['SRC_DIR']}/#{File.basename(file)}"))
     end
-
-    if found_file.length > 1
-      kita_error "More than one kita file is found for #{package_name}"
-    end
-    
-    return found_file[0]
-    
+    return success
   end
 
-  # Get version from source file
-  def get_version
-    if @info['FILES']!=[]
-      ver = @info['FILES'][0].version
-    else
-      ver = "0.0"
+  # Checks if all files are downloaded
+  def downloaded?
+    results = true
+    for file in files_list_local 
+      results = (results and not File.size?(file).in [0,nil])
     end
-    return ver
+    return results
   end
 
-  # Create a state file meaning that package is installed
-  def record_installed
-    `touch #{KitamanConfig.config['STATE_DIR']}/#{@info['NAME-VER']}`
+  # This is a mirror method needed for execute_action on Kitaman class
+  def builded?
+    built?    
+  end
+  
+  def built?
+    File.exist?(KitamanConfig.config['PKG_DIR']+'/'+@info['NAME-VER']+'-bin.tar.bz2')
+  end
+
+  # Checks if package is installed
+  def installed?
+    File.exist?(KitamanConfig.config['STATE_DIR']+'/'+@info['NAME-VER'])
+  end
+
+  # Things that none should see
+  private
+
+  # Returns a list of URLS of source files to be downloaded
+  def files_list_to_download
+    @info['FILES']
+  end
+  
+    # Returns a list of full paths to local source files belonging to package
+  def files_list_local
+    list=[]
+    for file in @info['FILES']
+      list << (KitamanConfig.config['SRC_DIR']+'/'+File.basename(file))
+    end
+    list
   end
 
   # Fills FILES var with files maching in repository
@@ -96,47 +128,19 @@ class Kita
     files_list_database[@info['NAME']] ? [files_list_database[@info['NAME']]] : []    
   end
 
-  # Checks if package is installed
-  def installed?
-    File.exist?(KitamanConfig.config['STATE_DIR']+'/'+@info['NAME-VER'])
-  end
-
-  # Checks if package is build (sorry i know its built not builded, i had good reason to do so)
-  def builded?
-    File.exist?(KitamanConfig.config['PKG_DIR']+'/'+@info['NAME-VER']+'-bin.tar.bz2')
-  end
-
-  # Downloads all files in FILES var, returns True if all files downloaded successfully
-  def download
-    success=true
-    for file in @info["FILES"] 
-      success = (success and system("wget -c #{file} -O #{KitamanConfig.config['SRC_DIR']}/#{File.basename(file)}"))
+  # Get version from source file
+  def get_version
+    if @info['FILES']!=[]
+      ver = @info['FILES'][0].version
+    else
+      ver = "undefined"
     end
-    return success
+    return ver
   end
 
-  # Returns a list of full paths to local source files belonging to package
-  def files_list_local
-    list=[]
-    for file in @info['FILES']
-      list << (KitamanConfig.config['SRC_DIR']+'/'+File.basename(file))
-    end
-    list
+ # Create a state file meaning that package is installed
+  def record_installed
+    `touch #{KitamanConfig.config['STATE_DIR']}/#{@info['NAME-VER']}`
   end
-
-  # Returns a list of URLS of source files to be downloaded
-  def files_list_to_download
-    @info['FILES']
-  end
-
-  # Checks if all files are downloaded
-  def downloaded?
-    results = true
-    for file in files_list_local 
-      results = (results and not File.size?(file).in [0,nil])
-    end
-    return results
-  end
-
 
 end

@@ -29,21 +29,20 @@ require 'tree'
 
 class Kitaman
   
-  attr_reader :queue
   attr_reader :root_node
-  attr_reader :kita_hash
-  
+  attr_reader :kita_hash  
 
   def Kitaman.version
-    "0.96.0"
+    "0.97.0"
   end
 
   def initialize
     @options = {:download => true,:build => true,:install => true,:deep => false,:deepest => false,:force => false,:search => false,:remove => false}
-    @queue = []
+
     @root_node = nil
     @node_hash = {}
     @kita_hash = {}
+    @results = []
     
     #fix this
     @graphviz_graph = GraphvizGraph.new
@@ -72,11 +71,7 @@ class Kitaman
    
   def show_actions_to_be_taken
    
-    return false if (@options[:quiet]) 
-    if @options[:graph]
-      puts @graphviz_graph.to_dot
-      return    
-    end
+    return false if (@options[:quiet])    
     
     if not @root_node
       puts "Nothing to do ...".bold.green
@@ -145,10 +140,11 @@ class Kitaman
     if (!kita_object.send("#{action}ed?".to_sym) and @options[action]) or (@options[:force] and @options[action])
       puts "Starting to #{action} #{name_version} ... ".green
       if not kita_object.send(action.to_sym)
-        kita_error "Panic While Trying to #{action} #{name_version}"
-      end
-      puts "Finished #{action}ing #{name_version}".blue.bold
-      puts "\n"
+        @results.add(["Panic While Trying to #{action} #{name_version}",false])
+      else
+        puts "Finished #{action}ing #{name_version}".blue.bold
+        @results.add(["Successfully finished #{action}ing #{name_version}",true])
+      end      
     else
       puts "No need to #{action} #{name_version}".yellow.bold
     end
