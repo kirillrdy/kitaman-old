@@ -140,10 +140,10 @@ class Kitaman
     if (!kita_object.send("#{action}ed?".to_sym) and @options[action]) or (@options[:force] and @options[action])
       puts "Starting to #{action} #{name_version} ... ".green
       if not kita_object.send(action.to_sym)
-        @results.add(["Panic While Trying to #{action} #{name_version}",false])
+        @results << ["Panic While Trying to #{action} #{name_version}",false]
       else
         puts "Finished #{action}ing #{name_version}".blue.bold
-        @results.add(["Successfully finished #{action}ing #{name_version}",true])
+        @results << ["Successfully finished #{action}ing #{name_version}",true]
       end      
     else
       puts "No need to #{action} #{name_version}".yellow.bold
