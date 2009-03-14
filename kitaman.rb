@@ -71,12 +71,13 @@ class Kitaman
    
   def show_actions_to_be_taken
    
-    return false if (@options[:quiet])    
-    
-    if not @root_node
+   if not @root_node
       puts "Nothing to do ...".bold.green
       exit
     end
+   
+    return false if (@options[:quiet])  
+    
     
     puts "\nKitaman will do the following: \n".bold
   

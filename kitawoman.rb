@@ -89,6 +89,7 @@ class Kitababy
     File.exists?("#{@root_dir}")
   end
 
+
  def clean_working_dir
   `
     mkdir -p #{@root_dir}
