@@ -53,4 +53,8 @@ class Kita
     return true
   end
   
+  def installed?
+    return false
+  end
+  
 end
