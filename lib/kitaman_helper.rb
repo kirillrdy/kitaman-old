@@ -164,9 +164,13 @@ class Kitaman
           @options[:verbose] = v
         end
         
-        opts.on("-G", "--[no-]graph", "Generate DOT graph") do |v|
-          @options[:graph] = v
+        opts.on("--graph", "Generate DOT graph") do |v|
         end
+
+        opts.on("--log", "Generate Actions log with results") do |v|
+          @options[:save_log]= true
+        end
+  
 
         opts.on("-S", "--[no-]sync", "sync") do |v|
           update_src_files_database

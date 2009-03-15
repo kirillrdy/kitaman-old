@@ -133,6 +133,9 @@ class Kitawoman
     `cd #{repo} && git show`.scan(/commit (.*?)\n/)[0][0]
   end
 
+  def install_in_chroot(dir,package)
+    execute_in_chroot(dir,'kitaman -q --log #{package}')
+  end
 
   def execute_in_chroot(dir,string)
     `cd #{dir} && mount -t proc none proc`
@@ -165,6 +168,14 @@ class Kitawoman
     end
     
   end
+  
+  def Kitawoman.parse_kitaman_log(dir)
+    results = IO.read(dir+'/kitaman.log').split("\n")
+    for result in results
+      system("./sendemail.py \"#{result}\"") if results.split(',')[1] == 'false'
+    end
+    puts results
+  end
 
 end
 
@@ -193,8 +204,12 @@ kitawoman.execute_actions(baby) if not baby.setup?
 # TODO: move targets to config file
 
 
-kitawoman.execute_in_chroot(baby.root_dir,'kitaman -q base')
-kitawoman.execute_in_chroot(baby.root_dir,'kitaman -q xorg')
-kitawoman.execute_in_chroot(baby.root_dir,'kitaman -q kita-developer')
+targets = ['base','xorg','kita-developer']
+targets = ['vim']
+
+for target in targets
+  kitawoman.install_in_chroot(baby.root_dir,target)
+  Kitawoman.parse_kitaman_log(baby.root_dir)
+end
 
 kitawoman.clean_after_baby(baby)

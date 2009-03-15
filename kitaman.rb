@@ -91,7 +91,26 @@ class Kitaman
     
   end
   
+  def show_results_log    
+    puts "##################################################################################".bold
+    puts "Kitaman Results Log:\n".blue
+    total_failed = @results_log.select {|item| item[1]==false }
+    for item in total_failed
+      puts "Failed #{item[0]} ".red.bold
+    end 
+
+    puts "\nTotal failed actions: #{total_failed.length.to_s.red.bold}"
+    puts "Total actions: #{@results_log.length.to_s.cyan}"
   
+    if @options[:save_log]
+      file = File.open('/kitaman.log','w')
+      for action in @results_log
+        file.write("#{action[0]},#{action[1]}\n")
+      end
+      file.close
+    end
+    
+  end
  
   def build_queue(target, parent = nil)
 
@@ -143,13 +162,14 @@ class Kitaman
     if (!kita_object.send("#{action}ed?".to_sym) and @options[action]) or (@options[:force] and @options[action])
       puts "Starting to #{action} #{name_version} ... ".green
       if not kita_object.send(action.to_sym)
-        @results_log << ["Panic While Trying to #{action} #{name_version}",false]
+        @results_log << ["#{name_version}:#{action}",false]
       else
         puts "Finished #{action}ing #{name_version}".blue.bold
-        @results_log << ["Successfully finished #{action}ing #{name_version}",true]
+        @results_log << ["#{name_version}:#{action}",true]
       end      
     else
       puts "No need to #{action} #{name_version}".yellow.bold
+      @results_log << ["#{name_version}:#{action}",nil]
     end
   end
   
@@ -182,3 +202,4 @@ end
 kitaman.show_actions_to_be_taken
 
 kitaman.run
+kitaman.show_results_log
