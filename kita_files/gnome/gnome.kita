@@ -1,12 +1,12 @@
 KITA_TYPE="meta"
-VER="2.25.91"
+VER="2.25.92"
 DEPEND="hal ORBit2 intltool GConf shared-mime-info gnome-mime-data hicolor-icon-theme desktop-file-utils gnome-vfs gnome-vfs-monikers libgnome libgnomecanvas gnome-keyring gnome-icon-theme libgnomeui gtk-engines gnome-themes gnome-doc-utils gnome-desktop gnome-backgrounds gnome-menus gnome-panel vte gnome-terminal libgnomekbd nautilus gnome-control-center gnome-applets gnome-session gnome-utils gnome-media eog file-roller evince gnome-system-monitor gnome-volume-manager gedit gedit-plugins-extra"
 BUILD=""
 post_install()
 {
-  gconftool-2 /etc/gconf/schemas/*.schemas
+  #gconftool-2 /etc/gconf/schemas/*.schemas
   update-desktop-database
-  update-mime-database /usr/share/mime
+  update-mime-database -V /usr/share/mime
 
   for i in /usr/share/icons/* ; do    
     gtk-update-icon-cache $i

@@ -1,17 +1,22 @@
 # For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
 KITA_TYPE="make"
 FILES="http://hal.freedesktop.org/releases/hal-0.5.12rc1.tar.gz"
-DEPEND="dbus-glib XML-Parser usbutils pciutils PolicyKit"
+DEPEND="dbus-glib XML-Parser usbutils pciutils"
 BUILD=""
 config_src()
 {
-groupadd -g 29 haldaemon
-useradd -c "HAL Daemon User" -d /dev/null -u 29 -g haldaemon -s /bin/false haldaemon
+egrep -i '^halusers' /etc/group
+if [ $? -eq 0 ]; then
+   echo "nothing to do"
+else
+  groupadd -g 29 haldaemon
+  useradd -c "HAL Daemon User" -d /dev/null -u 29 -g haldaemon -s /bin/false haldaemon 
+fi
 ./configure --prefix=/usr \
             --sysconfdir=/etc \
             --with-pci-ids=/usr \
             --libexecdir=/usr/lib/hal \
-            --localstatedir=/var
+            --localstatedir=/var --disable-policy-kit
 }
 
 post_install()
