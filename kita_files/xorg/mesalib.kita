@@ -2,10 +2,9 @@ KITA_TYPE="xorg"
 FILES="http://downloads.sourceforge.net/mesa3d/MesaLib-7.2.tar.bz2"
 DEPEND="xorg-lib xorg-util libdrm expat"
 BUILD=""
-build_src()
+config_src()
 {
 sed 's@FLAGS=\"-g@FLAGS=\"@' -i configure &&
-./configure $XORG_CONFIG &&
-make
+./configure --prefix=/usr --sysconfdir=/etc --mandir=/usr/share/man --localstatedir=/var
 }
 ""

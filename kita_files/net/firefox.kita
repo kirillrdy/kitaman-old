@@ -1,16 +1,11 @@
 KITA_TYPE="make"
 VER="3.1b2"
 #FILES="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.0.6/source/firefox-3.0.6-source.tar.bz2"
-FILES="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.1b2/source/firefox-3.1b2-source.tar.bz2"
+FILES="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.1b3/source/firefox-3.1b3-source.tar.bz2"
 DEPEND="gtk+ libIDL zip curl"
 BUILD=""
 config_src()
 {
-echo "special"
-}
-build_src()
-{
-
 cat > .mozconfig << "EOF"
 # This file contains the options used in the Firefox build. You may
 # need to specify additional options for your specific build needs.
@@ -115,13 +110,16 @@ endif
 EOF
 
 sed -i "s/^    enum$/& xptinfo_enum_1/" \
-    xpcom/reflect/xptinfo/public/xptinfo.h &&
+    xpcom/reflect/xptinfo/public/xptinfo.h
 
-make -f client.mk build
+}
+build_src()
+{
+  make -f client.mk build
 }
 
 kita_install()
 {
-make DESTDIR=$INSTALL_DIR -f client.mk install
+  make DESTDIR=$INSTALL_DIR -f client.mk install
 }
 ""

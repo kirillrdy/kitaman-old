@@ -135,6 +135,7 @@ class Kitawoman
 
 
   def execute_in_chroot(dir,string)
+    `cd #{dir} && mount -t proc none proc`
     `cat > #{dir}/tmp/script.sh  << EOF
   #!/bin/bash
   #{string}
@@ -150,6 +151,10 @@ class Kitawoman
       puts action
       kita_baby.send action
     end
+  end
+ 
+  def clean_after_baby(baby)
+    `umount #{baby.root_dir}/proc`
   end
  
   def Kitawoman.get_latest_kitaman
@@ -186,6 +191,10 @@ baby = Kitababy.new(kitawoman.get_latest_commit)
 kitawoman.execute_actions(baby) if not baby.setup?
 
 # TODO: move targets to config file
+
+
 kitawoman.execute_in_chroot(baby.root_dir,'kitaman -q base')
 kitawoman.execute_in_chroot(baby.root_dir,'kitaman -q xorg')
 kitawoman.execute_in_chroot(baby.root_dir,'kitaman -q kita-developer')
+
+kitawoman.clean_after_baby(baby)

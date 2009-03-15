@@ -3,12 +3,7 @@ http://src.silverforge.com.au/ext/
 http://mocha.xfce.org/archive/xfce-4.6.0/src/
 http://ftp.x.org/pub/individual/app/
 http://xorg.freedesktop.org/releases/individual/util/
-http://xorg.freedesktop.org/releases/X11R7.4/src/proto/
-http://xorg.freedesktop.org/releases/X11R7.4/src/util/
-http://xorg.freedesktop.org/releases/X11R7.4/src/lib/
-http://xorg.freedesktop.org/releases/X11R7.4/src/app/
-http://xorg.freedesktop.org/releases/X11R7.4/src/font/
-http://xorg.freedesktop.org/releases/X11R7.4/src/driver/
+http://xorg.freedesktop.org/archive/X11R7.4/src/everything/
 http://ftp.gnome.org/pub/gnome/platform/2.25/2.25.92/sources/
 http://ftp.gnome.org/pub/gnome/desktop/2.25/2.25.92/sources/
 http://ftp.gnome.org/pub/gnome/bindings/2.25/2.25.92/sources/c++/

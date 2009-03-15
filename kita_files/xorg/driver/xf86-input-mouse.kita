@@ -3,7 +3,7 @@ DEPEND="xorg-server"
 BUILD=""
 build_src()
 {
-./configure $XORG_CONFIG \
+./configure --prefix=/usr --sysconfdir=/etc --mandir=/usr/share/man --localstatedir=/var \
     --with-xorg-module-dir=/usr/lib/X11/modules &&
 make
 }

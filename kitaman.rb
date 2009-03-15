@@ -42,7 +42,7 @@ class Kitaman
     @root_node = nil
     @node_hash = {}
     @kita_hash = {}
-    @results = []
+    @results_log = []
     
     #fix this
     @graphviz_graph = GraphvizGraph.new
@@ -96,9 +96,11 @@ class Kitaman
   def build_queue(target, parent = nil)
 
     kita_instance = get_kita_instance(target)
+
+    load_needed_module(kita_instance.info['NAME'])
       
-    if not @node_hash[target] and (not kita_instance.installed? or @options[:force])
-      
+    if not @node_hash[target] and (not kita_instance.installed? or @options[:force])      
+
       node_to_be_inserted = Tree::TreeNode.new(target,kita_instance)
             
       if parent
@@ -141,10 +143,10 @@ class Kitaman
     if (!kita_object.send("#{action}ed?".to_sym) and @options[action]) or (@options[:force] and @options[action])
       puts "Starting to #{action} #{name_version} ... ".green
       if not kita_object.send(action.to_sym)
-        @results << ["Panic While Trying to #{action} #{name_version}",false]
+        @results_log << ["Panic While Trying to #{action} #{name_version}",false]
       else
         puts "Finished #{action}ing #{name_version}".blue.bold
-        @results << ["Successfully finished #{action}ing #{name_version}",true]
+        @results_log << ["Successfully finished #{action}ing #{name_version}",true]
       end      
     else
       puts "No need to #{action} #{name_version}".yellow.bold
@@ -172,6 +174,7 @@ end
 
 kitaman = Kitaman.new
 kitaman.parse_argv
+
 for argument in ARGV
   kitaman.build_queue(argument)
 end

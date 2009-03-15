@@ -4,7 +4,7 @@ DEPEND="xorg-font openssl xkeyboard-config luit"
 BUILD=""
 build_src()
 {
-./configure $XORG_CONFIG \
+./configure --prefix=/usr --sysconfdir=/etc --mandir=/usr/share/man --localstatedir=/var \
     --with-module-dir=/usr/lib/X11/modules \
     --with-xkb-output=/var/lib/xkb \
     --enable-install-setuid &&
@@ -13,7 +13,7 @@ make
 post_install()
 {
 ln -vsf /usr /usr/X11R6
-mkdir /etc/X11
+mkdir -p /etc/X11
 for file in /usr/{lib/X11/xinit,share/X11/{app-defaults,twm,xkb}}
 do
      mv -v $file /etc/X11/ 2> /dev/null &&
