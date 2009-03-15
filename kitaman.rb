@@ -92,7 +92,7 @@ class Kitaman
   end
   
   def show_results_log    
-    puts "##################################################################################".bold
+    puts "################################################################################".bold
     puts "Kitaman Results Log:\n".blue
     total_failed = @results_log.select {|item| item[1]==false }
     for item in total_failed

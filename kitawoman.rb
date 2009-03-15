@@ -134,7 +134,7 @@ class Kitawoman
   end
 
   def install_in_chroot(dir,package)
-    execute_in_chroot(dir,'kitaman -q --log #{package}')
+    execute_in_chroot(dir,"kitaman -q --log #{package}")
   end
 
   def execute_in_chroot(dir,string)
@@ -170,11 +170,15 @@ class Kitawoman
   end
   
   def Kitawoman.parse_kitaman_log(dir)
+    if not File.exists?(dir+'/kitaman.log')
+      exit
+    end
+    
     results = IO.read(dir+'/kitaman.log').split("\n")
     for result in results
-      system("./sendemail.py \"#{result}\"") if results.split(',')[1] == 'false'
+      puts result if result.split(',')[1] == 'false'
+      system("./sendemail.py \"FAILED #{result.split(':')[0]}\"") if result.split(',')[1] == 'false'
     end
-    puts results
   end
 
 end
@@ -184,14 +188,6 @@ end
 #################################################################################
 # Entry Point
 #################################################################################
-
-#clean_working_dir
-
-#prepare_new_chroot
-
-#install_kitaman
-
-#install_ruby
 
 
 kitawoman = Kitawoman.new
@@ -205,7 +201,7 @@ kitawoman.execute_actions(baby) if not baby.setup?
 
 
 targets = ['base','xorg','kita-developer']
-targets = ['vim']
+#targets = ['vim']
 
 for target in targets
   kitawoman.install_in_chroot(baby.root_dir,target)
