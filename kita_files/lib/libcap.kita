@@ -1,0 +1,9 @@
+KITA_TYPE="make"
+FILES="http://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/libcap-2.16.tar.gz"
+DEPEND="attr"
+BUILD=""
+config_src()
+{
+  echo "nothing here"
+}
+""

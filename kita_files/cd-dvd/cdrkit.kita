@@ -1,8 +1,11 @@
 KITA_TYPE="make"
-FILES="http://debburn.alioth.debian.org/cdrkit-1.1.6.tar.gz"
-DEPEND="cmake"
+FILES="http://cdrkit.org/releases/cdrkit-1.1.9.tar.gz"
+DEPEND="cmake libcap"
 BUILD=""
-#Paste Build instructions here
+config_src()
+{
+  echo "Nothing here"
+}
 build_src()
 {
 make

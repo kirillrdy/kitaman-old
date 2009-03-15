@@ -1,9 +1,8 @@
 KITA_TYPE="make"
-FILES="http://www.cmake.org/files/v2.6/cmake-2.6.2.tar.gz"
+FILES="http://www.cmake.org/files/v2.6/cmake-2.6.3.tar.gz"
 BUILD=""
 build_src()
 {
-./configure --prefix=/usr &&
-gmake
+  gmake
 }
 ""
