@@ -31,6 +31,7 @@ class Kita
       make DESTDIR=$INSTALL_DIR install
       
       #next line is vital for building Gnome Apps
+      #this is actually because I dont know how to install schema files properly, so I have to rely on gnome build scripts
       make install
     }
 
@@ -47,5 +48,25 @@ class Kita
     """)
 
   end
+
+private
+
+def kitaman_post_install
+    """
+      # Update the linkers cache
+      ldconfig
+      
+      update-desktop-database
+      update-mime-database -V /usr/share/mime
+
+      for i in /usr/share/icons/* ; do    
+        gtk-update-icon-cache $i
+      done
+      
+      echo \"Cleaning up\"
+      rm -rf $BUILD_DIR
+      rm -rf $INSTALL_DIR
+    """
+end
 
 end

@@ -8,7 +8,7 @@ post_install()
 sh /usr/kitaman/src/NVIDIA-Linux-x86-180.29-pkg1.run -a -q -s --no-x-check
 nvidia-xconfig -composite
 
-cat >/etc/X11/xorg.conf << EOF
+cat >> /etc/X11/xorg.conf << EOF
 Section "ServerFlags"
     Option         "AllowEmptyInput" "false"
 EndSection

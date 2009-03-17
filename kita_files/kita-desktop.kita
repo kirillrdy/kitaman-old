@@ -1,2 +1,2 @@
 KITA_TYPE="meta"
-DEPEND="gnome firefox transmission mplayer gvim wine"
+DEPEND="gnome firefox midori transmission mplayer gvim wine"

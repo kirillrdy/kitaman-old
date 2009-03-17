@@ -73,11 +73,7 @@ class Kita
 
       post_install
       
-      # Update the linkers cache
-      ldconfig
-      echo \"Cleaning up\"
-      rm -rf $BUILD_DIR
-      rm -rf $INSTALL_DIR
+      #{kitaman_post_install}
 
     """)
       return false
@@ -88,6 +84,16 @@ class Kita
   end  
   
   private
+
+  def kitaman_post_install
+    """
+      # Update the linkers cache
+      ldconfig
+      echo \"Cleaning up\"
+      rm -rf $BUILD_DIR
+      rm -rf $INSTALL_DIR
+    """
+  end
 
   # Generates tar ball with binary files
   def create_package
