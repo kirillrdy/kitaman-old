@@ -12,11 +12,7 @@ else
   groupadd -g 29 haldaemon
   useradd -c "HAL Daemon User" -d /dev/null -u 29 -g haldaemon -s /bin/false haldaemon 
 fi
-./configure --prefix=/usr \
-            --sysconfdir=/etc \
-            --with-pci-ids=/usr \
-            --libexecdir=/usr/lib/hal \
-            --localstatedir=/var --disable-policy-kit
+./configure --prefix=/usr --sysconfdir=/etc --with-pci-ids=/usr --libexecdir=/usr/lib/hal --localstatedir=/var --disable-policy-kit
 }
 
 post_install()
