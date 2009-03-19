@@ -60,7 +60,7 @@ def kitaman_post_install
       update-mime-database -V /usr/share/mime
 
       for i in /usr/share/icons/* ; do    
-        gtk-update-icon-cache $i
+        gtk-update-icon-cache -ft $i
       done
       
       echo \"Cleaning up\"
