@@ -135,7 +135,7 @@ class Kita
       if file.index('.patch')
         file = File.basename(file)
         puts "Patching using #{file}".red
-        `cd #{KitamanConfig.config['BUILD_DIR']} && patch -Np1 -i #{KitamanConfig.config['SRC_DIR']}/#{file}`
+        system(build_enviroment + "cd $BUILD_DIR && patch -Np1 -i #{KitamanConfig.config['SRC_DIR']}/#{file}""")
       end
     end
   end
@@ -153,7 +153,7 @@ class Kita
   
     mkdir -p #{paths[:install_dir]}
 
-    """
+    """    
   end
 
   # Records package as installed and records a list of all files installed by the package
