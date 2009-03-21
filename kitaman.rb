@@ -56,6 +56,8 @@ class Kitaman
       end      
     end    
 
+    return if node.content.installed?    
+
     load_needed_module(node.content.info['NAME'])    
     
     # FIXME, it needs to say 1 of N: packagename-ver
@@ -118,7 +120,7 @@ class Kitaman
 
     load_needed_module(kita_instance.info['NAME'])
       
-    if not @node_hash[target] and (not kita_instance.installed? or @options[:force])      
+    if not @node_hash[target] and (not kita_instance.installed? or @options[:deep])      
 
       node_to_be_inserted = Tree::TreeNode.new(target,kita_instance)
             
