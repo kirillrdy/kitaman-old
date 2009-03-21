@@ -1,2 +1,2 @@
 KITA_TYPE="gnome"
-DEPEND="sqlite"
+DEPEND="sqlite libical"

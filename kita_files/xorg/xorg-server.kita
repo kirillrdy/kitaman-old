@@ -1,14 +1,13 @@
 KITA_TYPE="xorg"
-FILES="http://xorg.freedesktop.org/releases/individual/xserver/xorg-server-1.5.3.tar.bz2"
+FILES="http://xorg.freedesktop.org/releases/individual/xserver/xorg-server-1.5.3.tar.bz2 http://files.kita-linux.org/xorg-cpu-hog.patch"
 DEPEND="xorg-font openssl xkeyboard-config luit"
 BUILD=""
-build_src()
+config_src()
 {
 ./configure --prefix=/usr --sysconfdir=/etc --mandir=/usr/share/man --localstatedir=/var \
     --with-module-dir=/usr/lib/X11/modules \
     --with-xkb-output=/var/lib/xkb \
-    --enable-install-setuid &&
-make
+    --enable-install-setuid
 }
 post_install()
 {

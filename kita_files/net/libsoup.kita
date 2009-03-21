@@ -1,3 +1,2 @@
 KITA_TYPE="make"
-FILES="http://ftp.acc.umu.se/pub/gnome/sources/libsoup/2.25/libsoup-2.25.91.tar.bz2"
 DEPEND="libproxy sqlite gnutls"

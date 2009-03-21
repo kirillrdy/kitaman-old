@@ -1,0 +1,2 @@
+KITA_TYPE="gnome"
+DEPEND="gstreamer lame libmad libid3tag"

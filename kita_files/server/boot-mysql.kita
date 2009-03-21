@@ -1,0 +1,16 @@
+KITA_TYPE="make"
+FILES="http://www.linuxfromscratch.org/blfs/downloads/svn/blfs-bootscripts-20090302.tar.bz2"
+BUILD=""
+config_src()
+{
+echo
+}
+build_src()
+{
+echo
+}
+kita_install()
+{
+make DESTDIR=$INSTALL_DIR install-mysql
+}
+""

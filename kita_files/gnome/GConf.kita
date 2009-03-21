@@ -1,15 +1,11 @@
 KITA_TYPE="gnome"
 DEPEND="ORBit2 libxml2 gtk+"
 BUILD=""
-#Paste Build instructions here
-build_src()
+config_src()
 {
-./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) \
+./configure --prefix=/usr \
             --sysconfdir=/etc \
-            --libexecdir=$(pkg-config \
-                --variable=prefix ORBit-2.0)/lib/GConf \
-            --mandir=$(pkg-config \
-                --variable=prefix ORBit-2.0)/share/man &&
-make
+            --libexecdir=/usr/lib/GConf \
+            --mandir=/usr/share/man
 }
 ""
