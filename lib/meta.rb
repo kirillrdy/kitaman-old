@@ -51,10 +51,6 @@ class Kita
   def download
     puts "Nothing to do for meta package"
     return true
-  end
-  
-  def installed?
-    return false
-  end
+  end  
   
 end

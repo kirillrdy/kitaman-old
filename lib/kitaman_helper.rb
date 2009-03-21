@@ -140,6 +140,10 @@ class Kitaman
           @options[:force] = v
         end
       
+        opts.on("-D", "--deep", "Deep Dependency Calculation") do |v|
+          @options[:deep] = v
+        end
+      
         opts.on("-d", "--download", "Download Only") do |v|
           @options[:build] = false
           @options[:install] = false

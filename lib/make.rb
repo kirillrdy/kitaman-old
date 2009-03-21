@@ -47,7 +47,6 @@ class Kita
     mkdir -p ${BUILD_DIR}
     cd ${BUILD_DIR}
 
-    
     config_src > /var/kitaman/config_logs/#{@info['NAME-VER']}
 
     build_src
