@@ -1,9 +1,0 @@
-KITA_TYPE="gnome"
-DEPEND="glib libxml2 gtk-doc alsa-lib"
-BUILD=""
-build_src()
-{
-  ./configure --prefix=/usr --disable-docbook --disable-gkt-doc
-  make
-}
-""
