@@ -1,9 +1,9 @@
 KITA_TYPE="make"
 FILES="http://download.savannah.nongnu.org/releases/openexr/openexr-1.6.1.tar.gz http://mirror.hamakor.org.il/pub/mirrors/gentoo-portage/media-libs/openexr/files/openexr-1.6.1-gcc-4.3.patch"
+DEPEND="ilmbase"
 BUILD=""
-build_src()
+config_src()
 {
 ./configure --prefix=/usr --disable-ilmbasetest
-make
 }
 ""

@@ -1,6 +1,6 @@
 KITA_TYPE="make"
 FILES="http://download.blender.org/source/blender-2.48a.tar.gz"
-DEPEND="scons"
+DEPEND="scons openal freealut SDL openexr"
 BUILD=""
 config_src()
 { 
@@ -9,5 +9,11 @@ echo "nothing"
 build_src()
 {
 scons
+}
+kita_install()
+{
+mkdir -p $INSTALL_DIR/usr/lib/blender
+cp -rp ../install/linux2/* $INSTALL_DIR/usr/lib/blender/
+ln -s $INSTALL_DIR/usr/lib/blender/blender /usr/bin/blender
 }
 ""
