@@ -1,0 +1,17 @@
+KITA_TYPE="make"
+FILES="http://fy.chalmers.se/~appro/linux/DVD+RW/tools/dvd+rw-tools-7.1.tar.gz http://www.linuxfromscratch.org/patches/blfs/svn/dvd+rw-tools-7.1-headers-1.patch"
+DEPEND="cdrtools"
+BUILD=""
+config_src()
+{ 
+echo
+}
+build_src()
+{
+make all rpl8 btcflash
+}
+kita_install()
+{
+make prefix=$INSTALL_DIR/usr install
+}
+""

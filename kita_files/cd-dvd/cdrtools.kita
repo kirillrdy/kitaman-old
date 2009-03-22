@@ -1,0 +1,17 @@
+KITA_TYPE="make"
+FILES="ftp://ftp.berlios.de/pub/cdrecord/alpha/cdrtools-2.01.01a58.tar.bz2"
+BUILD=""
+config_src()
+{
+echo
+}
+build_src()
+{
+gmake INS_BASE=/usr DEFINSUSR=root DEFINSGRP=root
+}
+
+kita_install()
+{
+gmake INS_BASE=$INSTALL_DIR/usr DEFINSUSR=root DEFINSGRP=root install
+}
+""

@@ -3,10 +3,9 @@ FILES="http://hal.freedesktop.org/releases/gnome-mount-0.8.tar.gz"
 DEPEND="hal gnome-keyring libnotify"
 BUILD=""
 #Paste Build instructions here
-build_src()
+config_src()
 {
 ./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) \
-            --sysconfdir=/etc && 
-make
+            --sysconfdir=/etc
 }
 ""
