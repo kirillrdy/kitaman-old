@@ -1,0 +1,14 @@
+KITA_TYPE="make"
+FILES="http://search.cpan.org/CPAN/authors/id/P/PV/PVANDRY/gettext-1.05.tar.gz"
+DEPEND="perl XML-Parser"
+BUILD=""
+config_src()
+{
+echo "nothing"
+}
+build_src()
+{
+perl Makefile.PL &&
+make 
+}
+""

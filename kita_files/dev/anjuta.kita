@@ -1,0 +1,2 @@
+KITA_TYPE="gnome"
+DEPEND="gdl guile libgda autogen perl-gettext ctags gdb"
