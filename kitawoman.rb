@@ -109,7 +109,7 @@ class Kitababy
 
 
   def install_ruby
-    system("export KITAMAN_INSTALL_PREFIX=#{@root_dir} && kitaman -qf glibc ruby")
+    system("export KITAMAN_INSTALL_PREFIX=#{@root_dir} && kitaman -q --deep glibc ruby")
   end
 
   def prepare_new_chroot
