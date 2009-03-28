@@ -56,7 +56,7 @@ class Kitaman
       end      
     end    
 
-    return if node.content.installed?    
+    #return if node.content.installed?    
 
     load_needed_module(node.content.info['NAME'])    
     

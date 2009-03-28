@@ -1,9 +1,2 @@
 KITA_TYPE="gnome"
-DEPEND="cdrtools dvd+rw-tools"  #libburn libisofs libisoburn
-BUILD=""
-#Paste Build instructions here
-config_src()
-{
-./configure --prefix=/usr --sysconfdir=/etc
-}
-""
+DEPEND="libburn libisofs libisoburn" # cdrtools dvd+rw-tools
