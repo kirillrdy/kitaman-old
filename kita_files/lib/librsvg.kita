@@ -1,9 +1,8 @@
 KITA_TYPE="make"
 DEPEND="gtk+ libxml2"
 BUILD=""
-build_src(){
+config_src(){
 ./configure --prefix=/usr --sysconfdir=/etc \
-        --disable-mozilla-plugin &&
-make
+        --disable-mozilla-plugin
 }
 ""

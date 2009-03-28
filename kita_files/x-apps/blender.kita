@@ -13,7 +13,7 @@ scons
 kita_install()
 {
 mkdir -p $INSTALL_DIR/usr/lib/blender
-cp -rp ../install/linux2/* $INSTALL_DIR/usr/lib/blender/
-ln -s $INSTALL_DIR/usr/lib/blender/blender /usr/bin/blender
+cp -rp ../install/linux2/* $INSTALL_DIR/usr/bin
+#ln -s $INSTALL_DIR/usr/lib/blender/blender /usr/bin/blender
 }
 ""
