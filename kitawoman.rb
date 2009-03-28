@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 
-#    Kitawoman - A Manager for Software Project Manager
+#    Kitawoman - A Manager for Software Package Manager
 #    /-Promise to a little girl and a big world-/
 #
 #    Copyright (C) 2009  Kirill Radzikhovskyy <kirillrdy@silverpond.com.au>
@@ -65,9 +65,12 @@
 #                            .................                                                              
 #
 
+require 'net/smtp'
 
 
 WORK_DIR = "/mnt/kitawoman"
+
+# TODO: please help kitawoman to get rid of dependency on gentoo stage file
 STAGE2_FILE = "/home/kirillvr/Desktop/stage2-x86-2007.0.tar.bz2"
 SRC_CACHE_DIR = "/home/kirillvr/Desktop/src"
 
@@ -109,7 +112,7 @@ class Kitababy
 
 
   def install_ruby
-    system("export KITAMAN_INSTALL_PREFIX=#{@root_dir} && kitaman -q --deep glibc ruby")
+    system("export KITAMAN_INSTALL_PREFIX=#{@root_dir} && kitaman -qf --deep glibc ruby")
   end
 
   def prepare_new_chroot
@@ -177,8 +180,17 @@ class Kitawoman
     results = IO.read(dir+'/kitaman.log').split("\n")
     for result in results
       puts result if result.split(',')[1] == 'false'
-      system("./sendemail.py \"FAILED #{result.split(':')[0]}\"") if result.split(',')[1] == 'false'
+      Kitawoman.email_master("FAILED #{result.split(':')[0]}") if result.split(',')[1] == 'false'
     end
+  end
+  
+  def Kitawoman.email_master(msg,email = 'kirillrdy@kita-linux.org')
+    smtp = Net::SMTP.new('smtp.gmail.com',587)
+    smtp.enable_starttls_auto
+    smtp.start('kita-linux.org','kitawoman@kita-linux.org','kitababy',:login) do |smtp|
+      smtp.send_message msg, 'kitawoman@kita-linux.org', [email]
+    end
+
   end
 
 end
