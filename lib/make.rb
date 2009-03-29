@@ -30,7 +30,7 @@ class Kita
     patch
            
     # build commands here
-    result = result and system(build_enviroment + """
+    result = (result and system(build_enviroment + """
     
     config_src()
     {
@@ -50,7 +50,7 @@ class Kita
     config_src > /var/kitaman/config_logs/#{@info['NAME-VER']}
 
     build_src
-    """)
+    """))
 
     if !result
       return result
@@ -172,6 +172,4 @@ class Kita
     end
     return result
   end
-
-
 end

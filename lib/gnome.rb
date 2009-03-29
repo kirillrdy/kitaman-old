@@ -59,7 +59,7 @@ def kitaman_post_install
       update-desktop-database
       update-mime-database -V /usr/share/mime
 
-      for i in /usr/share/icons/* ; do    
+      for i in /usr/share/icons/*/ ; do    
         gtk-update-icon-cache -ft $i
       done
       

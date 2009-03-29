@@ -49,25 +49,33 @@ class Kitaman
   end
 
   def run(node = self.root_node)
+    result = true
   
     if node.hasChildren?
       for child in node.children
-        run child
-      end      
+        result = (result and run(child))
+     end      
     end    
 
-    #return if node.content.installed?    
+    # if one of children failed, we do not need to run us    
+ 
+    return false if not result
 
-    load_needed_module(node.content.info['NAME'])    
+    load_needed_module(node.content.info['NAME'])
     
     # FIXME, it needs to say 1 of N: packagename-ver
-    set_terminal_title(node.content.info["NAME-VER"])    
+    set_terminal_title(node.content.info["NAME-VER"])
     
-    execute_action(node.content,:download)
-    execute_action(node.content,:build)
-    execute_action(node.content,:install)
-    set_terminal_title("Finished #{node.content.info["NAME-VER"]}")      
-
+    actions = [:download,:build,:install]
+    
+    for action in actions      
+      # as soon as one of actions fail, we fail
+      return false if not execute_action(node.content,action)
+    end
+    
+    # everything is working !
+    set_terminal_title("Finished #{node.content.info["NAME-VER"]}")
+    return true
   end
 
    
@@ -165,6 +173,7 @@ class Kitaman
       puts "Starting to #{action} #{name_version} ... ".green
       if not kita_object.send(action.to_sym)
         @results_log << ["#{name_version}:#{action}",false]
+        return false
       else
         puts "Finished #{action}ing #{name_version}".blue.bold
         @results_log << ["#{name_version}:#{action}",true]
@@ -173,6 +182,7 @@ class Kitaman
       puts "No need to #{action} #{name_version}".yellow.bold
       @results_log << ["#{name_version}:#{action}",nil]
     end
+    return true
   end
   
    def load_needed_module(file)

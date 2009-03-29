@@ -178,10 +178,14 @@ class Kitawoman
     end
     
     results = IO.read(dir+'/kitaman.log').split("\n")
+    email_message = ""
     for result in results
-      puts result if result.split(',')[1] == 'false'
-      Kitawoman.email_master("FAILED #{result.split(':')[0]}") if result.split(',')[1] == 'false'
+       if result.split(',')[1] == 'false'
+         puts result
+         mail_message +="FAILED #{result.split(':')[0]}\n"
+       end
     end
+    Kitawoman.email_master(email_message) if email_message != ""
   end
   
   def Kitawoman.email_master(msg,email = 'kirillrdy@kita-linux.org')
