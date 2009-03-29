@@ -1,2 +1,2 @@
 KITA_TYPE="meta"
-DEPEND="gnome git monodevelop gconf-editor anjuta"
+DEPEND="gnome git monodevelop  monodevelop-debugger-mdb monodevelop-debugger-gdb gconf-editor anjuta"

@@ -1,6 +1,6 @@
 KITA_TYPE="meta"
 VER="2.26.0"
-DEPEND="hal ORBit2 intltool GConf shared-mime-info gnome-mime-data hicolor-icon-theme desktop-file-utils gnome-vfs gnome-vfs-monikers libgnome libgnomecanvas gnome-keyring gnome-icon-theme libgnomeui gtk-engines gnome-themes gnome-doc-utils gnome-desktop gnome-backgrounds gnome-menus gnome-panel vte gnome-terminal libgnomekbd nautilus gnome-control-center gnome-applets gnome-session gnome-utils gnome-media eog file-roller evince totem gnome-system-monitor gnome-volume-manager gedit gedit-plugins-extra brasero"
+DEPEND="hal ORBit2 intltool GConf shared-mime-info gnome-mime-data hicolor-icon-theme desktop-file-utils gnome-vfs gnome-vfs-monikers libgnome libgnomecanvas gnome-keyring gnome-icon-theme libgnomeui gtk-engines gnome-themes gnome-doc-utils gnome-desktop gnome-backgrounds gnome-menus gnome-panel vte gnome-terminal libgnomekbd nautilus gnome-control-center gnome-applets gnome-session gnome-utils gnome-media eog file-roller evince totem gnome-system-monitor gnome-volume-manager gedit gedit-plugins-extra brasero epiphany"
 BUILD=""
 post_install()
 {
