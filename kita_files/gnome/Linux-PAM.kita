@@ -1,14 +1,12 @@
-KITA_TYPE="gnome"
-FILES="http://www.kernel.org/pub/linux/libs/pam/pre/library/Linux-PAM-0.99.10.0.tar.bz2"
+KITA_TYPE="make"
+FILES="http://www.kernel.org/pub/linux/libs/pam/library/Linux-PAM-1.0.3.tar.bz2"
 BUILD=""
 config_src()
 {
-./configure --libdir=/lib \
-            --sbindir=/lib/security \
-            --enable-securedir=/lib/security \
-            --enable-read-both-confs \
-            --with-xauth=/usr/X11R6/bin/xauth
+./configure --sbindir=/lib/security \
+            --enable-read-both-confs            
 }
+
 post_install()
 {
 chmod -v 4755 /lib/security/unix_chkpwd &&

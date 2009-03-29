@@ -55,19 +55,12 @@ class Kitaman
   def run(node = self.root_node)
     result = true
   
-    puts "1 #{node.content.info['NAME']}  #{result}"
-  
     if node.hasChildren?
-      #puts node.children.to_s
       for child in node.children
-        puts node.content.info['NAME']+" child "+child.content.info["NAME"]
-        
         temp_result = run(child)
         result = (result and temp_result)
      end      
     end    
-
-    puts "2 #{node.content.info['NAME']}  #{result}"
 
     # if one of children failed, we do not need to run us 
     return false if not result

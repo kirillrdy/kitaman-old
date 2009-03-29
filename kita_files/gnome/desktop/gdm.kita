@@ -1,9 +1,9 @@
 KITA_TYPE="gnome"
 DEPEND="libgnome fontconfig Linux-PAM"
-#FILES="http://ftp.gnome.org/pub/gnome/sources/gdm/2.20/gdm-2.20.9.tar.bz2"
+FILES="ftp://ftp.gnome.org/pub/gnome/sources/gdm/2.20/gdm-2.20.10.tar.bz2"
+DEPEND="boot-gdm"
 BUILD=""
-#Paste Build instructions here
-build_src()
+config_src()
 {
 groupadd -g 21 gdm &&
 useradd -c "GDM Daemon Owner" -d /dev/null \
@@ -15,8 +15,7 @@ useradd -c "GDM Daemon Owner" -d /dev/null \
             --mandir=$(pkg-config \
                 --variable=prefix ORBit-2.0)/share/man \
             --with-pam-prefix=/etc \
-            --with-console-kit=no &&
-make
+            --with-console-kit=no
 }
 post_install()
 {
@@ -29,19 +28,25 @@ Exec=dbus-launch --exit-with-session gnome-session
 TryExec=/usr/bin/dbus-launch
 Icon=
 Type=Application
-
 EOF
 chmod -v 644 /usr/share/xsessions/gnome-dbus.desktop
-}
-cat > /etc/pam.d/gdm << "EOF" &&
-#%PAM-1.0
 
-auth       include      system-auth
-account    include      system-auth
-password   include      system-auth
-session    include      system-auth
+cat > /etc/pam.d/gdm << "EOF"
+auth        required    pam_unix.so
+auth        requisite   pam_nologin.so
+account     required    pam_unix.so
+password    required    pam_unix.so
+session     required    pam_unix.so
+
 EOF
-cp /etc/pam.d/gdm{,-autologin} &&
-echo "auth       required     pam_permit.so" >> /etc/pam.d/gdm-autologin
+cat > /etc/pam.d/gdm-autologin << "EOF"
+auth        required    pam_env.so
+auth        requisite   pam_nologin.so
+auth        required    pam_permit.so
+account     required    pam_unix.so
+password    required    pam_unix.so
+session     required    pam_unix.so
 
+EOF
+}
 ""
