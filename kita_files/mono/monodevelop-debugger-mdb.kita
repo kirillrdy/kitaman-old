@@ -1,0 +1,9 @@
+KITA_TYPE="make"
+FILES="http://ftp.novell.com/pub/mono/sources/monodevelop-debugger-mdb/monodevelop-debugger-mdb-2.0.tar.bz2"
+DEPEND="mono-addins mono-debugger"
+BUILD=""
+config_src()
+{
+./configure --prefix=/usr
+}
+""
