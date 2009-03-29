@@ -1,5 +1,5 @@
 KITA_TYPE="gnome"
-DEPEND="glib libxml2 gtk-doc alsa-lib"
+DEPEND="glib libxml2 gtk-doc alsa-lib alsa-utils"
 BUILD=""
 build_src()
 {
