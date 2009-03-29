@@ -34,7 +34,7 @@ class Kita
     
     config_src()
     {
-      ./configure --prefix=/usr --sysconfdir=/etc
+      ./configure --prefix=/usr
     }
     
     build_src()

@@ -216,7 +216,7 @@ kitawoman.execute_actions(baby) if not baby.setup?
 # TODO: move targets to config file
 
 
-targets = ['base','xorg','kita-desktop']
+targets = ['base','xorg','kita-desktop','kita-developer']
 #targets = ['vim']
 
 for target in targets
