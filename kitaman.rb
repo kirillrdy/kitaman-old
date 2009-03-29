@@ -33,14 +33,18 @@ class Kitaman
   attr_reader :kita_hash  
 
   def Kitaman.version
-    "0.97.0"
+    "0.98.0"
   end
 
   def initialize
     @options = {:download => true,:build => true,:install => true,:deep => false,:deepest => false,:force => false,:search => false,:remove => false}
 
     @root_node = nil
+    
+    # hash for tree insertion
     @node_hash = {}
+    
+    # hash for loaded kita instances
     @kita_hash = {}
     @results_log = []
     
@@ -51,14 +55,21 @@ class Kitaman
   def run(node = self.root_node)
     result = true
   
+    puts "1 #{node.content.info['NAME']}  #{result}"
+  
     if node.hasChildren?
+      #puts node.children.to_s
       for child in node.children
-        result = (result and run(child))
+        puts node.content.info['NAME']+" child "+child.content.info["NAME"]
+        
+        temp_result = run(child)
+        result = (result and temp_result)
      end      
     end    
 
-    # if one of children failed, we do not need to run us    
- 
+    puts "2 #{node.content.info['NAME']}  #{result}"
+
+    # if one of children failed, we do not need to run us 
     return false if not result
 
     load_needed_module(node.content.info['NAME'])
@@ -144,8 +155,8 @@ class Kitaman
               
       for dependency in kita_instance.info["DEPEND"]
           build_queue(dependency,target)
-      end      
-    end    
+      end
+    end
   end
   
   private
