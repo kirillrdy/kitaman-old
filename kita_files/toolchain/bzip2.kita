@@ -2,6 +2,10 @@ KITA_TYPE="make"
 FILES="http://www.bzip.org/1.0.5/bzip2-1.0.5.tar.gz"
 DEPEND=""
 BUILD=""
+config_src()
+{
+  echo
+}
 build_src(){
 make -f Makefile-libbz2_so
 make clean

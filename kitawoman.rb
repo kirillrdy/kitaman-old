@@ -71,8 +71,8 @@ require 'net/smtp'
 WORK_DIR = "/mnt/kitawoman"
 
 # TODO: please help kitawoman to get rid of dependency on gentoo stage file
-STAGE2_FILE = "/home/kirillvr/Desktop/stage2-x86-2007.0.tar.bz2"
-SRC_CACHE_DIR = "/home/kirillvr/Desktop/src"
+STAGE2_FILE = "/home/wmadden/Desktop/stage2-x86-2007.0.tar.bz2"
+SRC_CACHE_DIR = "/home/wmadden/Desktop/src"
 
 class Kitababy
   attr :commit
@@ -93,7 +93,7 @@ class Kitababy
   end
 
 
- def clean_working_dir
+  def clean_working_dir
   `
     mkdir -p #{@root_dir}
     cd #{@root_dir}

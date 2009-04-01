@@ -1,11 +1,14 @@
 KITA_TYPE="make"
-FILES="http://ftp.gnu.org/gnu/readline/readline-5.2.tar.gz http://www.linuxfromscratch.org/patches/lfs/development/readline-5.2-fixes-6.patch"
+FILES="http://ftp.gnu.org/gnu/readline/readline-6.0.tar.gz"
 DEPEND=""
 BUILD=""
-build_src(){
+config_src()
+{
 sed -i '/MV.*old/d' Makefile.in
 sed -i '/{OLDSUFF}/c:' support/shlib-install
 ./configure --prefix=/usr --libdir=/lib
+}
+build_src(){
 make SHLIB_LIBS=-lncurses
 }
 ""
