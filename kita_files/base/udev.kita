@@ -8,15 +8,13 @@ echo "nothing"
 }
 build_src(){
 install -dv /lib/{firmware,udev/devices/{pts,shm}}
-#if test ! -f /lib/udev/devices/null ; then
-#  mknod -m0666 /lib/udev/devices/null c 1 3
-#  mknod -m0600 /lib/udev/devices/kmsg c 1 11
-#  ln -sv /proc/self/fd /lib/udev/devices/fd
-#  ln -sv /proc/self/fd/0 /lib/udev/devices/stdin
-#  ln -sv /proc/self/fd/1 /lib/udev/devices/stdout
-#  ln -sv /proc/self/fd/2 /lib/udev/devices/stderr
-#  ln -sv /proc/kcore /lib/udev/devices/core
-#fi
+ mknod -m0666 /lib/udev/devices/null c 1 3
+ mknod -m0600 /lib/udev/devices/kmsg c 1 11
+ ln -sv /proc/self/fd /lib/udev/devices/fd
+ ln -sv /proc/self/fd/0 /lib/udev/devices/stdin
+ ln -sv /proc/self/fd/1 /lib/udev/devices/stdout
+ ln -sv /proc/self/fd/2 /lib/udev/devices/stderr
+ ln -sv /proc/kcore /lib/udev/devices/core
 ./configure --prefix=/usr \
             --exec-prefix= \
             --sysconfdir=/etc
