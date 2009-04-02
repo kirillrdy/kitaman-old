@@ -2,13 +2,22 @@ KITA_TYPE="make"
 FILES="http://download.sourceforge.jp/efont/5411/kochi-substitute-20030809.tar.bz2"
 DEPEND=""
 BUILD=""
+config_src()
+{
+echo
+}
 build_src()
 {
-echo Special
+echo
 }
 kita_install()
 {
 mkdir -p $INSTALL_DIR/usr/share/fonts/kochi
 cp *.ttf $INSTALL_DIR/usr/share/fonts/kochi
+}
+post_install()
+{
+mkfontdir /usr/lib/X11/fonts/*
+mkfontscale /usr/lib/X11/fonts/*
 }
 ""
