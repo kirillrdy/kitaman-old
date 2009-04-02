@@ -2,6 +2,10 @@ KITA_TYPE="make"
 FILES="ftp://ftp.iinet.com.au/pub/Gentoo/distfiles/liberation-fonts-ttf-3.tar.gz"
 DEPEND=""
 BUILD=""
+config_src()
+{
+  echo
+}
 build_src()
 {
 echo Special
