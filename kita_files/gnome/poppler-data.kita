@@ -1,10 +1,13 @@
 KITA_TYPE="gnome"
 FILES="http://poppler.freedesktop.org/poppler-data-0.2.0.tar.gz"
-DEPEND=""
 BUILD=""
-#Paste Build instructions here
+config_src()
+{
+echo
+}
 build_src()
 {
-make
+echo
 }
+
 ""
