@@ -51,9 +51,10 @@ def kita_error(string)
   exit 1
 end
 
+# This is pretty waistful, please FIXME
 class KitamanConfig
   
-  def KitamanConfig.config 
+  def KitamanConfig.config
     infos = IO.read('/etc/kitaman.conf').scan(/(.*?)="(.*?)"\n/)
     result = {}
     for info in infos
@@ -153,6 +154,11 @@ class Kitaman
         opts.on("-b", "--build", "Build Only") do |v|
           @options[:install] = false
         end
+        
+        opts.on("-r", "--remove", "Remove the package") do |v|
+          @options[:remove] = true
+        end
+   
    
         opts.on("-p", "--[no-]pretend", "Pretend") do |v|
           @options[:build] = false
