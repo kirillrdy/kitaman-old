@@ -1,7 +1,7 @@
 # For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
 KITA_TYPE="make"
 FILES="http://hal.freedesktop.org/releases/hal-0.5.12rc1.tar.gz"
-DEPEND="dbus-glib XML-Parser usbutils pciutils"
+DEPEND="dbus-glib XML-Parser usbutils pciutils eject"
 BUILD=""
 config_src()
 {
@@ -9,16 +9,27 @@ config_src()
 #if [ $? -eq 0 ]; then
 #   echo "nothing to do"
 #else
-  groupadd -g 29 haldaemon
+  groupadd -f -g 29 haldaemon
   useradd -c "HAL Daemon User" -d /dev/null -u 29 -g haldaemon -s /bin/false haldaemon 
 #fi
 
-./configure --prefix=/usr --sysconfdir=/etc --with-pci-ids=/usr --libexecdir=/usr/lib/hal --localstatedir=/var --disable-policy-kit
+./configure --prefix=/usr \
+      --sysconfdir=/etc \
+      --with-pci-ids=/usr \
+      --libexecdir=/usr/lib/hal
+      --localstatedir=/var\      
+      --enable-umount-helper \
+		  --enable-man-pages \
+		  --disable-policy-kit \
+		  --disable-console-kit \
+		  --disable-acl-management \
+		  --enable-pci
+
 }
 
 post_install()
 {
-groupadd -g 61 halusers
+groupadd -f -g 61 halusers
 
 cat > $INSTALL_DIR/etc/dbus-1/system.d/halusers.conf << "EOF"
 <!DOCTYPE busconfig PUBLIC
