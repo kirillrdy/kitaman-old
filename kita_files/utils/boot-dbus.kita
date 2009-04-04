@@ -3,6 +3,10 @@ FILES="http://www.linuxfromscratch.org/blfs/downloads/svn/blfs-bootscripts-20090
 DEPEND=""
 BUILD=""
 #Paste Build instructions here
+config_src()
+{
+  echo
+}
 build_src()
 {
 echo
