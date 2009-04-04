@@ -1,7 +1,6 @@
 KITA_TYPE="gnome"
-DEPEND="libgnome fontconfig Linux-PAM"
+DEPEND="libgnome fontconfig Linux-PAM boot-gdm"
 FILES="ftp://ftp.gnome.org/pub/gnome/sources/gdm/2.20/gdm-2.20.10.tar.bz2"
-DEPEND="boot-gdm"
 BUILD=""
 config_src()
 {
