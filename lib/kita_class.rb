@@ -71,8 +71,8 @@ class Kita
   # Downloads all files in FILES var, returns True if all files downloaded successfully
   def download
     success=true
-    for file in @info["FILES"] 
-      success = (success and system("wget -c #{file} -O #{KitamanConfig.config['SRC_DIR']}/#{File.basename(file)}"))
+    for file in files_list_to_download
+      success = (success and download_one_file(file))
     end
     return success
   end
@@ -81,7 +81,7 @@ class Kita
   def downloaded?
     results = true
     for file in files_list_local 
-      results = (results and not File.size?(file).in [0,nil])
+      results = (results and File.exists?(file))
     end
     return results
   end
@@ -108,6 +108,16 @@ class Kita
     @info['FILES']
   end
   
+  # Helper used to download singe file
+  def download_one_file(file)    
+    result = true    
+    return true if File.exists?("#{KitamanConfig.config['SRC_DIR']}/#{File.basename(file)}")
+            
+    result = (result and system("wget -c #{file} -O #{KitamanConfig.config['TEMP_DIR']}/#{File.basename(file)}"))    
+    result = (result and system("mv #{KitamanConfig.config['TEMP_DIR']}/#{File.basename(file)} #{KitamanConfig.config['SRC_DIR']}/"))    
+    return result
+  end
+  
     # Returns a list of full paths to local source files belonging to package
   def files_list_local
     list=[]
@@ -119,10 +129,8 @@ class Kita
 
   # Fills FILES var with files maching in repository
   def get_files_from_repo
-  
-    if not File.exist?('/var/kitaman/src.db')
-      update_src_files_database
-    end
+    
+    update_src_files_database if not File.exist?('/var/kitaman/src.db')
     
     files_list_database = Marshal.load(IO.read('/var/kitaman/src.db'))
     files_list_database[@info['NAME']] ? [files_list_database[@info['NAME']]] : []    
@@ -142,5 +150,12 @@ class Kita
   def record_installed
     `touch #{KitamanConfig.config['STATE_DIR']}/#{@info['NAME-VER']}`
   end
+  
+ # Removes all files listed in state file, and removes the state file
+ def remove
+  for line in IO.read(KitamanConfig.config['STATE_DIR']+'/'+@info['NAME-VER']).lines.to_a.reverse
+    puts line
+  end
+ end
 
 end

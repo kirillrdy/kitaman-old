@@ -5,7 +5,6 @@ BUILD=""
 #Paste Build instructions here
 config_src()
 {
-./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) \
-            --sysconfdir=/etc
+./configure --prefix=/usr --sysconfdir=/etc
 }
 ""

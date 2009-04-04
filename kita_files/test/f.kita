@@ -1,0 +1,7 @@
+KITA_TYPE="meta"
+BUILD=""
+post_install()
+{
+please fail mr
+}
+""

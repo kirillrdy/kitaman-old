@@ -1,14 +1,10 @@
 KITA_TYPE="gnome"
 DEPEND="hal gnome-mount"
-FILES="http://ftp.acc.umu.se/pub/gnome/desktop/2.24/2.24.3/sources/gnome-volume-manager-2.24.0.tar.bz2"
+FILES="http://ftp.gnome.org/pub/GNOME/sources/gnome-volume-manager/2.24/gnome-volume-manager-2.24.1.tar.bz2"
 BUILD=""
-#Paste Build instructions here
 config_src()
 {
-./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) \
-            --sysconfdir=/etc \
-            --disable-multiuser \
-            --enable-automount
+./configure --prefix=/usr --sysconfdir=/etc # --enable-automount
 }
 post_install()
 {

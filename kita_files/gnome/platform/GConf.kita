@@ -8,4 +8,8 @@ config_src()
             --libexecdir=/usr/lib/GConf \
             --mandir=/usr/share/man
 }
+post_install()
+{
+mkdir -p /etc/gconf/gconf.xml.system/
+}
 ""

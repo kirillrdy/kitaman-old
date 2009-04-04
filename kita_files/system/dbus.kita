@@ -5,7 +5,7 @@ BUILD=""
 #Paste Build instructions here
 config_src()
 {
-groupadd -g 414 messagebus &&
+groupadd -f -g 414 messagebus &&
 useradd -c "D-BUS Message Daemon User" -d /dev/null \
         -u 414 -g messagebus -s /bin/false messagebus
 

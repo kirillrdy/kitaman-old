@@ -29,6 +29,7 @@ class Kita
   def install    
     if not system("""
       
+      set -e
 
       post_install()
       {
@@ -47,10 +48,5 @@ class Kita
     record_installed
     return true
   end
-  
-  def download
-    puts "Nothing to do for meta package"
-    return true
-  end  
-  
+    
 end

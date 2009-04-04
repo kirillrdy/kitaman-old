@@ -1,5 +1,8 @@
-#task :default => [:install]
+task :default => "kitaman:install"
+
+
 namespace :kitaman do
+  
   
   desc 'installs kitaman in a given prefix'
   task :install, :prefix do |t,args|

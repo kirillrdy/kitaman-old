@@ -1,11 +1,11 @@
 KITA_TYPE="meta"
 NAME="nvidia"
-VER="180.29"
-FILES="http://us.download.nvidia.com/XFree86/Linux-x86/180.29/NVIDIA-Linux-x86-180.29-pkg1.run"
+VER="180.44"
+FILES="http://us.download.nvidia.com/XFree86/Linux-x86/180.44/NVIDIA-Linux-x86-180.44-pkg1.run"
 BUILD=""
 post_install()
 {
-sh /usr/kitaman/src/NVIDIA-Linux-x86-180.29-pkg1.run -a -q -s --no-x-check
+sh /usr/kitaman/src/NVIDIA-Linux-x86-180.44-pkg1.run -a -q -s --no-x-check
 nvidia-xconfig -composite
 
 cat >> /etc/X11/xorg.conf << EOF

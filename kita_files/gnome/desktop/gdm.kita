@@ -4,7 +4,7 @@ FILES="ftp://ftp.gnome.org/pub/gnome/sources/gdm/2.20/gdm-2.20.10.tar.bz2"
 BUILD=""
 config_src()
 {
-groupadd -g 21 gdm &&
+groupadd -f -g 21 gdm &&
 useradd -c "GDM Daemon Owner" -d /dev/null \
         -g gdm -s /bin/bash -u 21 gdm
 ./configure --prefix=/usr \
