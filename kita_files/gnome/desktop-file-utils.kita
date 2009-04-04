@@ -1,11 +1,3 @@
-KITA_TYPE="gnome"
+KITA_TYPE="make"
 FILES="http://freedesktop.org/software/desktop-file-utils/releases/desktop-file-utils-0.13.tar.gz"
 DEPEND="glib"
-BUILD=""
-#Paste Build instructions here
-build_src()
-{
-./configure --prefix=/usr
-make
-}
-""
