@@ -1,7 +1,10 @@
 KITA_TYPE="make"
 FILES="http://www.linuxfromscratch.org/blfs/downloads/svn/blfs-bootscripts-20090302.tar.bz2"
 BUILD=""
-#Paste Build instructions here
+config_src()
+{
+  echo
+}
 build_src()
 {
 echo

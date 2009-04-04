@@ -1,9 +1,8 @@
 KITA_TYPE="make"
 FILES="http://apache.wildit.net.au/apr/apr-util-1.3.4.tar.bz2"
 BUILD=""
-build_src()
+config_src()
 {
 ./configure --prefix=/usr --with-apr=/usr
-make
 }
 ""

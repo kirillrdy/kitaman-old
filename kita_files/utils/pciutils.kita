@@ -1,7 +1,10 @@
 KITA_TYPE="make"
 FILES="http://www.kernel.org/pub/software/utils/pciutils/pciutils-3.0.3.tar.bz2"
 BUILD=""
-#Paste Build instructions here
+config_src()
+{
+echo
+}
 build_src()
 {
 make PREFIX=/usr ZLIB=no
