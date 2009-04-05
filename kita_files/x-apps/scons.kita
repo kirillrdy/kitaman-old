@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://nchc.dl.sourceforge.net/sourceforge/scons/scons-src-0.97.tar.gz"
+FILES="http://prdownloads.sourceforge.net/scons/scons-1.2.0.tar.gz"
 DEPEND="python"
 BUILD=""
 config_src()
@@ -8,13 +8,13 @@ echo "nothing here"
 }
 build_src()
 {
- python bootstrap.py build/scons
+echo
+#python bootstrap.py build/scons
 }
 
 kita_install()
 {
-  mkdir -p $INSTALL_DIR/usr
-  cd build/scons
+  mkdir -p $INSTALL_DIR/usr  
   python setup.py install --prefix=$INSTALL_DIR/usr
 }
 ""

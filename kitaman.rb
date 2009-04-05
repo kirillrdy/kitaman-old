@@ -145,6 +145,10 @@ class Kitaman
       
       #register in hash
       @node_hash[target] = node_to_be_inserted
+      
+      if @options[:rebuild]
+        return
+      end
               
       for dependency in kita_instance.info["DEPEND"]
           build_queue(dependency,target)

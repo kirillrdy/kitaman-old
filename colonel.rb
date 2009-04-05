@@ -37,6 +37,7 @@ class String
   end
   
   # removes items from black list and return remaining
+  # "ATIIXP_IDE".white => "ATIIXP" , because kernel doesnt have ATIIXP_IDE_CONFIG
   def white
     temp = self
     for black_item in BLACK_LIST

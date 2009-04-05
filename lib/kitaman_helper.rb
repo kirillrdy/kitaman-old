@@ -151,15 +151,14 @@ class Kitaman
           @options[:force] = false
         end
 
-        opts.on("-b", "--build", "Build Only") do |v|
+        opts.on("-b", "--build", "Build Only, doesnt install packages") do |v|
           @options[:install] = false
         end
         
         opts.on("-r", "--remove", "Remove the package") do |v|
           @options[:remove] = true
         end
-   
-   
+      
         opts.on("-p", "--[no-]pretend", "Pretend") do |v|
           @options[:build] = false
           @options[:install] = false
@@ -170,17 +169,22 @@ class Kitaman
           @options[:quiet] = v
         end
     
-        opts.on("-v", "--[no-]verbose", "Run verbosely") do |v|
+        opts.on("-v", "--[no-]verbose", "Run verbosely (Default)") do |v|
           @options[:verbose] = v
         end
         
-        opts.on("--graph", "Generate DOT graph") do |v|
+        opts.on("--graph", "Generate DOT graph (FIXME) ") do |v|
         end
 
         opts.on("--log", "Generate Actions log with results") do |v|
           @options[:save_log]= true
         end
-  
+      
+        opts.on("-B",'--rebuild-one',"Force rebuild only one package") do |v|
+          @options[:force] = true
+          @options[:rebuild] = true
+          @options[:deep] = true
+        end
 
         opts.on("-S", "--[no-]sync", "sync") do |v|
           update_src_files_database
