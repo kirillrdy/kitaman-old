@@ -1,0 +1,3 @@
+KITA_TYPE="make"
+DEPEND="dbus-glib python"
+FILES="http://dbus.freedesktop.org/releases/dbus-python/dbus-python-0.83.0.tar.gz"

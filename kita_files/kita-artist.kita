@@ -1,2 +1,2 @@
 KITA_TYPE="meta"
-DEPEND="kita-desktop blender" # gimp inkscape
+DEPEND="kita-desktop blender gimp" # inkscape

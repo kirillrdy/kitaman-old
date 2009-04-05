@@ -1,2 +1,2 @@
 KITA_TYPE="meta"
-DEPEND="kita-desktop git monodevelop  monodevelop-debugger-mdb monodevelop-debugger-gdb gconf-editor anjuta"
+DEPEND="kita-desktop git monodevelop monodevelop-debugger-mdb monodevelop-debugger-gdb gconf-editor"

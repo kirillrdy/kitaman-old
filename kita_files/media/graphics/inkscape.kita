@@ -1,0 +1,9 @@
+KITA_TYPE="gnome"
+FILES="http://downloads.sourceforge.net/inkscape/inkscape-0.46.tar.gz"
+DEPEND="boost gc"
+BUILD=""
+config_src()
+{
+./configure --prefix=/usr --disable-lcms CFLAGS="-DPOPPLER_NEW_GFXFONT"
+}
+""

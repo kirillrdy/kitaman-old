@@ -1,0 +1,13 @@
+KITA_TYPE="make"
+VER="1.38.0"
+FILES="http://transact.dl.sourceforge.net/sourceforge/boost/boost_1_38_0.tar.bz2"
+BUILD=""
+config_src()
+{
+./configure --prefix=$INSTALL_DIR/usr
+}
+post_install()
+{
+ln -sf /usr/include/boost-1_38/boost /usr/include/boost
+}
+""
