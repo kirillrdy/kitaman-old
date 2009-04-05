@@ -109,12 +109,12 @@ class Kita
   end
   
   # Helper used to download singe file
-  def download_one_file(file)    
-    result = true    
+  def download_one_file(file)
+    result = true
     return true if File.exists?("#{KitamanConfig.config['SRC_DIR']}/#{File.basename(file)}")
             
-    result = (result and system("wget -c #{file} -O #{KitamanConfig.config['TEMP_DIR']}/#{File.basename(file)}"))    
-    result = (result and system("mv #{KitamanConfig.config['TEMP_DIR']}/#{File.basename(file)} #{KitamanConfig.config['SRC_DIR']}/"))    
+    result = (result and system("wget -c #{file} -O #{KitamanConfig.config['TEMP_DIR']}/#{File.basename(file)}"))
+    result = (result and system("mv #{KitamanConfig.config['TEMP_DIR']}/#{File.basename(file)} #{KitamanConfig.config['SRC_DIR']}/"))
     return result
   end
   

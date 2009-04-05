@@ -85,11 +85,15 @@ class Kitaman
    
   def show_actions_to_be_taken
    
-   if not @root_node
+    if not @root_node
       puts "Nothing to do ...".bold.green
       exit
     end
    
+    if @options[:graph]
+      puts @graphviz_graph.to_dot
+      exit
+    end
     return false if (@options[:quiet])  
     
     
@@ -152,6 +156,9 @@ class Kitaman
               
       for dependency in kita_instance.info["DEPEND"]
           build_queue(dependency,target)
+          
+          #GraphvizGraph
+          @graphviz_graph.add(target,dependency)
       end
     end
   end
