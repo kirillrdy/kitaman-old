@@ -1,0 +1,9 @@
+KITA_TYPE="make"
+FILES="http://www.webdav.org/neon/neon-0.28.4.tar.gz"
+DEPEND="openssl"
+BUILD=""
+config_src()
+{
+./configure --prefix=/usr --with-ssl=openssl
+}
+""

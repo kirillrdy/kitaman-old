@@ -1,3 +1,9 @@
 KITA_TYPE="make"
 FILES="http://subversion.tigris.org/downloads/subversion-1.5.5.tar.bz2"
-DEPEND="apr apr-util"
+DEPEND="apr apr-util neon"
+BUILD=""
+config_src()
+{
+./configure --prefix=/usr --disable-neon-version-check
+}
+""
