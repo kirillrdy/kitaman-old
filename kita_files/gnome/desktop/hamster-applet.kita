@@ -1,2 +1,8 @@
 KITA_TYPE="gnome"
 DEPEND="gnome-python-desktop"
+BUILD=""
+config_src()
+{
+./configure --prefix=/usr --sysconfdir=/etc
+}
+""

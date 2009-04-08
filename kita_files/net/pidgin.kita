@@ -4,6 +4,6 @@ DEPEND="gnutls"
 BUILD=""
 config_src()
 {
-./configure --disable-gtkspell --prefix=/usr --disable-meanwhile --disable-avahi --disable-nm --disable-tcl
+./configure --disable-gtkspell --prefix=/usr --disable-meanwhile --disable-avahi --disable-nm --disable-tcl --sysconfdir=/etc
 }
 ""

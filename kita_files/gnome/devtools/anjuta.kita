@@ -1,2 +1,8 @@
 KITA_TYPE="gnome"
 DEPEND="gdl guile libgda autogen perl-gettext ctags gdb"
+BUILD=""
+config_src()
+{
+./configure --prefix=/usr --sysconfdir=/etc
+}
+""

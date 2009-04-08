@@ -1,2 +1,8 @@
 KITA_TYPE="gnome"
 FILES="http://ftp.gnome.org/pub/gnome/sources/rhythmbox/0.12/rhythmbox-0.12.0.tar.bz2"
+BUILD=""
+config_src()
+{
+./configure --prefix=/usr --sysconfdir=/etc
+}
+""

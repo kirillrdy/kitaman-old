@@ -6,4 +6,3 @@ config_src()
 ./configure --prefix=/usr --sysconfdir=/etc
 }
 ""
-
