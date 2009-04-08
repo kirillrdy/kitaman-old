@@ -1,3 +1,9 @@
-KITA_TYPE="make"
-FILES="http://downloads.sourceforge.net/pidgin/pidgin-2.4.1.tar.bz2"
+KITA_TYPE="gnome"
+FILES="http://downloads.sourceforge.net/pidgin/pidgin-2.5.5.tar.bz2"
 DEPEND="gnutls"
+BUILD=""
+config_src()
+{
+./configure --disable-gtkspell --prefix=/usr --disable-meanwhile --disable-avahi --disable-nm --disable-tcl
+}
+""

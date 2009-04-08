@@ -1,13 +1,3 @@
-# xorg
-FAKE=""
-KITA_VER="1.0"
+KITA_TYPE="make"
 FILES="http://telepathy.freedesktop.org/releases/libtelepathy/libtelepathy-0.3.3.tar.gz"
 DEPEND="telepathy-glib"
-BUILD=""
-# going with defaults
-build_src()
-{
-./configure --prefix=/usr
-make
-}
-""

@@ -1,13 +1,2 @@
-# xorg
-FAKE=""
-KITA_VER="1.0"
-FILES="http://ftp.acc.umu.se/pub/GNOME/sources/empathy/0.22/empathy-0.22.1.tar.bz2"
-DEPEND="libtelepathy"
-BUILD=""
-# going with defaults
-build_src()
-{
-./configure --prefix=/usr
-make
-}
-""
+KITA_TYPE="gnome"
+DEPEND="telepathy-glib telepathy-mission-control"
