@@ -1,5 +1,5 @@
 KITA_TYPE="gnome"
-DEPEND="unzip"
+DEPEND="unzip rarlinux"
 BUILD=""
 config_src()
 {

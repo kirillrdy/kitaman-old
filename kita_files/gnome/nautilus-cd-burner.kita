@@ -1,5 +1,6 @@
 KITA_TYPE="gnome"
 DEPEND="nautilus"
+FILES="ftp://ftp.gnome.org/pub/gnome/sources/nautilus-cd-burner/2.25/nautilus-cd-burner-2.25.3.tar.bz2"
 BUILD=""
 config_src()
 {
