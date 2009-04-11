@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="ftp://pkg-shadow.alioth.debian.org/pub/pkg-shadow/shadow-4.1.2.2.tar.bz2"
+FILES="ftp://pkg-shadow.alioth.debian.org/pub/pkg-shadow/shadow-4.1.2.1.tar.bz2"
 BUILD=""
 config_src(){
 sed -i 's/groups$(EXEEXT) //' src/Makefile.in
