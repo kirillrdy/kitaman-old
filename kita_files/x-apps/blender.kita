@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://download.blender.org/source/blender-2.48a.tar.gz http://files.kita-linux.org/blender_python_26.patch"
+FILES="http://download.blender.org/source/blender-2.48a.tar.gz http://files.kita-linux.org/patches/blender_python_26.patch"
 DEPEND="scons openal freealut SDL openexr"
 BUILD=""
 config_src()
