@@ -14,7 +14,7 @@ build_src()
   make check
 }
 post_install(){
-cat > /usr/bin/lex << "EOF"
+cat > $INSTALL_DIR/usr/bin/lex << "EOF"
 #!/bin/sh
 # Begin /usr/bin/lex
 
@@ -22,6 +22,6 @@ exec /usr/bin/flex -l "$@"
 
 # End /usr/bin/lex
 EOF
-chmod -v 755 /usr/bin/lex
+chmod -v 755 @INSTALL_DIR/usr/bin/lex
 }
 ""

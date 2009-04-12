@@ -182,7 +182,7 @@ class Kitawoman
     for result in results
        if result.split(',')[1] == 'false'
          puts result
-         mail_message +="FAILED #{result.split(':')[0]}\n"
+         email_message +="FAILED #{result.split(':')[0]}\n"
        end
     end
     Kitawoman.email_master(email_message) if email_message != ""
@@ -217,7 +217,7 @@ kitawoman.execute_actions(baby) if not baby.setup?
 
 
 targets = ['base','xorg','kita-desktop','kita-developer']
-#targets = ['vim']
+targets = ['base']
 
 for target in targets
   kitawoman.install_in_chroot(baby.root_dir,target)
