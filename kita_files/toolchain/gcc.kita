@@ -13,6 +13,12 @@ mv ../mpfr* mpfr
 sed -i 's/install_to_$(INSTALL_DEST) //' libiberty/Makefile.in
 sed -i 's/^XCFLAGS =$/& -fomit-frame-pointer/' gcc/Makefile.in
 #sed -i 's@\./fixinc\.sh@-c true@' gcc/Makefile.in
+
+
+if [ -d ../gcc-build ]; then
+  rm -rf ../gcc-build
+fi
+
 mkdir -v ../gcc-build
 cd ../gcc-build
 

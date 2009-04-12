@@ -4,17 +4,19 @@ DEPEND=""
 BUILD=""
 config_src()
 {
-  rm /usr/bin/lex
-  rm /usr/bin/flex
+if [ -e /usr/bin/{lex,flex} ]; then
+  rm -f /usr/bin/lex
+  rm -f /usr/bin/flex
+fi
   ./configure --prefix=/usr
 }
 build_src()
 {
   make
-  make check
+#  make check
 }
 post_install(){
-cat > $INSTALL_DIR/usr/bin/lex << "EOF"
+cat > /usr/bin/lex << "EOF"
 #!/bin/sh
 # Begin /usr/bin/lex
 
@@ -22,6 +24,6 @@ exec /usr/bin/flex -l "$@"
 
 # End /usr/bin/lex
 EOF
-chmod -v 755 @INSTALL_DIR/usr/bin/lex
+chmod -v 755 /usr/bin/lex
 }
 ""
