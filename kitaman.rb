@@ -136,7 +136,7 @@ class Kitaman
 
     load_needed_module(kita_instance.info['NAME'])
       
-    if not @node_hash[target] and (not kita_instance.installed? or @options[:deep])      
+    if not @node_hash[target] and (not kita_instance.installed? or @options[:shallow])      
 
       node_to_be_inserted = Tree::TreeNode.new(target,kita_instance)
             
