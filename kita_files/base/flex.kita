@@ -4,10 +4,15 @@ DEPEND=""
 BUILD=""
 config_src()
 {
-if [ -e /usr/bin/{lex,flex} ]; then
+if [ -e /usr/bin/lex ]; then
   rm -f /usr/bin/lex
+fi
+
+if [ -e /usr/bin/flex ]; then
   rm -f /usr/bin/flex
 fi
+
+
   ./configure --prefix=/usr
 }
 build_src()

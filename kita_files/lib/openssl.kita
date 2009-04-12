@@ -7,6 +7,7 @@ config_src()
 }
 build_src()
 {
+  # hacky
   MAKEFLAGS='-j1' make MANDIR=/usr/share/man
 }
 kita_install()
