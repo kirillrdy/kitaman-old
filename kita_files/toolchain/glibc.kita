@@ -13,7 +13,7 @@ build_src()
 sed -i '/vi_VN.TCVN/d' localedata/SUPPORTED
 sed -i 's|@BASH@|/bin/bash|' elf/ldd.bash.in
 
-if [ -d ../glibc-build]; then
+if [ -d ../glibc-build ]; then
   rm -rf ../glibc-build
 fi
 
