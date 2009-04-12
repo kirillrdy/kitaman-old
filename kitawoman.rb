@@ -71,8 +71,8 @@ require 'net/smtp'
 WORK_DIR = "/mnt/kitawoman"
 
 # TODO: please help kitawoman to get rid of dependency on gentoo stage file
-STAGE2_FILE = "/home/kirillvr/Desktop/stage2-x86-2007.0.tar.bz2"
-SRC_CACHE_DIR = "/home/kirillvr/Desktop/src"
+STAGE2_FILE = "/mnt/kitawoman/stage2-x86-2007.0.tar.bz2"
+SRC_CACHE_DIR = "/mnt/kitawoman/src"
 
 class Kitababy
   attr :commit
@@ -218,7 +218,7 @@ kitawoman.execute_actions(baby) if not baby.setup?
 
 
 targets = ['base','xorg','kita-desktop','kita-developer']
-targets = ['base']
+#targets = ['base']
 
 for target in targets
   kitawoman.install_in_chroot(baby.root_dir,target)
