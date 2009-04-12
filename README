@@ -5,7 +5,13 @@ Welcome to Kitaman - SIMPLY BEST PACKAGE MANAGER IN THE WORLD !!!!
 Basically, there isnt much you should know.
 Experience with gentoo linux and portage would be very useful.
 
-To install, please run rake kitaman:install['prefix']
+Requirements:
+  Ruby 1.9.1+
+  Rake
+
+To install, please run:
+
+  rake kitaman:install['prefix']
 
 For any questions please email Kirill R (you should know how)
 
