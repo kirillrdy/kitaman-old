@@ -21,9 +21,12 @@ require 'kitaman/kita_helper'
 require 'open-uri'
 
 class Object
+  
+  #This helps things like 1.in [1,2,3] => true
   def in(cmp)
     cmp.include? self
-  end 
+  end
+  
 end
 
 
@@ -46,6 +49,7 @@ def update_src_files_database
 
 end
 
+# Standart way for Kitaman to notify a user of an error
 def kita_error(string)
   puts string.bold.red
   exit 1
@@ -54,11 +58,18 @@ end
 # This is pretty waistful, please FIXME
 class KitamanConfig
   
+  @@config = nil
+  
   def KitamanConfig.config
-    infos = IO.read('/etc/kitaman.conf').scan(/(.*?)="(.*?)"\n/)
-    result = {}
-    for info in infos
-      result[info[0]]=info[1]
+    if not @@config 
+      infos = IO.read('/etc/kitaman.conf').scan(/(.*?)="(.*?)"\n/)
+      result = {}
+      for info in infos
+        result[info[0]]= ENV[info[0]] || info[1]
+      end
+      @@config = result
+    else
+      result = @@config
     end
     return result
   end

@@ -111,8 +111,9 @@ class Kitababy
   end
 
 
+  # I know it installs a bit more than just ruby, but its the way it has to be before we get rid of gentoo dependency
   def install_ruby
-    system("export KITAMAN_INSTALL_PREFIX=#{@root_dir} && kitaman -qf --deep glibc ruby")
+    system("export KITAMAN_INSTALL_PREFIX=#{@root_dir} && export STATE_DIR=#{@root_dir}/var/kitaman/state && kitaman -q glibc findutils ruby")
   end
 
   def prepare_new_chroot
