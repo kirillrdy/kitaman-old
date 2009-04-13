@@ -1,10 +1,10 @@
 KITA_TYPE="make"
-VER="r42360"
-FILES="http://builds.nightly.webkit.org/files/trunk/src/WebKit-r42260.tar.bz2"
+VER="r42369"
+FILES="http://builds.nightly.webkit.org/files/trunk/src/WebKit-r42369.tar.bz2"
 DEPEND="gtk+ icu libxslt sqlite libjpeg libpng gperf bison flex libsoup freetype"
 BUILD=""
 config_src()
 {
-./autogen.sh --prefix=/usr --enable-svg-experimental --enable-video --with-font-backend=freetype --with-http-backend=soup
+./autogen.sh --prefix=/usr --enable-video --with-font-backend=freetype
 }
 ""

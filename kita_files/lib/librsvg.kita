@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-DEPEND="gtk+ libxml2"
+DEPEND="gtk+ libxml2 cairo pango"
 BUILD=""
 config_src(){
 ./configure --prefix=/usr --sysconfdir=/etc \

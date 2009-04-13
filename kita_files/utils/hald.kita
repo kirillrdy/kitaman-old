@@ -5,19 +5,19 @@ DEPEND="dbus-glib XML-Parser usbutils pciutils eject"
 BUILD=""
 config_src()
 {
-#egrep -i \'^halusers\' /etc/group
-#if [ $? -eq 0 ]; then
-#   echo "nothing to do"
-#else
+grep -i haldaemon /etc/passwd
+if [ $? -eq 0 ]; then
+   echo "nothing to do"
+else
   groupadd -f -g 29 haldaemon
   useradd -c "HAL Daemon User" -d /dev/null -u 29 -g haldaemon -s /bin/false haldaemon 
-#fi
+fi
 
 ./configure --prefix=/usr \
       --sysconfdir=/etc \
       --with-pci-ids=/usr \
-      --libexecdir=/usr/lib/hal
-      --localstatedir=/var\      
+      --libexecdir=/usr/lib/hal \
+      --localstatedir=/var \
       --enable-umount-helper \
 		  --enable-man-pages \
 		  --disable-policy-kit \
