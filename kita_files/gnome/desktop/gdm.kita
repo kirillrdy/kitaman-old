@@ -4,9 +4,14 @@ FILES="ftp://ftp.gnome.org/pub/gnome/sources/gdm/2.20/gdm-2.20.10.tar.bz2"
 BUILD=""
 config_src()
 {
-groupadd -f -g 21 gdm &&
-useradd -c "GDM Daemon Owner" -d /dev/null \
-        -g gdm -s /bin/bash -u 21 gdm
+groupadd -f -g 21 gdm
+
+grep -i gdm /etc/passwd
+if [ $? -eq 0 ]; then
+  echo
+else
+  useradd -c "GDM Daemon Owner" -d /dev/null -g gdm -s /bin/bash -u 21 gdm
+fi
 ./configure --prefix=/usr \
             --sysconfdir=/etc \
             --localstatedir=/var/lib \
