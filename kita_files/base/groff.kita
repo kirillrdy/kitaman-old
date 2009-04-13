@@ -1,11 +1,10 @@
 KITA_TYPE="make"
-FILES="http://ftp.gnu.org/gnu/groff/groff-1.18.1.4.tar.gz"
+FILES="http://ftp.gnu.org/gnu/groff/groff-1.20.1.tar.gz"
 DEPEND=""
 BUILD=""
 config_src()
 {
-sed -i -e 's/2010/002D/' -e 's/2212/002D/' -e 's/2018/0060/' -e 's/2019/0027/' font/devutf8/R.proto
-PAGE=A4 ./configure --prefix=/usr --enable-multibyte
+  PAGE=A4 ./configure --prefix=/usr
 }
 kita_install()
 {
@@ -17,12 +16,12 @@ mkdir -p $D/usr/lib
 mkdir -p $D/usr/share/man
 mkdir -p $D/usr/share/info
 make \
-		prefix="${D}"/usr \
-		bindir="${D}"/usr/bin \
-		libdir="${D}"/usr/lib \
-		datadir="${D}"/usr/share \
-		mandir="${D}"/usr/share/man \
-		infodir="${D}"/usr/share/info \
+		prefix=${D}/usr \
+		bindir=${D}/usr/bin \
+		libdir=${D}/usr/lib \
+		datadir=${D}/usr/share \
+		mandir=${D}/usr/share/man \
+		infodir=${D}/usr/share/info \
 		install 
 
 }
