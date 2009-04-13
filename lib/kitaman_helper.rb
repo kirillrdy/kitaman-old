@@ -194,9 +194,8 @@ class Kitaman
         end
       
         opts.on("-B",'--rebuild-one',"Force rebuild only one package") do |v|
-          #@options[:force] = true
-          @options[:rebuild] = true
-          @options[:shallow] = true
+          @options[:force] = true
+          @options[:rebuild] = true          
         end
 
         opts.on("-S", "--[no-]sync", "sync") do |v|

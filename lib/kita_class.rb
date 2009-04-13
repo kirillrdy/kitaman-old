@@ -112,7 +112,9 @@ class Kita
   def download_one_file(file)
     result = true
     
-    #return true if File.exists?("#{KitamanConfig.config['SRC_DIR']}/#{File.basename(file)}")
+    if File.exists?("#{KitamanConfig.config['SRC_DIR']}/#{File.basename(file)}")
+      system("mv #{KitamanConfig.config['SRC_DIR']}/#{File.basename(file)} #{KitamanConfig.config['TEMP_DIR']}/")
+    end
 
     result = (result and system("wget -c #{file} -O #{KitamanConfig.config['TEMP_DIR']}/#{File.basename(file)}"))
     result = (result and system("mv #{KitamanConfig.config['TEMP_DIR']}/#{File.basename(file)} #{KitamanConfig.config['SRC_DIR']}/"))
