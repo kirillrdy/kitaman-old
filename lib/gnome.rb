@@ -56,7 +56,7 @@ def kitaman_post_install
       # Update the linkers cache
       ldconfig
       
-      update-desktop-database
+      update-desktop-database /usr/share
       update-mime-database -V /usr/share/mime
 
       for i in /usr/share/icons/*/ ; do    

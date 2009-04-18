@@ -6,9 +6,8 @@ config_src()
 {
 groupadd -f -g 21 gdm
 
-grep -i gdm /etc/passwd
-if [ $? -eq 0 ]; then
-  echo
+if [ `id -u gdm` = '29' ]; then
+  echo "GDM User already exists"
 else
   useradd -c "GDM Daemon Owner" -d /dev/null -g gdm -s /bin/bash -u 21 gdm
 fi
