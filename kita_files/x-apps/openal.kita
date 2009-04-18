@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://connect.creativelabs.com/openal/Downloads/openal-soft-1.6.372.tar.bz2"
+FILES="http://connect.creativelabs.com/openal/Downloads/openal-soft-1.7.411.bz2"
 DEPEND="cmake"
 BUILD=""
 config_src()

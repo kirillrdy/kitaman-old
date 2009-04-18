@@ -5,9 +5,9 @@ DEPEND="dbus-glib XML-Parser usbutils pciutils eject"
 BUILD=""
 config_src()
 {
-grep -i haldaemon /etc/passwd
-if [ $? -eq 0 ]; then
-   echo "nothing to do"
+
+if [ `id -u haldaemon` = '29' ]; then
+   echo "User Already exists"
 else
   groupadd -f -g 29 haldaemon
   useradd -c "HAL Daemon User" -d /dev/null -u 29 -g haldaemon -s /bin/false haldaemon 

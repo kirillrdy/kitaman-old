@@ -1,6 +1,6 @@
 KITA_TYPE="make"
-VER="r42369"
-FILES="http://builds.nightly.webkit.org/files/trunk/src/WebKit-r42369.tar.bz2"
+VER="r42583"
+FILES="http://builds.nightly.webkit.org/files/trunk/src/WebKit-r42583.tar.bz2"
 DEPEND="gtk+ icu libxslt sqlite libjpeg libpng gperf bison flex libsoup freetype"
 BUILD=""
 config_src()
