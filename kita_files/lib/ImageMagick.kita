@@ -1,0 +1,9 @@
+KITA_TYPE="make"
+VER="6.3.5-10"
+FILES="http://anduin.linuxfromscratch.org/sources/BLFS/svn/i/ImageMagick-6.3.5-10.tar.bz2"
+BUILD=""
+config_src()
+{
+  ./configure --prefix=/usr --with-modules
+}
+""
