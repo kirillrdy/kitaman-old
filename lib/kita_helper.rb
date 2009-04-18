@@ -17,7 +17,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-ARCHIVE_EXT=['.tar.bz2','.tar.gz','.tgz']
+ARCHIVE_EXT=['.tar.bz2','.tar.gz','.tgz','.bz2']
 
 class Hash
   def set_if_nil(key,default)

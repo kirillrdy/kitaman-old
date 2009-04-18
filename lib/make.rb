@@ -165,7 +165,7 @@ class Kita
   def extract
     result = true
     for file in files_list_local
-      result = (result and system("tar xjpf #{file} -C #{KitamanConfig.config['BUILD_DIR']}/")) if file.index('.tar.bz2')
+      result = (result and system("tar xjpf #{file} -C #{KitamanConfig.config['BUILD_DIR']}/")) if ( file.index('.tar.bz2') or file.index('.bz2') )
       result = (result and system("tar xpf #{file} -C #{KitamanConfig.config['BUILD_DIR']}/")) if file.index('.tar.gz')
       result = (result and system("tar xpf #{file} -C #{KitamanConfig.config['BUILD_DIR']}/")) if file.index('.tgz')
       result = (result and system("tar #{file} -d #{KitamanConfig.config['BUILD_DIR']}/")) if file.index('.zip')
