@@ -34,7 +34,7 @@ def update_src_files_database
   files_dictionary = {}
   for repo in IO.read(KitamanConfig.config['REPOST_LIST_FILE']).split("\n")
     puts "Syncing #{repo.blue}"
-    list_of_files = open(repo).read.scan(/<a href=\"(.*?\.tar\.bz2)">(?:.*?)<\/a>/)  
+    list_of_files = open(repo).read.scan(/<a href=\"(.*?\.tar\.bz2)">(?:.*?)<\/a>/)
     
     for file in list_of_files
       file = file[0]

@@ -166,6 +166,7 @@ class Kitawoman
  
   def Kitawoman.get_latest_kitaman
     if File.exists? "#{WORK_DIR}/kitaman"
+      puts "Getting latest kitaman updates ..."
       system("cd #{WORK_DIR}/kitaman && git pull")
     else
       system("cd #{WORK_DIR} && git clone git@kita-linux.org:kitaman.git")
@@ -217,8 +218,10 @@ kitawoman.execute_actions(baby) if not baby.setup?
 # TODO: move targets to config file
 
 
-targets = ['base','xorg','kita-desktop','kita-developer']
+#targets = ['base','xorg','kita-desktop','kita-developer']
 #targets = ['base']
+
+targets = ARGV
 
 for target in targets
   kitawoman.install_in_chroot(baby.root_dir,target)
