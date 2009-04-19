@@ -1,5 +1,6 @@
 KITA_TYPE="gnome"
 DEPEND="libgnomeui gnome-doc-utils vte startup-notification"
+PATCHES="http://files.kita-linux.org/patches/gnome-terminal-kita.patch"
 BUILD=""
 config_src()
 {

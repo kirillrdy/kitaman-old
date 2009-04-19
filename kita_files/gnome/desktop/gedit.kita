@@ -1,5 +1,6 @@
 KITA_TYPE="gnome"
 DEPEND="gtksourceview pygtksourceview"
+PATCHES="http://files.kita-linux.org/patches/gedit-kita-settings.patch"
 BUILD=""
 config_src()
 {
