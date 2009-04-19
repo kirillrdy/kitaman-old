@@ -4,7 +4,7 @@ FILES="http://www.mplayerhq.hu/MPlayer/releases/mplayer-export-snapshot.tar.bz2"
 BUILD=""
 post_install()
 {
-cat > /usr/etc/mplayer << "EOF"
+cat > /usr/etc/mplayer/mplayer.conf << "EOF"
 # mplayer config, for kita-linux
 # Kirill Radzikhovskyy kirillrdy@kita-linux.org
 font=//usr/share/fonts/liberation/LiberationSans-Regular.ttf
