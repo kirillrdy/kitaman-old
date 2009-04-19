@@ -1,6 +1,6 @@
 KITA_TYPE="gnome"
 DEPEND="libexif librsvg gvfs unique"
-FILES="ftp://ftp.gnome.org/pub/gnome/sources/nautilus/2.26/nautilus-2.26.2.tar.bz2 http://files.kita-linux.org/patches/nautilus-browser-mode.patch"
+PATCHES="http://files.kita-linux.org/patches/nautilus-browser-mode.patch"
 BUILD=""
 config_src()
 {

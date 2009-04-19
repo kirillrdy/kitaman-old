@@ -1,5 +1,5 @@
 KITA_TYPE="gnome"
-DEPEND="gtksourceview"
+DEPEND="gtksourceview pygtksourceview"
 BUILD=""
 config_src()
 {

@@ -2,7 +2,10 @@ KITA_TYPE="make"
 DEPEND="gtk+ libxml2 cairo pango"
 BUILD=""
 config_src(){
-./configure --prefix=/usr --sysconfdir=/etc \
-        --disable-mozilla-plugin
+./configure --prefix=/usr --sysconfdir=/etc --disable-mozilla-plugin
+}
+post_install()
+{
+gdk-pixbuf-query-loaders  > /etc/gtk-2.0/gdk-pixbuf.loaders
 }
 ""
