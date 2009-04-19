@@ -58,6 +58,7 @@ class Kita
 
     #sorry this line had to be this ugly, because get_files_from_repo gets evaluated here, and we dont always want it
     @info.split_or_default_if_nil('FILES',@info.has_key?('FILES') ? '' :  get_files_from_repo)
+    @info.split_or_default_if_nil("PATCHES",[])
 
     
     @info.set_if_nil('VER',get_version)
@@ -105,7 +106,7 @@ class Kita
 
   # Returns a list of URLS of source files to be downloaded
   def files_list_to_download
-    @info['FILES']
+    (@info['FILES'] + @info['PATCHES'])
   end
   
   # Helper used to download singe file
@@ -124,7 +125,7 @@ class Kita
     # Returns a list of full paths to local source files belonging to package
   def files_list_local
     list=[]
-    for file in @info['FILES']
+    for file in ( @info['FILES'] + @info['PATCHES'])
       list << (KitamanConfig.config['SRC_DIR']+'/'+File.basename(file))
     end
     list
