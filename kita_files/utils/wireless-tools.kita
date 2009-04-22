@@ -3,7 +3,10 @@ VER="29"
 FILES="http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/wireless_tools.29.tar.gz"
 DEPEND=""
 BUILD=""
-#Paste Build instructions here
+config_src()
+{
+  echo
+}
 build_src()
 {
 make

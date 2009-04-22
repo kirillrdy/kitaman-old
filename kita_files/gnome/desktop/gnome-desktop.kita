@@ -1,5 +1,5 @@
 KITA_TYPE="gnome"
-DEPEND="libgnomeui gnome-doc-utils scrollkeeper pygtk gnome-python-desktop"
+DEPEND="libgnomeui gnome-doc-utils scrollkeeper pygtk"
 BUILD=""
 #Paste Build instructions here
 build_src()

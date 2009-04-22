@@ -1,5 +1,5 @@
 KITA_TYPE="gnome"
-DEPEND=""
+DEPEND="PolicyKit"
 BUILD=""
 #Paste Build instructions here
 build_src()

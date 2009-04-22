@@ -1,0 +1,41 @@
+KITA_TYPE="make"
+FILES="http://ftp.mozilla.org/pub/mozilla.org/security/nss/releases/NSS_3_11_7_RTM/src/nss-3.11.7-with-nspr-4.6.7.tar.gz http://www.linuxfromscratch.org/patches/blfs/svn/nss-3.11.7-with-nspr-4.6.7-fedora_fixes-1.patch"
+BUILD=""
+config_src()
+{
+  export WORKINGDIR=$PWD &&
+export BUILD_OPT=1 &&
+
+cd mozilla/security/nss &&
+make nss_build_all &&
+cd ../.. &&
+
+export NSS_LINUXDIR=$(basename `ls -d $WORKINGDIR/mozilla/dist/Linux*`)
+}
+build_src()
+{
+  echo
+}
+kita_install()
+{
+touch $INSTALL_DIR/sorry
+
+  install -v -m755 nsprpub/$NSS_LINUXDIR/config/nspr-config \
+                 security/nss/cmd/config/nss-config \
+    /usr/bin &&
+install -v -m755 -d /usr/lib/pkgconfig &&
+install -v -m644 nsprpub/lib/pkgconfig/nspr.pc \
+                 security/nss/lib/pkgconfig/nss.pc \
+    /usr/lib/pkgconfig &&
+
+cd dist &&
+
+install -v -m755 $NSS_LINUXDIR/lib/*.so /usr/lib &&
+install -v -m644 $NSS_LINUXDIR/lib/{*.chk,libcrmf.a} /usr/lib &&
+
+install -v -m755 -d /usr/include/{nss,nspr} &&
+install -v -m644 {public,private}/nss/* /usr/include/nss &&
+cp -v -RL $NSS_LINUXDIR/include/* /usr/include/nspr &&
+chmod -v 644 /usr/include/nspr/prvrsion.h
+}
+""

@@ -1,2 +1,2 @@
 KITA_TYPE="gnome"
-DEPEND="gnome-python"
+DEPEND="gnome-python pyorbit dbus-python"

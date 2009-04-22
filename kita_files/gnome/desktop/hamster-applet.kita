@@ -1,5 +1,5 @@
 KITA_TYPE="gnome"
-DEPEND="gnome-python-desktop"
+DEPEND="gnome-python-desktop sqlite"
 BUILD=""
 config_src()
 {

@@ -1,3 +1,9 @@
 KITA_TYPE="make"
-FILES="http://ftp.gnome.org/pub/GNOME/sources/NetworkManager/0.7/NetworkManager-0.7.0.97.tar.bz2"
-DEPEND="wireless-tools libnl hal dbus"
+FILES="http://ftp.gnome.org/pub/GNOME/sources/NetworkManager/0.7/NetworkManager-0.7.1.tar.bz2"
+DEPEND="wireless-tools libnl hal dbus gnutls ppp"
+BUILD=""
+config_src()
+{
+  ./configure --prefix=/usr --with-crypto=gnutls
+}
+""
