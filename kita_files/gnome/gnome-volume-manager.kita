@@ -8,6 +8,6 @@ config_src()
 }
 post_install()
 {
-  mkdir /media
+  mkdir -p /media
 }
 ""

@@ -13,5 +13,7 @@ echo special
 kita_install()
 {
 ruby setup.rb --prefix=$INSTALL_DIR/usr --no-format-executable
+export RUBYLIB=/usr/lib
+export GEM_HOME=/usr/lib/ruby/gems/1.8 
 }
 ""
