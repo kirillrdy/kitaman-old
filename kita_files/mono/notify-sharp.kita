@@ -1,0 +1,9 @@
+KITA_TYPE="make"
+FILES="http://cvs.fedora.redhat.com/repo/pkgs/notify-sharp/notify-sharp-20080912.tar.bz2/098f3cde158cf26d3efedbfcc19c70dd/notify-sharp-20080912.tar.bz2"
+DEPEND="gnome-common"
+BUILD=""
+config_src()
+{
+  ./autogen.sh --prefix=/usr
+}
+""

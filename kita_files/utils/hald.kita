@@ -19,7 +19,7 @@ fi
       --libexecdir=/usr/lib/hal \
       --localstatedir=/var \
       --enable-umount-helper \
-		  --enable-man-pages \		  
+		  --enable-man-pages \
 		  --disable-console-kit \
 		  --disable-policy-kit \
 		  --disable-acl-management \

@@ -3,7 +3,10 @@ VER="232"
 FILES="ftp://tug.ctan.org/tex-archive/tools/zip/info-zip/src/zip232.tar.gz"
 DEPEND=""
 BUILD=""
-#Paste Build instructions here
+config_src()
+{
+echo
+}
 build_src()
 {
 make -f unix/Makefile generic_gcc

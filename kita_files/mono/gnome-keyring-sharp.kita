@@ -1,0 +1,3 @@
+KITA_TYPE="gnome"
+FILES="http://ftp.novell.com/pub/mono/sources/gnome-keyring-sharp/gnome-keyring-sharp-1.0.0.tar.bz2"
+DEPEND="gnome-keyring"
