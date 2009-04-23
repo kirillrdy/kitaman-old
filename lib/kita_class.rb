@@ -48,7 +48,7 @@ class Kita
   # Creates Kita object and parses all the information
   def initialize(kita_file)
     
-    infos = IO.read(kita_file).scan(/(.*?)="(.*?)"\n/)
+    infos = IO.read(kita_file).scan(/(.*?)="(.*?)".*\n/)    
     @info = {}
     for info in infos
       @info[info[0]]=info[1]

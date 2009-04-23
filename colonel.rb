@@ -27,7 +27,7 @@ BLACK_LIST=["IDE"]
 
 
 # here is a list of always build modules, like filesystems etc
-ALWAYS_INSTALL=['REISERFS_FS','EXT4_FS','CONFIG_UDF_FS','CONFIG_FUSION']
+ALWAYS_INSTALL=['REISERFS_FS','EXT4_FS','CONFIG_UDF_FS','CONFIG_FUSION','CONFIG_BLK_DEV_IDECD']
 
 class String
 

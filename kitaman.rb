@@ -153,7 +153,7 @@ class Kitaman
       if @options[:rebuild]
         return
       end
-              
+
       for dependency in kita_instance.info["DEPEND"]
           build_queue(dependency,target)
           
