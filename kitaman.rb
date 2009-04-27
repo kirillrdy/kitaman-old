@@ -26,7 +26,6 @@ require 'kitaman/kita_class'
 
 require 'tree'
 
-
 class Kitaman
   
   attr_reader :root_node
@@ -228,5 +227,7 @@ end
 
 kitaman.show_actions_to_be_taken
 
+# Big important function
 kitaman.run
+
 kitaman.show_results_log

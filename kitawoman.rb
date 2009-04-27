@@ -18,14 +18,14 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#########################################################################################
-# If there is a kitaman, there got to be kitawoman.
-# Kitaman's job to work on kitafiles, build your system
-# Kitawoman's job is to do all the house work, look after the state of kitaworld
-# Written by Kirill Radzikhovskyy <kirillrdy@silverpond.com.au>
-# Silverpond Pty Ltd
-# 2009
-#########################################################################################
+#  ########################################################################################
+#     If there is a kitaman, there got to be kitawoman.
+#     Kitaman's job to work on kitafiles, build your system
+#     Kitawoman's job is to do all the house work, look after the state of kitaworld
+#     Written by Kirill Radzikhovskyy <kirillrdy@silverpond.com.au>
+#     Silverpond Pty Ltd
+#     2009
+#  ########################################################################################
 #
 #                         :xkkko;          .';;.                                                            
 #                        ,kkkOOOOO.      .okkkkO,                                                           
@@ -70,7 +70,7 @@ require 'net/smtp'
 
 WORK_DIR = "/mnt/kitawoman"
 
-# TODO: please help kitawoman to get rid of dependency on gentoo stage file
+# TODO: please help kitawoman to get rid of this dependency
 STAGE2_FILE = "/mnt/kitawoman/stage2-x86-2007.0.tar.bz2"
 SRC_CACHE_DIR = "/mnt/kitawoman/src"
 
@@ -174,7 +174,9 @@ class Kitawoman
     
   end
   
+  #I know it does a bit more than just parsing the log, we'll sort it out later
   def Kitawoman.parse_kitaman_log(dir)
+    
     if not File.exists?(dir+'/kitaman.log')
       exit
     end
@@ -187,7 +189,12 @@ class Kitawoman
          email_message +="FAILED #{result.split(':')[0]}\n"
        end
     end
-    Kitawoman.email_master(email_message) if email_message != ""
+    if email_message==""
+      puts "Successfully built stage"
+      #`tar cjpf #{WORK_DIR}/base.tar.bz2 #{dir}/`
+    else
+      Kitawoman.email_master(email_message)
+    end
   end
   
   def Kitawoman.email_master(msg,email = 'kirillrdy@kita-linux.org')
