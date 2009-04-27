@@ -1,11 +1,9 @@
 KITA_TYPE="gnome"
 DEPEND="PolicyKit"
 BUILD=""
-#Paste Build instructions here
-build_src()
+config_src()
 {
 ./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) \
-            --sysconfdir=/etc 
-make
+            --sysconfdir=/etc
 }
 ""

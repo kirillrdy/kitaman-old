@@ -1,10 +1,2 @@
-# xorg
-KITA_TYPE="smart_make"
-BUILD=""
-# going with defaults
-build_src()
-{
-./configure --prefix=/usr
-make
-}
-""
+KITA_TYPE="make"
+FILES="http://releases.chipx86.com/libsexy/libsexy/libsexy-0.1.11.tar.gz"

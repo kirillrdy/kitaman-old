@@ -1,0 +1,9 @@
+KITA_TYPE="make"
+FILES="ftp://ftp.gnu.org/gnu/aspell/dict/en/aspell6-en-6.0-0.tar.bz2"
+DEPEND="aspell"
+BUILD=""
+config_src()
+{
+./configure
+}
+""

@@ -1,6 +1,6 @@
 KITA_TYPE="gnome"
 DEPEND="libexif librsvg gvfs unique"
-PATCHES="http://files.kita-linux.org/patches/nautilus-browser-mode.patch"
+PATCHES="http://files.kita-linux.org/patches/nautilus-browser-mode.patch http://files.kita-linux.org/patches/nautilus-no-volumes-on-desktop.patch"
 BUILD=""
 config_src()
 {

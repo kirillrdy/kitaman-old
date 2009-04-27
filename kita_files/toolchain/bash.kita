@@ -22,7 +22,7 @@ cat > $INSTALL_DIR/etc/profile << "EOF"
 # Written for Beyond Linux From Scratch
 # by James Robertson <jameswrobertson@earthlink.net>
 # modifications by Dagmar d'Surreal <rivyqntzne@pbzpnfg.arg>
-# and Silverpond , Kirill Radzikhovskyy <kirillrdy@silverpond.com.au>
+# and Kita-Linux , Kirill Radzikhovskyy <kirillrdy@kita-linux.org>
 
 # System wide environment variables and startup programs.
 
