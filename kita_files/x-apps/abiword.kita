@@ -1,3 +1,3 @@
 KITA_TYPE="make"
-FILES="http://www.abisource.com/downloads/abiword/2.6.6/source/abiword-2.6.6.tar.gz"
+FILES="http://www.abisource.com/downloads/abiword/2.6.8/source/abiword-2.6.8.tar.gz"
 DEPEND="gtk+ libgsf enchant fribidi wv libgnomeprintui"
