@@ -1,2 +1,14 @@
 KITA_TYPE="make"
 FILES="http://optusnet.dl.sourceforge.net/sourceforge/scim/scim-1.4.7.tar.gz"
+BUILD=""
+post_install()
+{
+cat > /etc/profile.d/scim.sh << "EOF"
+export XMODIFIERS="@im=SCIM"
+export XIM_PROGRAM="scim -d"
+export GTK_IM_MODULE="scim"
+export QT_IM_MODULE="scim"
+scim -d
+EOF
+}
+""
