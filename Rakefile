@@ -30,7 +30,7 @@ namespace :kitaman do
       cp etc/kitaman.repos #{args.prefix}/etc/
       cp -r kita_files #{args.prefix}/usr/kitaman/
     `
-     puts args.prefix
+     #puts args.prefix
   end
 
   task :release do
