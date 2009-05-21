@@ -1,0 +1,17 @@
+KITA_TYPE="make"
+FILES="http://files.kita-linux.org/kita-art-0.1.tar.bz2"
+BUILD=""
+config_src()
+{
+echo
+}
+build_src()
+{
+echo
+}
+kita_install()
+{
+sh ./install.sh
+touch $INSTALL_DIR/nothin
+}
+""
