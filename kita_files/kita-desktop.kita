@@ -1,3 +1,3 @@
 KITA_TYPE="meta"
 VER="0.1"
-DEPEND="gnome gvim transmission mplayer wine abiword"
+DEPEND="gnome gvim transmission mplayer wine abiword firefox"

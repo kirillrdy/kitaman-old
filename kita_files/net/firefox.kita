@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="ftp://ftp.mozilla.org/pub/mozilla.org/firefox/releases/3.1b3/source/firefox-3.1b3-source.tar.bz2"
+FILES="ftp://ftp.mozilla.org/pub/mozilla.org/firefox/releases/3.5b4/source/firefox-3.5b4-source.tar.bz2"
 DEPEND="gtk+ libIDL zip curl"
 BUILD=""
 config_src()
@@ -58,11 +58,11 @@ ac_add_options --with-system-jpeg
 # and Netscape Portable Runtime (NSPR) libraries. We build these
 # as part of xulrunner, so we can use them here.  For a standalone
 # firefox you might want to comment these.
-ac_add_options --with-system-nspr
-ac_add_options --with-system-nss
+#ac_add_options --with-system-nspr
+#ac_add_options --with-system-nss
 
 # comment this if you have not installed png with the apng patch
-ac_add_options --with-system-png
+#ac_add_options --with-system-png
 
 # uncomment this if you are building nspr as part of firefox
 #ac_add_options --with-pthreads
@@ -79,11 +79,11 @@ ac_add_options --disable-accessibility
 #ac_add_options --disable-crashreporter
 
 # comment this if you have built dbus-glib
-ac_add_options --disable-dbus
+#ac_add_options --disable-dbus
 
 # comment this if you have gnome-vfs and libgnomeui, and wish to
 # integrate firefox into your gnome desktop
-ac_add_options --disable-gnomevfs
+#ac_add_options --disable-gnomevfs
 
 # This option is added so that the Mozilla Installer program is not
 # built or installed. The program is not required for a BLFS
@@ -144,9 +144,26 @@ ac_add_options --enable-strip
 #ac_add_options --with-default-mozilla-five-home=/usr/lib/firefox-3.0.7
 
 # Point to the xulrunner libraries - comment this for a standalone browser
-ac_add_options --with-libxul-sdk=/usr/lib/xulrunner-devel-1.9.0.7
+#ac_add_options --with-libxul-sdk=/usr/lib/xulrunner-devel-1.9.0.7
 
 EOF
+
+mkdir -p $INSTALL_DIR/usr/share/applications
+
+cat > $INSTALL_DIR/usr/share/applications/firefox.desktop << "EOF"
+[Desktop Entry]
+Name=Firefox
+GenericName=Web Browser
+Comment=Browse the web
+Exec=firefox %U
+StartupNotify=true
+Terminal=false
+Type=Application
+Icon=/usr/lib/firefox-3.5b4/icons/mozicon128.png
+Categories=Network;GNOME;GTK;WebBrowser;
+MimeType=text/html;text/xml;application/xhtml+xml;
+EOF
+
 }
 build_src()
 {

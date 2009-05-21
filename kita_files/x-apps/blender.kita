@@ -14,9 +14,28 @@ kita_install()
 {
 mkdir -p $INSTALL_DIR/usr/lib/blender
 cp -rp ../install/linux2/* $INSTALL_DIR/usr/lib/blender
+
+mkdir -p $INSTALL_DIR/usr/share/applications
+
+cat > $INSTALL_DIR/usr/share/applications/blender.desktop << "EOF"
+[Desktop Entry]
+Name=Blender
+GenericName=3D Everything
+Comment=3D Modeling and Animation suite
+Exec=blender %U
+StartupNotify=true
+Terminal=false
+Type=Application
+Icon=/usr/lib/blender/icons/32x32/blender.png
+Categories=Graphics;RasterGraphics;GNOME;GTK;
+MimeType=application/x-blender;
+EOF
+
+
 }
 post_install()
 {
 ln -fs /usr/lib/blender/blender /usr/bin/blender
+
 }
 ""
