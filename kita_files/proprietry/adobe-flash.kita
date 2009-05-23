@@ -1,0 +1,20 @@
+KITA_TYPE="make"
+VER="10"
+FILES="http://fpdownload.macromedia.com/get/flashplayer/current/install_flash_player_10_linux.tar.gz"
+DEPEND="firefox"
+BUILD=""
+config_src()
+{
+  echo
+}
+build_src()
+{
+  echo
+}
+kita_install()
+{
+mkdir -p $INSTALL_DIR/usr/lib/mozilla/plugins
+cp libflashplayer.so $INSTALL_DIR/usr/lib/mozilla/plugins/
+}
+
+""
