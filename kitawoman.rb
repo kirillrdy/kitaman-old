@@ -189,12 +189,12 @@ class Kitawoman
          email_message +="FAILED #{result.split(':')[0]}\n"
        end
     end
-    if email_message==""
+    if email_message == ""
       puts "Successfully built stage"
       #`tar cjpf #{WORK_DIR}/base.tar.bz2 #{dir}/`
-    else
-      Kitawoman.email_master(email_message)
+      email_message = 'Successfully built stage'
     end
+    Kitawoman.email_master(email_message)
   end
   
   def Kitawoman.email_master(msg,email = 'kirillrdy@kita-linux.org')
