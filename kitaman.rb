@@ -28,35 +28,49 @@ require 'tree'
 
 class Kitaman
   
-  attr_reader :root_node
-  attr_reader :kita_hash  
+  #attr_reader :root_node
+  
+  attr_reader :target_list
+  
+  #attr_reader :kita_hash  
 
   def Kitaman.version
-    "0.98.2"
+    "0.99.0ALPHA"
   end
 
   def initialize
-    @options = {:download => true,:build => true,:install => true,:deep => false,:deepest => false,:force => false,:search => false,:remove => false}
+    @options = {:download   => true,
+                :build      => true,
+                :install    => true,
+                :deep       => false,
+                :deepest    => false,
+                :force      => false,
+                :search     => false,
+                :remove     => false }
 
-    @root_node = nil
     
-    # hash for tree insertion
-    @node_hash = {}
-    
+    @target_list = []
+        
     # hash for loaded kita instances
     @kita_hash = {}
+    @nodes_hash = {}
+    
     @results_log = []
     
     #fix this
     @graphviz_graph = GraphvizGraph.new
   end
 
-  def run(node = self.root_node)
+  def traverse_tree_for_actions(node)
+
+    #if we already been here, we dont need to recurse to children  
+    return @visit_list[node] if @visit_list.has_key? node
+
     result = true
-  
+    
     if node.hasChildren?
       for child in node.children
-        temp_result = run(child)
+        temp_result = traverse_tree_for_actions(child)
         result = (result and temp_result)
      end      
     end    
@@ -64,27 +78,43 @@ class Kitaman
     # if one of children failed, we do not need to run us 
     return false if not result
 
-    load_needed_module(node.content.info['NAME'])
-    
     # FIXME, it needs to say 1 of N: packagename-ver
     set_terminal_title(node.content.info["NAME-VER"])
-    
+
+    load_needed_module(node.content.info['NAME'])
+
     actions = [:download,:build,:install]
+    
+    # mark that we've been here 
+    @visit_list[node] = true
     
     for action in actions      
       # as soon as one of actions fail, we fail
-      return false if not execute_action(node.content,action)
+      did_we_pass = execute_action(node.content,action)
+      if did_we_pass == false
+        @visit_list[node] = false
+        return false
+      end
     end
     
     # everything is working !
     set_terminal_title("Finished #{node.content.info["NAME-VER"]}")
-    return true
+    return true    
+  end
+  
+
+  # Goes through target_list and applies needed actions
+  def run
+    @visit_list={}
+    for target in @target_list
+      traverse_tree_for_actions(target)
+    end
   end
 
    
   def show_actions_to_be_taken
    
-    if not @root_node
+    if @target_list==[]
       puts "Nothing to do ...".bold.green
       exit
     end
@@ -98,9 +128,9 @@ class Kitaman
     
     puts "\nKitaman will do the following: \n".bold
   
-    traverse_tree_for_print
-    
-    puts "Number of Packages to be installed: " + @root_node.size.to_s.bold.cyan
+    print_target_list
+        
+    #puts "Number of Packages to be installed: " + @root_node.size.to_s.bold.cyan
     
     puts ""
     puts "Press Enter to continue...".on_yellow.bold
@@ -109,7 +139,7 @@ class Kitaman
   end
   
   def show_results_log    
-    puts "################################################################################".bold
+    puts ("#" * 50).bold
     puts "Kitaman Results Log:\n".blue
     total_failed = @results_log.select {|item| item[1]==false }
     for item in total_failed
@@ -129,37 +159,37 @@ class Kitaman
     
   end
  
-  def build_queue(target, parent = nil)
+  # Builds the targe list
+  def build_dependencies(target, parent = nil)
 
     kita_instance = get_kita_instance(target)
-
     load_needed_module(kita_instance.info['NAME'])
-      
-    if not @node_hash[target] and (not kita_instance.installed? or @options[:rebuild] or @options[:deep])
-
-      node_to_be_inserted = Tree::TreeNode.new(target,kita_instance)
-            
-      if parent
-        @node_hash[parent] << node_to_be_inserted
-      else
-        node_to_be_inserted << @root_node if @root_node
-        @root_node = node_to_be_inserted
-      end
-      
-      #register in hash
-      @node_hash[target] = node_to_be_inserted
-      
-      if @options[:rebuild]
-        return
-      end
-
-      for dependency in kita_instance.info["DEPEND"]
-          build_queue(dependency,target)
+    
+    return if  kita_instance.installed?  and (not (@options[:deep] or @options[:rebuild] ))  # ) or ( (@options[:rebuild] or @options[:deep]))
+    # return if instance is installed , but honor rebuild and deep flags
           
-          #GraphvizGraph
-          @graphviz_graph.add(target,dependency)
-      end
+    node_to_be_inserted =  @nodes_hash[target] || Tree::TreeNode.new(target,kita_instance)
+      
+    if not parent
+      # test linking here
+      @target_list << node_to_be_inserted
+    else
+      parent << node_to_be_inserted
     end
+    
+    # if we already been here, we dont need to go though dependencies
+    return if @nodes_hash.has_key? target
+    
+    #record the node in hash
+    @nodes_hash[target] = node_to_be_inserted
+    
+    
+    return if @options[:rebuild]
+    for dependency in kita_instance.info["DEPEND"]
+      build_dependencies(dependency,node_to_be_inserted)     
+      @graphviz_graph.add(target,dependency)
+    end    
+    
   end
   
   private
@@ -171,14 +201,24 @@ class Kitaman
     return @kita_hash[kita]
   end
   
-   def traverse_tree_for_print(node = self.root_node)
- 
+   def print_target_list
+    @visit_list={}
+    for target in @target_list
+      traverse_tree_for_print target
+    end
+   end
+  
+   def traverse_tree_for_print(node)
+    
+    return if @visit_list.has_key? node
+    
     if node.hasChildren?
       for child in node.children        
         traverse_tree_for_print child
       end      
     end  
     puts node.content.info['NAME'].blue+'-'+node.content.info['VER'].bold.green
+    @visit_list[node] = true
   end
   
    def execute_action(kita_object,action)
@@ -222,12 +262,13 @@ kitaman = Kitaman.new
 kitaman.parse_argv
 
 for argument in ARGV
-  kitaman.build_queue(argument)
+  kitaman.build_dependencies(argument)
 end
 
 kitaman.show_actions_to_be_taken
 
 # Big important function
 kitaman.run
+# Big important function
 
 kitaman.show_results_log

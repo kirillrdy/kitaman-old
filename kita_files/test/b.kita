@@ -1,2 +1,8 @@
 KITA_TYPE="meta"
 DEPEND="f"
+BUILD=""
+post_install()
+{
+please fail mr
+}
+""

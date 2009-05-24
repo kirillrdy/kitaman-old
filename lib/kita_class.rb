@@ -65,6 +65,8 @@ class Kita
     @info['NAME-VER'] = @info['NAME']+'-'+@info['VER'] 
 
     @info.split_or_default_if_nil("DEPEND",[])
+    
+    #TODO, introduce patter maching fail error handing
     @info["BUILD"] = IO.read(kita_file).scan(/BUILD=""(.*?)""/m)[0][0] if @info['BUILD']
 
   end
