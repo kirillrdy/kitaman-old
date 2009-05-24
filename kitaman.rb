@@ -35,7 +35,7 @@ class Kitaman
   #attr_reader :kita_hash  
 
   def Kitaman.version
-    "0.99.0ALPHA"
+    "0.99.0"
   end
 
   def initialize
