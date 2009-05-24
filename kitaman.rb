@@ -49,7 +49,7 @@ class Kitaman
                 :remove     => false }
 
     
-    @target_list = []
+    @target_list = Tree::TreeNode.new("ROOT",nil)
         
     # hash for loaded kita instances
     @kita_hash = {}
@@ -106,7 +106,7 @@ class Kitaman
   # Goes through target_list and applies needed actions
   def run
     @visit_list={}
-    for target in @target_list
+    for target in @target_list.children
       traverse_tree_for_actions(target)
     end
   end
@@ -114,7 +114,8 @@ class Kitaman
    
   def show_actions_to_be_taken
    
-    if @target_list==[]
+   
+    if not @target_list.hasChildren?
       puts "Nothing to do ...".bold.green
       exit
     end
@@ -128,9 +129,12 @@ class Kitaman
     
     puts "\nKitaman will do the following: \n".bold
   
-    print_target_list
+    @visit_list={}
+    for target in @target_list.children
+      traverse_tree_for_print target
+    end
         
-    #puts "Number of Packages to be installed: " + @root_node.size.to_s.bold.cyan
+    puts "Number of Packages to be installed: " + @visit_list.keys.length.to_s.bold.cyan
     
     puts ""
     puts "Press Enter to continue...".on_yellow.bold
@@ -160,7 +164,7 @@ class Kitaman
   end
  
   # Builds the targe list
-  def build_dependencies(target, parent = nil)
+  def build_dependencies(target, parent = @target_list )
 
     kita_instance = get_kita_instance(target)
     load_needed_module(kita_instance.info['NAME'])
@@ -170,12 +174,7 @@ class Kitaman
           
     node_to_be_inserted =  @nodes_hash[target] || Tree::TreeNode.new(target,kita_instance)
       
-    if not parent
-      # test linking here
-      @target_list << node_to_be_inserted
-    else
-      parent << node_to_be_inserted
-    end
+    parent << node_to_be_inserted
     
     # if we already been here, we dont need to go though dependencies
     return if @nodes_hash.has_key? target
@@ -201,13 +200,6 @@ class Kitaman
     return @kita_hash[kita]
   end
   
-   def print_target_list
-    @visit_list={}
-    for target in @target_list
-      traverse_tree_for_print target
-    end
-   end
-  
    def traverse_tree_for_print(node)
     
     return if @visit_list.has_key? node
@@ -223,7 +215,7 @@ class Kitaman
   
    def execute_action(kita_object,action)
     name_version  = kita_object.info["NAME-VER"]
-    if (!kita_object.send("#{action}ed?".to_sym) and @options[action]) or (@options[:force] and @options[action])
+    if (@options[action] and !kita_object.send("#{action}ed?".to_sym)) or (@options[:force] and @options[action])
       puts "Starting to #{action} #{name_version} ... ".green
       if not kita_object.send(action.to_sym)
         @results_log << ["#{name_version}:#{action}",false]
