@@ -1,5 +1,5 @@
 KITA_TYPE="gnome"
-FILES="http://downloads.sourceforge.net/pidgin/pidgin-2.5.5.tar.bz2"
+FILES="http://downloads.sourceforge.net/pidgin/pidgin-2.5.6.tar.bz2"
 DEPEND="gnutls"
 BUILD=""
 config_src()

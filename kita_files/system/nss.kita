@@ -3,39 +3,36 @@ FILES="http://ftp.mozilla.org/pub/mozilla.org/security/nss/releases/NSS_3_11_7_R
 BUILD=""
 config_src()
 {
-  export WORKINGDIR=$PWD &&
+echo
+}
+build_src()
+{
+export WORKINGDIR=$PWD &&
 export BUILD_OPT=1 &&
 
 cd mozilla/security/nss &&
 make nss_build_all &&
 cd ../.. &&
-
 export NSS_LINUXDIR=$(basename `ls -d $WORKINGDIR/mozilla/dist/Linux*`)
-}
-build_src()
-{
-  echo
+
 }
 kita_install()
 {
-touch $INSTALL_DIR/sorry
+  
+  mkdir -p $INSTALL_DIR/usr/{bin,lib}
 
-  install -v -m755 nsprpub/$NSS_LINUXDIR/config/nspr-config \
-                 security/nss/cmd/config/nss-config \
-    /usr/bin &&
-install -v -m755 -d /usr/lib/pkgconfig &&
-install -v -m644 nsprpub/lib/pkgconfig/nspr.pc \
-                 security/nss/lib/pkgconfig/nss.pc \
-    /usr/lib/pkgconfig &&
+  install -v -m755 nsprpub/$NSS_LINUXDIR/config/nspr-config security/nss/cmd/config/nss-config $INSTALL_DIR/usr/bin &&
+  install -v -m755 -d $INSTALL_DIR/usr/lib/pkgconfig 
+  install -v -m644 nsprpub/lib/pkgconfig/nspr.pc security/nss/lib/pkgconfig/nss.pc $INSTALL_DIR/usr/lib/pkgconfig
+  
+  cd dist
 
-cd dist &&
+  install -v -m755 $NSS_LINUXDIR/lib/*.so $INSTALL_DIR/usr/lib &&
+  install -v -m644 $NSS_LINUXDIR/lib/{*.chk,libcrmf.a} $INSTALL_DIR/usr/lib &&
 
-install -v -m755 $NSS_LINUXDIR/lib/*.so /usr/lib &&
-install -v -m644 $NSS_LINUXDIR/lib/{*.chk,libcrmf.a} /usr/lib &&
-
-install -v -m755 -d /usr/include/{nss,nspr} &&
-install -v -m644 {public,private}/nss/* /usr/include/nss &&
-cp -v -RL $NSS_LINUXDIR/include/* /usr/include/nspr &&
-chmod -v 644 /usr/include/nspr/prvrsion.h
+  install -v -m755 -d $INSTALL_DIR/usr/include/{nss,nspr} &&
+  install -v -m644 {public,private}/nss/* $INSTALL_DIR/usr/include/nss &&
+  cp -v -RL $NSS_LINUXDIR/include/* $INSTALL_DIR/usr/include/nspr &&
+  chmod -v 644 $INSTALL_DIR/usr/include/nspr/prvrsion.h
 }
 ""

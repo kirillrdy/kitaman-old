@@ -65,7 +65,7 @@ ac_add_options --with-system-jpeg
 #ac_add_options --with-system-png
 
 # uncomment this if you are building nspr as part of firefox
-#ac_add_options --with-pthreads
+ac_add_options --with-pthreads
 
 # zlib is in LFS
 ac_add_options --with-system-zlib
