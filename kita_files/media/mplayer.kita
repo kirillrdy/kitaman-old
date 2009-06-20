@@ -7,7 +7,7 @@ post_install()
 cat > /usr/etc/mplayer/mplayer.conf << "EOF"
 # mplayer config, for kita-linux
 # Kirill Radzikhovskyy kirillrdy@kita-linux.org
-font=//usr/share/fonts/liberation/LiberationSans-Regular.ttf
+font=/usr/share/fonts/vera/Vera.ttf
 EOF
 }
 ""

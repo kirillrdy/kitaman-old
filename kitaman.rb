@@ -57,6 +57,8 @@ class Kitaman
     
     @results_log = []
     
+    @i = 0
+    @n = nil
     #fix this
     @graphviz_graph = GraphvizGraph.new
   end
@@ -79,7 +81,9 @@ class Kitaman
     return false if not result
 
     # FIXME, it needs to say 1 of N: packagename-ver
-    set_terminal_title(node.content.info["NAME-VER"])
+    @i += 1
+    @n ||= @target_list.size
+    set_terminal_title("#{@i}/#{@n-1} "+ node.content.info["NAME-VER"])
 
     load_needed_module(node.content.info['NAME'])
 

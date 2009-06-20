@@ -27,7 +27,7 @@ class Kita
   def build
     
     result = extract
-    patch
+    result = result and patch
            
     # build commands here
     result = (result and system(build_enviroment + """
@@ -130,14 +130,16 @@ class Kita
   end
 
   # Patch source code
-  def patch    
+  def patch
+    result = false
     for file in files_list_local
       if file.index('.patch')
         file = File.basename(file)
         puts "Patching using #{file}".red
-        system(build_enviroment + "cd $BUILD_DIR && patch -Np1 -i #{KitamanConfig.config['SRC_DIR']}/#{file}""")
+        result = result and system(build_enviroment + "cd $BUILD_DIR && patch -Np1 -i #{KitamanConfig.config['SRC_DIR']}/#{file}""")
       end
     end
+    return result
   end
 
   # Generates Build Enviroment for the package

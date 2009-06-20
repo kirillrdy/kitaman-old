@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://prdownloads.sourceforge.net/e2fsprogs/e2fsprogs-1.41.3.tar.gz"
+FILES="http://prdownloads.sourceforge.net/e2fsprogs/e2fsprogs-1.41.6.tar.gz"
 DEPEND=""
 BUILD=""
 config_src()
