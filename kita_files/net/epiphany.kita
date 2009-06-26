@@ -1,6 +1,6 @@
 KITA_TYPE="gnome"
 DEPEND="webkitgtk iso-codes"
-FILES="http://ftp.acc.umu.se/pub/gnome/sources/epiphany/2.27/epiphany-2.27.2.tar.bz2"
+FILES="http://ftp.acc.umu.se/pub/gnome/sources/epiphany/2.27/epiphany-2.27.3.tar.bz2"
 BUILD=""
 config_src()
 {

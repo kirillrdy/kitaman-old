@@ -28,12 +28,8 @@ require 'tree'
 
 class Kitaman
   
-  #attr_reader :root_node
-  
   attr_reader :target_list
   
-  #attr_reader :kita_hash  
-
   def Kitaman.version
     "0.99.0"
   end
@@ -48,18 +44,24 @@ class Kitaman
                 :search     => false,
                 :remove     => false }
 
-    
+    # this is the list, which is used for any actions, hence name target_list (targets for actions)
     @target_list = Tree::TreeNode.new("ROOT",nil)
         
     # hash for loaded kita instances
     @kita_hash = {}
+    
+    # for quick insert
     @nodes_hash = {}
     
+    # Results log for all actions
     @results_log = []
     
     @i = 0
     @n = nil
-    #fix this
+    
+    # this is our own implementation of grapviz output, 
+    # some beilive that we should use existing rubylibs, i am happy
+    # to keep it this way
     @graphviz_graph = GraphvizGraph.new
   end
 
