@@ -85,7 +85,7 @@ class Kitaman
     # FIXME, it needs to say 1 of N: packagename-ver
     @i += 1
     @n ||= @target_list.size
-    set_terminal_title("#{@i}/#{@n-1} "+ node.content.info["NAME-VER"])
+    set_terminal_title("[#{@i}/#{@n-1}] "+ node.content.info["NAME-VER"])
 
     load_needed_module(node.content.info['NAME'])
 
@@ -160,9 +160,9 @@ class Kitaman
     puts "Total actions: #{@results_log.length.to_s.cyan}"
   
     if @options[:save_log]
-      file = File.open('/kitaman.log','w')
+      file = File.open('/var/kitaman/kitaman.log','w')
       for action in @results_log
-        file.write("#{action[0]},#{action[1]}\n")
+        file.write("#{action[0]}:#{action[1]}\n")
       end
       file.close
     end

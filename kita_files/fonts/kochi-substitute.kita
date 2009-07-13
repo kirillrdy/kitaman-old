@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://download.sourceforge.jp/efont/5411/kochi-substitute-20030809.tar.bz2"
+FILES="http://iij.dl.sourceforge.jp/efont/5411/kochi-substitute-20030809.tar.bz2"
 DEPEND=""
 BUILD=""
 config_src()

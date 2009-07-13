@@ -8,7 +8,12 @@ export XMODIFIERS="@im=SCIM"
 export XIM_PROGRAM="scim -d"
 export GTK_IM_MODULE="scim"
 export QT_IM_MODULE="scim"
-scim -d
+#scim -d
 EOF
+
+}
+
+post_install(){
+  gtk-query-immodules-2.0 > /etc/gtk-2.0/gtk.immodules
 }
 ""

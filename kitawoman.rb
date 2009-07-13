@@ -73,6 +73,7 @@ WORK_DIR = "/mnt/kitawoman"
 # TODO: please help kitawoman to get rid of this dependency
 STAGE2_FILE = "/mnt/kitawoman/stage2-x86-2007.0.tar.bz2"
 SRC_CACHE_DIR = "/mnt/kitawoman/src"
+KITA_SNAPSHOTS_DIR = '/mnt/kitawoman/snapshots'
 
 class Kitababy
   attr :commit
@@ -116,11 +117,18 @@ class Kitababy
     system("export KITAMAN_INSTALL_PREFIX=#{@root_dir} && export STATE_DIR=#{@root_dir}/var/kitaman/state && kitaman -q glibc findutils ruby")
   end
 
+  def mount_proc
+    `cd #{root_dir} && mount -t proc none proc`
+  end
+  
+  def unmount_proc
+    `cd #{root_dir} && umount proc`
+  end
+
   def prepare_new_chroot
   `
   cd #{@root_dir}
   tar xjpf #{STAGE2_FILE}
-  mount -t proc none proc
   cp /etc/resolv.conf #{@root_dir}/etc
   mkdir -p #{@root_dir}/usr/kitaman/src
   cp #{SRC_CACHE_DIR}/* #{@root_dir}/usr/kitaman/src/
@@ -144,13 +152,14 @@ class Kitawoman
   def execute_in_chroot(dir,string)
     `cd #{dir} && mount -t proc none proc`
     `cat > #{dir}/tmp/script.sh  << EOF
-  #!/bin/bash
-  #{string}
+#!/bin/bash
+#{string}
     `
     `chmod +x #{dir}/tmp/script.sh`
     system("chroot #{dir} /tmp/script.sh")
   end
 
+  # This sets up the new root
   def execute_actions(kita_baby)
     actions = [:clean_working_dir,:prepare_new_chroot,:install_ruby,:install_kitaman]
 
@@ -177,11 +186,12 @@ class Kitawoman
   #I know it does a bit more than just parsing the log, we'll sort it out later
   def Kitawoman.parse_kitaman_log(dir)
     
-    if not File.exists?(dir+'/kitaman.log')
+    log_location = dir+'/var/kitaman/kitaman.log'
+    if not File.exists?(log_location)
       exit
     end
     
-    results = IO.read(dir+'/kitaman.log').split("\n")
+    results = IO.read(log_location).split("\n")
     email_message = ""
     for result in results
        if result.split(',')[1] == 'false'
@@ -220,15 +230,16 @@ Kitawoman.get_latest_kitaman
 
 baby = Kitababy.new(kitawoman.get_latest_commit)
 
+# This is where we setup the pre BASE stage( if we need to )
 kitawoman.execute_actions(baby) if not baby.setup?
 
 # TODO: move targets to config file
 
+#targets = ARGV
 
-#targets = ['base','xorg','kita-desktop','kita-developer']
 #targets = ['base']
 
-targets = ARGV
+targets = ['base','xorg','kita-desktop','kita-developer']
 
 for target in targets
   kitawoman.install_in_chroot(baby.root_dir,target)
