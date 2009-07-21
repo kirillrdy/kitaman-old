@@ -15,8 +15,11 @@ kita_install()
 ruby setup.rb --prefix=$INSTALL_DIR/usr --no-format-executable
 
 cat >> /etc/profile << "EOF"
+
+## This is added by rubygems
 export RUBYLIB=/usr/lib
 export GEM_HOME=/usr/lib/ruby/gems/1.8
+# End of rubygems
 EOF
 source /etc/profile
 }

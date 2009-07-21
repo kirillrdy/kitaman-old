@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://www.linuxfromscratch.org/lfs/downloads/development/lfs-bootscripts-20090102.tar.bz2"
+FILES="http://www.linuxfromscratch.org/lfs/downloads/development/lfs-bootscripts-20090523.tar.bz2"
 DEPEND=""
 BUILD=""
 config_src()
