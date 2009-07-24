@@ -131,7 +131,7 @@ class Kita
 
   # Patch source code
   def patch
-    result = false
+    result = true
     for file in files_list_local
       if file.index('.patch')
         file = File.basename(file)
