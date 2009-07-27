@@ -11,12 +11,14 @@ config_src()
 }
 post_install()
 {
+rm -rf /etc/X11
 ln -vsf /usr /usr/X11R6
 mkdir -p /etc/X11
 for file in /usr/{lib/X11/xinit,share/X11/{app-defaults,twm,xkb}}
 do
-     mv -v $file /etc/X11/ 2> /dev/null &&
-     ln -v -fs /etc/X11/$(basename $file) $file
+     echo $file
+     mv -vf $file /etc/X11/ 2> /dev/null &&
+     ln -fv -fs /etc/X11/$(basename $file) $file
 done
 }
 ""
