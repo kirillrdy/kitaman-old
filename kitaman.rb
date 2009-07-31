@@ -84,7 +84,11 @@ class Kitaman
 
     # FIXME, it needs to say 1 of N: packagename-ver
     @i += 1
-    @n ||= @target_list.size
+    
+    
+    #@n ||= @target_list.size
+    @n ||= @kita_hash.keys.length
+    
     set_terminal_title("[#{@i}/#{@n-1}] "+ node.content.info["NAME-VER"])
 
     load_needed_module(node.content.info['NAME'])
@@ -197,7 +201,9 @@ class Kitaman
     
   end
   
+  #############################################################################
   private
+  #############################################################################
   
    def get_kita_instance(kita)
     if not @kita_hash[kita]

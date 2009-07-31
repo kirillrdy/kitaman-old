@@ -61,7 +61,7 @@ class Kita
   end
 
   def install
-    if not system(build_enviroment + """
+    if not system(build_enviroment + "
       
       tar xjpf #{paths[:tar_bin_file]} -C #{ENV['KITAMAN_INSTALL_PREFIX']}/
 
@@ -76,7 +76,7 @@ class Kita
       
       #{kitaman_post_install}
 
-    """)
+    ")
       return false
     else
       record_installed
@@ -87,13 +87,13 @@ class Kita
   private
 
   def kitaman_post_install
-    """
+    "
       # Update the linkers cache
       ldconfig
       echo \"Cleaning up\"
       rm -rf $BUILD_DIR
       rm -rf $INSTALL_DIR
-    """
+    "
   end
 
   # Generates tar ball with binary files
