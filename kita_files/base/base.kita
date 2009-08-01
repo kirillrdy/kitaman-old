@@ -1,7 +1,7 @@
 KITA_TYPE="meta"
 VER="0.1"
 FILES=""
-DEPEND="vim linux-headers man-pages glibc binutils gcc db sed e2fsprogs perl coreutils iana-etc m4 bison ncurses procps libtool readline zlib autoconf automake bash bzip2 diffutils file findutils flex grub gawk gettext grep groff gzip inetutils iproute2 kbd less make man-db module-init-tools patch psmisc shadow sysvinit tar texinfo udev udev-config util-linux lfs-bootscripts linux dhcpcd which openssh"
+DEPEND="vim linux-headers man-pages glibc binutils gcc ruby rubygems db sed e2fsprogs perl coreutils iana-etc m4 bison pkg-config ncurses procps libtool readline zlib autoconf automake bash bzip2 diffutils file findutils flex grub gawk gettext grep groff gzip inetutils iproute2 kbd less make man-db module-init-tools patch psmisc shadow sysvinit tar texinfo udev udev-config util-linux lfs-bootscripts linux dhcpcd which openssh"
 BUILD=""
 echo "This is meta package, it has no files"
 ""

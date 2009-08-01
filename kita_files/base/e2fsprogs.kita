@@ -1,10 +1,10 @@
 KITA_TYPE="make"
-FILES="http://prdownloads.sourceforge.net/e2fsprogs/e2fsprogs-1.41.6.tar.gz"
+FILES="http://prdownloads.sourceforge.net/e2fsprogs/e2fsprogs-1.41.8.tar.gz"
 DEPEND=""
 BUILD=""
 config_src()
 {
-echo "nothing"
+sed -i -e "s/July/Jul/" version.h
 }
 build_src()
 {

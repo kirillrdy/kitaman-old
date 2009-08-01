@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="ftp://ftp.vim.org/pub/vim/unix/vim-7.2.tar.bz2"
+FILES="ftp://ftp.vim.org/pub/vim/unix/vim-7.2.tar.bz2 http://www.linuxfromscratch.org/patches/lfs/development/vim-7.2-fixes-5.patch"
 BUILD=""
 config_src()
 {

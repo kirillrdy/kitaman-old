@@ -1,10 +1,2 @@
 KITA_TYPE="make"
-FILES="http://ftp.gnu.org/gnu/m4/m4-1.4.12.tar.bz2"
-DEPEND=""
-BUILD=""
-build_src(){
-./configure --prefix=/usr --enable-threads
-make
-#make check
-}
-""
+FILES="http://ftp.gnu.org/gnu/m4/m4-1.4.13.tar.bz2"

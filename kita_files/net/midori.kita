@@ -1,3 +1,3 @@
 KITA_TYPE="make"
-FILES="http://goodies.xfce.org/releases/midori/midori-0.1.7.tar.bz2"
-DEPEND="WebKit libxml2"
+FILES="http://goodies.xfce.org/releases/midori/midori-0.1.8.tar.bz2"
+DEPEND="webkitgtk libxml2"

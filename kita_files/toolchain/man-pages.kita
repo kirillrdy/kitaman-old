@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://www.kernel.org/pub/linux/docs/manpages/Archive/man-pages-3.11.tar.bz2"
+FILES="http://www.kernel.org/pub/linux/docs/manpages/Archive/man-pages-3.22.tar.bz2"
 BUILD=""
 config_src()
 {

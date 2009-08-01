@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://ftp.gnu.org/gnu/gawk/gawk-3.1.6.tar.bz2"
+FILES="http://ftp.gnu.org/gnu/gawk/gawk-3.1.7.tar.bz2"
 DEPEND=""
 BUILD=""
 build_src(){
