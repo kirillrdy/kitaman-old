@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="ftp://ftp.mozilla.org/pub/mozilla.org/firefox/releases/3.5/source/firefox-3.5-source.tar.bz2"
+FILES="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.5.1/source/firefox-3.5.1-source.tar.bz2"
 DEPEND="gtk+ libIDL zip curl"
 BUILD=""
 config_src()
