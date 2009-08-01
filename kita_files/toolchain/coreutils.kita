@@ -8,9 +8,11 @@ config_src(){
 
 post_install(){
 mv -vf /usr/bin/{cat,chgrp,chmod,chown,cp,date,dd,df,echo} /bin
-mv -vf /usr/bin/{false,hostname,ln,ls,mkdir,mknod,mv,pwd,readlink,rm} /bin
+mv -vf /usr/bin/{false,ln,ls,mkdir,mknod,mv,pwd,rm} /bin
 mv -vf /usr/bin/{rmdir,stty,sync,true,uname} /bin
 mv -vf /usr/bin/chroot /usr/sbin
-mv -vf /usr/bin/{head,sleep,nice} /bin
+
+#for boot
+mv -v /usr/bin/{head,sleep,nice} /bin
 }
 ""
