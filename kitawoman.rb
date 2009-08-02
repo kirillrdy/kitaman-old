@@ -17,7 +17,7 @@
 #
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
+#
 #  ########################################################################################
 #     If there is a kitaman, there got to be kitawoman.
 #     Kitaman's job to work on kitafiles, build your system
@@ -185,8 +185,9 @@ class Kitawoman
   
   #I know it does a bit more than just parsing the log, we'll sort it out later
   def Kitawoman.parse_kitaman_log(dir)
-    
+  
     log_location = dir+'/var/kitaman/kitaman.log'
+
     if not File.exists?(log_location)
       exit
     end
@@ -194,7 +195,7 @@ class Kitawoman
     results = IO.read(log_location).split("\n")
     email_message = ""
     for result in results
-       if result.split(',')[1] == 'false'
+       if result.split(':')[2] == 'false'
          puts result
          email_message +="FAILED #{result.split(':')[0]}\n"
        end
@@ -205,6 +206,10 @@ class Kitawoman
       email_message = 'Successfully built stage'
     end
     Kitawoman.email_master(email_message)
+    
+    #cleaning old logs
+    `rm #{log_location}`
+    
   end
   
   def Kitawoman.email_master(msg,email = 'kirillrdy@kita-linux.org')
@@ -238,7 +243,6 @@ kitawoman.execute_actions(baby) if not baby.setup?
 #targets = ARGV
 
 #targets = ['base']
-
 targets = ['base','xorg','kita-desktop','kita-developer']
 
 for target in targets

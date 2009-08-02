@@ -1,6 +1,6 @@
 KITA_TYPE="make"
-VER="4.0.1"
-FILES="http://download.icu-project.org/files/icu4c/4.0.1/icu4c-4_0_1-src.tgz"
+VER="4.2.1"
+FILES="http://download.icu-project.org/files/icu4c/4.2.1/icu4c-4_2_1-src.tgz"
 BUILD=""
 config_src()
 {

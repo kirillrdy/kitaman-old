@@ -25,7 +25,7 @@ cd ../gcc-build
 CC="gcc -B/usr/bin/" ../gcc-4.4.1/configure --prefix=/usr \
     --libexecdir=/usr/lib --enable-shared \
     --enable-threads=posix --enable-__cxa_atexit \
-    --enable-clocale=gnu --enable-languages=c,c++,fortran
+    --enable-clocale=gnu --enable-languages=c,c++
 
 make
 }

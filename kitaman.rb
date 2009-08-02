@@ -87,6 +87,7 @@ class Kitaman
     
     
     #@n ||= @target_list.size
+    # BUG, THIS IS WRONG , because kita_hash contains all the loaded kitas,which is not always what will be installed
     @n ||= @kita_hash.keys.length
     
     set_terminal_title("[#{@i}/#{@n-1}] "+ node.content.info["NAME-VER"])
