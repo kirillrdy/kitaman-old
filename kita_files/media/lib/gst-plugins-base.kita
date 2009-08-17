@@ -1,2 +1,2 @@
 KITA_TYPE="gnome"
-DEPEND="gstreamer liboil"
+DEPEND="gstreamer liboil  libogg libvorbis libtheora"

@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.5.1/source/firefox-3.5.1-source.tar.bz2"
+FILES="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/3.5.2/source/firefox-3.5.2-source.tar.bz2 http://files.kita-linux.org/patches/firefox-gcc4.4.patch"
 DEPEND="gtk+ libIDL zip curl"
 BUILD=""
 config_src()
@@ -159,7 +159,7 @@ Exec=firefox %U
 StartupNotify=true
 Terminal=false
 Type=Application
-Icon=/usr/lib/firefox-3.5b4/icons/mozicon128.png
+Icon=/usr/lib/firefox-3.5.2/icons/mozicon128.png
 Categories=Network;GNOME;GTK;WebBrowser;
 MimeType=text/html;text/xml;application/xhtml+xml;
 EOF
