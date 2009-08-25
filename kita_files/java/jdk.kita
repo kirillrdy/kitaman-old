@@ -1,6 +1,6 @@
 KITA_TYPE="make"
-VER="6.0.14"
-FILES="http://files.kitaman.org/src/jdk1.6.0_14.tar.bz2"
+VER="6.0.15"
+FILES="http://files.kita-linux.org/src/refab/jdk1.6.0_15.tar.bz2"
 BUILD=""
 config_src()
 {

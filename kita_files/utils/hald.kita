@@ -1,6 +1,6 @@
 # For now there is still luck of documentation and strict design, but basics are already here, i hope you enjoy it :-)
 KITA_TYPE="make"
-FILES="http://hal.freedesktop.org/releases/hal-0.5.12.tar.gz"
+FILES="http://hal.freedesktop.org/releases/hal-0.5.13.tar.bz2"
 DEPEND="dbus-glib XML-Parser usbutils pciutils eject"
 BUILD=""
 config_src()
