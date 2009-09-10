@@ -1,5 +1,7 @@
 task :default => "kitaman:install"
 
+#RUBY_VER='1.8'
+RUBY_VER='1.9.1'
 
 namespace :kitaman do
   
@@ -18,13 +20,13 @@ namespace :kitaman do
       mkdir -p #{args.prefix}/usr/kitaman/pkg
       mkdir -p #{args.prefix}/usr/kitaman/src
       mkdir -p #{args.prefix}/usr/kitaman/kita_files
-      mkdir -p #{args.prefix}/usr/lib/ruby/1.8/kitaman
+      mkdir -p #{args.prefix}/usr/lib/ruby/#{RUBY_VER}/kitaman
 
       cp kitaman.rb #{args.prefix}/usr/bin/kitaman
       cp colonel.rb #{args.prefix}/usr/bin/colonel
       
-      cp lib/* #{args.prefix}/usr/lib/ruby/1.8/kitaman/
-      cp lib/tree.rb #{args.prefix}/usr/lib/ruby/1.8/
+      cp lib/* #{args.prefix}/usr/lib/ruby/#{RUBY_VER}/kitaman/
+      cp lib/tree.rb #{args.prefix}/usr/lib/ruby/#{RUBY_VER}/
 
       cp etc/kitaman.conf #{args.prefix}/etc/
       cp etc/kitaman.repos #{args.prefix}/etc/
