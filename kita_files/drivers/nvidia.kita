@@ -1,7 +1,7 @@
 KITA_TYPE="meta"
 NAME="nvidia"
 VER="185.18.31"
-FILES="http://us.download.nvidia.com/XFree86/Linux-x86/185.18.31/NVIDIA-Linux-x86-185.18.31-pkg1.run"
+FILES="http://us.download.nvidia.com/XFree86/Linux-x86/185.18.36/NVIDIA-Linux-x86-185.18.36-pkg1.run"
 BUILD=""
 post_install()
 {
