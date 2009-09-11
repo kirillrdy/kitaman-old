@@ -1,6 +1,5 @@
 task :default => "kitaman:install"
 
-
 namespace :kitaman do
   
   
@@ -8,7 +7,6 @@ namespace :kitaman do
   task :install, :prefix do |t,args|
     puts 'Installing kitaman ...'
     `
-
       mkdir -p #{args.prefix}/usr/bin
       mkdir -p #{args.prefix}/etc
       mkdir -p #{args.prefix}/var/kitaman/build
