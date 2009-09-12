@@ -105,10 +105,10 @@ class Kitababy
   end
 
   def install_kitaman
-  `
+    `
     cd #{WORK_DIR}/kitaman
     rake kitaman:install['#{@root_dir}']
-  `
+    `
   end
 
 
@@ -126,13 +126,13 @@ class Kitababy
   end
 
   def prepare_new_chroot
-  `
-  cd #{@root_dir}
-  tar xjpf #{STAGE2_FILE}
-  cp /etc/resolv.conf #{@root_dir}/etc
-  mkdir -p #{@root_dir}/usr/kitaman/src
-  cp #{SRC_CACHE_DIR}/* #{@root_dir}/usr/kitaman/src/
-  `
+    `
+    cd #{@root_dir}
+    tar xjpf #{STAGE2_FILE}
+    cp /etc/resolv.conf #{@root_dir}/etc
+    mkdir -p #{@root_dir}/usr/kitaman/src
+    cp #{SRC_CACHE_DIR}/* #{@root_dir}/usr/kitaman/src/
+    `
   end
 
 end
