@@ -1,9 +1,3 @@
 KITA_TYPE="make"
-FILES="http://ftp.novell.com/pub/mono/sources/monodevelop-debugger-gdb/monodevelop-debugger-gdb-2.0.tar.bz2"
+FILES="http://ftp.novell.com/pub/mono/sources/monodevelop-debugger-gdb/monodevelop-debugger-gdb-2.1.0.tar.bz2"
 DEPEND="gdb"
-BUILD=""
-config_src()
-{
-./configure --prefix=/usr
-}
-""
