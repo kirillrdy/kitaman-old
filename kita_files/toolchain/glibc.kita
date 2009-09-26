@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://ftp.gnu.org/gnu/glibc/glibc-libidn-2.10.1.tar.bz2 http://ftp.gnu.org/gnu/glibc/glibc-2.10.1.tar.bz2"
+FILES="http://ftp.gnu.org/gnu/glibc/glibc-2.10.1.tar.bz2 http://ftp.gnu.org/gnu/glibc/glibc-libidn-2.10.1.tar.bz2"
 DEPEND=""
 BUILD=""
 config_src()
@@ -9,8 +9,8 @@ echo "blank"
 
 build_src()
 {
-
-mv -v glibc-libidn-2.10.1 libidn
+pwd
+mv -v ../glibc-libidn-2.10.1 ./libidn
 
 sed -i 's|@BASH@|/bin/bash|' elf/ldd.bash.in
 

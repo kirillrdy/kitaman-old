@@ -8,16 +8,11 @@ echo "nothing"
 
 build_src(){
 sed -i '/^TARGETS/s@arpd@@g' misc/Makefile
-make SBINDIR=/sbin
+make DESTDIR=
 }
 
 kita_install(){
-mkdir -p $INSTALL_DIR/sbin
-make SBINDIR=$INSTALL_DIR/sbin install
-#mv $INSTALL_DIR/* $INSTALL_DIR/sbin/
-}
-
-post_install(){
-mv -v /sbin/arpd /usr/sbin
+make DESTDIR=$INSTALL_DIR install
+mv $INSTALL_DIR/share $INSTALL_DIR/usr/
 }
 ""
