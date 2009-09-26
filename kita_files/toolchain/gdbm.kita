@@ -1,2 +1,8 @@
 KITA_TYPE="make"
 FILES="http://ftp.gnu.org/gnu/gdbm/gdbm-1.8.3.tar.gz"
+BUILD=""
+kita_install()
+{
+  make INSTALL_ROOT=$INSTALL_DIR install
+}
+""
