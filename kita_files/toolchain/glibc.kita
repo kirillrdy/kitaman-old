@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://ftp.gnu.org/gnu/glibc/glibc-2.9.tar.gz"
+FILES="http://ftp.gnu.org/gnu/glibc/glibc-libidn-2.10.1.tar.bz2 http://ftp.gnu.org/gnu/glibc/glibc-2.10.1.tar.bz2"
 DEPEND=""
 BUILD=""
 config_src()
@@ -10,8 +10,18 @@ echo "blank"
 build_src()
 {
 
-sed -i '/vi_VN.TCVN/d' localedata/SUPPORTED
+mv -v glibc-libidn-2.10.1 libidn
+
 sed -i 's|@BASH@|/bin/bash|' elf/ldd.bash.in
+
+sed -i s/utf8/UTF-8/ libio/tst-fgetwc.c
+sed -i '/tst-fgetws-ENV/ a\
+tst-fgetwc-ENV = LOCPATH=$(common-objpfx)localedata' libio/Makefile
+
+sed -i \
+    -e 's/FUTEX_WAIT\( | FUTEX_CLOCK_REALTIME, reg\)/FUTEX_WAIT_BITSET\1/' \
+    nptl/sysdeps/unix/sysv/linux/i386/i486/lowlevellock.S
+
 
 if [ -d ../glibc-build ]; then
   rm -rf ../glibc-build
@@ -20,15 +30,17 @@ fi
 mkdir ../glibc-build
 cd ../glibc-build
 
-echo "CFLAGS += -march=i486" > configparms
-../glibc-2.9/configure --prefix=/usr \
+case `uname -m` in
+  i?86) echo "CFLAGS += -march=i486 -mtune=native -O3 -pipe" > configparms ;;
+esac
+
+
+../glibc-2.10.1/configure --prefix=/usr \
     --disable-profile --enable-add-ons \
-    --enable-kernel=2.6.0 --libexecdir=/usr/lib/glibc
+    --enable-kernel=2.6.18 --libexecdir=/usr/lib/glibc
     
 make
 
-#cp -v ../glibc-2.8-20080929/iconvdata/gconv-modules iconvdata
-#make -k check 2>&1 | tee glibc-check-log
 }
 
 kita_install()
@@ -87,6 +99,11 @@ localedef -i it_IT -f ISO-8859-1 it_IT
 localedef -i ja_JP -f EUC-JP ja_JP
 # If you want ALL locales
 #make localedata/install-locales
+
+
+#FORCE TIMEZONE
+cp -v --remove-destination /usr/share/zoneinfo/Australia/Melbourne /etc/localtime
+
 }
 
 ""

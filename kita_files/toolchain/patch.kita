@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://ftp.gnu.org/gnu/patch/patch-2.5.4.tar.gz"
+FILES="http://ftp.gnu.org/gnu/patch/patch-2.5.9.tar.gz"
 DEPEND=""
 BUILD=""
 build_src(){

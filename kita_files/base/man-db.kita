@@ -1,12 +1,11 @@
 KITA_TYPE="make"
-FILES="http://download.savannah.gnu.org/releases/man-db/man-db-2.5.5.tar.gz"
+FILES="http://download.savannah.gnu.org/releases/man-db/man-db-2.5.6.tar.gz"
 DEPEND=""
 BUILD=""
 config_src(){
-sed -i -e '\%\t/usr/man%d' -e '\%\t/usr/local/man%d' src/man_db.conf.in
 ./configure --prefix=/usr --libexecdir=/usr/lib \
     --sysconfdir=/etc --disable-setuid \
-    --with-browser=/usr/bin/lynx --with-col=/usr/bin/col \
-    --with-vgrind=/usr/bin/vgrind --with-grap=/usr/bin/grap
+    --with-browser=/usr/bin/lynx --with-vgrind=/usr/bin/vgrind \
+    --with-grap=/usr/bin/grap
 }
 ""

@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://prdownloads.sourceforge.net/psmisc/psmisc-22.6.tar.gz"
+FILES="http://prdownloads.sourceforge.net/psmisc/psmisc-22.8.tar.gz"
 DEPEND=""
 BUILD=""
 build_src()

@@ -4,11 +4,11 @@ http://mocha.xfce.org/archive/xfce-4.6.0/src/
 http://ftp.x.org/pub/individual/app/
 http://xorg.freedesktop.org/releases/individual/util/
 http://xorg.freedesktop.org/archive/X11R7.4/src/everything/
-http://ftp.gnome.org/pub/gnome/platform/2.27/2.27.92/sources/
-http://ftp.gnome.org/pub/gnome/desktop/2.27/2.27.92/sources/
-http://ftp.gnome.org/pub/gnome/devtools/2.27/2.27.92/sources/
-http://ftp.gnome.org/pub/gnome/bindings/2.27/2.27.92/sources/c++/
-http://ftp.gnome.org/pub/gnome/bindings/2.27/2.27.92/sources/python/
+http://ftp.gnome.org/pub/gnome/platform/2.28/2.28.0/sources/
+http://ftp.gnome.org/pub/gnome/desktop/2.28/2.28.0/sources/
+http://ftp.gnome.org/pub/gnome/devtools/2.28/2.28.0/sources/
+http://ftp.gnome.org/pub/gnome/bindings/2.28/2.28.0/sources/c++/
+http://ftp.gnome.org/pub/gnome/bindings/2.28/2.28.0/sources/python/
 http://www.linuxfromscratch.org/blfs/downloads/svn/
 http://gstreamer.freedesktop.org/src/gst-plugins-bad/
 http://gstreamer.freedesktop.org/src/gst-plugins-ugly/

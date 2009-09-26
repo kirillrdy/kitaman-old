@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://www.kernel.org/pub/linux/utils/kernel/module-init-tools/module-init-tools-3.5.tar.bz2"
+FILES="http://www.kernel.org/pub/linux/utils/kernel/module-init-tools/module-init-tools-3.10.tar.bz2"
 DEPEND=""
 BUILD=""
 config_src(){
