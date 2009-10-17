@@ -6,8 +6,7 @@ config_src()
 ./configure --prefix=/usr \
             --sysconfdir=/etc \
             --libexecdir=/usr/lib/GConf \
-            --mandir=/usr/share/man \
-            --disable-defaults-service
+            --mandir=/usr/share/man #--disable-defaults-service
 }
 post_install()
 {
