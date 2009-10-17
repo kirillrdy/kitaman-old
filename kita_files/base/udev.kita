@@ -19,8 +19,7 @@ ln -sv /proc/kcore /lib/udev/devices/core
 ./configure --prefix=/usr \
     --sysconfdir=/etc --sbindir=/sbin \
     --with-rootlibdir=/lib --libexecdir=/lib/udev \
-    --docdir=/usr/share/doc/udev-145 \
-    --disable-extras
+    --docdir=/usr/share/doc/udev-146 # --disable-extras
             
 make
 

@@ -1,5 +1,5 @@
 KITA_TYPE="gnome"
-DEPEND="gnome-desktop gnome-control-center"
+DEPEND="gnome-desktop gnome-control-center DeviceKit-power"
 BUILD=""
 #Paste Build instructions here
 build_src()
