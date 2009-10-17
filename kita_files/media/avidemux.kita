@@ -1,0 +1,26 @@
+KITA_TYPE="make"
+VER="2.5.1"
+FILES="http://downloads.sourceforge.net/project/avidemux/avidemux/2.5.1/avidemux_2.5.1.tar.gz"
+BUILD=""
+config_src()
+{
+
+  mkdir build
+  cd build
+  cmake -DAVIDEMUX_LIB_DIR=/usr/lib -DAVIDEMUX_INSTALL_PREFIX=/usr ..
+}
+build_src()
+{
+  #cd build
+  pwd
+  make
+}
+
+kita_install()
+{
+  cd build
+  make DESTDIR=$INSTALL_DIR  install
+}
+
+""
+

@@ -242,8 +242,8 @@ kitawoman.execute_actions(baby) if not baby.setup?
 
 #targets = ARGV
 
-#targets = ['base']
 targets = ['base','xorg','kita-desktop','kita-developer']
+#targets = ['base']
 
 for target in targets
   kitawoman.install_in_chroot(baby.root_dir,target)
