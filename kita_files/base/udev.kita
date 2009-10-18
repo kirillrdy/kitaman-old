@@ -1,25 +1,33 @@
 KITA_TYPE="make"
 FILES="http://www.kernel.org/pub/linux/utils/kernel/hotplug/udev-146.tar.bz2"
-DEPEND=""
+#DEPEND="gperf glib" #these dependencies only work when you are building with extras
 BUILD=""
 config_src()
 {
 echo "nothing"
 }
 build_src(){
-install -dv /lib/{firmware,udev/devices/{pts,shm}}
-mknod -m0666 /lib/udev/devices/null c 1 3
-mknod -m0600 /lib/udev/devices/kmsg c 1 11
-ln -sv /proc/self/fd /lib/udev/devices/fd
-ln -sv /proc/self/fd/0 /lib/udev/devices/stdin
-ln -sv /proc/self/fd/1 /lib/udev/devices/stdout
-ln -sv /proc/self/fd/2 /lib/udev/devices/stderr
-ln -sv /proc/kcore /lib/udev/devices/core
+
+if test -e /lib/udev/devices/null 
+then
+  echo 'done for done'
+else
+
+  install -dv /lib/{firmware,udev/devices/{pts,shm}}
+  mknod -m0666 /lib/udev/devices/null c 1 3
+  mknod -m0600 /lib/udev/devices/kmsg c 1 11
+  ln -sv /proc/self/fd /lib/udev/devices/fd
+  ln -sv /proc/self/fd/0 /lib/udev/devices/stdin
+  ln -sv /proc/self/fd/1 /lib/udev/devices/stdout
+  ln -sv /proc/self/fd/2 /lib/udev/devices/stderr
+  ln -sv /proc/kcore /lib/udev/devices/core
+  
+fi
 
 ./configure --prefix=/usr \
     --sysconfdir=/etc --sbindir=/sbin \
     --with-rootlibdir=/lib --libexecdir=/lib/udev \
-    --docdir=/usr/share/doc/udev-146 # --disable-extras
+    --docdir=/usr/share/doc/udev-146 --disable-extras
             
 make
 
