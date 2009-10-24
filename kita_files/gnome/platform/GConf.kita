@@ -1,5 +1,5 @@
 KITA_TYPE="gnome"
-DEPEND="ORBit2 libxml2 gtk+ PolicyKit"
+DEPEND="ORBit2 libxml2 gtk+ polkit"
 BUILD=""
 config_src()
 {
