@@ -1,11 +1,11 @@
 KITA_TYPE="make"
 DEPEND="libusb-compat"
-FILES="http://downloads.sourceforge.net/linux-usb/usbutils-0.73.tar.gz"
+FILES="http://downloads.sourceforge.net/linux-usb/usbutils-0.84.tar.gz"
 BUILD=""
 #Paste Build instructions here
 build_src()
 {
-sed -i 's|DEST=|&/usr/share/|' update-usbids.sh &&
+#sed -i 's|DEST=|&/usr/share/|' update-usbids.sh &&
 ./configure --prefix=/usr &&
 make
 }

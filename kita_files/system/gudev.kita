@@ -1,0 +1,24 @@
+KITA_TYPE="make"
+FILES="http://www.kernel.org/pub/linux/utils/kernel/hotplug/udev-146.tar.bz2"
+#DEPEND="gperf glib" #these dependencies only work when you are building with extras
+DEPEND="acl usbutils"
+BUILD=""
+config_src()
+{
+echo "nothing"
+}
+build_src(){
+
+./configure --prefix=/usr \
+    --sysconfdir=/etc --sbindir=/sbin \
+    --with-rootlibdir=/lib --libexecdir=/lib/udev \
+    --docdir=/usr/share/doc/udev-146
+            
+make
+
+
+#FIX ME
+#install -m644 -v rules/packages/64-*.rules  /lib/udev/rules.d/
+
+}
+""

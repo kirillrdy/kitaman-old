@@ -1,0 +1,37 @@
+KITA_TYPE="make"
+VER="2.2.47"
+FILES="ftp://oss.sgi.com/projects/xfs/cmd_tars/acl-2.2.48.src.tar.gz"
+DEPEND="attr"
+BUILD=""
+config_src()
+{
+
+sed -i Makefile \
+   -e '/autoconf/d' \
+   -e 's@default: $(CONFIGURE)@default:@' &&
+sed -i "/AC_OUTPUT/i\AC_PROG_LIBTOOL" configure.in &&
+cp install-sh{,.orig} &&
+libtoolize -f -i &&
+cp -vf install-sh{.orig,} &&
+aclocal -I m4 &&
+autoconf &&
+./configure --prefix=/ --exec-prefix=/ --sbindir=/sbin \
+  --bindir=/usr/sbin --libdir=/lib --libexecdir=/usr/lib --includedir=/usr/include \
+  --mandir=/usr/share/man --datadir=/usr/share
+
+}
+
+build_src()
+{
+  make DEBUG=-DNDEBUG LIBTOOL="$PWD/libtool"
+}
+
+
+kita_install()
+{
+
+  make DIST_ROOT=${INSTALL_DIR} LIBTOOL=$PWD/libtool install install-dev install-lib &&
+  chmod 755 ${INSTALL_DIR}/lib/libacl.so.1.1.0
+  
+}
+""

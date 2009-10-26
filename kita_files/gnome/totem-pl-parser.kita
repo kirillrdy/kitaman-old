@@ -1,2 +1,2 @@
 KITA_TYPE="gnome"
-DEPEND="evolution-data-server"
+DEPEND="evolution-data-server gmime"

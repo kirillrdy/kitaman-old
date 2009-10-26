@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://ftp.mozilla.org/pub/mozilla.org/security/nss/releases/NSS_3_11_7_RTM/src/nss-3.11.7-with-nspr-4.6.7.tar.gz http://www.linuxfromscratch.org/patches/blfs/svn/nss-3.11.7-with-nspr-4.6.7-fedora_fixes-1.patch"
+FILES="http://ftp.mozilla.org/pub/mozilla.org/security/nss/releases/NSS_3_12_4_RTM/src/nss-3.12.4-with-nspr-4.8.tar.gz  http://www.linuxfromscratch.org/patches/blfs/svn/nss-3.12.4-standalone-3.patch"
 BUILD=""
 config_src()
 {
