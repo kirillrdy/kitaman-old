@@ -19,14 +19,15 @@ namespace :kitaman do
       mkdir -p #{args.prefix}/usr/kitaman/src
       mkdir -p #{args.prefix}/usr/kitaman/kita_files
       mkdir -p #{args.prefix}/usr/lib/ruby/1.8/kitaman
+      mkdir -p #{args.prefix}/usr/lib/ruby/1.8/kitaman/modules      
 
       cp kitaman.rb #{args.prefix}/usr/bin/kitaman
       cp colonel.rb #{args.prefix}/usr/bin/colonel
       
       cp lib/* #{args.prefix}/usr/lib/ruby/1.8/kitaman/
-      cp lib/tree.rb #{args.prefix}/usr/lib/ruby/1.8/
+      cp modules/* #{args.prefix}/usr/lib/ruby/1.8/kitaman/modules
 
-      cp etc/kitaman.conf #{args.prefix}/etc/
+      cp etc/kitaman_conf.rb #{args.prefix}/etc/
       cp etc/kitaman.repos #{args.prefix}/etc/
       cp -r kita_files #{args.prefix}/usr/kitaman/
     `

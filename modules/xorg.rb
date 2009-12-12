@@ -16,37 +16,46 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+require 'kitaman/kita_helper'
+require 'kitaman/kitaman_helper'
 
-load 'kitaman/kita_class.rb'
+module Xorg
 
-class Kita
-
+   # Extracts, patches, builds and packs a package
   def build
-    puts "Nothing to do for meta package"
-    return true
-  end
-  
-  def install    
-    if not system("""
-      
-      set -e
-
-      post_install()
-      {
-        echo \"no post install\"
-      }
-
-      #{@info["BUILD"]}
-
-      post_install
-      
-      ldconfig
-
-    """)
-      return false
-    end
-    record_installed
-    return true
-  end
     
+    result = extract
+    patch
+           
+    # build commands here
+    result = result and system( build_enviroment  + """
+    
+    config_src()
+    {
+      ./configure --prefix=/usr --sysconfdir=/etc --mandir=/usr/share/man --localstatedir=/var
+    }
+    
+    build_src()
+    {  
+      make
+    }
+    
+    #{@info["BUILD"]}
+
+    mkdir -p ${BUILD_DIR}
+    cd ${BUILD_DIR}
+
+    config_src > /var/kitaman/config_logs/#{@info['NAME-VER']}
+    build_src
+    """)
+
+    if !result
+      return result
+    else
+      return (result and create_package)
+    end
+    
+  end
+ 
+  
 end

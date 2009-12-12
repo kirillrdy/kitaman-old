@@ -19,6 +19,8 @@
 
 ARCHIVE_EXT=['.tar.bz2','.tar.gz','.tgz','.bz2']
 
+
+
 class Hash
   def set_if_nil(key,default)
     if not self[key]
@@ -54,7 +56,22 @@ class String
   end
 end
 
+# Find how many cores CPU on host machine has
 def number_of_cores
   results = `cat /proc/cpuinfo | grep cores`.scan(/\: (.*?)\n/)
   results ==[] ? 1 : results[0][0].to_i
+end
+
+  
+# Helper used to download singe file
+def download_one_file(file)
+  result = true
+  
+  if File.exists?("#{KITAMAN_SRC_DIR}/#{File.basename(file)}")
+    system("mv #{KITAMAN_SRC_DIR}/#{File.basename(file)} #{KITAMAN_TEMP_DIR}/")
+  end
+
+  result = (result and system("wget -c #{file} -O #{KITAMAN_TEMP_DIR}/#{File.basename(file)}"))
+  result = (result and system("mv #{KITAMAN_TEMP_DIR}/#{File.basename(file)} #{KITAMAN_SRC_DIR}/"))
+  return result
 end

@@ -18,23 +18,21 @@
 
 require 'kitaman/kita_helper'
 require 'kitaman/kitaman_helper'
+require '/etc/kitaman_conf'
 
+Dir['/usr/lib/ruby/1.8/kitaman/modules/*'].each {|file| require file}
 
 class Kita
   # Class that represents a package in Kitaman world
-  attr_reader :info
-
-  def ==(obj)
-    self.info==obj.info
-  end
-
-  def to_s
-    self.info['NAME-VER']
-  end
   
+  # String representation of kita instance  
+  def to_s
+    @name + "-" + @version
+  end
+   
   # Find kita file by package name
   def Kita.find_kita_file(package_name)
-    found_file = `find #{KitamanConfig.config['KITA_FILES_DIR']} -type f -name "#{package_name}.kita"`.split("\n")
+    found_file = `find #{KITA_FILES_DIR} -type f -name "#{package_name}.rb"`.split("\n")
     if found_file.length == 0
       kita_error "No kitafile found for \'#{package_name}\'"
     elsif found_file.length > 1
@@ -46,30 +44,46 @@ class Kita
   end
   
   # Creates Kita object and parses all the information
-  def initialize(kita_file)
+  def initialize(kita_name)
     
-    infos = IO.read(kita_file).scan(/(.*?)="(.*?)".*\n/)    
-    @info = {}
-    for info in infos
-      @info[info[0]]=info[1]
-    end
-
-    @info.set_if_nil('NAME',File.basename(kita_file,".kita"))
-
-    #sorry this line had to be this ugly, because get_files_from_repo gets evaluated here, and we dont always want it
-    @info.split_or_default_if_nil('FILES',@info.has_key?('FILES') ? '' :  get_files_from_repo)
-    @info.split_or_default_if_nil("PATCHES",[])
-
+    instance_eval(IO.read(Kita.find_kita_file(kita_name)))
     
-    @info.set_if_nil('VER',get_version)
-    @info['NAME-VER'] = @info['NAME']+'-'+@info['VER'] 
-
-    @info.split_or_default_if_nil("DEPEND",[])
+    @name     ||=   File.basename(kita_name,'.rb')
+    @files    ||=   get_files_from_repo
     
-    #TODO, introduce patter maching fail error handing
-    @info["BUILD"] = IO.read(kita_file).scan(/BUILD=""(.*?)""/m)[0][0] if @info['BUILD']
+    @files = @files.to_a
+    
+    @patches  ||=   []
+    
+    @patches = @patches.to_a
+    
+    @version  ||=   get_version
+    @depend   ||=   []
+    
+    @depend = @depend.to_a
 
   end
+   
+   
+  # THIS IS THE RECURSIVE THINGY TODO
+  def call(action)
+  
+    for dependency in @depend
+      Kita.new(dependency).call(action)
+    end
+  
+    if action == :install
+      download unless downloaded?
+      install unless installed?
+    end
+    
+    if action == :remove
+      remove if installed?
+    end
+    
+  end
+   
+   
    
   # Downloads all files in FILES var, returns True if all files downloaded successfully
   def download
@@ -88,19 +102,16 @@ class Kita
     end
     return results
   end
-
-  # This is a mirror method needed for execute_action on Kitaman class
-  def builded?
-    built?    
-  end
   
-  def built?
-    File.exist?(KitamanConfig.config['PKG_DIR']+'/'+@info['NAME-VER']+'-bin.tar.bz2')
+  
+
+  def install
+    puts "please write install instructions for this package"
   end
 
   # Checks if package is installed
   def installed?
-    File.exist?(KitamanConfig.config['STATE_DIR']+'/'+@info['NAME-VER'])
+    File.exist?(KITAMAN_STATE_DIR+'/'+self.to_s)
   end
 
   # Things that none should see
@@ -108,44 +119,44 @@ class Kita
 
   # Returns a list of URLS of source files to be downloaded
   def files_list_to_download
-    (@info['FILES'] + @info['PATCHES'])
+    (@files + @patches)
   end
   
   # Helper used to download singe file
   def download_one_file(file)
     result = true
     
-    if File.exists?("#{KitamanConfig.config['SRC_DIR']}/#{File.basename(file)}")
-      system("mv #{KitamanConfig.config['SRC_DIR']}/#{File.basename(file)} #{KitamanConfig.config['TEMP_DIR']}/")
+    if File.exists?("#{KITAMAN_SRC_DIR}/#{File.basename(file)}")
+      system("mv #{KITAMAN_SRC_DIR}/#{File.basename(file)} #{KITAMAN_SRC_DIR}/")
     end
 
-    result = (result and system("wget -c #{file} -O #{KitamanConfig.config['TEMP_DIR']}/#{File.basename(file)}"))
-    result = (result and system("mv #{KitamanConfig.config['TEMP_DIR']}/#{File.basename(file)} #{KitamanConfig.config['SRC_DIR']}/"))
+    result = (result and system("wget -c #{file} -O #{KITAMAN_TEMP_DIR}/#{File.basename(file)}"))
+    result = (result and system("mv #{KITAMAN_TEMP_DIR}/#{File.basename(file)} #{KITAMAN_SRC_DIR}/"))
     return result
   end
   
-    # Returns a list of full paths to local source files belonging to package
+  # Returns a list of full paths to local source files belonging to package
   def files_list_local
     list=[]
-    for file in ( @info['FILES'] + @info['PATCHES'])
-      list << (KitamanConfig.config['SRC_DIR']+'/'+File.basename(file))
+    for file in ( @files + @patches)
+      list << (KITAMAN_SRC_DIR+'/'+File.basename(file))
     end
     list
   end
 
   # Fills FILES var with files maching in repository
   def get_files_from_repo
-    
+       
     update_src_files_database if not File.exist?('/var/kitaman/src.db')
     
-    files_list_database = Marshal.load(IO.read('/var/kitaman/src.db'))
-    files_list_database[@info['NAME']] ? [files_list_database[@info['NAME']]] : []    
+    @@files_list_database ||= Marshal.load(IO.read('/var/kitaman/src.db'))
+    @@files_list_database[@name] ? [@@files_list_database[@name]] : []
   end
 
   # Get version from source file
   def get_version
-    if @info['FILES']!=[]
-      ver = @info['FILES'][0].version
+    if @files!=[]
+      ver = @files[0].version
     else
       ver = "undefined"
     end
@@ -154,14 +165,22 @@ class Kita
 
  # Create a state file meaning that package is installed
   def record_installed
-    `touch #{KitamanConfig.config['STATE_DIR']}/#{@info['NAME-VER']}`
+    `touch #{state_file}`
   end
   
  # Removes all files listed in state file, and removes the state file
  def remove
-  for line in IO.read(KitamanConfig.config['STATE_DIR']+'/'+@info['NAME-VER']).lines.to_a.reverse
+  for line in IO.read(KITAMAN_STATE_DIR+'/'+self.to_s).lines.to_a.reverse
     puts line
   end
  end
+
+##############################################################################
+private
+##############################################################################
+
+  def state_file
+    KITAMAN_STATE_DIR+'/'+self.to_s
+  end
 
 end

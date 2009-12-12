@@ -18,46 +18,54 @@
 
 require 'kitaman/kita_helper'
 require 'kitaman/kitaman_helper'
-load 'kitaman/make.rb'
 
 
-class Kita
+module Gnome
 
-   # Extracts, patches, builds and packs a package
-  def build
+  def create_package
+     system( build_enviroment  + """
     
-    result = extract
-    patch
-           
-    # build commands here
-    result = result and system( build_enviroment  + """
-    
-    config_src()
+   kita_install()
     {
-      ./configure --prefix=/usr --sysconfdir=/etc --mandir=/usr/share/man --localstatedir=/var
+      make DESTDIR=$INSTALL_DIR install
+      
+      #next line is vital for building Gnome Apps
+      #this is actually because I dont know how to install schema files properly, so I have to rely on gnome build scripts
+      make install
     }
-    
-    build_src()
-    {  
-      make
-    }
-    
-    #{@info["BUILD"]}
 
+    #{@info["BUILD"]}
+    
     mkdir -p ${BUILD_DIR}
     cd ${BUILD_DIR}
 
-    config_src > /var/kitaman/config_logs/#{@info['NAME-VER']}
-    build_src
+    kita_install
+    cd $INSTALL_DIR
+
+    tar cjpf #{paths[:tar_bin_file]} *
+
     """)
 
-    if !result
-      return result
-    else
-      return (result and create_package)
-    end
-    
   end
- 
-  
+
+private
+
+def kitaman_post_install
+    """
+      # Update the linkers cache
+      ldconfig
+      
+      update-desktop-database /usr/share
+      update-mime-database -V /usr/share/mime
+
+      for i in /usr/share/icons/*/ ; do    
+        gtk-update-icon-cache -ft $i
+      done
+      
+      echo \"Cleaning up\"
+      rm -rf $BUILD_DIR
+      rm -rf $INSTALL_DIR
+    """
+end
+
 end
