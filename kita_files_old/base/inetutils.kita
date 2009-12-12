@@ -1,10 +1,10 @@
 KITA_TYPE="make""
-FILES="http://ftp.gnu.org/gnu/inetutils/inetutils-1.5.tar.gz"
+FILES="http://ftp.gnu.org/gnu/inetutils/inetutils-1.6.tar.gz http://www.linuxfromscratch.org/patches/lfs/development/inetutils-1.6-no_server_man_pages-1.patch"
 BUILD=""
 config_src(){
 sed -i 's@<sys/types.h>@<sys/types.h>\n#include <stdlib.h>@' \
     libicmp/icmp_timestamp.c
-./configure --prefix=/usr --libexecdir=/usr/sbin --sysconfdir=/etc --localstatedir=/var --disable-ifconfig --disable-logger --disable-syslogd --disable-whois --disable-servers
+./configure --prefix=/usr --libexecdir=/usr/sbin --sysconfdir=/etc --localstatedir=/var --disable-logger --disable-syslogd --disable-whois --disable-servers
 }
 
 post_install(){

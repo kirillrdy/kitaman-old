@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://ftp.gnu.org/gnu/coreutils/coreutils-7.4.tar.gz http://www.linuxfromscratch.org/patches/lfs/development/coreutils-7.4-i18n-1.patch http://www.linuxfromscratch.org/patches/lfs/development/coreutils-7.4-uname-1.patch"
+FILES="http://ftp.gnu.org/gnu/coreutils/coreutils-7.6.tar.gz http://www.linuxfromscratch.org/patches/lfs/development/coreutils-7.6-uname-1.patch http://www.linuxfromscratch.org/patches/lfs/development/coreutils-7.6-i18n-1.patch"
 DEPEND=""
 BUILD=""
 config_src(){

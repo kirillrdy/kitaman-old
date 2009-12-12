@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://ftp.gnu.org/gnu/bash/bash-4.0.tar.gz http://www.linuxfromscratch.org/patches/lfs/development/bash-4.0-fixes-3.patch"
+FILES="http://ftp.gnu.org/gnu/bash/bash-4.0.tar.gz http://www.linuxfromscratch.org/patches/lfs/development/bash-4.0-fixes-4.patch"
 DEPEND="ncurses"
 BUILD=""
 config_src()

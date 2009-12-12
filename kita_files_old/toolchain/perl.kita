@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://cpan.org/src/perl-5.10.0.tar.gz http://www.linuxfromscratch.org/patches/lfs/development/perl-5.10.0-consolidated-1.patch"
+FILES="http://cpan.org/src/perl-5.10.1.tar.bz2"
 DEPEND=""
 BUILD=""
 config_src()
@@ -8,10 +8,12 @@ echo "special"
 }
 build_src(){
 echo "127.0.0.1 localhost $(hostname)" > /etc/hosts
+
 sed -i -e "s|BUILD_ZLIB\s*= True|BUILD_ZLIB = False|"           \
        -e "s|INCLUDE\s*= ./zlib-src|INCLUDE    = /usr/include|" \
        -e "s|LIB\s*= ./zlib-src|LIB        = /usr/lib|"         \
-    ext/Compress/Raw/Zlib/config.in
+    ext/Compress-Raw-Zlib/config.in
+
 
 sh Configure -des -Dprefix=/usr \
                   -Dvendorprefix=/usr           \

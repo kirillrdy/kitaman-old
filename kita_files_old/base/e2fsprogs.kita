@@ -1,23 +1,23 @@
 KITA_TYPE="make"
-FILES="http://prdownloads.sourceforge.net/e2fsprogs/e2fsprogs-1.41.8.tar.gz"
-DEPEND=""
+FILES="http://prdownloads.sourceforge.net/e2fsprogs/e2fsprogs-1.41.9.tar.gz"
 BUILD=""
 config_src()
 {
-sed -i -e "s/July/Jul/" version.h
+  sed -i -e "s/July/Jul/" version.h
 }
 build_src()
 {
-mkdir build
-cd build
-../configure --prefix=/usr --with-root-prefix=\"\" --enable-elf-shlibs
-make
+  mkdir build
+  cd build
+  ../configure --prefix=/usr --with-root-prefix=\"\" --enable-elf-shlibs --disable-libblkid --disable-libuuid --disable-uuidd --disable-fsck
+  make
 }
+
 kita_install()
 {
-cd build
-mkdir -p $INSTALL_DIR
-make DESTDIR=$INSTALL_DIR install
-make DESTDIR=$INSTALL_DIR install-libs
+  cd build
+  mkdir -p $INSTALL_DIR
+  make DESTDIR=$INSTALL_DIR install
+  make DESTDIR=$INSTALL_DIR install-libs
 }
 ""

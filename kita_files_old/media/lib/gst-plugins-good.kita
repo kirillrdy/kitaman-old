@@ -1,2 +1,2 @@
 KITA_TYPE="gnome"
-DEPEND="gstreamer gst-plugins-base libogg libvorbis libtheora"
+DEPEND="gstreamer gst-plugins-base"

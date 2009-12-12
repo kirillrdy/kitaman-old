@@ -1,10 +1,13 @@
 KITA_TYPE="gnome"
-DEPEND="libgnomeui gnome-doc-utils scrollkeeper pygtk gnome-python"
+DEPEND="libgnomeui scrollkeeper pygtk gnome-python gnome-doc-utils"
 BUILD=""
-#Paste Build instructions here
 build_src()
 {
-./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) --sysconfdir=/etc --with-gnome-distributor="Kitaman" &&
+./configure   --prefix=/usr \
+              --sysconfdir=/etc \
+              --with-gnome-distributor="Kitaman" \
+              --disable-gtk-doc-html \
+              --disable-scrollkeeper
 make
 }
 ""

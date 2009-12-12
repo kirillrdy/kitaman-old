@@ -1,5 +1,5 @@
 KITA_TYPE="gnome"
-DEPEND="PolicyKit"
+DEPEND="polkit"
 BUILD=""
 config_src()
 {

@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="ftp://oss.sgi.com/projects/xfs/cmd_tars/attr_2.4.43-1.tar.gz http://mirror.hamakor.org.il/pub/mirrors/gentoo-portage/sys-apps/attr/files/attr-2.4.43-linguas.patch"
+FILES="ftp://oss.sgi.com/projects/xfs/cmd_tars/attr-2.4.44.src.tar.gz"
 BUILD=""
 config_src()
 {

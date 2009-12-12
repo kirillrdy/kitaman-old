@@ -1,5 +1,5 @@
 KITA_TYPE="make"
-FILES="http://ftp.gnu.org/gnu/texinfo/texinfo-4.11.tar.bz2"
+FILES="http://ftp.gnu.org/gnu/texinfo/texinfo-4.13a.tar.gz"
 DEPEND=""
 BUILD=""
 build_src(){
