@@ -18,6 +18,7 @@
 
 
 require 'kitaman/kita_helper'
+require '/etc/kitaman_conf'
 require 'open-uri'
 
 class Object
@@ -32,7 +33,7 @@ end
 
 def update_src_files_database
   files_dictionary = {}
-  for repo in IO.read(KitamanConfig.config['REPOST_LIST_FILE']).split("\n")
+  for repo in IO.read(KITAMAN_REPOS_LIST_FILE).split("\n")
     puts "Syncing #{repo.blue}"
     list_of_files = open(repo).read.scan(/<a href=\"(.*?\.tar\.bz2)">(?:.*?)<\/a>/)
     
@@ -53,27 +54,6 @@ end
 def kita_error(string)
   puts string.bold.red
   exit 1
-end
-
-# This is pretty waistful, please FIXME
-class KitamanConfig
-  
-  @@config = nil
-  
-  def KitamanConfig.config
-    if not @@config 
-      infos = IO.read('/etc/kitaman.conf').scan(/(.*?)="(.*?)"\n/)
-      result = {}
-      for info in infos
-        result[info[0]]= ENV[info[0]] || info[1]
-      end
-      @@config = result
-    else
-      result = @@config
-    end
-    return result
-  end
-
 end
 
 STYLE = {

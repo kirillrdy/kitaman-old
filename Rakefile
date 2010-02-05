@@ -28,7 +28,7 @@ namespace :kitaman do
       
       cp modules/* #{args.prefix}/usr/lib/ruby/#{RUBY_VER}/kitaman/modules
       cp lib/* #{args.prefix}/usr/lib/ruby/#{RUBY_VER}/kitaman/
-      cp lib/tree.rb #{args.prefix}/usr/lib/ruby/#{RUBY_VER}/
+      #cp lib/tree.rb #{args.prefix}/usr/lib/ruby/#{RUBY_VER}/
 
       cp etc/kitaman_conf.rb #{args.prefix}/etc/
       cp etc/kitaman.repos #{args.prefix}/etc/

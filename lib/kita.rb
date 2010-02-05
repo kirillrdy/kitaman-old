@@ -20,7 +20,7 @@ require 'kitaman/kita_helper'
 require 'kitaman/kitaman_helper'
 require '/etc/kitaman_conf'
 
-Dir['/usr/lib/ruby/1.8/kitaman/modules/*'].each {|file| require file}
+Dir["/usr/lib/ruby/#{RUBY_VERSION}/kitaman/modules/*"].each {|file| require file}
 
 class Kita
   # Class that represents a package in Kitaman world
@@ -51,16 +51,16 @@ class Kita
     @name     ||=   File.basename(kita_name,'.rb')
     @files    ||=   get_files_from_repo
     
-    @files = @files.to_a
+    @files = [@files] if @files.is_a?(String)
     
     @patches  ||=   []
     
-    @patches = @patches.to_a
+    @patches = [@patches] if @patches.is_a?(String)
     
     @version  ||=   get_version
     @depend   ||=   []
     
-    @depend = @depend.to_a
+    @depend = @depend.split(" ") if @depend.is_a?(String)
 
   end
    

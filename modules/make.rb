@@ -23,6 +23,61 @@ require '/etc/kitaman_conf'
 
 module Make
 
+ 
+  ####################################
+  # Methods that return Strings 
+  # They should be overwritten by kitafiles
+  #
+
+  # Generates Build Enviroment for the package
+  def build_enviroment
+    "
+    set -e
+    export MAKEFLAGS='-j#{number_of_cores+1}'
+    INSTALL_DIR=#{install_dir}
+    BUILD_DIR=#{build_dir}
+  
+    mkdir -p #{install_dir}
+    cd #{build_dir}
+
+    "
+  end
+
+  def config  
+    "./configure --prefix=/usr"
+  end
+
+  # Extracts, patches, builds and packs a package
+  def build
+    "    
+    make    
+    "    
+  end
+
+  def kita_install
+    "    
+    make DESTDIR=#{install_dir} install
+    "
+  end
+
+ def post_install
+    "echo 'nothing here'"
+  end
+  
+  def clean_up
+    "
+      # Update the linkers cache
+      ldconfig
+      echo 'Cleaning up'
+      rm -rf #{build_dir}
+      rm -rf #{install_dir}
+    "
+  end
+  
+  #
+  # End of String methods
+  ########################################
+
   # Extract source code
   def extract
         
@@ -49,22 +104,6 @@ module Make
     return result
   end
 
-  def config  
-    "./configure --prefix=/usr"
-  end
-
-  # Extracts, patches, builds and packs a package
-  def build
-    "    
-    make    
-    "    
-  end
-
-  def kita_install
-    "    
-    make DESTDIR=#{install_dir} install
-    "
-  end
 
   def install
     
@@ -107,19 +146,7 @@ module Make
     return result
   end  
   
-  def post_install
-    "nothing here"
-  end
-  
-  def clean_up
-    "
-      # Update the linkers cache
-      ldconfig
-      echo 'Cleaning up'
-      rm -rf #{build_dir}
-      rm -rf #{install_dir}
-    "
-  end
+ 
 
   # Generates tar ball with binary files
   def create_package
@@ -132,21 +159,7 @@ module Make
     ")
 
   end
-
-
-  # Generates Build Enviroment for the package
-  def build_enviroment
-    "
-    set -e
-    export MAKEFLAGS='-j#{number_of_cores+1}'
-    INSTALL_DIR=#{install_dir}
-    BUILD_DIR=#{build_dir}
   
-    mkdir -p #{install_dir}
-    cd #{build_dir}
-
-    "
-  end
 
   # Records package as installed and records a list of all files installed by the package
   def record_installed
