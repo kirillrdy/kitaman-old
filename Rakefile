@@ -3,7 +3,7 @@ task :default => "kitaman:install"
 #RUBY_VER='1.8'
 RUBY_VER='1.9.1'
 
-namespace :kitaman do
+kitaman = namespace :kitaman do
   
   
   desc 'installs kitaman in a given prefix'
@@ -34,6 +34,7 @@ namespace :kitaman do
       cp etc/kitaman.repos #{args.prefix}/etc/
       cp -r kita_files #{args.prefix}/usr/kitaman/
     `
+    puts 'Done !'
      #puts args.prefix
   end
 
@@ -44,6 +45,13 @@ namespace :kitaman do
     `rm ../#{TARBALL}`
   end
     
+end
+
+task :install => [kitaman[:install]]
+
+task :doc do
+  `rm -rf doc/
+  rdoc`
 end
 
 task :clean do

@@ -1,7 +1,7 @@
-#    Kitaman - Software Project Manager
+#    Kitaman - Software Package Manager
 #    /-Promise to a little girl and a big world-/
 #
-#    Copyright (C) 2009  Kirill Radzikhovskyy <kirillrdy@silverpond.com.au>
+#    Copyright (C) 2010  Kirill Radzikhovskyy <kirillrdy@silverpond.com.au>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -20,16 +20,13 @@ require 'kitaman/kita_helper'
 require 'kitaman/kitaman_helper'
 require '/etc/kitaman_conf'
 
+
+# Load all the modules availible
 Dir["/usr/lib/ruby/#{RUBY_VERSION}/kitaman/modules/*"].each {|file| require file}
 
+# Each Package is represented by Kita class
 class Kita
-  # Class that represents a package in Kitaman world
   
-  # String representation of kita instance  
-  def to_s
-    @name + "-" + @version
-  end
-   
   # Find kita file by package name
   def Kita.find_kita_file(package_name)
     found_file = `find #{KITA_FILES_DIR} -type f -name "#{package_name}.rb"`.split("\n")
@@ -42,6 +39,12 @@ class Kita
     end
         
   end
+
+  # String representation of kita instance
+  # eg gnome-terminal-2.28.3
+  def to_s
+    @name + "-" + @version
+  end
   
   # Creates Kita object and parses all the information
   def initialize(kita_name)
@@ -50,7 +53,9 @@ class Kita
     
     @name     ||=   File.basename(kita_name,'.rb')
     @files    ||=   get_files_from_repo
-    
+  
+    #TODO ensure that we cover cases like
+    # 'one package,other package'
     @files = [@files] if @files.is_a?(String)
     
     @patches  ||=   []
@@ -66,6 +71,8 @@ class Kita
    
    
   # THIS IS THE RECURSIVE THINGY TODO
+  # by given action 
+  # :install ,:remove
   def call(action)
   
     for dependency in @depend
@@ -84,12 +91,11 @@ class Kita
   end
    
    
-   
   # Downloads all files in FILES var, returns True if all files downloaded successfully
   def download
     success=true
     for file in files_list_to_download
-      success = (success and download_one_file(file))
+      success = (success and Kitaman.download_one_file(file))
     end
     return success
   end
@@ -105,6 +111,8 @@ class Kita
   
   
 
+  # This is a default install action, modules should be implementing this
+  # kept here for sentemental purposes
   def install
     puts "please write install instructions for this package"
   end
@@ -114,34 +122,19 @@ class Kita
     File.exist?(KITAMAN_STATE_DIR+'/'+self.to_s)
   end
 
-  # Things that none should see
+  ##############################################################################
   private
+  ##############################################################################
 
   # Returns a list of URLS of source files to be downloaded
   def files_list_to_download
     (@files + @patches)
   end
   
-  # Helper used to download singe file
-  def download_one_file(file)
-    result = true
-    
-    if File.exists?("#{KITAMAN_SRC_DIR}/#{File.basename(file)}")
-      system("mv #{KITAMAN_SRC_DIR}/#{File.basename(file)} #{KITAMAN_SRC_DIR}/")
-    end
-
-    result = (result and system("wget -c #{file} -O #{KITAMAN_TEMP_DIR}/#{File.basename(file)}"))
-    result = (result and system("mv #{KITAMAN_TEMP_DIR}/#{File.basename(file)} #{KITAMAN_SRC_DIR}/"))
-    return result
-  end
-  
   # Returns a list of full paths to local source files belonging to package
   def files_list_local
-    list=[]
-    for file in ( @files + @patches)
-      list << (KITAMAN_SRC_DIR+'/'+File.basename(file))
-    end
-    list
+    list= @files + @patches
+    list.map {|x| KITAMAN_SRC_DIR+'/'+ File.basename(x) }
   end
 
   # Fills FILES var with files maching in repository
@@ -153,14 +146,11 @@ class Kita
     @@files_list_database[@name] ? [@@files_list_database[@name]] : []
   end
 
-  # Get version from source file
+  # helper method used to set @version
+  # It will find version of first file availible for package
+  # or return undefined which is bad, and prob should be an exception
   def get_version
-    if @files!=[]
-      ver = @files[0].version
-    else
-      ver = "undefined"
-    end
-    return ver
+    @files.first ? @files.first.version : 'undefined'
   end
 
  # Create a state file meaning that package is installed
@@ -170,15 +160,12 @@ class Kita
   
  # Removes all files listed in state file, and removes the state file
  def remove
-  for line in IO.read(KITAMAN_STATE_DIR+'/'+self.to_s).lines.to_a.reverse
+  for line in IO.read(KITAMAN_STATE_DIR+'/'+ self.to_s).lines.to_a.reverse
     puts line
   end
  end
 
-##############################################################################
-private
-##############################################################################
-
+  # Location of state file for kita
   def state_file
     KITAMAN_STATE_DIR+'/'+self.to_s
   end

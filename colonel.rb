@@ -3,7 +3,7 @@
 #    Colonel - Kernel Autoconfig builder
 #    /-Arrr...-/
 #
-#    Copyright (C) 2009  Kirill Radzikhovskyy <kirillrdy@silverpond.com.au>
+#    Copyright (C) 2010  Kirill Radzikhovskyy <kirillrdy@silverpond.com.au>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by

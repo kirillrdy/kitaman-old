@@ -1,7 +1,7 @@
-#    Kitaman - Software Project Manager
+#    Kitaman - Software Package Manager
 #    /-Promise to a little girl and a big world-/
 #
-#    Copyright (C) 2009  Kirill Radzikhovskyy <kirillrdy@silverpond.com.au>
+#    Copyright (C) 2010  Kirill Radzikhovskyy <kirillrdy@silverpond.com.au>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -21,9 +21,51 @@ require 'kitaman/kitaman_helper'
 require 'kitaman/kita.rb'
 require '/etc/kitaman_conf'
 
-module Make
 
- 
+# This is Make module
+# It handles make driven apps building
+#
+# Usage
+# Create a ruby file that will extend Make module
+# Methods that you should overwrite
+#
+# def config
+# end
+#
+#  # Confugure package
+#  def config
+#    "./configure --prefix=/usr"
+#  end
+
+#   # builds package
+#   def build
+#     "
+#     make
+#     "
+#   end
+
+#   def kita_install
+#     "    
+#     make DESTDIR=#{install_dir} install
+#     "
+#   end
+
+#   def post_install
+#     "echo 'nothing here'"
+#   end
+#  
+#  def clean_up
+#    "
+#      # Update the linkers cache
+#      ldconfig
+#      echo 'Cleaning up'
+#      rm -rf #{build_dir}
+#      rm -rf #{install_dir}
+#    "
+#  end
+
+#
+module Make
   ####################################
   # Methods that return Strings 
   # They should be overwritten by kitafiles
@@ -33,7 +75,7 @@ module Make
   def build_enviroment
     "
     set -e
-    export MAKEFLAGS='-j#{number_of_cores+1}'
+    export MAKEFLAGS='-j#{Computer.number_of_cores+1}'
     INSTALL_DIR=#{install_dir}
     BUILD_DIR=#{build_dir}
   
@@ -43,7 +85,8 @@ module Make
     "
   end
 
-  def config  
+  # Confugure package
+  def config
     "./configure --prefix=/usr"
   end
 
@@ -80,8 +123,9 @@ module Make
 
   # Extract source code
   def extract
-        
     result = true
+    
+    puts "Extrating..."
     for file in files_list_local
       result = (result and system("tar xjpf #{file} -C #{KITAMAN_BUILD_DIR}/")) if ( file.index('.tar.bz2') or file.index('.bz2') )
       result = (result and system("tar xpf #{file} -C #{KITAMAN_BUILD_DIR}/")) if ( file.index('.tar.gz') or file.index('.tgz'))
@@ -92,13 +136,14 @@ module Make
 
   # Patch source code
   def patch
-  
     result = true
+    
+    puts "Patching..."
     for file in files_list_local
       if file.index('.patch')
         file = File.basename(file)
         puts "Patching using #{file}".red
-        result = result and system(build_enviroment + "cd #{build_dir} && patch -Np1 -i #{KITAMAN_SRC_DIR}/#{file}""")
+        result = result and system(build_enviroment + "cd #{build_dir} && patch -Np1 -i #{KITAMAN_SRC_DIR}/#{file}")
       end
     end
     return result
@@ -110,11 +155,9 @@ module Make
     result = true
     # ruby
     
-    puts "Extrating..."
-    extract
+    result = result and extract
     
-    #ruby
-    puts "Patching..."
+    #ruby    
     result = result and patch
     
 
@@ -130,10 +173,10 @@ module Make
           ") #config_src &> /var/kitaman/config_logs/#{self.to_s}
     
    
-    result = result and create_package   
+    result = result and create_package
     
     # This is an actual installing
-    result = result and system(build_enviroment + "tar xjpf #{tar_bin_file} -C #{ENV['KITAMAN_INSTALL_PREFIX']}/")      
+    result = result and system(build_enviroment + "tar xjpf #{tar_bin_file} -C #{ENV['KITAMAN_INSTALL_PREFIX']}/")
 
     #TODO FIX 
     result = result and system("
@@ -150,7 +193,7 @@ module Make
 
   # Generates tar ball with binary files
   def create_package
-    system( build_enviroment  + "    
+    system( build_enviroment  + "
     
     cd #{install_dir}
 

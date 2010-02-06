@@ -1,4 +1,4 @@
-# This is a config file for kitaman
+# Kitaman Configuration FIle
 # 
 # Maintained by Kirill R
 # format is very simple

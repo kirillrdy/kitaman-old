@@ -20,26 +20,16 @@
 ARCHIVE_EXT=['.tar.bz2','.tar.gz','.tgz','.bz2']
 
 
-
-class Hash
-  def set_if_nil(key,default)
-    if not self[key]
-      self[key]=default
-    end
-  end
- 
-  def split_or_default_if_nil(key,default)
-    self[key] ? self[key] = self[key].split(" ") : self[key]= default
-  end  
-end
-
 class String
 
+  # Basename that is much smarter that File.basename
+  # eg:
   # "mumbo/linux-2.27.5.tar.bz2".smart_basename ==> 'linux'
   def smart_basename
     File.basename(self).slice(0,self.rindex(/-\d/))
   end
  
+  # Getting package version number from package URL
   # "http://mom.org/linux-2.26.4.tar.bz2".version ==> '2.26.4'
   def version
     #puts self
@@ -56,22 +46,12 @@ class String
   end
 end
 
-# Find how many cores CPU on host machine has
-def number_of_cores
-  results = `cat /proc/cpuinfo | grep cores`.scan(/\: (.*?)\n/)
-  results ==[] ? 1 : results[0][0].to_i
-end
+class Computer
 
-  
-# Helper used to download singe file
-def download_one_file(file)
-  result = true
-  
-  if File.exists?("#{KITAMAN_SRC_DIR}/#{File.basename(file)}")
-    system("mv #{KITAMAN_SRC_DIR}/#{File.basename(file)} #{KITAMAN_TEMP_DIR}/")
+  # Find how many CPU cores host machine has
+  def self.number_of_cores
+    results = `cat /proc/cpuinfo | grep cores`.scan(/\: (.*?)\n/)
+    results ==[] ? 1 : results[0][0].to_i
   end
-
-  result = (result and system("wget -c #{file} -O #{KITAMAN_TEMP_DIR}/#{File.basename(file)}"))
-  result = (result and system("mv #{KITAMAN_TEMP_DIR}/#{File.basename(file)} #{KITAMAN_SRC_DIR}/"))
-  return result
+  
 end

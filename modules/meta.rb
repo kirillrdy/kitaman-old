@@ -1,4 +1,4 @@
-#    Kitaman - Software Project Manager
+#    Kitaman - Software Package Manager
 #    /-Promise to a little girl and a big world-/
 #
 #    Copyright (C) 2009  Kirill Radzikhovskyy <kirillrdy@silverpond.com.au>

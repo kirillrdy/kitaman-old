@@ -1,10 +1,10 @@
 #!/usr/bin/ruby
 
 
-#    Kitaman - Software Project Manager
+#    Kitaman - Software Package Manager
 #    /-Promise to a little girl and a big world-/
 #
-#    Copyright (C) 2009  Kirill Radzikhovskyy <kirillrdy@silverpond.com.au>
+#    Copyright (C) 2010  Kirill Radzikhovskyy <kirillrdy@silverpond.com.au>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ require 'optparse'
 require 'kitaman/kitaman_helper'
 require 'kitaman/kita'
 
-class Kitaman  
+class Kitaman
   
   def Kitaman.version
     "0.1.0"
@@ -40,23 +40,27 @@ class Kitaman
                 :search     => false,
                 :remove     => false }
 
-     
+
     # Results log for all actions
     @results_log = []
     
       
-    # this is our own implementation of grapviz output, 
+    # this is our own implementation of grapviz output,
     # some beilive that we should use existing rubylibs, i am happy
     # to keep it this way
+    # Main reason for reinventing the wheel is that kitaman needs to have close to 0 deps
+    # so only true dependency is ruby
     @graphviz_graph = GraphvizGraph.new
   end
 
+  # TODO our temporary install methods
+  # in future will handle removing packages as well
   def digest(kita_instance)
     kita_instance.call(:install)
   end
 
-   
-  def show_actions_to_be_taken   
+  # TODO legacy leftovers
+  def show_actions_to_be_taken
    
     if not @target_list.hasChildren?
       puts "Nothing to do ...".bold.green
@@ -67,7 +71,7 @@ class Kitaman
       puts @graphviz_graph.to_dot
       exit
     end
-    return false if (@options[:quiet])  
+    return false if (@options[:quiet])
     
     
     puts "\nKitaman will do the following: \n".bold
