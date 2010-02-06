@@ -28,7 +28,7 @@ module Xorg
     patch
            
     # build commands here
-    result = result and system( build_enviroment  + """
+    result = result and system( build_enviroment  + "
     
     config_src()
     {
@@ -47,7 +47,7 @@ module Xorg
 
     config_src > /var/kitaman/config_logs/#{@info['NAME-VER']}
     build_src
-    """)
+    ")
 
     if !result
       return result

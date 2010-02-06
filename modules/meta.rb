@@ -18,34 +18,15 @@
 
 
 
-
+# Meta Module looks after simple 
+# packages that mainly have only dependencies 
+# and some small shell post install 
+#
+#
 module Meta
 
-  def build
-    puts "Nothing to do for meta package"
-    return true
-  end
-  
-  def install    
-    if not system("""
-      
-      set -e
-
-      post_install()
-      {
-        echo \"no post install\"
-      }
-
-      #{@info["BUILD"]}
-
-      post_install
-      
-      ldconfig
-
-    """)
-      return false
-    end
-    record_installed
+  #TODO fix this to it would support post install methods
+  def install
     return true
   end
     

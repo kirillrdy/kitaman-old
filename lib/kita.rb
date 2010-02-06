@@ -29,15 +29,10 @@ class Kita
   
   # Find kita file by package name
   def Kita.find_kita_file(package_name)
-    found_file = `find #{KITA_FILES_DIR} -type f -name "#{package_name}.rb"`.split("\n")
-    if found_file.length == 0
-      kita_error "No kitafile found for \'#{package_name}\'"
-    elsif found_file.length > 1
-      kita_error "More than one kita file is found for #{package_name}"
-    else
-      return found_file[0]
-    end
-        
+    found_file = Dir["#{KITA_FILES_DIR}/**/#{package_name}.rb"]
+    kita_error "No kitafile found for \'#{package_name}\'" if found_file.length == 0
+    kita_error "More than one kita file is found for #{package_name}" if found_file.length > 1
+    return found_file.first
   end
 
   # String representation of kita instance
@@ -54,8 +49,6 @@ class Kita
     @name     ||=   File.basename(kita_name,'.rb')
     @files    ||=   get_files_from_repo
   
-    #TODO ensure that we cover cases like
-    # 'one package,other package'
     @files = [@files] if @files.is_a?(String)
     
     @patches  ||=   []
@@ -140,7 +133,7 @@ class Kita
   # Fills FILES var with files maching in repository
   def get_files_from_repo
        
-    update_src_files_database if not File.exist?('/var/kitaman/src.db')
+    Kitaman.update_src_files_database if not File.exist?('/var/kitaman/src.db')
     
     @@files_list_database ||= Marshal.load(IO.read('/var/kitaman/src.db'))
     @@files_list_database[@name] ? [@@files_list_database[@name]] : []
