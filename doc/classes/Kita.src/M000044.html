@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>new (Kita)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/kita.rb, line 45</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">kita_name</span>)
+    
+    <span class="ruby-ivar">@name</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">kita_name</span>,<span class="ruby-value str">'.rb'</span>)
+
+    <span class="ruby-ivar">@files</span> = [<span class="ruby-ivar">@files</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@files</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
+    
+    <span class="ruby-ivar">@patches</span> =  []
+    
+    <span class="ruby-ivar">@patches</span> = [<span class="ruby-ivar">@patches</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@patches</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
+    
+    <span class="ruby-ivar">@version</span> =  <span class="ruby-identifier">version</span>
+    <span class="ruby-ivar">@depend</span>  = []
+    
+    <span class="ruby-comment cmt"># Load file and evaluate it</span>
+    <span class="ruby-identifier">instance_eval</span>(<span class="ruby-constant">IO</span>.<span class="ruby-identifier">read</span>(<span class="ruby-constant">Kita</span>.<span class="ruby-identifier">find_kita_file</span>(<span class="ruby-identifier">kita_name</span>)))
+    
+    <span class="ruby-ivar">@depend</span> = <span class="ruby-ivar">@depend</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot; &quot;</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@depend</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
+    <span class="ruby-ivar">@files</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">get_files_from_repo</span>
+
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

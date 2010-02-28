@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>call (Kita)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/kita.rb, line 70</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">call</span>(<span class="ruby-identifier">action</span>)
+  
+    <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">dependency</span> <span class="ruby-keyword kw">in</span> <span class="ruby-ivar">@depend</span>
+      <span class="ruby-constant">Kita</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">dependency</span>).<span class="ruby-identifier">call</span>(<span class="ruby-identifier">action</span>)
+    <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">action</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:install</span>
+      <span class="ruby-identifier">download</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">downloaded?</span>
+
+      <span class="ruby-comment cmt">#TODO Clean</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Installing #{self.to_s}&quot;</span>.<span class="ruby-identifier">bold</span>.<span class="ruby-identifier">green</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">installed?</span>
+      <span class="ruby-identifier">install</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">installed?</span>
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">action</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:remove</span>
+      <span class="ruby-identifier">remove</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">installed?</span>
+    <span class="ruby-keyword kw">end</span>
+    
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

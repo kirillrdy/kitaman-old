@@ -22,49 +22,7 @@ require 'kitaman/kita.rb'
 require '/etc/kitaman_conf'
 
 
-# This is Make module
-# It handles make driven apps building
-#
-# Usage
-# Create a ruby file that will extend Make module
-# Methods that you should overwrite
-#
-# def config
-# end
-#
-#  # Confugure package
-#  def config
-#    "./configure --prefix=/usr"
-#  end
-
-#   # builds package
-#   def build
-#     "
-#     make
-#     "
-#   end
-
-#   def kita_install
-#     "    
-#     make DESTDIR=#{install_dir} install
-#     "
-#   end
-
-#   def post_install
-#     "echo 'nothing here'"
-#   end
-#  
-#  def clean_up
-#    "
-#      # Update the linkers cache
-#      ldconfig
-#      echo 'Cleaning up'
-#      rm -rf #{build_dir}
-#      rm -rf #{install_dir}
-#    "
-#  end
-
-#
+# TODO Document our most important module
 module Make
   ####################################
   # Methods that return Strings 
@@ -171,8 +129,7 @@ module Make
 
       #{kita_install}
           ") #config_src &> /var/kitaman/config_logs/#{self.to_s}
-    
-   
+
     result = result and create_package
     
     # This is an actual installing
@@ -192,15 +149,13 @@ module Make
  
 
   # Generates tar ball with binary files
+  # Those binary files can later be reused
+  # They contain all files that belong to the package
   def create_package
     system( build_enviroment  + "
-    
     cd #{install_dir}
-
     tar cjpf #{tar_bin_file} *
-
     ")
-
   end
   
 
@@ -213,16 +168,21 @@ module Make
   private
   ##########################################################################
   
+  # Helper that shows where source will be built
+  # eg /var/kitaman/build/linux-2.6.26/
   def build_dir
-    @build_dir ||=  KITAMAN_BUILD_DIR + '/' + (`tar tf #{files_list_local[0]}`.split("\n")[0])
+    #use instance var as a cache
+    @build_dir ||=  KITAMAN_BUILD_DIR + '/' + (`tar tf #{files_list_local.first}`.split("\n").first)
     #@build_dir.chomp!("/")
     return @build_dir
   end
-  
+
+  #Helper that show points to location of binary tar ball
   def tar_bin_file
     (KITAMAN_PKG_DIR) +'/'+self.to_s+'-bin.tar.bz2'
   end
   
+  # Helper that points to fake root install dir
   def install_dir
     (KITAMAN_FAKE_INSTALL_DIR) +'/'+self.to_s
   end

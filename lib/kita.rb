@@ -38,27 +38,26 @@ class Kita
   # String representation of kita instance
   # eg gnome-terminal-2.28.3
   def to_s
-    @name + "-" + @version
+    [@name,@version].join "-"
   end
   
   # Creates Kita object and parses all the information
   def initialize(kita_name)
     
+    @name = File.basename(kita_name,'.rb')
+    @depend = []
+    @patches = []
+    
+    # Load file and evaluate it
     instance_eval(IO.read(Kita.find_kita_file(kita_name)))
     
-    @name     ||=   File.basename(kita_name,'.rb')
-    @files    ||=   get_files_from_repo
-  
-    @files = [@files] if @files.is_a?(String)
-    
-    @patches  ||=   []
-    
-    @patches = [@patches] if @patches.is_a?(String)
-    
-    @version  ||=   get_version
-    @depend   ||=   []
     
     @depend = @depend.split(" ") if @depend.is_a?(String)
+    
+    @files ||= get_files_from_repo
+    @files = [@files] if @files.is_a?(String)
+    @patches = [@patches] if @patches.is_a?(String)
+    @version =  version
 
   end
    
@@ -74,6 +73,9 @@ class Kita
   
     if action == :install
       download unless downloaded?
+
+      #TODO Clean
+      puts "Installing #{self.to_s}".bold.green unless installed?
       install unless installed?
     end
     
@@ -84,7 +86,7 @@ class Kita
   end
    
    
-  # Downloads all files in FILES var, returns True if all files downloaded successfully
+  # Downloads all files in @files var, returns true if all files downloaded successfully
   def download
     success=true
     for file in files_list_to_download
@@ -142,12 +144,14 @@ class Kita
   # helper method used to set @version
   # It will find version of first file availible for package
   # or return undefined which is bad, and prob should be an exception
-  def get_version
+  def version
     @files.first ? @files.first.version : 'undefined'
   end
 
- # Create a state file meaning that package is installed
-  def record_installed
+   # Create a state file meaning that package is installed
+   # Please note this parent method creates empty files
+   # Child modules overwrite this
+   def record_installed
     `touch #{state_file}`
   end
   

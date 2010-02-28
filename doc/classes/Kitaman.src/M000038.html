@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>new (Kitaman)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File kitaman.rb, line 33</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
+    <span class="ruby-ivar">@options</span> = {<span class="ruby-identifier">:download</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>,
+                <span class="ruby-identifier">:build</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>,
+                <span class="ruby-identifier">:install</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>,
+                <span class="ruby-identifier">:deep</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+                <span class="ruby-identifier">:deepest</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+                <span class="ruby-identifier">:force</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+                <span class="ruby-identifier">:search</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+                <span class="ruby-identifier">:remove</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span> }
+
+
+    <span class="ruby-comment cmt"># Results log for all actions</span>
+    <span class="ruby-ivar">@results_log</span> = []
+    
+      
+    <span class="ruby-comment cmt"># this is our own implementation of grapviz output,</span>
+    <span class="ruby-comment cmt"># some beilive that we should use existing rubylibs, i am happy</span>
+    <span class="ruby-comment cmt"># to keep it this way</span>
+    <span class="ruby-comment cmt"># Main reason for reinventing the wheel is that kitaman needs to have close to 0 deps</span>
+    <span class="ruby-comment cmt"># so only true dependency is ruby</span>
+    <span class="ruby-ivar">@graphviz_graph</span> = <span class="ruby-constant">GraphvizGraph</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

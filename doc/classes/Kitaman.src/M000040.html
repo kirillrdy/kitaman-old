@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>show_actions_to_be_taken (Kitaman)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File kitaman.rb, line 63</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_actions_to_be_taken</span>
+   
+    <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@target_list</span>.<span class="ruby-identifier">hasChildren?</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Nothing to do ...&quot;</span>.<span class="ruby-identifier">bold</span>.<span class="ruby-identifier">green</span>
+      <span class="ruby-identifier">exit</span>
+    <span class="ruby-keyword kw">end</span>
+   
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:graph</span>]
+      <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@graphviz_graph</span>.<span class="ruby-identifier">to_dot</span>
+      <span class="ruby-identifier">exit</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">if</span> (<span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:quiet</span>])
+    
+    
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\nKitaman will do the following: \n&quot;</span>.<span class="ruby-identifier">bold</span>
+  
+    <span class="ruby-ivar">@visit_list</span>={}
+    <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">target</span> <span class="ruby-keyword kw">in</span> <span class="ruby-ivar">@target_list</span>.<span class="ruby-identifier">children</span>
+      <span class="ruby-identifier">traverse_tree_for_print</span> <span class="ruby-identifier">target</span>
+    <span class="ruby-keyword kw">end</span>
+        
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Number of Packages to be installed: &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@visit_list</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">length</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">bold</span>.<span class="ruby-identifier">cyan</span>
+    
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Press Enter to continue...&quot;</span>.<span class="ruby-identifier">on_yellow</span>.<span class="ruby-identifier">bold</span>
+    <span class="ruby-identifier">$stdin</span>.<span class="ruby-identifier">gets</span>
+    
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>
