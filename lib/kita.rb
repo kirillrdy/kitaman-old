@@ -16,13 +16,10 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-require 'kitaman/kita_helper'
-require 'kitaman/kitaman_helper'
-require '/etc/kitaman_conf'
 
 
 # Load all the modules availible
-Dir["/usr/lib/ruby/#{RUBY_VERSION}/kitaman/modules/*"].each {|file| require file}
+Dir["#{KITAMAN_PREFIX}/lib/ruby/#{RUBY_VERSION}/kitaman/modules/*"].each {|file| require file}
 
 # Each Package is represented by Kita class
 class Kita
@@ -36,7 +33,7 @@ class Kita
   end
 
   # String representation of kita instance
-  # eg gnome-terminal-2.28.3
+  # eg gnome-terminal-2.29.3
   def to_s
     [@name,@version].join "-"
   end

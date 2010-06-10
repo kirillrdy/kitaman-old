@@ -1,41 +1,44 @@
 task :default => "kitaman:install"
 
-#RUBY_VER='1.8'
-RUBY_VER='1.9.1'
+
+RUBY_VERSION='1.9.1'
+
+RUBY_PREFIX=`which ruby`.gsub("/bin/ruby\n","")
+
 
 kitaman = namespace :kitaman do
   
   
   desc 'installs kitaman in a given prefix'
   task :install, :prefix do |t,args|
-    puts 'Installing kitaman ...'
+    install_prefix = args.prefix || RUBY_PREFIX
+    kitaman_config_dir = "#{args.prefix}/etc"
+    puts "Installing kitaman to ... #{install_prefix}"
     `
-      mkdir -p #{args.prefix}/usr/bin
-      mkdir -p #{args.prefix}/etc
-      mkdir -p #{args.prefix}/var/kitaman/build
-      mkdir -p #{args.prefix}/var/kitaman/install
-      mkdir -p #{args.prefix}/var/kitaman/config_logs
-      mkdir -p #{args.prefix}/var/kitaman/state
-      mkdir -p #{args.prefix}/usr/kitaman/pkg
-      mkdir -p #{args.prefix}/usr/kitaman/src
-      mkdir -p #{args.prefix}/usr/kitaman/kita_files
-      mkdir -p #{args.prefix}/usr/lib/ruby/#{RUBY_VER}/kitaman
-      mkdir -p #{args.prefix}/usr/lib/ruby/#{RUBY_VER}/kitaman/modules
+      mkdir -p #{install_prefix}/bin
+      mkdir -p #{kitaman_config_dir}
+      mkdir -p #{install_prefix}/var/kitaman/build
+      mkdir -p #{install_prefix}/var/kitaman/install
+      mkdir -p #{install_prefix}/var/kitaman/config_logs
+      mkdir -p #{install_prefix}/var/kitaman/state
+      mkdir -p #{install_prefix}/kitaman/pkg
+      mkdir -p #{install_prefix}/kitaman/src
+      mkdir -p #{install_prefix}/kitaman/kita_files
+      mkdir -p #{install_prefix}/lib/ruby/#{RUBY_VERSION}/kitaman
+      mkdir -p #{install_prefix}/lib/ruby/#{RUBY_VERSION}/kitaman/modules
 
 
-      cp kitaman.rb #{args.prefix}/usr/bin/kitaman
-      cp colonel.rb #{args.prefix}/usr/bin/colonel
+      cp kitaman.rb #{install_prefix}/bin/kitaman
+      cp colonel.rb #{install_prefix}/bin/colonel
       
-      cp modules/* #{args.prefix}/usr/lib/ruby/#{RUBY_VER}/kitaman/modules
-      cp lib/* #{args.prefix}/usr/lib/ruby/#{RUBY_VER}/kitaman/
-      #cp lib/tree.rb #{args.prefix}/usr/lib/ruby/#{RUBY_VER}/
+      cp modules/* #{install_prefix}/lib/ruby/#{RUBY_VERSION}/kitaman/modules
+      cp lib/* #{install_prefix}/lib/ruby/#{RUBY_VERSION}/kitaman/
 
-      cp etc/kitaman_conf.rb #{args.prefix}/etc/
-      cp etc/kitaman.repos #{args.prefix}/etc/
-      cp -r kita_files #{args.prefix}/usr/kitaman/
+      cp etc/kitaman_conf.rb #{kitaman_config_dir}
+      cp etc/kitaman.repos #{kitaman_config_dir}
+      cp -r kita_files #{install_prefix}/kitaman/
     `
     puts 'Done !'
-     #puts args.prefix
   end
 
   task :release do

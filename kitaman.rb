@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 
 
 #    Kitaman - Software Package Manager
@@ -20,9 +20,14 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+RUBY_PREFIX=`which ruby`.gsub("/bin/ruby\n","")
+
+require "/etc/kitaman_conf.rb"
 require 'optparse'
+require 'kitaman/kita_helper'
 require 'kitaman/kitaman_helper'
 require 'kitaman/kita'
+
 
 class Kitaman
   

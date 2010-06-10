@@ -17,8 +17,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-require 'kitaman/kita_helper'
-require '/etc/kitaman_conf'
 require 'open-uri'
 
 
