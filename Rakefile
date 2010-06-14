@@ -1,26 +1,27 @@
 task :default => "kitaman:install"
 
 
-RUBY_VERSION='1.9.1'
+#RUBY_VERSION='1.9.1'
 
 RUBY_PREFIX=`which ruby`.gsub("/bin/ruby\n","")
 
-
 kitaman = namespace :kitaman do
-  
-  
+
   desc 'installs kitaman in a given prefix'
   task :install, :prefix do |t,args|
     install_prefix = args.prefix || RUBY_PREFIX
     kitaman_config_dir = "#{args.prefix}/etc"
-    puts "Installing kitaman to ... #{install_prefix}"
+    
+    puts "Installing Kitaman to #{install_prefix}"
+    puts "Config is placed in #{kitaman_config_dir}"
+
     `
       mkdir -p #{install_prefix}/bin
       mkdir -p #{kitaman_config_dir}
-      mkdir -p #{install_prefix}/var/kitaman/build
-      mkdir -p #{install_prefix}/var/kitaman/install
-      mkdir -p #{install_prefix}/var/kitaman/config_logs
-      mkdir -p #{install_prefix}/var/kitaman/state
+      mkdir -p #{install_prefix}/../var/kitaman/build
+      mkdir -p #{install_prefix}/../var/kitaman/install
+      mkdir -p #{install_prefix}/../var/kitaman/config_logs
+      mkdir -p #{install_prefix}/../var/kitaman/state
       mkdir -p #{install_prefix}/kitaman/pkg
       mkdir -p #{install_prefix}/kitaman/src
       mkdir -p #{install_prefix}/kitaman/kita_files
