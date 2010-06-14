@@ -45,17 +45,9 @@ class Kitaman
                 :search     => false,
                 :remove     => false }
 
-
     # Results log for all actions
     @results_log = []
     
-      
-    # this is our own implementation of grapviz output,
-    # some beilive that we should use existing rubylibs, i am happy
-    # to keep it this way
-    # Main reason for reinventing the wheel is that kitaman needs to have close to 0 deps
-    # so only true dependency is ruby
-    @graphviz_graph = GraphvizGraph.new
   end
 
   # TODO our temporary install methods
@@ -71,29 +63,23 @@ class Kitaman
       puts "Nothing to do ...".bold.green
       exit
     end
-   
-    if @options[:graph]
-      puts @graphviz_graph.to_dot
-      exit
-    end
+
     return false if (@options[:quiet])
-    
-    
+
     puts "\nKitaman will do the following: \n".bold
-  
+
     @visit_list={}
     for target in @target_list.children
       traverse_tree_for_print target
     end
-        
+
     puts "Number of Packages to be installed: " + @visit_list.keys.length.to_s.bold.cyan
-    
-    puts ""
-    puts "Press Enter to continue...".on_yellow.bold
+
+    puts "\nPress Enter to continue...".on_yellow.bold
     $stdin.gets
-    
+
   end
-  
+
   def show_results_log
     puts ("#" * 50).bold
     puts "Kitaman Results Log:\n".blue

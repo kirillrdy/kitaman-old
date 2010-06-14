@@ -6,6 +6,7 @@
 KITAMAN_PREFIX='/usr'
 
 KITA_FILES_DIR="#{KITAMAN_PREFIX}/kitaman/kita_files"
+
 KITAMAN_SRC_DIR="#{KITAMAN_PREFIX}/kitaman/src"
 KITAMAN_STATE_DIR="/var/kitaman/state"
 KITAMAN_BUILD_DIR="/var/kitaman/build"
