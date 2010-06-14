@@ -23,7 +23,7 @@ require 'kitaman/kitaman_helper'
 module Gnome
 
   def create_package
-     system( build_enviroment  + """
+     execute_command( build_enviroment  + """
     
    kita_install()
     {

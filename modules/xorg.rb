@@ -28,7 +28,7 @@ module Xorg
     patch
            
     # build commands here
-    result = result and system( build_enviroment  + "
+    result = result and execute_command( build_enviroment  + "
     
     config_src()
     {

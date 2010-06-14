@@ -50,13 +50,13 @@ module Make
 
   # Extracts, patches, builds and packs a package
   def build
-    "    
-    make    
-    "    
+    "
+    make
+    "
   end
 
   def kita_install
-    "    
+    "
     make DESTDIR=#{install_dir} install
     "
   end
@@ -85,9 +85,9 @@ module Make
     
     puts "Extrating..."
     for file in files_list_local
-      result = (result and system("tar xjpf #{file} -C #{KITAMAN_BUILD_DIR}/")) if ( file.index('.tar.bz2') or file.index('.bz2') )
-      result = (result and system("tar xpf #{file} -C #{KITAMAN_BUILD_DIR}/")) if ( file.index('.tar.gz') or file.index('.tgz'))
-      result = (result and system("tar #{file} -d #{KITAMAN_BUILD_DIR}/")) if file.index('.zip')
+      result = (result and execute_command("tar xjpf #{file} -C #{KITAMAN_BUILD_DIR}/")) if ( file.index('.tar.bz2') or file.index('.bz2') )
+      result = (result and execute_command("tar xpf #{file} -C #{KITAMAN_BUILD_DIR}/")) if ( file.index('.tar.gz') or file.index('.tgz'))
+      result = (result and execute_command("tar #{file} -d #{KITAMAN_BUILD_DIR}/")) if file.index('.zip')
     end
     return result
   end
@@ -96,12 +96,13 @@ module Make
   def patch
     result = true
     
-    puts "Patching..."
+    
     for file in files_list_local
       if file.index('.patch')
+        puts "Patching..."
         file = File.basename(file)
         puts "Patching using #{file}".red
-        result = result and system(build_enviroment + "cd #{build_dir} && patch -Np1 -i #{KITAMAN_SRC_DIR}/#{file}")
+        result = result and execute_command(build_enviroment + "cd #{build_dir} && patch -Np1 -i #{KITAMAN_SRC_DIR}/#{file}")
       end
     end
     return result
@@ -119,7 +120,7 @@ module Make
     result = result and patch
     
 
-    result = result and system("
+    result = result and execute_command("
       
       #{build_enviroment}
 
@@ -133,10 +134,10 @@ module Make
     result = result and create_package
     
     # This is an actual installing
-    result = result and system(build_enviroment + "tar xjpf #{tar_bin_file} -C #{ENV['KITAMAN_INSTALL_PREFIX']}/")
+    result = result and execute_command(build_enviroment + "tar xjpf #{tar_bin_file} -C #{ENV['KITAMAN_INSTALL_PREFIX']}/")
 
     #TODO FIX 
-    result = result and system("
+    result = result and execute_command("
     #{post_install}
     #{clean_up}
     ")
@@ -152,7 +153,7 @@ module Make
   # Those binary files can later be reused
   # They contain all files that belong to the package
   def create_package
-    system( build_enviroment  + "
+    execute_command( build_enviroment  + "
     cd #{install_dir}
     tar cjpf #{tar_bin_file} *
     ")

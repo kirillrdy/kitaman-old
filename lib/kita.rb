@@ -26,10 +26,15 @@ class Kita
   
   # Find kita file by package name
   def Kita.find_kita_file(package_name)
-    found_file = Dir["#{KITA_FILES_DIR}/**/#{package_name}.rb"]
-    kita_error "No kitafile found for \'#{package_name}\'" if found_file.length == 0
-    kita_error "More than one kita file is found for #{package_name}" if found_file.length > 1
-    return found_file.first
+    found_files = Dir["#{KITA_FILES_DIR}/**/#{package_name}.rb"]
+    kita_error "No kitafile found for \'#{package_name}\'" if found_files.length == 0
+
+    if found_files.length > 1
+      found_files.each_index {|x| puts  "[#{x}]: #{found_files[x]}" }
+      choice = $stdin.gets
+      found_files = [found_files[choice.to_i]]
+    end
+    return found_files.first
   end
 
   # String representation of kita instance
