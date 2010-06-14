@@ -72,6 +72,7 @@ module Make
       echo 'Cleaning up'
       rm -rf #{build_dir}
       rm -rf #{install_dir}
+      rm #{tar_bin_file}
     "
   end
   
