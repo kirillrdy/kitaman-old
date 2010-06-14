@@ -17,6 +17,6 @@ def kita_install
   "
   make INSTALL_HDR_PATH=dest headers_install
   mkdir -pv $INSTALL_DIR/tools/include
-  cp -rv dest/include $INSTALL_DIR/tools/include
+  cp -rv dest/include/* $INSTALL_DIR/tools/include
   "
 end
