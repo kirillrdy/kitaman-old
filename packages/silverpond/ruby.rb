@@ -1,4 +1,3 @@
-Package.desribe do
-  name 'ruby'
+package 'ruby' do
   type :make
 end
