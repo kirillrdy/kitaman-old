@@ -18,9 +18,6 @@
 
 
 
-# Load all the modules availible
-Dir["#{KITAMAN_PREFIX}/lib/ruby/#{RUBY_VERSION}/kitaman/modules/*"].each {|file| require file}
-
 # Each Package is represented by Kita class
 class Kita
   

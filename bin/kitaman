@@ -20,15 +20,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-require "/etc/kitaman_conf.rb"
-require 'optparse'
-require 'kitaman/kita_helper'
-require 'kitaman/kitaman_helper'
-require 'kitaman/kita'
-
+require 'kitaman'
 
 class Kitaman
-  
+
   def Kitaman.version
     #TODO use gem VERSION
     "0.0.0"
@@ -46,6 +41,8 @@ class Kitaman
 
     # Results log for all actions
     @results_log = []
+    
+    Package.load_all
     
   end
 
