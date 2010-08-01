@@ -1,4 +1,5 @@
 *.swp
+kitaman.gemspec
 src
 pkg
 *blend1
