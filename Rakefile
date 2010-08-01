@@ -1,3 +1,25 @@
+require 'rubygems'
+require 'rake'
+
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |gem|
+    gem.name = "kitaman"
+    gem.summary = %Q{Kitaman - Best Package Manager in the world}
+    gem.description = %Q{Kitaman - is package manager for Kita Linux}
+    gem.email = "kirillrdy@silverpond.com.au"
+    gem.homepage = "http://github.com/kirillrdy/kitaman"
+    gem.authors = ["Kirill Radzikhovskyy"]
+    #gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
+    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+    gem.files << Dir['lib/**/*.rb']
+  end
+  Jeweler::GemcutterTasks.new
+rescue LoadError
+  puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
+end
+
+
 task :default => "kitaman:install"
 
 

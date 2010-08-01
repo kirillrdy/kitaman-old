@@ -1,5 +1,4 @@
 *.swp
 src
-*.pyc
-*~
+pkg
 *blend1
