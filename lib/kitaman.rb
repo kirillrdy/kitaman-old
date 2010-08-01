@@ -1,4 +1,4 @@
-require_relative 'kitaman/kita_package.rb'
+require_relative 'kitaman/package.rb'
 
 
 
