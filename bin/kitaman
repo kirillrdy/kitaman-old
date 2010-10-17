@@ -30,25 +30,19 @@ class Kitaman
   end
 
   def initialize
-    @options = {:download   => true,
-                :build      => true,
-                :install    => true,
-                :deep       => false,
-                :deepest    => false,
-                :force      => false,
-                :search     => false,
-                :remove     => false }
+    Package.all
 
-    # Results log for all actions
-    @results_log = []
-    
-    Package.load_all
-    
+    # Store all package definistions
+    @packages = []
+
   end
 
-  # TODO our temporary install methods
-  # in future will handle removing packages as well
+
   def digest(kita_instance)
+
+    #TODO fix being slow
+    package = @packages.select{|x| x.info[:name] == argument }.first
+    
     kita_instance.call(:install)
   end
 
@@ -111,6 +105,3 @@ kitaman.parse_argv
 for argument in ARGV
   kitaman.digest(Kita.new(argument))
 end
-
-
-kitaman.show_results_log

@@ -36,3 +36,5 @@ task :clean do
   rm -rf /usr/kitaman/pkg/*
   `
 end
+
+task :default => :install
