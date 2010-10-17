@@ -24,74 +24,18 @@ require 'kitaman'
 
 class Kitaman
 
-  def Kitaman.version
-    #TODO use gem VERSION
-    "0.0.0"
-  end
-
-  def initialize
-    Package.all
-
-    # Store all package definistions
-    @packages = []
-
-  end
-
-
-  def digest(kita_instance)
-
-    #TODO fix being slow
-    package = @packages.select{|x| x.info[:name] == argument }.first
-    
-    kita_instance.call(:install)
-  end
-
-  # TODO legacy leftovers
-  def show_actions_to_be_taken
-   
-    if not @target_list.hasChildren?
-      puts "Nothing to do ...".bold.green
-      exit
-    end
-
-    return false if (@options[:quiet])
-
-    puts "\nKitaman will do the following: \n".bold
-
-    @visit_list={}
-    for target in @target_list.children
-      traverse_tree_for_print target
-    end
-
-    puts "Number of Packages to be installed: " + @visit_list.keys.length.to_s.bold.cyan
-
-    puts "\nPress Enter to continue...".on_yellow.bold
-    $stdin.gets
-
-  end
-
-  def show_results_log
-    puts ("#" * 50).bold
-    puts "Kitaman Results Log:\n".blue
-    total_failed = @results_log.select {|item| item[1]==false }
-    
-    for item in total_failed
-      puts "Failed #{item[0]} ".red.bold
-    end 
-
-    puts "\nTotal failed actions: #{total_failed.length.to_s.red.bold}"
-    puts "Total actions: #{@results_log.length.to_s.cyan}"
+  include KitamanHelper
   
-    if @options[:save_log]
-      file = File.open('/var/kitaman/kitaman.log','w')
-      for action in @results_log
-        file.write("#{action[0]}:#{action[1]}\n")
-      end
-      file.close
-    end
-    
+  def initialize
+    @env = {}
+    `uname -v`.scan(/Ubuntu/) != []
+    @env[:host_type] = :ubuntu
   end
-    
+
+  def digest(argument)
+    Kita.find(argument).call(:install)
+  end
+
 end
 
 #############################################################
@@ -103,5 +47,5 @@ kitaman = Kitaman.new
 kitaman.parse_argv
 
 for argument in ARGV
-  kitaman.digest(Kita.new(argument))
+  kitaman.digest(argument)
 end

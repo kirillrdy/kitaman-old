@@ -27,9 +27,10 @@ def kita_error(string)
 end
 
 def execute_command(command)
+
   result = system(command)
   if not result
-    puts command
+    puts "Error executing: #{command}".bold.red
     exit 1
   end
   return result
@@ -75,7 +76,7 @@ def set_terminal_title(title)
 end
 
 
-class Kitaman
+module KitamanHelper
 
   def self.update_src_files_database
     files_dictionary = {}
@@ -89,7 +90,7 @@ class Kitaman
       end
     end
 
-    File.open('/var/kitaman/src.db','w') { |file|
+    File.open(KITAMAN_SRC_MARSHAL_FILE,'w') { |file|
       file.write(Marshal.dump(files_dictionary))
     }
 
@@ -110,9 +111,9 @@ class Kitaman
 
   def parse_argv
       OptionParser.new do |opts|
-        opts.banner = """Kitaman version:#{Kitaman.version.bold.red}
+        opts.banner = "Kitaman version: FIXME
         
-  Usage: kitaman.rb [options] packages"""
+  Usage: kitaman.rb [options] packages"
 
         opts.on("-f", "--force", "Force any action") do |v|
           @options[:force] = v

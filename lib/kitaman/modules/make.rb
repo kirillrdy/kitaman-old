@@ -16,11 +16,6 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-require 'kitaman/kita_helper'
-require 'kitaman/kitaman_helper'
-require 'kitaman/kita.rb'
-require '/etc/kitaman_conf'
-
 
 # TODO Document our most important module
 module Make
@@ -45,7 +40,7 @@ module Make
 
   # Confugure package
   def config
-    "./configure --prefix=/usr"
+    "./configure --prefix=#{@install_prefix}"
   end
 
   # Extracts, patches, builds and packs a package
@@ -117,7 +112,7 @@ module Make
     
     result = result and extract
     
-    #ruby    
+    #ruby
     result = result and patch
     
 
@@ -163,7 +158,7 @@ module Make
 
   # Records package as installed and records a list of all files installed by the package
   def record_installed
-    `tar tf #{tar_bin_file} > #{state_file}`
+    execute_command("tar tf #{tar_bin_file} > #{state_file}")
   end
 
   ##########################################################################

@@ -20,19 +20,65 @@
 
 # Each Package is represented by Kita class
 class Kita
-  
-  # Find kita file by package name
-  def Kita.find_kita_file(package_name)
-    found_files = Dir["#{KITA_FILES_DIR}/**/#{package_name}.rb"]
-    kita_error "No kitafile found for \'#{package_name}\'" if found_files.length == 0
 
-    if found_files.length > 1
-      found_files.each_index {|x| puts  "[#{x}]: #{found_files[x]}" }
-      choice = $stdin.gets
-      found_files = [found_files[choice.to_i]]
+  def self.all
+    return @packages if @packages
+
+
+    @packages ||= {}
+    Dir[File.dirname(__FILE__) + '/../../packages/**/*.rb'].each do |x|
+      puts " >> trying to load #{File.basename(x)}"
+      self.instance_eval(IO.read(x))
     end
-    return found_files.first
+    puts @packages.inspect
+    return @packages
   end
+  
+  def self.find(package_name)
+    #TODO
+    self.all[package_name].first
+  end
+
+  def self.package(name,options = {},&block)
+    kita = self.new
+    kita.name(name)
+    kita.instance_eval(&block)
+    
+    @packages ||= {}
+    @packages[kita.name] ||= []
+    @packages[kita.name] << kita
+  end
+
+
+  # Part of our DSL
+  #Instance methods
+  def name(name = nil)
+    return @name unless name
+
+    @name = name
+    puts "setting name #{name}"
+  end
+
+  def type(type)
+    @type = type
+    self.extend type.to_s.classify.constantize
+    puts "setting type: #{type}"
+  end
+
+  def source(source_uri)
+    @files << source_uri
+    puts "adding #{source_uri} to files list"
+    @version = version
+  end
+
+  def prefix(install_prefix)
+    @install_prefix = install_prefix
+    puts "Changing install prefix to #{install_prefix}"
+  end
+
+
+  # End of DSL
+  #####################
 
   # String representation of kita instance
   # eg gnome-terminal-2.29.3
@@ -41,22 +87,15 @@ class Kita
   end
   
   # Creates Kita object and parses all the information
-  def initialize(kita_name)
-    
-    @name = File.basename(kita_name,'.rb')
-    @depend = []
+  def initialize
+
+    @dependencies = []
     @patches = []
-    
-    # Load file and evaluate it
-    instance_eval(IO.read(Kita.find_kita_file(kita_name)))
-    
-    
-    @depend = @depend.split(" ") if @depend.is_a?(String)
-    
+    @files = []
     @files ||= get_files_from_repo
-    @files = [@files] if @files.is_a?(String)
-    @patches = [@patches] if @patches.is_a?(String)
     @version =  version
+    @dependencies = []
+    @install_prefix = "/usr"
 
   end
    
@@ -65,23 +104,22 @@ class Kita
   # by given action 
   # :install ,:remove
   def call(action)
-  
-    for dependency in @depend
-      Kita.new(dependency).call(action)
-    end
-  
-    if action == :install
-      download unless downloaded?
 
-      #TODO Clean
-      puts "Installing #{self.to_s}".bold.green unless installed?
-      install unless installed?
+    for dependency in @dependencies
+      Kita.find(dependency).call(action)
     end
-    
-    if action == :remove
-      remove if installed?
+
+    case action
+      when :install
+        download unless downloaded?
+
+        #TODO Clean
+        puts "Installing #{self.to_s}".bold.green unless installed?
+        install unless installed?
+      when :remove
+        remove if installed?
     end
-    
+
   end
    
    
@@ -89,7 +127,7 @@ class Kita
   def download
     success=true
     for file in files_list_to_download
-      success = (success and Kitaman.download_one_file(file))
+      success = (success and KitamanHelper.download_one_file(file))
     end
     return success
   end
@@ -108,7 +146,7 @@ class Kita
   # This is a default install action, modules should be implementing this
   # kept here for sentemental purposes
   def install
-    puts "please write install instructions for this package"
+    raise "please write install instructions for this package"
   end
 
   # Checks if package is installed
@@ -133,10 +171,10 @@ class Kita
 
   # Fills FILES var with files maching in repository
   def get_files_from_repo
-       
-    Kitaman.update_src_files_database if not File.exist?('/var/kitaman/src.db')
-    
-    @@files_list_database ||= Marshal.load(IO.read('/var/kitaman/src.db'))
+
+    KitamanHelper.update_src_files_database if not File.exist?(KITAMAN_SRC_MARSHAL_FILE)
+
+    @@files_list_database ||= Marshal.load(IO.read(KITAMAN_SRC_MARSHAL_FILE))
     @@files_list_database[@name] ? [@@files_list_database[@name]] : []
   end
 
