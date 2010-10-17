@@ -30,11 +30,6 @@ task :release do
 end
 
 
-task :doc do
-  `rm -rf doc/
-  rdoc`
-end
-
 task :clean do
   `rm -rf /var/kitaman/install/*
   rm -rf /var/kitaman/build/*
