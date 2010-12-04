@@ -41,6 +41,7 @@ require 'kitaman'
 #############################################################
 
 
+Kitaman::Loger.init
 Kitaman::Config.init
 Kitaman::ArgumentParser.parse_argv
 

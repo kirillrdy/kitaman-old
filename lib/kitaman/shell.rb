@@ -4,7 +4,7 @@ module Kitaman
       result = system(command)
       if not result
         #TODO add logging
-        puts "Error executing: #{command}".bold.red
+        Error.error "Error executing: #{command}".bold.red
         exit 1
       end
       return result
