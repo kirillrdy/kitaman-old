@@ -1,5 +1,6 @@
 require 'optparse'
 require 'open-uri'
+require 'logger'
 
 module Kitaman
 end

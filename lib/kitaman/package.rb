@@ -41,24 +41,30 @@ module Kitaman
       return @name unless name
 
       @name = name
-      puts "setting name #{name}"
+      Logger.write "setting name #{name}"
     end
 
     def type(type)
       @type = type
       self.extend eval(type)
-      puts "setting type: #{type}"
+      Logger.write "setting type: #{type}"
     end
 
     def source(source_uri)
       @files << source_uri
-      puts "adding #{source_uri} to files list"
+      Logger.write "adding #{source_uri} to files list"
       @version = version
     end
 
     def prefix(install_prefix)
       @install_prefix = install_prefix
-      puts "Changing install prefix to #{install_prefix}"
+      Logger.write "Changing install prefix to #{install_prefix}"
+    end
+    
+    def patches(patches)
+      @patches += patches if patches.is_a? Array
+      @patches << patches if patches.is_a? String
+      Logger.write "Adding Patches #{patches}"
     end
 
 

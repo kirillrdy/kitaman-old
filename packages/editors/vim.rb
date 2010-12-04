@@ -1,8 +1,6 @@
 package 'vim' do
-  extend Make
-  source "ftp://ftp.vim.org/pub/vim/unix/vim-7.2.tar.bz2"
-  patch 'http://www.linuxfromscratch.org/patches/lfs/development/vim-7.2-fixes-5.patch'
-
+  type 'Make'
+  source "ftp://ftp.vim.org/pub/vim/unix/vim-7.3.tar.bz2"
 
   def config
   "

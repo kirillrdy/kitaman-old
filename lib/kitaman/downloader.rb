@@ -8,7 +8,7 @@ module Kitaman
       result = true
 
       if File.exists?("#{Config::SRC_DIR}/#{File.basename(file)}")
-        execute_command("mv #{Config::SRC_DIR}/#{File.basename(file)} #{Config::TEMP_DIR}/")
+        Shell::execute("mv #{Config::SRC_DIR}/#{File.basename(file)} #{Config::TEMP_DIR}/")
       end
 
       result = (result && Shell::execute("wget -c #{file} -O #{Config::TEMP_DIR}/#{File.basename(file)}"))
