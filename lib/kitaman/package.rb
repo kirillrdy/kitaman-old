@@ -6,13 +6,13 @@ module Kitaman
 
       @packages ||= {}
       Dir[File.dirname(__FILE__) + '/../../packages/**/*.rb'].each do |x|
-        puts " >> trying to load #{File.basename(x)}"
+        Logger.write " >> trying to load #{File.basename(x)}"
         self.instance_eval(IO.read(x))
       end
       
       #TODO dont like this, loop does inderect loading of packages
       # can be confusing
-      puts @packages.inspect
+      Logger.write @packages.inspect
       return @packages
     end
 
@@ -25,13 +25,13 @@ module Kitaman
 
     # Used in DSL files
     def self.package(name,options = {},&block)
-      kita = self.new
-      kita.name(name)
-      kita.instance_eval(&block)
-      
+      package = self.new
+      package.name(name)
+      package.instance_eval(&block)
+
       @packages ||= {}
-      @packages[kita.name] ||= []
-      @packages[kita.name] << kita
+      @packages[package.name] ||= []
+      @packages[package.name] << package
     end
 
 
