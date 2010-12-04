@@ -136,7 +136,7 @@ module Kitaman
 
     # Checks if package is installed
     def installed?
-      File.exist?(KITAMAN_STATE_DIR+'/'+self.to_s)
+      File.exist?(Config::STATE_DIR+'/'+self.to_s)
     end
 
     ##############################################################################
@@ -151,15 +151,15 @@ module Kitaman
     # Returns a list of full paths to local source files belonging to package
     def files_list_local
       list= @files + @patches
-      list.map {|x| KITAMAN_SRC_DIR+'/'+ File.basename(x) }
+      list.map {|x| Config::SRC_DIR+'/'+ File.basename(x) }
     end
 
     # Fills FILES var with files maching in repository
     def get_files_from_repo
 
-      FilesDatabase.update_src_files_database if not File.exist?(KITAMAN_SRC_MARSHAL_FILE)
+      FilesDatabase.update_src_files_database if not File.exist?(Config::SRC_MARSHAL_FILE)
 
-      @@files_list_database ||= Marshal.load(IO.read(KITAMAN_SRC_MARSHAL_FILE))
+      @@files_list_database ||= Marshal.load(IO.read(Config::SRC_MARSHAL_FILE))
       @@files_list_database[@name] ? [@@files_list_database[@name]] : []
     end
 
@@ -167,7 +167,7 @@ module Kitaman
     # It will find version of first file availible for package
     # or return undefined which is bad, and prob should be an exception
     def version
-      @files.first ? @files.first.version : 'undefined'
+      @files.first ? File.version(@files.first) : 'undefined'
     end
 
      # Create a state file meaning that package is installed
@@ -179,14 +179,14 @@ module Kitaman
     
    # Removes all files listed in state file, and removes the state file
    def remove
-    for line in IO.read(KITAMAN_STATE_DIR+'/'+ self.to_s).lines.to_a.reverse
+    for line in IO.read(Config::STATE_DIR+'/'+ self.to_s).lines.to_a.reverse
       puts line
     end
    end
 
     # Location of state file for kita
     def state_file
-      KITAMAN_STATE_DIR+'/'+self.to_s
+      Config::STATE_DIR+'/'+self.to_s
     end
   end
 end

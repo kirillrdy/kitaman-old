@@ -6,6 +6,10 @@ end
 
 require_relative 'kitaman/argument_parser'
 require_relative 'kitaman/package'
+require_relative 'kitaman/file'
+require_relative 'kitaman/config'
+require_relative 'kitaman/downloader'
+require_relative 'kitaman/shell'
 
 
 

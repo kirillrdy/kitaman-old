@@ -1,6 +1,6 @@
 module Kitaman
   class Shell
-    def execute(command)
+    def self.execute(command)
       result = system(command)
       if not result
         #TODO add logging

@@ -11,8 +11,8 @@ module Kitaman
         execute_command("mv #{Config::SRC_DIR}/#{File.basename(file)} #{Config::TEMP_DIR}/")
       end
 
-      result = (result && execute_command("wget -c #{file} -O #{Config::TEMP_DIR}/#{File.basename(file)}"))
-      result = (result && execute_command("mv #{Config::TEMP_DIR}/#{File.basename(file)} #{Config::SRC_DIR}/"))
+      result = (result && Shell::execute("wget -c #{file} -O #{Config::TEMP_DIR}/#{File.basename(file)}"))
+      result = (result && Shell::execute("mv #{Config::TEMP_DIR}/#{File.basename(file)} #{Config::SRC_DIR}/"))
       return result
     end
 
