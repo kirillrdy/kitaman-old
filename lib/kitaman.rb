@@ -1,28 +1,19 @@
 require 'optparse'
-require 'active_support/inflector'
+require 'open-uri'
 
-
-KITAMAN_PREFIX=File.dirname(__FILE__)+'/..'
-
-KITA_FILES_DIR="#{KITAMAN_PREFIX}/kita_files"
-
-KITAMAN_SRC_DIR="#{KITAMAN_PREFIX}/workdir/src"
-KITAMAN_STATE_DIR="#{KITAMAN_PREFIX}/workdir/state"
-KITAMAN_BUILD_DIR="#{KITAMAN_PREFIX}/workdir/build"
-KITAMAN_PKG_DIR="#{KITAMAN_PREFIX}/workdir/pkg"
-KITAMAN_FAKE_INSTALL_DIR="#{KITAMAN_PREFIX}/workdir/install"
-KITAMAN_TEMP_DIR="/var/tmp"
-
-`mkdir -p #{KITAMAN_SRC_DIR}`
-`mkdir -p #{KITAMAN_STATE_DIR}`
-`mkdir -p #{KITAMAN_BUILD_DIR}`
-`mkdir -p #{KITAMAN_FAKE_INSTALL_DIR}`
-`mkdir -p #{KITAMAN_PKG_DIR}`
+# TODO figure why we need this
+#require 'active_support/inflector'
 
 
 
-KITAMAN_REPOS_LIST_FILE="#{KITAMAN_PREFIX}/conf/kitaman.repos"
-KITAMAN_SRC_MARSHAL_FILE="#{KITAMAN_PREFIX}/workdir/src.db"
+# TODO figure out where is the best place for those
+#`mkdir -p #{KITAMAN_SRC_DIR}`
+#`mkdir -p #{KITAMAN_STATE_DIR}`
+#`mkdir -p #{KITAMAN_BUILD_DIR}`
+#`mkdir -p #{KITAMAN_FAKE_INSTALL_DIR}`
+#`mkdir -p #{KITAMAN_PKG_DIR}`
+
+
 
 require_relative 'kitaman/kita_helper'
 require_relative 'kitaman/kitaman_helper'
