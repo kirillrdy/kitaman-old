@@ -1,8 +1,13 @@
 require 'optparse'
 require 'open-uri'
 
-# TODO figure why we need this
-#require 'active_support/inflector'
+module Kitaman
+end
+
+require_relative 'kitaman/argument_parser'
+require_relative 'kitaman/package'
+
+
 
 
 
@@ -14,11 +19,7 @@ require 'open-uri'
 #`mkdir -p #{KITAMAN_PKG_DIR}`
 
 
-
-require_relative 'kitaman/kita_helper'
-require_relative 'kitaman/kitaman_helper'
-require_relative 'kitaman/kita'
-
 # Require all the modules
-require_relative 'kitaman/modules/make'
-require_relative 'kitaman/modules/meta'
+require_relative 'kitaman/package_modules/make'
+require_relative 'kitaman/package_modules/meta'
+

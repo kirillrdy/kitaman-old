@@ -9,6 +9,9 @@ module Kitaman
         puts " >> trying to load #{File.basename(x)}"
         self.instance_eval(IO.read(x))
       end
+      
+      #TODO dont like this, loop does inderect loading of packages
+      # can be confusing
       puts @packages.inspect
       return @packages
     end
@@ -43,7 +46,7 @@ module Kitaman
 
     def type(type)
       @type = type
-      self.extend type.to_s.classify.constantize
+      self.extend eval(type)
       puts "setting type: #{type}"
     end
 

@@ -22,30 +22,28 @@
 
 require 'kitaman'
 
-class Kitaman
+#class Kitaman
 
-  include KitamanHelper
-  
-  def initialize
-    @env = {}
-    `uname -v`.scan(/Ubuntu/) != []
-    @env[:host_type] = :ubuntu
-  end
+#  def initialize
+#    @env = {}
+#    `uname -v`.scan(/Ubuntu/) != []
+#    @env[:host_type] = :ubuntu
+#  end
 
-  def digest(argument)
-    Kita.find(argument).call(:install)
-  end
+#  def digest(argument)
+#    Kita.find(argument).call(:install)
+#  end
 
-end
+#end
 
 #############################################################
 # Entry Point
 #############################################################
 
 
-kitaman = Kitaman.new
-kitaman.parse_argv
+Kitaman::ArgumentParser.parse_argv
+
 
 for argument in ARGV
-  kitaman.digest(argument)
+  Kitaman::Package.find(argument).call :install
 end

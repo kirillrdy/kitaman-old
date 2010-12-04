@@ -1,6 +1,6 @@
 module Kitaman
   class ArgumentParser
-    def parse_argv
+    def self.parse_argv
       OptionParser.new do |opts|
         opts.banner = "Kitaman version: FIXME
         
