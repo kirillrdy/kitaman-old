@@ -13,5 +13,14 @@ module Kitaman
     
     REPOS_LIST_FILE="#{PREFIX}/conf/kitaman.repos"
     SRC_MARSHAL_FILE="#{PREFIX}/workdir/src.db"
+
+    def self.init
+      Shell.execute "mkdir -p #{SRC_DIR}"
+      Shell.execute "mkdir -p #{STATE_DIR}"
+      Shell.execute "mkdir -p #{BUILD_DIR}"
+      Shell.execute "mkdir -p #{FAKE_INSTALL_DIR}"
+      Shell.execute "mkdir -p #{PKG_DIR}"
+    end
+    
   end
 end

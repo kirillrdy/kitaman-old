@@ -18,7 +18,8 @@
 
 
 # TODO Document our most important module
-module Make
+
+module Kitaman::Package::Make
   ####################################
   # Methods that return Strings 
   # They should be overwritten by kitafiles
@@ -81,9 +82,9 @@ module Make
     
     puts "Extrating..."
     for file in files_list_local
-      result = (result and execute_command("tar xjpf #{file} -C #{KITAMAN_BUILD_DIR}/")) if ( file.index('.tar.bz2') or file.index('.bz2') )
-      result = (result and execute_command("tar xpf #{file} -C #{KITAMAN_BUILD_DIR}/")) if ( file.index('.tar.gz') or file.index('.tgz'))
-      result = (result and execute_command("tar #{file} -d #{KITAMAN_BUILD_DIR}/")) if file.index('.zip')
+      result = (result && execute_command("tar xjpf #{file} -C #{Config::BUILD_DIR}/")) if ( file.index('.tar.bz2') || file.index('.bz2') )
+      result = (result && execute_command("tar xpf #{file} -C #{Config::BUILD_DIR}/")) if ( file.index('.tar.gz') || file.index('.tgz'))
+      result = (result && execute_command("tar #{file} -d #{Config::BUILD_DIR}/")) if file.index('.zip')
     end
     return result
   end
@@ -98,7 +99,7 @@ module Make
         puts "Patching..."
         file = File.basename(file)
         puts "Patching using #{file}".red
-        result = result and execute_command(build_enviroment + "cd #{build_dir} && patch -Np1 -i #{KITAMAN_SRC_DIR}/#{file}")
+        result = result and execute_command(build_enviroment + "cd #{build_dir} && patch -Np1 -i #{Config::SRC_DIR}/#{file}")
       end
     end
     return result
@@ -130,7 +131,7 @@ module Make
     result = result and create_package
     
     # This is an actual installing
-    result = result and execute_command(build_enviroment + "tar xjpf #{tar_bin_file} -C #{ENV['KITAMAN_INSTALL_PREFIX']}/")
+    result = result and execute_command(build_enviroment + "tar xjpf #{tar_bin_file} -C #{ENV['Config::INSTALL_PREFIX']}/")
 
     #TODO FIX 
     result = result and execute_command("
@@ -169,19 +170,19 @@ module Make
   # eg /var/kitaman/build/linux-2.6.26/
   def build_dir
     #use instance var as a cache
-    @build_dir ||=  KITAMAN_BUILD_DIR + '/' + (`tar tf #{files_list_local.first}`.split("\n").first)
+    @build_dir ||=  Config::BUILD_DIR + '/' + (`tar tf #{files_list_local.first}`.split("\n").first)
     #@build_dir.chomp!("/")
     return @build_dir
   end
 
   #Helper that show points to location of binary tar ball
   def tar_bin_file
-    (KITAMAN_PKG_DIR) +'/'+self.to_s+'-bin.tar.bz2'
+    (Config::PKG_DIR) +'/'+self.to_s+'-bin.tar.bz2'
   end
   
   # Helper that points to fake root install dir
   def install_dir
-    (KITAMAN_FAKE_INSTALL_DIR) +'/'+self.to_s
+    (Config::FAKE_INSTALL_DIR) +'/'+self.to_s
   end
   
 end

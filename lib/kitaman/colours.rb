@@ -38,5 +38,5 @@ module Kitaman
 end
 
 class String
-  include TerminalColours
+  include Kitaman::TerminalColours
 end
