@@ -1,3 +1,0 @@
-KITA_TYPE="xorg"
-FILES="http://xorg.freedesktop.org/releases/individual/app/luit-1.0.3.tar.bz2"
-DEPEND="xorg-font"

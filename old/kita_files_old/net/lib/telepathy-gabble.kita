@@ -1,3 +1,0 @@
-KITA_TYPE="make"
-FILES="http://telepathy.freedesktop.org/releases/telepathy-gabble/telepathy-gabble-0.7.27.tar.gz"
-DEPEND="loudmouth"

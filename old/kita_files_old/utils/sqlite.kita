@@ -1,3 +1,0 @@
-KITA_TYPE="make"
-FILES="http://www.sqlite.org/sqlite-2.8.17.tar.gz"
-DEPEND="pkg-config"

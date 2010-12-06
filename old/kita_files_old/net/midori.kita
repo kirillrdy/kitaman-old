@@ -1,3 +1,0 @@
-KITA_TYPE="make"
-FILES="http://archive.xfce.org/src/apps/midori/0.2/midori-0.2.0.tar.bz2"
-DEPEND="webkitgtk libxml2"

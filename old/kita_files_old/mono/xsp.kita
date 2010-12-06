@@ -1,9 +1,0 @@
-KITA_TYPE="make"
-FILES="http://ftp.novell.com/pub/mono/sources/xsp/xsp-2.4.tar.bz2"
-BUILD=""
-
-build_src()
-{
-  MAKEFLAGS='-j1' make
-}
-""

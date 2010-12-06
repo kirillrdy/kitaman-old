@@ -1,8 +1,0 @@
-KITA_TYPE="gnome"
-DEPEND="gnome-python-desktop sqlite"
-BUILD=""
-config_src()
-{
-./configure --prefix=/usr --sysconfdir=/etc
-}
-""

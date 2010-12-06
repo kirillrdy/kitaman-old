@@ -1,2 +1,0 @@
-KITA_TYPE="meta"
-DEPEND="xbitmaps libpng xorg-lib mesalib appres bdftopcf bitmap iceauth mkfontdir mkfontscale sessreg setxkbmap smproxy twm x11perf xauth xbacklight xclock xcmsdb xcursorgen xdpyinfo xdriinfo xev xf86dga xgamma xhost xinit xinput xkbcomp xkbevd xkbutils xkill xlsatoms xlsclients xmodmap xpr xprop xrandr xrdb xrefresh xset xsetmode xsetroot xvinfo xwd xwininfo xwud"

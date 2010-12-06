@@ -1,3 +1,0 @@
-KITA_TYPE="make"
-FILES="http://www.ndesk.org/archive/dbus-sharp/ndesk-dbus-0.6.0.tar.gz"
-DEPEND="dbus mono"

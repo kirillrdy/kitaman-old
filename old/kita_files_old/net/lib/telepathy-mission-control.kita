@@ -1,3 +1,0 @@
-KITA_TYPE="make"
-FILES="http://transact.dl.sourceforge.net/sourceforge/mission-control/telepathy-mission-control-4.67.tar.gz"
-DEPEND="libtelepathy"

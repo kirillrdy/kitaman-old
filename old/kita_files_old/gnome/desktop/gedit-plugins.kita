@@ -1,9 +1,0 @@
-KITA_TYPE="gnome"
-FILES="ftp://ftp.gnome.org/pub/gnome/sources/gedit-plugins/2.22/gedit-plugins-2.22.5.tar.bz2"
-DEPEND="gedit pygtksourceview"
-BUILD=""
-config_src()
-{
-./configure --prefix=/usr --sysconfdir=/etc
-}
-""

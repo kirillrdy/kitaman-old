@@ -1,3 +1,0 @@
-KITA_TYPE="meta"
-VER="0.1"
-DEPEND="kita-desktop git monodevelop monodevelop-debugger-mdb monodevelop-debugger-gdb gconf-editor"

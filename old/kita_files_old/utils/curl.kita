@@ -1,9 +1,0 @@
-KITA_TYPE="make"
-FILES="http://curl.haxx.se/download/curl-7.19.4.tar.bz2"
-DEPEND="openssl"
-BUILD=""
-config_src()
-{
-./configure --prefix=/usr --with-ssl=/usr
-}
-""

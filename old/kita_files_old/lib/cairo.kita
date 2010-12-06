@@ -1,3 +1,0 @@
-KITA_TYPE="make"
-FILES="http://www.cairographics.org/releases/cairo-1.8.4.tar.gz"
-DEPEND="xorg pkg-config pixman"

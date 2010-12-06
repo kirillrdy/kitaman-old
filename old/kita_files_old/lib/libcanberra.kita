@@ -1,3 +1,0 @@
-KITA_TYPE="make"
-FILES="http://0pointer.de/lennart/projects/libcanberra/libcanberra-0.12.tar.gz"
-DEPEND="libvorbis gtk+"

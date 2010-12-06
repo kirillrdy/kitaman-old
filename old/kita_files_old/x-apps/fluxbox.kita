@@ -1,3 +1,0 @@
-KITA_TYPE="make"
-FILES="http://prdownloads.sourceforge.net/fluxbox/fluxbox-1.1.1.tar.bz2"
-DEPEND="xorg"

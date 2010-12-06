@@ -1,3 +1,0 @@
-KITA_TYPE="gnome"
-FILES="http://transact.dl.sourceforge.net/sourceforge/gtkpod/gtkpod-0.99.14.tar.gz"
-DEPEND="libgpod"

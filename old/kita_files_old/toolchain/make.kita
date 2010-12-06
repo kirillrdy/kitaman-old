@@ -1,9 +1,0 @@
-KITA_TYPE="make"
-FILES="http://ftp.gnu.org/gnu/make/make-3.81.tar.bz2"
-DEPEND=""
-BUILD=""
-build_src(){
-make
-#make check
-}
-""

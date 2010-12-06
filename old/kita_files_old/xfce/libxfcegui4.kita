@@ -1,2 +1,0 @@
-KITA_TYPE="make"
-DEPEND="gtk+ glib startup-notification libxfce4util xfconf libglade"

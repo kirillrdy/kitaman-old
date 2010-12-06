@@ -1,3 +1,0 @@
-KITA_TYPE="make"
-FILES="http://nchc.dl.sourceforge.net/sourceforge/ndiswrapper/ndiswrapper-1.52.tar.gz"
-DEPEND="usbutils"

@@ -1,3 +1,0 @@
-KITA_TYPE="meta"
-FILES=""
-DEPEND="xf86-input-keyboard xf86-input-mouse xf86-video-nv"

@@ -1,7 +1,0 @@
-KITA_TYPE="gnome"
-BUILD=""
-config_src()
-{
-./configure --prefix=/usr --sysconfdir=/etc
-}
-""

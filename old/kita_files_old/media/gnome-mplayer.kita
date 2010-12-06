@@ -1,3 +1,0 @@
-KITA_TYPE="make"
-FILES="http://gnome-mplayer.googlecode.com/files/gnome-mplayer-0.9.4.tar.gz"
-DEPEND="mplayer"

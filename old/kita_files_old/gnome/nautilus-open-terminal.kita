@@ -1,3 +1,0 @@
-KITA_TYPE="gnome"
-FILES="http://ftp.acc.umu.se/pub/GNOME/sources/nautilus-open-terminal/0.9/nautilus-open-terminal-0.9.tar.bz2 http://files.kita-linux.org/patches/nautilus-open-terminal-0.9-gnomevfs.patch"
-DEPEND="nautilus"

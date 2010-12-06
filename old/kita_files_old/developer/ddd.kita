@@ -1,3 +1,0 @@
-KITA_TYPE="make"
-FILES="http://ftp.gnu.org/gnu/ddd/ddd-3.3.12.tar.gz"
-DEPEND="gdb openmotif"

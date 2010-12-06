@@ -1,3 +1,0 @@
-KITA_TYPE="make"
-FILES="ftp://ftp.gnu.org/gnu/guile/guile-1.8.6.tar.gz"
-DEPEND="gmp"

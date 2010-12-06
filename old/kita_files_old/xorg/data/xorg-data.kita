@@ -1,7 +1,0 @@
-# Xorg
-FAKE=""
-KITA_TYPE="meta"
-DEPEND="xcursor-themes"
-BUILD=""
-echo "xorg utils pariah"
-""

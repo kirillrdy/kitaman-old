@@ -1,3 +1,0 @@
-KITA_TYPE="make"
-FILES="http://transact.dl.sourceforge.net/sourceforge/gparted/gparted-0.4.5.tar.bz2"
-DEPEND="parted"

@@ -1,3 +1,0 @@
-KITA_TYPE="make"
-#FILES="ftp://sourceware.org/pub/gdb/releases/gdb-6.8.tar.bz2"
-FILES="ftp://sourceware.org/pub/gdb/snapshots/current/gdb-6.8.50.20090913.tar.bz2"

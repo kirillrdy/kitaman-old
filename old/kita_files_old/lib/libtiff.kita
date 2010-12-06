@@ -1,3 +1,0 @@
-KITA_TYPE="make"
-FILES="http://libtiff.maptools.org/dl/tiff-3.8.2.tar.gz"
-DEPEND="glib"

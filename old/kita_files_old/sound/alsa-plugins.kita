@@ -1,3 +1,0 @@
-KITA_TYPE="make"
-FILES="http://gd.tuwien.ac.at/opsys/linux/alsa/plugins/alsa-plugins-1.0.18.tar.bz2"
-DEPEND="alsa-lib"

@@ -1,3 +1,0 @@
-KITA_TYPE="make"
-FILES="http://telepathy.freedesktop.org/releases/telepathy-glib/telepathy-glib-0.7.29.tar.gz"
-DEPEND="glib"

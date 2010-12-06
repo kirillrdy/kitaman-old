@@ -1,3 +1,0 @@
-KITA_TYPE="make"
-FILES="http://ftp.gnome.org/pub/gnome/sources/scrollkeeper/0.3/scrollkeeper-0.3.14.tar.bz2"
-DEPEND="libxslt XML-Parser docbook-xml"

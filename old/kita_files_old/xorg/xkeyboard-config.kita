@@ -1,9 +1,0 @@
-KITA_TYPE="xorg"
-FILES="http://xlibs.freedesktop.org/xkbdesc/xkeyboard-config-1.4.tar.bz2"
-DEPEND="intltool xorg-app XML-Parser"
-BUILD=""
-config_src()
-{
-./configure --prefix=/usr --sysconfdir=/etc --mandir=/usr/share/man --localstatedir=/var --with-xkb-rules-symlink=xorg
-}
-""

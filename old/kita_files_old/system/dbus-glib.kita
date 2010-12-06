@@ -1,3 +1,0 @@
-KITA_TYPE="make"
-DEPEND="glib dbus expat"
-FILES="http://dbus.freedesktop.org/releases/dbus-glib/dbus-glib-0.80.tar.gz"

@@ -1,8 +1,0 @@
-KITA_TYPE="make"
-DEPEND="glib libsigc++"
-BUILD=""
-build_src(){
-./configure --prefix=/usr --sysconfdir=/etc &&
-make
-}
-""

@@ -1,2 +1,0 @@
-KITA_TYPE="gnome"
-DEPEND="gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly gst-ffmpeg totem-pl-parser"

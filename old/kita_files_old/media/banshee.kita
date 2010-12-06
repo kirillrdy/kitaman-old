@@ -1,9 +1,0 @@
-KITA_TYPE="gnome"
-FILES="http://download.banshee-project.org/banshee/banshee-1-1.4.3.tar.bz2"
-DEPEND="mono ndesk-dbus-glib boo taglib-sharp" # mono-zeroconf
-BUILD=""
-config_src()
-{
-./configure --prefix=/usr --disable-mtp --disable-ipod --disable-daap --disable-boo
-}
-""

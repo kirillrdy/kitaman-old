@@ -1,2 +1,0 @@
-KITA_TYPE="make"
-DEPEND="autoconf automake gettext libtool pkg-config"

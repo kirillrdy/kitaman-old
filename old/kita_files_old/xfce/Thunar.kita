@@ -1,2 +1,0 @@
-KITA_TYPE="make"
-DEPEND="gtk+ glib libX11 exo libpng libxfce4util libjpeg"

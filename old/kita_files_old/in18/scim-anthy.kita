@@ -1,3 +1,0 @@
-KITA_TYPE="make"
-FILES="http://iij.dl.sourceforge.jp/scim-imengine/30199/scim-anthy-1.2.6.tar.gz"
-DEPEND="scim anthy"

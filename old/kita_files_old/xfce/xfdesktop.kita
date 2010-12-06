@@ -1,8 +1,0 @@
-KITA_TYPE="make"
-DEPEND="libX11 libxfce4util libxfcegui4 xfce4-panel"
-BUILD=""
-config_src()
-{
-./configure --prefix=/usr --enable-thunarx --enable-file-icons --enable-exo
-}
-""

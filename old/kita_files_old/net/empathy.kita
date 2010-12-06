@@ -1,2 +1,0 @@
-KITA_TYPE="gnome"
-DEPEND="telepathy-glib telepathy-mission-control telepathy-farsight telepathy-gabble"

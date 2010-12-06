@@ -1,2 +1,0 @@
-KITA_TYPE="meta"
-DEPEND="ed fontconfig pkg-config xorg-proto libxcb libXdmcp xtrans libX11 libXext libAppleWM libFS libICE libSM libWindowsWM libXScrnSaver libXt libXmu libXpm libXaw libXfixes libXcomposite libXrender libXcursor libXdamage libfontenc libXfont libXfontcache libXft libXi libXinerama libXrandr libXres libXtst libXv libXvMC libXxf86dga libXxf86misc libXxf86vm libdmx libpciaccess libxkbfile pixman"

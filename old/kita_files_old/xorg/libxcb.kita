@@ -1,3 +1,0 @@
-KITA_TYPE="make"
-FILES="http://xcb.freedesktop.org/dist/libxcb-1.1.tar.bz2"
-DEPEND="libXau libXdmcp libpthread-stubs xcb-proto libxslt"

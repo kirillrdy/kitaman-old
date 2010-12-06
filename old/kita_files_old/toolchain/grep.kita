@@ -1,9 +1,0 @@
-KITA_TYPE="make"
-FILES="http://ftp.gnu.org/gnu/grep/grep-2.5.4.tar.bz2 http://www.linuxfromscratch.org/patches/lfs/development/grep-2.5.4-debian_fixes-1.patch"
-BUILD=""
-config_src(){
-./configure --prefix=/usr \
-    --bindir=/bin \
-    --without-included-regex
-}
-""

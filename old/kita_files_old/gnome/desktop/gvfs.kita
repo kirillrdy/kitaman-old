@@ -1,9 +1,0 @@
-KITA_TYPE="gnome"
-DEPEND="GConf hal"
-BUILD=""
-config_src()
-{
-./configure --prefix=$(pkg-config --variable=prefix ORBit-2.0) \
-            --sysconfdir=/etc
-}
-""

@@ -1,9 +1,0 @@
-KITA_TYPE="make"
-FILES="http://procps.sourceforge.net/procps-3.2.8.tar.gz http://www.linuxfromscratch.org/patches/lfs/development/procps-3.2.8-watch_unicode-1.patch"
-DEPEND=""
-BUILD=""
-config_src()
-{
-  echo
-}
-""

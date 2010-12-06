@@ -1,7 +1,0 @@
-KITA_TYPE="make"
-FILES="http://www.greenwoodsoftware.com/less/less-436.tar.gz"
-BUILD=""
-config_src(){
-./configure --prefix=/usr --sysconfdir=/etc
-}
-""

@@ -1,3 +1,0 @@
-KITA_TYPE="make"
-FILES="http://distfiles.atheme.org/libmcs-0.7.0.tgz"
-DEPEND="libmowgli"

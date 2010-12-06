@@ -1,3 +1,0 @@
-KITA_TYPE="make"
-FILES="http://ftp.gnome.org/pub/gnome/sources/intltool/0.40/intltool-0.40.6.tar.bz2"
-DEPEND="XML-Parser"

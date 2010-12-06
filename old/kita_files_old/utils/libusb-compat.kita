@@ -1,4 +1,0 @@
-KITA_TYPE="make"
-DEPEND="pkg-config"
-DEPEND="libusb"
-FILES="http://transact.dl.sourceforge.net/project/libusb/libusb-compat-0.1/libusb-compat-0.1.3/libusb-compat-0.1.3.tar.bz2"

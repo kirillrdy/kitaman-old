@@ -1,3 +1,0 @@
-KITA_TYPE="make"
-FILES="http://sqlite.org/sqlite-3.6.10.tar.gz"
-DEPEND="pkg-config"

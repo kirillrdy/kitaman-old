@@ -1,8 +1,0 @@
-KITA_TYPE="gnome"
-DEPEND="libIDL"
-BUILD=""
-config_src()
-{
-./configure --prefix=/usr --sysconfdir=/etc
-}
-""

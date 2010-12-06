@@ -1,8 +1,0 @@
-KITA_TYPE="make"
-DEPEND="gtk+ glibmm cairomm pangomm"
-BUILD=""
-build_src(){
-./configure --prefix=/usr --sysconfdir=/etc &&
-make
-}
-""
