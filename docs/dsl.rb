@@ -10,6 +10,8 @@ package 'ruby' ,:for => :ubuntu do
   patches []
   patch ''
   
+  prefix '/stuff'
+  
   dependencies []
   depends_on ''
   depends ''
