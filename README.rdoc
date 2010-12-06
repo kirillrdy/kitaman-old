@@ -49,6 +49,8 @@ Experience with gentoo linux and portage would be very useful.
 Requirements:
   Ruby 1.9.2+
   Rake
+  Git
+  working GCC toolchain
 
 
 For any questions please email Kirill R (you should know how)
