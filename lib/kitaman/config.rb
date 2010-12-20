@@ -11,7 +11,11 @@ module Kitaman
     FAKE_INSTALL_DIR="#{PREFIX}/workdir/install"
     TEMP_DIR="/var/tmp"
     
-    REPOS_LIST_FILE="#{PREFIX}/conf/kitaman.repos"
+    # TODO this should be called repo
+    #REPOS_LIST_FILE="#{PREFIX}/conf/kitaman.repos"
+    
+    REPOSITORIES_BASE_PATH = "#{PREFIX}/repositories"
+    
     SRC_MARSHAL_FILE="#{PREFIX}/workdir/src.db"
 
     def self.init
@@ -20,6 +24,7 @@ module Kitaman
       Shell.execute "mkdir -p #{BUILD_DIR}"
       Shell.execute "mkdir -p #{FAKE_INSTALL_DIR}"
       Shell.execute "mkdir -p #{PKG_DIR}"
+      Shell.execute "mkdir -p #{REPOSITORIES_BASE_PATH}"
     end
     
   end
