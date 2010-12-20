@@ -1,30 +1,23 @@
-require 'optparse'
-require 'open-uri'
-require 'logger'
+
+
 
 module Kitaman
+
+  require 'optparse'
+  require 'open-uri'
+  require 'logger'
+
+
+  list_of_modules_to_load = ['argument_parser','package','file',
+                             'shell','error','logger','config',
+                             'downloader','colours','computer',
+                             'user','repository']
+
+  list_of_modules_to_load.each {|x| require_relative 'kitaman/'+x }
+
+
+  # Require all the modules
+  require_relative 'kitaman/package/make'
+  require_relative 'kitaman/package/meta'
+
 end
-
-require_relative 'kitaman/argument_parser'
-require_relative 'kitaman/package'
-require_relative 'kitaman/file'
-require_relative 'kitaman/shell'
-require_relative 'kitaman/error'
-require_relative 'kitaman/logger'
-require_relative 'kitaman/config'
-require_relative 'kitaman/downloader'
-require_relative 'kitaman/colours'
-require_relative 'kitaman/computer'
-
-
-
-
-
-
-
-# Require all the modules
-require_relative 'kitaman/package/make'
-require_relative 'kitaman/package/meta'
-
-
-
