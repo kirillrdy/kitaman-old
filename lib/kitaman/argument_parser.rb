@@ -57,7 +57,7 @@ module Kitaman
         end
 
         opts.on("-S", "--[no-]sync", "sync") do |v|
-          Kitaman.update_src_files_database
+          FilesDatabase.update
           exit
         end
       end.parse!

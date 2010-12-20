@@ -1,6 +1,6 @@
 module Kitaman
   class FilesDatabase
-    def self.update_src_files_database
+    def self.update
       files_dictionary = {}
       for repo in IO.read(Config::REPOS_LIST_FILE).split("\n")
         puts "Syncing #{repo.blue}"
