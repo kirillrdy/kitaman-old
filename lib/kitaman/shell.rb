@@ -1,7 +1,7 @@
 module Kitaman
   class Shell
     def self.execute(command)
-      Logger.write "Executing: #{command}"
+      Log.info "Executing: #{command}"
       result = system(command)
       if not result
         #TODO add logging
