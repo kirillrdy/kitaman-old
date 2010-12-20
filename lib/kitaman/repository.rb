@@ -6,7 +6,7 @@ class Kitaman::Repository
   end
 
   def self.init
-    Logger.info 'Initialising Repositories'
+    Log.info 'Initialising Repositories'
     @repositories = self.fake_list_of_repositories
 
     Repository.all.each do |repository|
@@ -27,7 +27,7 @@ class Kitaman::Repository
 
   def clone
     # TODO fix with some sort of rc file
-    Logger.info "Cloning #{@url} to #{@base_path}/#{@repository_name}"
+    Log.info "Cloning #{@url} to #{@base_path}/#{@repository_name}"
     Shell.execute "cd #{@base_path} && git clone #{@url} #{@repository_name}"
   end
 
