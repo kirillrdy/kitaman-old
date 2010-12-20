@@ -1,6 +1,3 @@
-
-
-
 module Kitaman
 
   require 'optparse'

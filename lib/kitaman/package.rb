@@ -10,7 +10,7 @@ module Kitaman
         Log.info "Working on #{repository.url}"
         repository.ruby_files.each do |x|
           Log.info "Loading #{x}"
-          PackageDsl.instance_eval IO.read(x)
+          PackageDsl.instance_eval(IO.read(x))
         end
       end
 
@@ -58,9 +58,9 @@ module Kitaman
     end
 
     def set_type type
-      self.extend eval(type)
+      self.extend(eval(type))
     end
-    
+
     def add_source source_uri
       @files << source_uri
     end
