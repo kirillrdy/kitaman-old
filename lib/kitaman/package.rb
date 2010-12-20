@@ -5,14 +5,16 @@ module Kitaman
       return @packages if @packages
 
       @packages ||= {}
-      Dir[File.dirname(__FILE__) + '/../../packages/**/*.rb'].each do |x|
-        Logger.write " >> trying to load #{File.basename(x)}"
-        self.instance_eval(IO.read(x))
-      end
       
-      #TODO dont like this, loop does inderect loading of packages
-      # can be confusing
-      Logger.write @packages.inspect
+      Repository.all.each do |repository|
+        Log.info "Working on #{repository.url}"
+        repository.ruby_files.each do |x|
+          Log.info "Loading #{x}"
+          PackageDsl.instance_eval IO.read(x)
+        end
+      end
+
+      Log.info @packages.inspect
       return @packages
     end
 
@@ -23,50 +25,7 @@ module Kitaman
     end
 
 
-    # Used in DSL files
-    def self.package(name,options = {},&block)
-      package = self.new
-      package.name(name)
-      package.instance_eval(&block)
-
-      @packages ||= {}
-      @packages[package.name] ||= []
-      @packages[package.name] << package
-    end
-
-
-    # Part of our DSL
-    #Instance methods
-    def name(name = nil)
-      return @name unless name
-
-      @name = name
-      Logger.write "setting name #{name}"
-    end
-
-    def type(type)
-      @type = type
-      self.extend eval(type)
-      Logger.write "setting type: #{type}"
-    end
-
-    def source(source_uri)
-      @files << source_uri
-      Logger.write "adding #{source_uri} to files list"
-      @version = version
-    end
-
-    def prefix(install_prefix)
-      @install_prefix = install_prefix
-      Logger.write "Changing install prefix to #{install_prefix}"
-    end
-    
-    def patches(patches)
-      @patches += patches if patches.is_a? Array
-      @patches << patches if patches.is_a? String
-      Logger.write "Adding Patches #{patches}"
-    end
-
+ 
 
     # End of DSL
     #####################
@@ -89,8 +48,38 @@ module Kitaman
       @install_prefix = "/usr"
 
     end
-     
-     
+
+
+
+    ###############
+    # DSL supporting methods
+    def set_name name
+      @name = name
+    end
+
+    def set_type type
+      self.extend eval(type)
+    end
+    
+    def add_source source_uri
+      @files << source_uri
+    end
+
+    def set_prefix prefix
+      @install_prefix = prefix
+    end
+
+    def add_patch patch
+      @patches << patch
+    end
+
+    def add_patches patches
+      @patches += patches
+    end
+
+    # END of DSL methods
+    ######
+
     # THIS IS THE RECURSIVE THINGY TODO
     # by given action 
     # :install ,:remove

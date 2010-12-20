@@ -11,7 +11,7 @@ module Kitaman
   list_of_modules_to_load = ['argument_parser','package','file',
                              'shell','error','log','config',
                              'downloader','colours','computer',
-                             'user','repository']
+                             'user','repository','package_dsl']
 
   list_of_modules_to_load.each {|x| require_relative 'kitaman/'+x }
 
