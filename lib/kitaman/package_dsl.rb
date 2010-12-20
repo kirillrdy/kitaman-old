@@ -20,7 +20,7 @@ module Kitaman
     # Part of our DSL
     #Instance methods
     def name(name)
-      @package.set_name = name
+      @package.set_name name
       Log.info "setting name #{name}"
     end
 
@@ -30,7 +30,7 @@ module Kitaman
     end
 
     def source(source_uri)
-      @package.add_source
+      @package.add_source source_uri
       Log.info "adding #{source_uri} to files list"
     end
 
