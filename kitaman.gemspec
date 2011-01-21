@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = Kitaman::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Kirill Radzikhovskyy"]
-  s.email       = ["kirillrdy@silverpond.com.au"]
+  s.email       = ["kirillrdy@kita-linux.org"]
   s.homepage    = ""
   s.summary     = %q{Kitaman - Best package manager ever}
   s.description = %q{Kitaman is a working horse of kita linux}
