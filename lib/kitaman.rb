@@ -10,7 +10,7 @@ module Kitaman
                              'downloader','colours','computer',
                              'user','repository','package_dsl']
 
-  list_of_modules_to_load.each {|x| require_relative 'kitaman/'+x }
+  list_of_modules_to_load.each {|x| require_relative 'kitaman/'+ x }
 
 
   # Require all the modules
