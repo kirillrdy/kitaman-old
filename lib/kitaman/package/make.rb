@@ -17,60 +17,35 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-# TODO Document our most important module
-
 module Kitaman::Package::Make
   include Kitaman
 
-  ####################################
-  # Methods that return Strings 
-  # They should be overwritten by kitafiles
-  #
-
   # Generates Build Enviroment for the package
-  def build_enviroment
+  def build_enviroment_cmd
     "
     set -e
     export MAKEFLAGS='-j#{Computer.number_of_cores+1}'
-    INSTALL_DIR=#{install_dir}
     BUILD_DIR=#{build_dir}
-  
-    mkdir -p #{install_dir}
     cd #{build_dir}
-
     "
   end
 
-  # Confugure package
-  def config
-    "./configure --prefix=#{@install_prefix}"
+  def set_defaults
+    @prefix = '/usr'
+    @pre_configure_cmd = ''
+    @configure_cmd = "./configure --prefix=#{@prefix}"
+    @additional_configure_cmd = ''
+    @build_cmd = 'make'
+    @install_cmd = 'make install'
   end
 
-  # Extracts, patches, builds and packs a package
-  def build
-    "
-    make
-    "
-  end
 
-  def kita_install
-    "
-    make DESTDIR=#{install_dir} install
-    "
-  end
-
-  def post_install
-    "echo 'nothing here'"
-  end
-  
-  def clean_up
+  def clean_up_cmd
     "
       # Update the linkers cache
       ldconfig
       echo 'Cleaning up'
       rm -rf #{build_dir}
-      rm -rf #{install_dir}
-      rm #{tar_bin_file}
     "
   end
   
@@ -101,7 +76,7 @@ module Kitaman::Package::Make
         puts "Patching..."
         file = File.basename(file)
         puts "Patching using #{file}".red
-        result = result && Shell::execute(build_enviroment + "cd #{build_dir} && patch -Np1 -i #{Config::SRC_DIR}/#{file}")
+        result = result && Shell::execute(build_enviroment_cmd + "cd #{build_dir} && patch -Np1 -i #{Config::SRC_DIR}/#{file}")
       end
     end
     return result
@@ -109,6 +84,8 @@ module Kitaman::Package::Make
 
 
   def install
+
+    download unless downloaded?
 
     result = true
     # ruby
@@ -121,24 +98,23 @@ module Kitaman::Package::Make
 
     result = result && Shell::execute("
       
-      #{build_enviroment}
+      #{build_enviroment_cmd}
 
-      #{config}
+      #{configure}
 
       #{build}
 
       #{kita_install}
-          ") #config_src &> /var/kitaman/config_logs/#{self.to_s}
-
-    result = result && create_package
-    
-    # This is an actual installing
-    result = result && Shell::execute(build_enviroment + "tar xjpf #{tar_bin_file} -C #{ENV['Config::INSTALL_PREFIX']}/")
+          ")
 
     #TODO FIX 
     result = result && Shell::execute("
-    #{post_install}
-    #{clean_up}
+    
+    # TODO fix post install
+    # #{post_install}
+    
+    
+    #{clean_up_cmd}
     ")
 
     record_installed
@@ -146,22 +122,6 @@ module Kitaman::Package::Make
     return result
   end
 
-
-  # Generates tar ball with binary files
-  # Those binary files can later be reused
-  # They contain all files that belong to the package
-  def create_package
-    Shell::execute( build_enviroment  + "
-    cd #{install_dir}
-    tar cjpf #{tar_bin_file} *
-    ")
-  end
-  
-
-  # Records package as installed and records a list of all files installed by the package
-  def record_installed
-    Shell::execute("tar tf #{tar_bin_file} > #{state_file}")
-  end
 
   ##########################################################################
   private
@@ -176,14 +136,49 @@ module Kitaman::Package::Make
     return @build_dir
   end
 
-  #Helper that show points to location of binary tar ball
-  def tar_bin_file
-    (Config::PKG_DIR) +'/'+self.to_s+'-bin.tar.bz2'
+  # Returns a list of URLS of source files to be downloaded
+  def files_list_to_download
+    (@files + @patches)
   end
-  
-  # Helper that points to fake root install dir
-  def install_dir
-    (Config::FAKE_INSTALL_DIR) +'/'+self.to_s
+
+  # Returns a list of full paths to local source files belonging to package
+  def files_list_local
+    list= @files + @patches
+    list.map {|x| Config::SRC_DIR+'/'+ File.basename(x) }
   end
-  
+
+  # Fills FILES var with files maching in repository
+  def get_files_from_repo
+
+    FilesDatabase.update_src_files_database if not File.exist?(Config::SRC_MARSHAL_FILE)
+
+    @@files_list_database ||= Marshal.load(IO.read(Config::SRC_MARSHAL_FILE))
+    @@files_list_database[@name] ? [@@files_list_database[@name]] : []
+  end
+
+  # helper method used to set @version
+  # It will find version of first file availible for package
+  # or return undefined which is bad, and prob should be an exception
+  def version
+    @files.first ? File.version(@files.first) : 'undefined'
+  end
+
+  # Downloads all files in @files var, returns true if all files downloaded successfully
+  def download
+    success=true
+    for file in files_list_to_download
+      success = (success and Downloader.download_file(file))
+    end
+    return success
+  end
+
+  # Checks if all files are downloaded
+  def downloaded?
+    results = true
+    for file in files_list_local 
+      results = (results && File.exists?(file))
+    end
+    return results
+  end
+
 end
