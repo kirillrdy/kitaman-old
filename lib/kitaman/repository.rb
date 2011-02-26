@@ -4,7 +4,7 @@ module Kitaman
 
     #TODO fix in the future
     def self.fake_list_of_repositories
-      @repositories = ['git@kitaman.org:packages/kita-linux.git']
+      @repositories = ['git://kitaman.org/packages/kita-linux.git']
     end
 
     def self.init
