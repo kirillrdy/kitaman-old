@@ -6,7 +6,7 @@ module Kitaman
     def self.add package
       @packages ||= {}
       @packages[package.name] ||= []
-      @packages[package.name] ||= << package
+      @packages[package.name] << package
     end
 
     def self.all
