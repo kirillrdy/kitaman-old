@@ -144,7 +144,7 @@ module Kitaman::Package::Make
   # It will find version of first file availible for package
   # or return undefined which is bad, and prob should be an exception
   def get_version_from_sources
-    local_files.first ? File.version(@files.first) : 'undefined'
+    local_files.first ? File.version(files.first) : 'undefined'
   end
 
 
@@ -163,7 +163,7 @@ module Kitaman::Package::Make
   end
 
   def remote_files
-    (@files + @patches)
+    (@sources + @patches)
   end
 
 
@@ -173,7 +173,7 @@ module Kitaman::Package::Make
   end
 
 
-  # Downloads all files in @files var, returns true if all files downloaded successfully
+  # Downloads all files in remote_files, returns true if all files downloaded successfully
   def download
     success=true
     for file in remote_files
