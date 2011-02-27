@@ -12,7 +12,7 @@ module Kitaman
     TEMP_DIR="/var/tmp"
     
     # TODO this should be called repo
-    #REPOS_LIST_FILE="#{PREFIX}/conf/kitaman.repos"
+    SOURCES_LIST_LOCATION = "#{PREFIX}/conf/sources.list"
     
     REPOSITORIES_BASE_PATH = "#{PREFIX}/repositories"
     
