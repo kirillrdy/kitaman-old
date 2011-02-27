@@ -145,7 +145,7 @@ module Kitaman::Package::Make
   # It will find version of first file availible for package
   # or return undefined which is bad, and prob should be an exception
   def get_version_from_sources
-    local_files.first ? File.version(files.first) : 'undefined'
+    remote_files.first ? File.version(remote_files.first) : 'undefined'
   end
 
 
