@@ -158,7 +158,7 @@ module Kitaman::Package::Make
   # eg /var/kitaman/build/linux-2.6.26/
   def build_dir
     #use instance var as a cache
-    @build_dir ||=  Config::BUILD_DIR + '/' + (`tar tf #{files_list_local.first}`.split("\n").first)
+    @build_dir ||=  Config::BUILD_DIR + '/' + (`tar tf #{local_files.first}`.split("\n").first)
     #@build_dir.chomp!("/")
     return @build_dir
   end
