@@ -21,7 +21,7 @@ module Kitaman
 
 
     def self.find(package_name)
-      load_all
+      load_all unless @packages
       Error.error "package #{package_name} not found" unless @packages[package_name]
       @packages[package_name].first
     end
