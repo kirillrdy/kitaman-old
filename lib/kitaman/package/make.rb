@@ -33,7 +33,7 @@ module Kitaman::Package::Make
   end
 
   def set_defaults
-    
+
     @version = get_version_from_sources unless @version
 
     @sources = get_files_from_repo if @sources.empty?
@@ -144,7 +144,7 @@ module Kitaman::Package::Make
   # It will find version of first file availible for package
   # or return undefined which is bad, and prob should be an exception
   def get_version_from_sources
-    files.first ? File.version(@files.first) : 'undefined'
+    local_files.first ? File.version(@files.first) : 'undefined'
   end
 
 
