@@ -8,7 +8,7 @@ module Kitaman
         
         for file in list_of_files
           file = file[0]
-          files_dictionary[file.smart_basename] = repo+file
+          files_dictionary[File.smart_basename(file)] = repo+file
         end
       end
 
