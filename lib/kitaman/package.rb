@@ -59,7 +59,7 @@ module Kitaman
 
       for dependency in @dependencies
         Log.info "going through dependency #{dependency} for #{@name}"
-        Kita.find(dependency).call(action)
+        Package.find(dependency).call(action)
       end
 
       case action
