@@ -4,12 +4,11 @@ module Kitaman
 
     #TODO fix in the future
     def self.fake_list_of_repositories
-      @repositories = ['git://kitaman.org/packages/kita-linux.git']
+      ['git://kitaman.org/packages/kita-linux.git']
     end
 
     def self.init
       Log.info 'Initialising Repositories'
-      @repositories = self.fake_list_of_repositories
 
       Repository.all.each do |repository|
         repository.clone unless repository.exists?
@@ -18,7 +17,7 @@ module Kitaman
     end
 
     def self.all
-      @repositories.map {|x| self.new x }
+      fake_list_of_repositories.map {|x| self.new x }
     end
 
     def initialize(url)
