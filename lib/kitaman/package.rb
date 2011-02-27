@@ -13,8 +13,11 @@ module Kitaman
         repository.ruby_files.each do |x|
           Log.info "Loading #{x}"
           package = PackageDsl.instance_eval(IO.read(x))
-          @packages[package.name] ||= [] if package
-          @packages[package.name] << package if package
+          if package
+            package.set_defaults
+            @packages[package.name] ||= []
+            @packages[package.name] << package
+          end
         end
       end
 
@@ -31,18 +34,11 @@ module Kitaman
 
     # Creates Kita object and parses all the information
     def initialize
-      set_defaults
-    end
-
-    def set_defaults
       @name = 'UNDEFINED PACKAGE'
-      @version =  'unknow-version' # TODO version()
       @type = :basic
       @dependencies = []
       @post_install_cmd = ''
-
     end
-
 
     # String representation of kita instance
     # eg gnome-terminal-2.29.3
