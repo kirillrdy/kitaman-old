@@ -23,7 +23,7 @@
 # and some small shell post install 
 #
 #
-module Meta
+module Kitaman::Package::Meta
 
   #TODO fix this to it would support post install methods
   def install

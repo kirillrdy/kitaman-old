@@ -27,6 +27,11 @@ module Kitaman
       Log.info "setting name #{name}"
     end
 
+    def version(ver)
+      @package.version = ver
+      Log.info "setting version to #{ver}"
+    end
+
     def type(type)
       if type == :make
         @package.extend Kitaman::Package::Make
