@@ -9,11 +9,7 @@ module Kitaman
       @packages[package.name] << package
     end
 
-    def self.all
-      return @packages if @packages
-
-      @packages ||= {}
-
+    def self.load_all
       Repository.all.each do |repository|
         Log.info "Working on #{repository.url}"
         repository.ruby_files.each do |x|
@@ -21,16 +17,13 @@ module Kitaman
           PackageDsl.instance_eval(IO.read(x))
         end
       end
-
-      Log.info @packages.inspect
-      return @packages
     end
 
 
     def self.find(package_name)
-      #TODO
-      Error.error "package #{package_name} not found" unless self.all[package_name]
-      self.all[package_name].first
+      load_all
+      Error.error "package #{package_name} not found" unless @packages[package_name]
+      @packages[package_name].first
     end
 
 
@@ -66,7 +59,7 @@ module Kitaman
       end
 
       case action
-        when :install
+        when :instload_allall
 
           #TODO Clean
           puts "Installing #{self.to_s}".bold.green unless installed?
