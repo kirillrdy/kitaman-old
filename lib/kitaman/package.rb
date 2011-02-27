@@ -12,7 +12,8 @@ module Kitaman
         Log.info "Working on #{repository.url}"
         repository.ruby_files.each do |x|
           Log.info "Loading #{x}"
-          PackageDsl.instance_eval(IO.read(x))
+          package = PackageDsl.instance_eval(IO.read(x))
+          @packages[package.name] = package
         end
       end
 

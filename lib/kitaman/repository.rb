@@ -33,7 +33,7 @@ module Kitaman
     end
 
     def pull
-      Log.info "Cloning #{@url} to #{@base_path}/#{@repository_name}"
+      Log.info "Pulling #{@repository_name}"
       Shell.execute "cd #{@base_path}/#{@repository_name} && git pull"
     end
 
