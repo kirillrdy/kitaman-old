@@ -63,7 +63,7 @@ module Kitaman
       end
 
       case action
-        when :instload_allall
+        when :install
 
           #TODO Clean
           puts "Installing #{self.to_s}".bold.green unless installed?
