@@ -28,6 +28,7 @@ module Kitaman
 
     def self.find(package_name)
       #TODO
+      Error.error "package #{package_name} not found" unless self.all[package_name]
       self.all[package_name].first
     end
 
