@@ -44,6 +44,16 @@ module Kitaman
       end
     end
 
+    def depends_on stuff
+      if stuff.is_a? Array
+        @dependencies = stuff
+      elsif stuff.is_a? String
+        @dependencies = [stuff]
+      else
+        Error.error "unsuported type of dependency #{@package.name}"
+      end
+    end
+
 
   end
 end
