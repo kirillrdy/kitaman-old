@@ -53,6 +53,10 @@ module Kitaman
     # :install ,:remove
     def call(action)
 
+
+
+      Log.info "about to go through #{@dependencies} for #{@name}"
+
       for dependency in @dependencies
         Log.info "going through dependency #{dependency} for #{@name}"
         Kita.find(dependency).call(action)
