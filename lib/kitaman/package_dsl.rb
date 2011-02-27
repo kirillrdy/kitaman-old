@@ -30,6 +30,9 @@ module Kitaman
       if type == :make
         @package.extend Kitaman::Package::Make
         Log.info "setting type: #{type}"
+      elsif type == :meta
+        @package.extend Kitaman::Package::Meta
+        Log.info "setting type: #{type}"
       else
         Error.error "couldnt set type type: #{type}"
       end
