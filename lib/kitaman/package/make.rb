@@ -138,7 +138,7 @@ module Kitaman::Package::Make
     FilesDatabase.update_src_files_database if not File.exist?(Config::SRC_MARSHAL_FILE)
 
     @@files_list_database ||= Marshal.load(IO.read(Config::SRC_MARSHAL_FILE))
-    @ _list_database[@name] ? [@@files_list_database[@name]] : []
+    @@files_list_database[@name] ? [@@files_list_database[@name]] : []
   end
 
   # helper method used to set @version
