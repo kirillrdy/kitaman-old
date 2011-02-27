@@ -108,20 +108,19 @@ module Kitaman::Package::Make
       
       #{build_enviroment_cmd}
 
-      #{configure}
+      #{configure_cmd}
 
-      #{build}
+      #{build_cmd}
 
-      #{kita_install}
+      #{install_cmd}
           ")
 
     #TODO FIX 
     result = result && Shell::execute("
-    
+
     # TODO fix post install
     # #{post_install}
-    
-    
+
     #{clean_up_cmd}
     ")
 
