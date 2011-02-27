@@ -66,7 +66,7 @@ module Kitaman::Package::Make
     result = true
     
     puts "Extrating..."
-    for file in files_list_local
+    for file in local_files
       result = (result && Shell::execute("tar xjpf #{file} -C #{Config::BUILD_DIR}/")) if ( file.index('.tar.bz2') || file.index('.bz2') )
       result = (result && Shell::execute("tar xpf #{file} -C #{Config::BUILD_DIR}/")) if ( file.index('.tar.gz') || file.index('.tgz'))
       result = (result && Shell::execute("tar #{file} -d #{Config::BUILD_DIR}/")) if file.index('.zip')
@@ -79,7 +79,7 @@ module Kitaman::Package::Make
     result = true
     
     
-    for file in files_list_local
+    for file in local_files
       if file.index('.patch')
         puts "Patching..."
         file = File.basename(file)
