@@ -37,13 +37,13 @@ module Kitaman
       def build &block
         val = block.call
         @package.build_cmd = val
-        Log.info "build set to #{val}"
+        Log.info "build_cmd set to #{val}"
       end
 
       def install &block
         val = block.call
         @package.install_cmd = val
-        Log.info "install set to #{val}"
+        Log.info "install_cmd set to #{val}"
       end
 
     end

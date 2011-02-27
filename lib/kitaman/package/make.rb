@@ -38,13 +38,12 @@ module Kitaman::Package::Make
     @patches = []
     @version = get_version_from_sources unless @version
 
-    
-    @prefix = '/usr'
-    @pre_configure_cmd = ''
-    @configure_cmd = "./configure --prefix=#{@prefix}"
-    @additional_configure_cmd = ''
-    @build_cmd = 'make'
-    @install_cmd = 'make install'
+    @prefix = '/usr' unless @prefix
+    @pre_configure_cmd = '' unless @pre_configure_cmd
+    @configure_cmd = "./configure --prefix=#{@prefix}" unless @configure_cmd
+    @additional_configure_cmd = '' unless @additional_configure_cmd
+    @build_cmd = 'make' unless @build_cmd
+    @install_cmd = 'make install' unless @install_cmd
   end
 
 
