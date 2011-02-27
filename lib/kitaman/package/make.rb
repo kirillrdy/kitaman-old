@@ -20,6 +20,8 @@
 module Kitaman::Package::Make
   include Kitaman
 
+  attr_accessor :sources, :patches, :prefix, :pre_configure_cmd, :configure_cmd, :additional_configure_cmd, :build_cmd, :install_cmd
+
   # Generates Build Enviroment for the package
   def build_enviroment_cmd
     "
