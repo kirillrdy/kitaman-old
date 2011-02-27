@@ -42,6 +42,11 @@ module Kitaman
       @post_install_cmd = ''
     end
 
+    # Filler for inheriting
+    def set_defaults
+      
+    end
+
     # String representation of kita instance
     # eg gnome-terminal-2.29.3
     def to_s
