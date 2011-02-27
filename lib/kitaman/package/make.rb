@@ -31,6 +31,8 @@ module Kitaman::Package::Make
   end
 
   def set_defaults
+    @sources = []
+    @patches = []
     @prefix = '/usr'
     @pre_configure_cmd = ''
     @configure_cmd = "./configure --prefix=#{@prefix}"
@@ -136,37 +138,21 @@ module Kitaman::Package::Make
     return @build_dir
   end
 
-  # Returns a list of URLS of source files to be downloaded
-  def files_list_to_download
+  def remote_files
     (@files + @patches)
   end
 
+
   # Returns a list of full paths to local source files belonging to package
-  def files_list_local
-    list= @files + @patches
-    list.map {|x| Config::SRC_DIR+'/'+ File.basename(x) }
+  def local_files
+    remote_files.map {|x| Config::SRC_DIR+'/'+ File.basename(x) }
   end
 
-  # Fills FILES var with files maching in repository
-  def get_files_from_repo
-
-    FilesDatabase.update_src_files_database if not File.exist?(Config::SRC_MARSHAL_FILE)
-
-    @@files_list_database ||= Marshal.load(IO.read(Config::SRC_MARSHAL_FILE))
-    @@files_list_database[@name] ? [@@files_list_database[@name]] : []
-  end
-
-  # helper method used to set @version
-  # It will find version of first file availible for package
-  # or return undefined which is bad, and prob should be an exception
-  def version
-    @files.first ? File.version(@files.first) : 'undefined'
-  end
 
   # Downloads all files in @files var, returns true if all files downloaded successfully
   def download
     success=true
-    for file in files_list_to_download
+    for file in remote_files
       success = (success and Downloader.download_file(file))
     end
     return success
@@ -175,7 +161,7 @@ module Kitaman::Package::Make
   # Checks if all files are downloaded
   def downloaded?
     results = true
-    for file in files_list_local 
+    for file in local_files
       results = (results && File.exists?(file))
     end
     return results

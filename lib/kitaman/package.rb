@@ -1,11 +1,13 @@
 module Kitaman
   class Package
 
+    attr_accessor :name, :version, :type, :dependencies, :post_install_cmd
+
     def self.all
       return @packages if @packages
 
       @packages ||= {}
-      
+
       Repository.all.each do |repository|
         Log.info "Working on #{repository.url}"
         repository.ruby_files.each do |x|
@@ -27,18 +29,16 @@ module Kitaman
 
     # Creates Kita object and parses all the information
     def initialize
-      # TODO figure out need for this
+      set_defaults
     end
-
 
     def set_defaults
       @name = 'UNDEFINED PACKAGE'
-      @version =  version
+      @version =  'unknow-version' # TODO version()
+      @type = :basic
       @dependencies = []
+      @post_install_cmd = ''
 
-      @patches = []
-      @files = []
-      @files ||= get_files_from_repo
     end
 
 

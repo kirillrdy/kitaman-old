@@ -1,9 +1,38 @@
-# Its time we write and documentatio for our new awesome dsl
+#Basics Package attributes
+@name = 'package_name'
+@version = '0.1'
+@type = :make
+@dependencies = []
+@post_install_cmd = ''
+
+
+# make related attributes
+@sources = []
+@patches = []
+@prefix = '/usr'
+@pre_configure_cmd = ''
+@configure_cmd = "./configure --prefix=#{@prefix}"
+@additional_configure = ''
+@build_cmd = 'make'
+@install_cmd = 'make install'
+
+# Its time to write documentation for our awesome dsl
 package 'ruby' do
 
   # Basics
   version '1.9.2' # overwrite auto detection
   type :make # :make,:meta, :gnome, :xorg
+
+  # Dependency managment
+  dependency ''
+  dependencies []
+  depends '' || []
+  depends_on '' || []
+
+  # post_install
+  post_install do
+    'echo "Post Install ... blank "'
+  end
 
   # Source locations
   source ''
@@ -12,13 +41,6 @@ package 'ruby' do
   # Patches
   patches ['','']
   patch ''
-
-  # Dependency managment
-  dependency ''
-  dependencies []
-  depends '' || []
-  depends_on '' || []
-
 
   # make related
   prefix '/stuff'
@@ -39,11 +61,6 @@ package 'ruby' do
 
   install do
     'make install'
-  end
-
-  # post_install
-  post_install do
-    'echo "Post Install ... blank "'
   end
 
 end
