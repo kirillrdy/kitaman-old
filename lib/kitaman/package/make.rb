@@ -34,10 +34,11 @@ module Kitaman::Package::Make
 
   def set_defaults
 
-    @version = get_version_from_sources unless @version
-
     @sources = get_files_from_repo if @sources.empty?
     @patches = []
+    @version = get_version_from_sources unless @version
+
+    
     @prefix = '/usr'
     @pre_configure_cmd = ''
     @configure_cmd = "./configure --prefix=#{@prefix}"
@@ -137,7 +138,7 @@ module Kitaman::Package::Make
     FilesDatabase.update_src_files_database if not File.exist?(Config::SRC_MARSHAL_FILE)
 
     @@files_list_database ||= Marshal.load(IO.read(Config::SRC_MARSHAL_FILE))
-    @@files_list_database[@name] ? [@@files_list_database[@name]] : []
+    @ _list_database[@name] ? [@@files_list_database[@name]] : []
   end
 
   # helper method used to set @version
