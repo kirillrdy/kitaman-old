@@ -61,6 +61,7 @@ module Kitaman
     def call(action)
 
       for dependency in @dependencies
+        Log.info "going through dependency #{dependency} for #{@name}"
         Kita.find(dependency).call(action)
       end
 
