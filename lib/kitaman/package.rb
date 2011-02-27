@@ -13,7 +13,7 @@ module Kitaman
         repository.ruby_files.each do |x|
           Log.info "Loading #{x}"
           package = PackageDsl.instance_eval(IO.read(x))
-          @packages[package.name] ||= []
+          @packages[package.name] ||= [] if package
           @packages[package.name] << package if package
         end
       end
