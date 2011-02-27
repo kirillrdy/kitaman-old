@@ -58,7 +58,7 @@ module Kitaman
 
         opts.on("-S", "--[no-]sync", "sync") do |v|
           Kitaman::Repository.all.map {|x| x.pull }
-          FilesDatabase.update
+          Kitaman::FilesDatabase.update
           exit
         end
       end.parse!
