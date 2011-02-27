@@ -71,4 +71,4 @@ Kirill R
 
 == Copyright
 
-Copyright (c) 2010 Kirill Radzikhovskyy. See LICENSE for details.
+Copyright (c) 2011 Kirill Radzikhovskyy. See LICENSE for details.
