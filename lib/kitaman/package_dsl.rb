@@ -46,10 +46,10 @@ module Kitaman
 
     def depends_on stuff
       if stuff.is_a? Array
-        @dependencies = stuff
+        @package.dependencies = stuff
         Log.info "setting dependencies to #{stuff.inspect}"
       elsif stuff.is_a? String
-        @dependencies = [stuff]
+        @package.dependencies = [stuff]
         Log.info "setting dependencies to #{[stuff].inspect}"
       else
         Error.error "unsuported type of dependency #{@package.name}"
