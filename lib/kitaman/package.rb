@@ -3,6 +3,12 @@ module Kitaman
 
     attr_accessor :name, :version, :type, :dependencies, :post_install_cmd
 
+    def self.add package
+      @packages ||= {}
+      @packages[package.name] ||= []
+      @packages[package.name] ||= << package
+    end
+
     def self.all
       return @packages if @packages
 
@@ -12,12 +18,7 @@ module Kitaman
         Log.info "Working on #{repository.url}"
         repository.ruby_files.each do |x|
           Log.info "Loading #{x}"
-          package = PackageDsl.instance_eval(IO.read(x))
-          if package
-            package.set_defaults
-            @packages[package.name] ||= []
-            @packages[package.name] << package
-          end
+          PackageDsl.instance_eval(IO.read(x))
         end
       end
 

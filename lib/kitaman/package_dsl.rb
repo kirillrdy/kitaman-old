@@ -15,7 +15,8 @@ module Kitaman
 
       dsl.instance_eval(&block)
 
-      return dsl.package
+      dsl.set_defaults
+      Kitaman::Package.add dsl.package
     end
 
 
