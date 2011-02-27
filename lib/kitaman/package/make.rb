@@ -119,7 +119,7 @@ module Kitaman::Package::Make
     result = result && Shell::execute("
 
     # TODO fix post install
-    # #{post_install}
+    # #{post_install_cmd}
 
     #{clean_up_cmd}
     ")
