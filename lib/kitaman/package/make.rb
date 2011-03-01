@@ -133,7 +133,7 @@ module Kitaman::Package::Make
 
   # Fills FILES var with files maching in repository
   def get_files_from_repo
-    FilesDatabase.update_src_files_database if not File.exist?(Config::SRC_MARSHAL_FILE)
+    FilesDatabase.update if not File.exist?(Config::SRC_MARSHAL_FILE)
 
     @@files_list_database ||= Marshal.load(IO.read(Config::SRC_MARSHAL_FILE))
     @@files_list_database[@name] ? [@@files_list_database[@name]] : []
