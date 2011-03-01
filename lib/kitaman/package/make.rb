@@ -159,7 +159,7 @@ module Kitaman::Package::Make
     return @build_dir if @build_dir
     target = `tar tf #{local_files.first}`.split("\n").first
     if target[-1..-1] != '/'
-      target = target[0..target.index('/')] Pathname.new(target).dirname.to_s
+      target = target[0..target.index('/')]
     end
     @build_dir ||=  Config::BUILD_DIR + '/' + target
     return @build_dir
