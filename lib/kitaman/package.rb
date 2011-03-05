@@ -53,6 +53,7 @@ module Kitaman
     # :install ,:remove
     def call(action)
 
+      Log.info "calling action:#{action} for #{@name}"
 
 
       Log.info "about to go through #{@dependencies} for #{@name}"
