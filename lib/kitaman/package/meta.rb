@@ -24,7 +24,7 @@
 #
 #
 module Kitaman::Package::Meta
-
+  include Kitaman
   attr_accessor :post_install_cmd
 
   def set_defaults
