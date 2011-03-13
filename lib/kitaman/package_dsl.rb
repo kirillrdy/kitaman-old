@@ -2,7 +2,7 @@ module Kitaman
   class PackageDsl
   
     attr_accessor :package
-    
+
     include Dsl::Make
 
 

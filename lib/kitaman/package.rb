@@ -37,7 +37,6 @@ module Kitaman
 
     # Filler for inheriting
     def set_defaults
-      
     end
 
     # String representation of kita instance
