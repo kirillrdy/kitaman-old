@@ -32,7 +32,6 @@ module Kitaman
       @name = 'UNDEFINED PACKAGE'
       @type = :basic
       @dependencies = []
-      @post_install_cmd = ''
     end
 
     # Filler for inheriting
