@@ -28,7 +28,7 @@ module Kitaman::Package::Meta
   attr_accessor :post_install_cmd
 
   def set_defaults
-    @post_install_cmd = 'echo'
+    @post_install_cmd ||= 'echo'
   end
 
   #TODO fix this to it would support post install methods
