@@ -158,7 +158,7 @@ module Kitaman::Package::Make
     #use instance var as a cache
     return @build_dir if @build_dir
     target = `tar tf #{local_files.first}`.split("\n").first
-    if target[-1..-1] != '/'
+    if target.index('/') && target[-1..-1] != '/'
       target = target[0..target.index('/')]
     end
     @build_dir ||=  Config::BUILD_DIR + '/' + target
