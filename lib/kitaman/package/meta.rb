@@ -24,10 +24,17 @@
 #
 #
 module Kitaman::Package::Meta
+  include Kitaman
+
+  def set_defaults
+    @post_install_cmd ||= 'echo'
+  end
 
   #TODO fix this to it would support post install methods
   def install
-    return true
+    Shell.execute @post_install_cmd
   end
-    
+
+  
+
 end

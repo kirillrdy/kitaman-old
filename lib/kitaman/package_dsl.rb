@@ -2,8 +2,9 @@ module Kitaman
   class PackageDsl
   
     attr_accessor :package
-    
+
     include Dsl::Make
+    include Dsl::Meta
 
 
     # Used in DSL files
