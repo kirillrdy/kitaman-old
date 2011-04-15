@@ -159,6 +159,7 @@ module Kitaman::Package::Make
     return @build_dir if @build_dir
     target = `tar tf #{local_files.first}`.split("\n").first
 
+    target += '/' unless target.index '/'
     target = target[0..target.index('/')]
 
     @build_dir ||=  Config::BUILD_DIR + '/' + target
