@@ -32,7 +32,8 @@ module Kitaman::Package::Meta
 
   #TODO fix this to it would support post install methods
   def install
-    Shell.execute @post_install_cmd
+    record_installed if Shell.execute(@post_install_cmd)
+    
   end
 
   
