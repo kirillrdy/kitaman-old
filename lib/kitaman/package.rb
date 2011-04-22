@@ -60,9 +60,9 @@ module Kitaman
 
       case action
         when :install
-          install unless installed?
           puts "Installing #{self.to_s}".bold.green unless installed?
           Terminal.set_title self.to_s
+          install unless installed?
 
         when :remove
           remove if installed?
