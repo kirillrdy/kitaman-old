@@ -24,7 +24,7 @@ module Kitaman
 
     def to_dot
      output = @header 
-     for item in @list
+     @list.each do |item|
       output +=  "\"#{item[0]}\" -> \"#{item[1]}\" ; \n"
      end
      output += "}"

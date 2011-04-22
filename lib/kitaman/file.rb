@@ -1,7 +1,7 @@
 class File
 
   # List of known and supported archives
-  ARCHIVE_EXTENSIONS=['.tar.bz2','.tar.gz','.tgz','.bz2']
+  ARCHIVE_EXTENSIONS=['.tar.bz2','.tar.gz','.tgz','.bz2','.zip','.tar.xz']
 
   # Basename that is much smarter that File.basename
   # eg:
@@ -17,14 +17,13 @@ class File
     if full_filename.rindex(/-\d/)
       ext = full_filename.slice( full_filename.rindex(/-\d/)+1 ,full_filename.length) 
     end
-    for extention in ARCHIVE_EXTENSIONS
+    ARCHIVE_EXTENSIONS.each do |extention|
       if ext.index extention
         ext = ext.slice(0,ext.index(extention))
       end
     end
     return ext
   end
-
 
 end
 
