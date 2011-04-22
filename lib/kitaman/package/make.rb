@@ -65,6 +65,8 @@ module Kitaman::Package::Make
     result = true
 
     dir_to_extract_to = "#{Config::BUILD_DIR}/#{@name}"
+    Shell::execute "mkdir -p #{dir_to_extract_to}"
+    
     
     local_files.each do |file|
       Log.info "Extrating  #{file}..."
