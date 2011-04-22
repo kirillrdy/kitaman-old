@@ -63,12 +63,16 @@ module Kitaman::Package::Make
   # Extract source code
   def extract
     result = true
+
+    dir_to_extract_to = "#{Config::BUILD_DIR}/#{@name}"
     
-    puts "Extrating..."
-    for file in local_files
-      result = (result && Shell::execute("tar xjpf #{file} -C #{Config::BUILD_DIR}/")) if ( file.index('.tar.bz2') || file.index('.bz2') )
-      result = (result && Shell::execute("tar xpf #{file} -C #{Config::BUILD_DIR}/")) if ( file.index('.tar.gz') || file.index('.tgz'))
-      result = (result && Shell::execute("unzip #{file} -d #{Config::BUILD_DIR}/")) if file.index('.zip')
+    local_files.each do |file|
+      Logger.info "Extrating  #{file}..."
+
+      result = (result && Shell::execute("tar xjpf #{file} -C #{dir_to_extract_to}/")) if ( file.index('.tar.bz2') || file.index('.bz2') )
+      result = (result && Shell::execute("tar xJpf #{file} -C #{dir_to_extract_to}/")) if ( file.index('.tar.xz') || file.index('.xz') )
+      result = (result && Shell::execute("tar xpf #{file} -C #{dir_to_extract_to}/")) if ( file.index('.tar.gz') || file.index('.tgz'))
+      result = (result && Shell::execute("unzip #{file} -d #{dir_to_extract_to}/")) if file.index('.zip')
     end
     return result
   end
@@ -151,18 +155,17 @@ module Kitaman::Package::Make
   ##########################################################################
   private
   ##########################################################################
-  
+
   # Helper that shows where source will be built
   # eg /var/kitaman/build/linux-2.6.26/
   def build_dir
-    #use instance var as a cache
     return @build_dir if @build_dir
-    target = `tar tf #{local_files.first}`.split("\n").first
 
-    target += '/' unless target.index '/'
-    target = target[0..target.index('/')]
+#    target = `tar tf #{local_files.first}`.split("\n").first
+#    target += '/' unless target.index '/'
+#    target = target[0..target.index('/')]
 
-    @build_dir ||=  Config::BUILD_DIR + '/' + target
+    @build_dir ||=  "#{Config::BUILD_DIR}/#{@name}/*/"
     return @build_dir
   end
 
