@@ -53,22 +53,21 @@ module Kitaman
 
       Log.info "calling action:#{action} for #{@name}"
 
-
-      Log.info "about to go through #{@dependencies} for #{@name}"
-
-      for dependency in @dependencies
+      @dependencies.each do |dependency|
         Log.info "going through dependency #{dependency} for #{@name}"
         Package.find(dependency).call(action)
       end
 
       case action
         when :install
-
-          #TODO Clean
-          puts "Installing #{self.to_s}".bold.green unless installed?
           install unless installed?
+          puts "Installing #{self.to_s}".bold.green unless installed?
+          Terminal.set_title self.to_s
+
         when :remove
           remove if installed?
+        else
+          raise 'Requested action not supported'
       end
 
     end
