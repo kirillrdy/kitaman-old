@@ -1,15 +1,2 @@
-http://www.x.org/releases/X11R7.6/src/everything/
-http://xorg.freedesktop.org/releases/individual/lib/
-http://xorg.freedesktop.org/releases/individual/proto/
-http://ftp.gnome.org/pub/gnome/platform/2.30/2.30.2/sources/
-http://ftp.gnome.org/pub/gnome/desktop/2.30/2.30.2/sources/
-http://ftp.gnome.org/pub/gnome/devtools/2.30/2.30.2/sources/
-http://ftp.gnome.org/pub/gnome/bindings/2.30/2.30.2/sources/c++/
-http://ftp.gnome.org/pub/gnome/bindings/2.30/2.30.2/sources/python/
 http://www.linuxfromscratch.org/blfs/downloads/svn/
-http://gstreamer.freedesktop.org/src/gst-plugins-bad/
-http://gstreamer.freedesktop.org/src/gst-plugins-ugly/
-http://gstreamer.freedesktop.org/src/gst-plugins-good/
-http://gstreamer.freedesktop.org/src/gst-plugins-base/
-http://gstreamer.freedesktop.org/src/gstreamer/
 http://ibiblio.org/pub/linux/system/emulators/wine/
