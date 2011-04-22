@@ -1,3 +1,11 @@
+# Kitaman DSL
+# 
+# Kirill Radzikhovskyy <kirillrdy@kita-linux.org>
+# Last updated 22/04/2011
+
+
+
+
 #Basics Package attributes
 @name = 'package_name'
 @version = '0.1'
