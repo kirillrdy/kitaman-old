@@ -67,7 +67,7 @@ module Kitaman::Package::Make
     dir_to_extract_to = "#{Config::BUILD_DIR}/#{@name}"
     
     local_files.each do |file|
-      Logger.info "Extrating  #{file}..."
+      Log.info "Extrating  #{file}..."
 
       result = (result && Shell::execute("tar xjpf #{file} -C #{dir_to_extract_to}/")) if ( file.index('.tar.bz2') || file.index('.bz2') )
       result = (result && Shell::execute("tar xJpf #{file} -C #{dir_to_extract_to}/")) if ( file.index('.tar.xz') || file.index('.xz') )
