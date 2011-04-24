@@ -87,9 +87,9 @@ module Kitaman::Package::Make
     
     for file in local_files
       if file.index('.patch')
-        puts "Patching..."
+        Log.info "Patching..."
         file = File.basename(file)
-        puts "Patching using #{file}".red
+        Log.info "Patching using #{file}".red
         result = result && Shell::execute(build_enviroment_cmd + "cd #{build_dir} && patch -Np1 -i #{Config::SRC_DIR}/#{file}")
       end
     end
