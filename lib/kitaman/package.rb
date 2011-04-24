@@ -23,6 +23,7 @@ module Kitaman
     def self.find(package_name)
       load_all unless @packages
       Error.error "package #{package_name} not found" unless @packages[package_name]
+      Error.error "more than one definition found for #{package_name}" if @packages[package_name].length > 1
       @packages[package_name].first
     end
 
