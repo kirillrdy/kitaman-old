@@ -35,7 +35,7 @@ module Kitaman::Package::Make
   def set_defaults
 
     @sources = get_files_from_repo if @sources.nil? || @sources.empty?
-    @patches = []
+    @patches = [] unless @patches
     @version = get_version_from_sources unless @version
 
     @prefix = '/usr' unless @prefix
