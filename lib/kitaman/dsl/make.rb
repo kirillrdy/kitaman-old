@@ -12,8 +12,8 @@ module Kitaman
   #    end
 
       def patch patch_url
-        @package.patches = [patch]
-        Log.info "Adding Patch #{patche}"
+        @package.patches = [patch_url]
+        Log.info "Adding Patch #{patch_url}"
       end
 
       def patches(patches)
