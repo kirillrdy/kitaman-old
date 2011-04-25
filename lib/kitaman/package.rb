@@ -52,7 +52,7 @@ module Kitaman
     # :install ,:remove
     def call(action)
 
-      next if action == :install && installed?
+      return if action == :install && installed?
       Log.info "Starting :#{action} of #{@name}"
 
       @dependencies.each do |dependency|
