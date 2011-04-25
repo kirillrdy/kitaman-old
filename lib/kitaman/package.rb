@@ -52,7 +52,8 @@ module Kitaman
     # :install ,:remove
     def call(action)
 
-      Log.info "calling action:#{action} for #{@name}"
+      next if action == :install && installed?
+      Log.info "Starting :#{action} of #{@name}"
 
       @dependencies.each do |dependency|
         Log.info "going through dependency #{dependency} for #{@name}"
